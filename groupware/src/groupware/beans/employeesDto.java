@@ -50,11 +50,11 @@ public class employeesDto {
 		this.empPw = empPw;
 	}
 	
-	public int getPo_no() {
+	public int getPono() {
 		return poNo;
 	}
 
-	public void setPo_no(int poNo) {
+	public void setPono(int poNo) {
 		this.poNo = poNo;
 	}
 

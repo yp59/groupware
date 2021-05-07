@@ -14,7 +14,9 @@ public class boardDao {
 	public List<boardDto> boardList()throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql = "select * from board";
+		String sql = "select B.*,E.emp_name from board B "
+				+ "inner join employees E "
+				+ "on E.emp_no = B.emp_no";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		
@@ -29,10 +31,101 @@ public class boardDao {
 			boarddto.setBoContent(rs.getString("bo_content"));
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
-
+			boarddto.setEmpName(rs.getString("emp_name"));
+			
 			list.add(boarddto);
 		}
 		
+		con.close();
+		
 		return list;
 	}
+	public void registration(boardDto boarddto)throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		//글 작성자 자동으로 찾게 해야함 아직 로그인 구현 못해서 못만듬
+		String sql = "insert into board values(board_seq.nextval,1005,?,?,?,0,sysdate)";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, boarddto.getBoTitle());
+		ps.setString(2, boarddto.getBoType());
+		ps.setString(3, boarddto.getBoContent());
+		
+		ps.executeUpdate();
+		
+		con.close();
+	}
+	
+	public boardDto detail(int boardNo)throws Exception{
+		
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select"
+				+ " B.*,E.emp_name"
+				+ " from board B"
+				+ " inner join employees E on E.emp_no = B.emp_no"
+				+ " where board_no =?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, boardNo);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		boardDto boarddto;
+		if(rs.next()) {
+			boarddto= new boardDto();
+			
+			boarddto.setBoardNo(rs.getInt(1));
+			boarddto.setBoTitle(rs.getString(3));
+			boarddto.setBoType(rs.getString(4));
+			boarddto.setBoContent(rs.getString(5));
+			boarddto.setBoCount(rs.getInt(6));
+			boarddto.setBoDate(rs.getString(7));
+			boarddto.setEmpName(rs.getString(8));
+			
+		}
+		else {
+			boarddto=null;
+			}
+		
+		con.close();	
+	
+	return boarddto;
+	}
+	
+	public void Delete(int boardNo)throws Exception{
+		
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "delete board where board_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, boardNo);
+		
+		ps.executeUpdate();
+		
+	}
+	
+	public void edit(boardDto boarddto)throws Exception{
+		
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "update board set"
+				+ " bo_title=?,"
+				+ " bo_type=?,"
+				+ " bo_content=?"
+				+ " where board_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, boarddto.getBoTitle());
+		ps.setString(2, boarddto.getBoType());
+		ps.setString(3, boarddto.getBoContent());
+		ps.setInt(4, boarddto.getBoardNo());
+		
+		ps.executeUpdate();
+	}
+	
 }
