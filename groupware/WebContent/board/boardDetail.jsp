@@ -28,4 +28,12 @@ boardDto boarddto = boarddao.detail(boardNo);
 		<input type="submit" value="삭제하기">
 	</form>
 </div>
+
+<div class="row">
+<form action="commentInsert.gw" method="post">
+<input type="text">
+<input type="submit">
+</form>
+</div>
+
 <jsp:include page="/template/footer.jsp"></jsp:include>

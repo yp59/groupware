@@ -30,7 +30,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		boarddao.registration(boarddto);
 	
 		
-		resp.sendRedirect("http://localhost:8080/groupware/board/boardDetail.jsp");
+		resp.sendRedirect("http://localhost:8080/groupware/board/boardmain.jsp");
 	}catch(Exception e) {
 		
 		e.printStackTrace();
