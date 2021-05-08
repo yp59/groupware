@@ -12,7 +12,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
-<div class= "container-700 text-center">
+<div class= "container-900 text-center">
 	<table class="table table-border table-hover" >
 		<thead>
 			<tr>

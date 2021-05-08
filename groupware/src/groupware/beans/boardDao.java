@@ -16,7 +16,7 @@ public class boardDao {
 		
 		String sql = "select B.*,E.emp_name from board B "
 				+ "inner join employees E "
-				+ "on E.emp_no = B.emp_no";
+				+ "on E.emp_no = B.emp_no order by bo_date desc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		
