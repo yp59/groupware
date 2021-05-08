@@ -7,6 +7,7 @@ int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 
 boardDao boarddao = new boardDao();
 boardDto boarddto = boarddao.detail(boardNo);
+boarddao.BoConunt(boardNo);
 %>    
     
 <jsp:include page="/template/header.jsp"></jsp:include>

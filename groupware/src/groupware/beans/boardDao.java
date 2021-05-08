@@ -128,4 +128,16 @@ public class boardDao {
 		ps.executeUpdate();
 	}
 	
+	public void BoConunt(int boardNo) throws Exception {
+		
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "update board set bo_count = bo_count + 1 where board_No =" + boardNo;
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ResultSet rs = ps.executeQuery();
+		
+	}
+	
 }
