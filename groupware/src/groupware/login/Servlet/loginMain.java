@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import groupware.beans.authorityDao;
 import groupware.beans.employeesDao;
 import groupware.beans.employeesDto;
 
@@ -27,17 +28,17 @@ public class loginMain extends HttpServlet{
 		
 		employeesDto employeesdto = new employeesDto(req.getParameter("empNo"),req.getParameter("empPw"));
 		
-		HttpSession session = req.getSession();
+		authorityDao authoritydao = new authorityDao();
 		
-		
-		
+		//HttpSession session = req.getSession();
 		boolean confirm = employeesdao.login(employeesdto);
 		
 		if(confirm) {
 			
-			session.setAttribute("id", req.getParameter("empNo") );
-			
-			resp.sendRedirect(req.getContextPath());
+			int autholevel = authoritydao.authorityLevel(req.getParameter("empNo"));
+			req.getSession().setAttribute("id", req.getParameter("empNo"));
+			req.getSession().setAttribute("authorityLevel", autholevel);//권한레벨을 로그인 시에 아이디에 따라 세션으로 부여 
+			resp.sendRedirect(req.getContextPath());				//세션으로 해두면 매번 DB접속 안해도 된다.
 		}
 		else {
 			resp.sendRedirect("http://localhost:8080/groupware/login/loginMain.jsp?error");
