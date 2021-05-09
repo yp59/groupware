@@ -11,7 +11,13 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-@WebFilter(urlPatterns = "/login/loginInfo.jsp")
+@WebFilter(urlPatterns = {
+"/login/loginInfo.jsp","/login/logOut.gw",
+"/board/boardDetail.jsp","/board/boardEdit.jsp","/board/boardInsert.jsp",
+"/board/boardmain.jsp","/board/boardDelete.gw","/board/boardEdit.gw",
+"/board/boardInsert.gw"})//로그인이랑 게시판 필터 적용
+
+
 public class filter implements Filter{
 
 	@Override

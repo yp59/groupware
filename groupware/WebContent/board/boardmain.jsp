@@ -49,7 +49,7 @@
 		</div>
 	</div>
 </div>
-<div class ="container-700 text-right">
+<div class ="container-900 text-right">
 	<a href="boardInsert.jsp" class=link-btn>게시글 작성</a>
 </div>
 <jsp:include page="/template/footer.jsp"></jsp:include>

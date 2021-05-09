@@ -5,6 +5,8 @@
 <%
 int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 
+String id = (String)session.getAttribute("id");
+
 boardDao boarddao = new boardDao();
 boardDto boarddto = boarddao.detail(boardNo);
 boarddao.BoConunt(boardNo);
