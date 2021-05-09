@@ -17,9 +17,7 @@ public class logOut extends HttpServlet{
 		try {
 			req.setCharacterEncoding("UTF-8");
 			
-			HttpSession session = req.getSession();
-			
-			session.setAttribute("id", null);
+			req.getSession().removeAttribute("id");
 			
 			resp.sendRedirect(req.getContextPath());
 		}catch(Exception e) {
