@@ -25,7 +25,7 @@ public class boardDao {
 		while(rs.next()) {
 			boardDto boarddto = new boardDto();
 			boarddto.setBoardNo(rs.getInt("board_no"));
-			boarddto.setEmpNo(rs.getInt("emp_no"));
+			boarddto.setEmpNo(rs.getString("emp_no"));
 			boarddto.setBoTitle(rs.getString("bo_title"));
 			boarddto.setBoType(rs.getString("bo_type"));
 			boarddto.setBoContent(rs.getString("bo_content"));
@@ -42,14 +42,14 @@ public class boardDao {
 	}
 	public void registration(boardDto boarddto)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
-		//글 작성자 자동으로 찾게 해야함 아직 로그인 구현 못해서 못만듬
-		String sql = "insert into board values(board_seq.nextval,1005,?,?,?,0,sysdate)";
+		//글 작성자 자동으로 찾게 해야함 아직 로그인 구현 못해서 못만듬 (구현 완료)
+		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate)";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
-		
-		ps.setString(1, boarddto.getBoTitle());
-		ps.setString(2, boarddto.getBoType());
-		ps.setString(3, boarddto.getBoContent());
+		ps.setString(1, boarddto.getEmpNo());
+		ps.setString(2, boarddto.getBoTitle());
+		ps.setString(3, boarddto.getBoType());
+		ps.setString(4, boarddto.getBoContent());
 		
 		ps.executeUpdate();
 		
@@ -77,6 +77,7 @@ public class boardDao {
 			boarddto= new boardDto();
 			
 			boarddto.setBoardNo(rs.getInt(1));
+			boarddto.setEmpNo(rs.getString(2));// 21/05/09 게시판 수정 삭제 권한 
 			boarddto.setBoTitle(rs.getString(3));
 			boarddto.setBoType(rs.getString(4));
 			boarddto.setBoContent(rs.getString(5));
@@ -106,6 +107,8 @@ public class boardDao {
 		
 		ps.executeUpdate();
 		
+		con.close();
+		
 	}
 	
 	public void edit(boardDto boarddto)throws Exception{
@@ -126,6 +129,8 @@ public class boardDao {
 		ps.setInt(4, boarddto.getBoardNo());
 		
 		ps.executeUpdate();
+		
+		con.close();
 	}
 	
 	public void BoConunt(int boardNo) throws Exception {
@@ -138,6 +143,8 @@ public class boardDao {
 		
 		ResultSet rs = ps.executeQuery();
 		
+		con.close();
 	}
+	
 	
 }
