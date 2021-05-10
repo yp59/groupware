@@ -30,11 +30,13 @@ boarddao.BoConunt(boardNo);
 	</form>
 </div>
 
-<div class="row">
 <form action="commentInsert.gw" method="post">
-<input type="text">
-<input type="submit">
+	<div class="row">
+		<textarea rows="4" class="form-input" required name="com_content" placeholder="댓글 입력"></textarea>
+	</div>
+	<div class="row">
+		<input type="submit" value="댓글 작성" class="form-btn form-btn-normal">
+	</div>
 </form>
-</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

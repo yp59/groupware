@@ -232,7 +232,7 @@ textarea.form-input {
 	resize: vertical;
 	min-height:150px;/*수치는 자유롭게 설정*/
 	height:150px;/*수치는 자유롭게 설정*/
-	max-height:500px;/*수치는 자유롭게 설정*/
+	max-height:150px;/*수치는 자유롭게 설정*/
 }
 
 .form-btn {
