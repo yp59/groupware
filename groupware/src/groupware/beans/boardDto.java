@@ -3,7 +3,7 @@ package groupware.beans;
 public class boardDto {
 
 	private int boardNo;
-	private int empNo;
+	private String empNo;
 	private String boTitle;
 	private String boType;
 	private String boContent;
@@ -21,10 +21,10 @@ public class boardDto {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	public int getEmpNo() {
+	public String getEmpNo() {
 		return empNo;
 	}
-	public void setEmpNo(int empNo) {
+	public void setEmpNo(String empNo) {
 		this.empNo = empNo;
 	}
 	public String getBoTitle() {

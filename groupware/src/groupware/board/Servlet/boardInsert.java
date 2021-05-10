@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import groupware.beans.boardDao;
 import groupware.beans.boardDto;
 
+
+
 @WebServlet(urlPatterns = "/board/boardInsert.gw")
 public class boardInsert extends HttpServlet{
 
@@ -24,7 +26,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		boarddto.setBoTitle(req.getParameter("boTitle"));
 		boarddto.setBoType(req.getParameter("boType"));
 		boarddto.setBoContent(req.getParameter("boContent"));
-		
+		boarddto.setEmpNo(req.getParameter("empNo"));//session id로 받아서 넘겨줌
 		boardDao boarddao = new boardDao();
 		
 		boarddao.registration(boarddto);
