@@ -27,6 +27,9 @@ public class signUp extends HttpServlet{
 		
 		String phone = "010-"+req.getParameter("empPhonemid")+"-"+req.getParameter("empPhonelast");
 		
+		String address = "["+req.getParameter("postNumber")+"] "
+						+req.getParameter("addressNum")+" "+req.getParameter("addressDetail");
+		
 		employeesDao employeesdao = new employeesDao();
 		
 		employeesDto employeesdto = new employeesDto(
@@ -38,11 +41,11 @@ public class signUp extends HttpServlet{
 				req.getParameter("joinDate"),
 				phone,
 				email,
-				req.getParameter("address"));
+				address);
 		
 		employeesdao.regist(employeesdto);
 		
-		resp.sendRedirect("http://localhost:8080/groupware/login/registSuccess.jsp");
+		resp.sendRedirect(req.getContextPath()+"/login/registSuccess.jsp");
 		
 		}catch(Exception e) {
 			
