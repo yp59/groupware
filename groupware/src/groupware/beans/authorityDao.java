@@ -12,7 +12,7 @@ public class authorityDao {
 	final static String PASSWORD = "kh75";
 	
 	public int authorityLevel(String empNo)throws Exception{//권한1(관리자 권한)을 가지고 있으면 수정 삭제 가능
-																//권한도 세션으로 붙여두면 좋을거같다.
+																//권한도 세션으로 붙여두면 좋을거같다.(구현)
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql = "select E.emp_no,E.emp_name,E.po_no,P.posi,PA.aut_no"

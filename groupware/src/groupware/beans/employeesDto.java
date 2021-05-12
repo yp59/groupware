@@ -7,6 +7,9 @@ public class employeesDto {
 	private int poNo;
 	private String empName;
 	private String joinDate;
+	private String empPhone;
+	private String email;
+	private String address;
 	
 	public employeesDto(String empNo, String empPw, int poNo, String empName, String joinDate, String empPhone,
 			String email, String address) {
@@ -21,9 +24,7 @@ public class employeesDto {
 		this.address = address;
 	}
 
-	private String empPhone;
-	private String email;
-	private String address;
+	
 	
 	
 
