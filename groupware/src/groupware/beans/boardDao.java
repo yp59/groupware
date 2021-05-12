@@ -132,7 +132,7 @@ public class boardDao {
 		
 		con.close();
 	}
-	// 게시판 조회수 추가
+	// 게시판 조회수 1차 구현
 	public void BoConunt(int boardNo) throws Exception {
 		
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
