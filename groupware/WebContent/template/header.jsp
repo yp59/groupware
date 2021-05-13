@@ -83,6 +83,9 @@
 				<li class = "menu menu_detail">
 				<a href="#">자유게시판</a>
 				</li>
+				<li class = "menu menu_detail">
+				<a href="#">질문게시판</a>
+				</li>
 			</ul>
 			</ul>
 			<ul>
