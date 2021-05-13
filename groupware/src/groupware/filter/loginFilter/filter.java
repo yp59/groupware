@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 @WebFilter(urlPatterns = {
 "/login/loginInfo.jsp","/login/logOut.gw",
+
 "/board/boardDetail.jsp","/board/boardEdit.jsp","/board/boardInsert.jsp",
-"/board/boardmain.jsp","/board/boardDelete.gw","/board/boardEdit.gw",
+"/board/boardmain.jsp","/board/boardmainNotice.jsp","/board/boardmainQuestion.jsp",
+"/board/boardmainFree.jsp","/board/boardDelete.gw","/board/boardEdit.gw",
 "/board/boardInsert.gw"})//로그인이랑 게시판 필터 적용
 
 

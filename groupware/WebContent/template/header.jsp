@@ -78,13 +78,13 @@
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
-				<a href="#">공지사항</a>
+				<a href="<%=root%>/board/boardmainNotice.jsp">공지사항</a>
 				</li>
 				<li class = "menu menu_detail">
-				<a href="#">자유게시판</a>
+				<a href="<%=root%>/board/boardmainFree.jsp">자유게시판</a>
 				</li>
 				<li class = "menu menu_detail">
-				<a href="#">질문게시판</a>
+				<a href="<%=root%>/board/boardmainQuestion.jsp">질문게시판</a>
 				</li>
 			</ul>
 			</ul>

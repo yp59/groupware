@@ -8,7 +8,6 @@
 <%	
 	boardDao boarddao = new boardDao();
 	List<boardDto> list = boarddao.boardList();
-
 %>    
 <jsp:include page="/template/header.jsp"></jsp:include>
 
@@ -26,7 +25,7 @@
 			</tr>
 		</thead>
 		<tbody><%for(boardDto boarddto : list){ 
-					if(boarddto.getBoType().equals("공지")){%><!-- 공지 게시글을 먼저 if문으로 구별해서 표의 상단에 위치하게 한다. -->
+				if(boarddto.getBoType().equals("질문")){%><!-- 타입이 질문이면 게시글을 나타낸다 -->
 				<tr>
 					<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>">
 					<%=boarddto.getBoTitle()%></a></td>
@@ -34,21 +33,8 @@
 					<td><%=boarddto.getBoType() %></td>
 					<td><%=boarddto.getBoCount()%></td>
 					<td><%=boarddto.getBoDate().substring(0, 10)%></td>
-				</tr><%}
+				</tr><%}else{	}
 				}%>
-				
-				<%for(boardDto boarddto : list){ 
-					if(!boarddto.getBoType().equals("공지")){%><!-- 위에서 공지글을 상단에 나타낸후 나머지 글을 아래에 나타낸다. -->
-					<tr>
-						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>">
-						<%=boarddto.getBoTitle()%></a></td>
-						<td><%=boarddto.getEmpName()%></td>
-						<td><%=boarddto.getBoType() %></td>
-						<td><%=boarddto.getBoCount()%></td>
-						<td><%=boarddto.getBoDate().substring(0, 10)%></td>
-					</tr><%}
-					}%>
-				
 		</tbody>
 	</table>
 	<div class="row">
