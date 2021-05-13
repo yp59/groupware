@@ -146,5 +146,72 @@ public class boardDao {
 		con.close();
 	}
 	
+	public List<boardDto> boardSearch(String boType,String type,String keyword)throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select BOT.* from(select B.*,E.emp_name from"
+				+ " board B inner join employees E"
+				+ " on B.emp_no = E.emp_no"
+				+ " where bo_type = ?) BOT"
+				+ " where instr("+type+",?)>0";//게시판 검색 시 타입을 선택해서 제목, 내용, 작성자를 검색 할 수 있다.
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, boType);
+		ps.setString(2, keyword);
+		
+		ResultSet rs = ps.executeQuery();
+		List<boardDto> list= new ArrayList();
+		while(rs.next()) {
+			boardDto boarddto = new boardDto();
+			boarddto.setBoardNo(rs.getInt("board_no"));
+			boarddto.setEmpNo(rs.getString("emp_no"));
+			boarddto.setBoTitle(rs.getString("bo_title"));
+			boarddto.setBoType(rs.getString("bo_type"));
+			boarddto.setBoContent(rs.getString("bo_content"));
+			boarddto.setBoCount(rs.getInt("bo_count"));
+			boarddto.setBoDate(rs.getString("bo_date"));
+			boarddto.setEmpName(rs.getString("emp_name"));
+			
+			list.add(boarddto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
 	
+	public List<boardDto> boardSearch(String type,String keyword)throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select BOT.* from(select B.*,E.emp_name from"
+				+ " board B inner join employees E"
+				+ " on B.emp_no = E.emp_no"
+				+ " ) BOT"
+				+ " where instr("+type+",?)>0";//게시판 검색 시 타입이 전체일 경우 제목, 내용, 작성자를 검색 할 수 있다.
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, keyword);
+		
+		ResultSet rs = ps.executeQuery();
+		List<boardDto> list= new ArrayList();
+		while(rs.next()) {
+			boardDto boarddto = new boardDto();
+			boarddto.setBoardNo(rs.getInt("board_no"));
+			boarddto.setEmpNo(rs.getString("emp_no"));
+			boarddto.setBoTitle(rs.getString("bo_title"));
+			boarddto.setBoType(rs.getString("bo_type"));
+			boarddto.setBoContent(rs.getString("bo_content"));
+			boarddto.setBoCount(rs.getInt("bo_count"));
+			boarddto.setBoDate(rs.getString("bo_date"));
+			boarddto.setEmpName(rs.getString("emp_name"));
+			
+			list.add(boarddto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
 }
