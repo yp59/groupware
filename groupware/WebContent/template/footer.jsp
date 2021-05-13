@@ -4,7 +4,7 @@
 </article>
 	</section>
     	 <footer>
-		<div class = "text-center">&copy;저작권 입니다</div>
+		<div class = "text-center">&copy;5조 저작권</div>
 		</footer>
 	</main>
 </body>
