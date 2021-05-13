@@ -9,11 +9,12 @@ boardDao boarddao = new boardDao();
 boardDto boarddto = boarddao.detail(boardNo);
 boarddao.BoConunt(boardNo);
 
-String loginId = (String)session.getAttribute("id");
-String writerId = boarddto.getEmpNo();
+	String loginId = (String)session.getAttribute("id");
+	String writerId = boarddto.getEmpNo();
 //--작성자 아이디와 접속한 아이디 비교하기 위한 변수 loginId(접속 아이디) writerId(게시글 작성자 아이디)
 
 int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue();
+
 //session int 로 변환해야 한다.
 
 %>    
