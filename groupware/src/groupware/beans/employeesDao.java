@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.websocket.Session;
+
 public class employeesDao {
 
 	public static final String USERNAME= "kh75";
@@ -109,5 +111,29 @@ public class employeesDao {
 		}
 		con.close();
 		return posi;
+	}
+	
+	public void loginInfoEdit(employeesDto employeesdto)throws Exception{//회원정보 수정 Dao
+		Connection con  = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "update employees set"
+					+" emp_pw=?,"
+					+" emp_name=?,"
+					+" emp_phone=?,"
+					+" email=?,"
+					+" address=?"
+					+" where emp_no = ?";//비밀번호 이름 핸드폰 이메일 주소
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, employeesdto.getEmpPw());
+		ps.setString(2, employeesdto.getEmpName());
+		ps.setString(3, employeesdto.getEmpPhone());
+		ps.setString(4, employeesdto.getEmail());
+		ps.setString(5, employeesdto.getAddress());
+		ps.setString(6, employeesdto.getEmpNo());
+		ps.executeUpdate();
+
+		con.close();
 	}
 }

@@ -25,6 +25,7 @@
 	<title>groupware5</title>
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	

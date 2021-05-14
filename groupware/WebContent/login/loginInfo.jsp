@@ -13,20 +13,20 @@
 
 <jsp:include page="/template/section.jsp"></jsp:include>
 
-<div class="container-700">
+<div class="container-900">
 <table class="table table-border table-striped">
 	<tbody>
 		<tr>
 			<th>사원번호</th>
-			<td> <%=employeesdto.getEmpNo() %></td>
+			<td> <%=employeesdto.getEmpNo()%></td>
 		</tr>	
 		<tr>
 			<th>직급</th>
-			<td><%=employeesdao.position(empNo) %></td>
+			<td><%=employeesdao.position(empNo)%></td>
 		</tr>	
 		<tr>
 			<th>이름</th>
-			<td><%=employeesdto.getEmpName() %></td>
+			<td><%=employeesdto.getEmpName()%></td>
 		</tr>
 		<tr>
 			<th>입사일</th>
@@ -42,20 +42,14 @@
 		</tr>
 		<tr>
 			<th>주소</th>
-			<td><%=employeesdto.getAddress() %></td>
+			<td><%=employeesdto.getAddress()%></td>
 		</tr>	
 	</tbody>
 </table>
 </div>
 
-
-
-
-
-
-
-
-
-
+<div class="container-900 text-right">
+<a href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp">회원정보 수정</a><!-- 회원정보 수정 페이지로 이동 -->
+</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
