@@ -32,7 +32,7 @@ public class loginInsert extends HttpServlet{
 			
 			employeesdto.setEmpPw(req.getParameter("empPw"));
 			employeesdto.setEmpName(req.getParameter("empName"));
-			employeesdto.setEmpPhone(req.getParameter(phone));
+			employeesdto.setEmpPhone(phone);//값 수정
 			employeesdto.setEmail(email);
 			employeesdto.setAddress(address);
 			employeesdto.setEmpNo(req.getParameter("empNo"));
