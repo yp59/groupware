@@ -42,7 +42,6 @@ public class boardDao {
 	}
 	public void registration(boardDto boarddto)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
-		//글 작성자 자동으로 찾게 해야함 아직 로그인 구현 못해서 못만듬 (구현 완료)
 		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate)";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -145,7 +144,7 @@ public class boardDao {
 		
 		con.close();
 	}
-	
+	// 게시판 검색 창-1
 	public List<boardDto> boardSearch(String boType,String type,String keyword)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
@@ -181,6 +180,7 @@ public class boardDao {
 		return list;
 	}
 	
+	// 게시판 검색 창 - 2
 	public List<boardDto> boardSearch(String type,String keyword)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
@@ -214,4 +214,5 @@ public class boardDao {
 		
 		return list;
 	}
+	
 }

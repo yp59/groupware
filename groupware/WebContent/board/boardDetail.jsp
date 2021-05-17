@@ -35,6 +35,7 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 <%if(loginId.equals(writerId)||authoritylevel==1){ %><!-- 접속한 아이디와 작성자 아이디가 같으면 수정과 삭제 가능
 														 or 권한레벨이 1이면 게시글 수정 삭제 가능  -->
 	<a href = "boardEdit.jsp?boardNo=<%=boarddto.getBoardNo()%>">수정하기</a>
+	<a href = "boardmain.jsp">목록보기</a>
 	<form action="boardDelete.gw" method="post">
 		<input type="hidden" name="boardNo" value="<%=boarddto.getBoardNo()%>">
 		<input type="submit" value="삭제하기">
