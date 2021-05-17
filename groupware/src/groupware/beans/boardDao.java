@@ -55,6 +55,7 @@ public class boardDao {
 		con.close();
 	}
 	
+	// 게시글 상세보기
 	public boardDto detail(int boardNo)throws Exception{
 		
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
@@ -94,6 +95,7 @@ public class boardDao {
 	return boarddto;
 	}
 	
+	// 게시글 삭제
 	public void Delete(int boardNo)throws Exception{
 		
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
@@ -110,6 +112,7 @@ public class boardDao {
 		
 	}
 	
+	// 게시글 수정
 	public void edit(boardDto boarddto)throws Exception{
 		
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
