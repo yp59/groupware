@@ -1,3 +1,7 @@
+<%@page import="groupware.beans.employeesDto"%>
+<%@page import="groupware.beans.employeesDao"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="groupware.beans.boardDto"%>
 <%@page import="groupware.beans.boardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,7 +11,19 @@ int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 
 boardDao boarddao = new boardDao();
 boardDto boarddto = boarddao.detail(boardNo);
-boarddao.BoConunt(boardNo);
+
+// 타인의 게시글에만 조회수 증가
+String empNo = (String)session.getAttribute("id");
+Set<Integer> boardNoSet;
+if(session.getAttribute("boardNoSet") != null){
+	boardNoSet = (Set<Integer>)session.getAttribute("boardNoSet");
+}
+else{
+	boardNoSet = new HashSet<>();
+}
+if(boardNoSet.add(boardNo)){
+	boarddao.boCount(boardNo, empNo);
+}
 
 	String loginId = (String)session.getAttribute("id");
 	String writerId = boarddto.getEmpNo();

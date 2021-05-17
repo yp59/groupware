@@ -132,18 +132,21 @@ public class boardDao {
 		
 		con.close();
 	}
-	// 게시판 조회수 1차 구현
-	public void BoConunt(int boardNo) throws Exception {
-		
+	// 게시판 조회수 완성
+	public boolean boCount(int boardNo, String empNo) throws Exception {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql = "update board set bo_count = bo_count + 1 where board_No =" + boardNo;
-		
+		String sql = "update board "
+							+ "set bo_count = bo_count + 1 "
+							+ "where board_no = ? and emp_no != ?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		
-		ResultSet rs = ps.executeQuery();
+		ps.setInt(1, boardNo);
+		ps.setString(2, empNo);
+		int count = ps.executeUpdate(); 
 		
 		con.close();
+		
+		return count > 0;
 	}
 	
 	public List<boardDto> boardSearch(String boType,String type,String keyword)throws Exception{
