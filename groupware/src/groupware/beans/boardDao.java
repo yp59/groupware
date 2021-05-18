@@ -42,6 +42,85 @@ public class boardDao {
 	}
 	
 	// 게시글 등록
+
+	public List<boardDto> boardList(int startRow , int endRow)throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select * from("
+				+ " select rownum rn,TMP.* from ("
+				+ " select"
+				+ " B.*,E.emp_name"
+				+ " from board B"
+				+ " inner join employees E on E.emp_no = B.emp_no"
+				+ " order by bo_date desc"
+				+ " )TMP"
+				+ " )where rn between ? and ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, startRow);
+		ps.setInt(2, endRow);
+		
+		ResultSet rs = ps.executeQuery();
+		List<boardDto> list= new ArrayList();
+		while(rs.next()) {
+			boardDto boarddto = new boardDto();
+			boarddto.setBoardNo(rs.getInt("board_no"));
+			boarddto.setEmpNo(rs.getString("emp_no"));
+			boarddto.setBoTitle(rs.getString("bo_title"));
+			boarddto.setBoType(rs.getString("bo_type"));
+			boarddto.setBoContent(rs.getString("bo_content"));
+			boarddto.setBoCount(rs.getInt("bo_count"));
+			boarddto.setBoDate(rs.getString("bo_date"));
+			boarddto.setEmpName(rs.getString("emp_name"));
+			
+			list.add(boarddto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	
+	public List<boardDto> boardList(int startRow , int endRow, String boType)throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select * from("
+				+ " select rownum rn,TMP.* from ("
+				+ " select"
+				+ " B.*,E.emp_name"
+				+ " from board B"
+				+ " inner join employees E on E.emp_no = B.emp_no"
+				+ " where bo_type = ?"
+				+ " order by bo_date desc"
+				+ " )TMP"
+				+ " )where rn between ? and ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, boType);
+		ps.setInt(2, startRow);
+		ps.setInt(3, endRow);
+		
+		ResultSet rs = ps.executeQuery();
+		List<boardDto> list= new ArrayList();
+		while(rs.next()) {
+			boardDto boarddto = new boardDto();
+			boarddto.setBoardNo(rs.getInt("board_no"));
+			boarddto.setEmpNo(rs.getString("emp_no"));
+			boarddto.setBoTitle(rs.getString("bo_title"));
+			boarddto.setBoType(rs.getString("bo_type"));
+			boarddto.setBoContent(rs.getString("bo_content"));
+			boarddto.setBoCount(rs.getInt("bo_count"));
+			boarddto.setBoDate(rs.getString("bo_date"));
+			boarddto.setEmpName(rs.getString("emp_name"));
+			
+			list.add(boarddto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+>>>>>>> branch 'master' of https://github.com/yp59/groupware.git
 	public void registration(boardDto boarddto)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate)";
@@ -223,4 +302,160 @@ public class boardDao {
 		return list;
 	}
 	
+
+	public List<boardDto> boardSearch(String type,String keyword ,int startRow , int endRow)throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql ="select * from("
+				+ " select rownum rn,TMP.* from (" 
+				+ " select BOT.* from(select B.*,E.emp_name from"
+				+ " board B inner join employees E"
+				+ " on B.emp_no = E.emp_no"
+				+ " ) BOT"
+				+ " where instr("+type+",?)>0"
+				+ " )TMP"
+				+ " )where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, keyword);
+		ps.setInt(2, startRow);
+		ps.setInt(3, endRow);
+		
+		ResultSet rs = ps.executeQuery();
+		List<boardDto> list= new ArrayList();
+		while(rs.next()) {
+			boardDto boarddto = new boardDto();
+			boarddto.setBoardNo(rs.getInt("board_no"));
+			boarddto.setEmpNo(rs.getString("emp_no"));
+			boarddto.setBoTitle(rs.getString("bo_title"));
+			boarddto.setBoType(rs.getString("bo_type"));
+			boarddto.setBoContent(rs.getString("bo_content"));
+			boarddto.setBoCount(rs.getInt("bo_count"));
+			boarddto.setBoDate(rs.getString("bo_date"));
+			boarddto.setEmpName(rs.getString("emp_name"));
+			
+			list.add(boarddto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	
+	public List<boardDto> boardSearch(String boType,String type,String keyword, int startRow,int endRow)throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql ="select * from("
+				+ " select rownum rn,TMP.* from (" 
+				+ " select BOT.* from(select B.*,E.emp_name from"
+				+ " board B inner join employees E"
+				+ " on B.emp_no = E.emp_no"
+				+ " where bo_type = ?) BOT"
+				+ " where instr("+type+",?)>0"
+				+ " )TMP"
+				+ " )where rn between ? and ?";//게시판 검색 시 타입을 선택해서 제목, 내용, 작성자를 검색 할 수 있다.
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, boType);
+		ps.setString(2, keyword);
+		ps.setInt(3, startRow);
+		ps.setInt(4, endRow);
+		ResultSet rs = ps.executeQuery();
+		List<boardDto> list= new ArrayList();
+		while(rs.next()) {
+			boardDto boarddto = new boardDto();
+			boarddto.setBoardNo(rs.getInt("board_no"));
+			boarddto.setEmpNo(rs.getString("emp_no"));
+			boarddto.setBoTitle(rs.getString("bo_title"));
+			boarddto.setBoType(rs.getString("bo_type"));
+			boarddto.setBoContent(rs.getString("bo_content"));
+			boarddto.setBoCount(rs.getInt("bo_count"));
+			boarddto.setBoDate(rs.getString("bo_date"));
+			boarddto.setEmpName(rs.getString("emp_name"));
+			
+			list.add(boarddto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	
+	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
+		public int getCount() throws Exception {
+			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+			
+			String sql = "select count(*) from board";//공지는 1페이지 상단에 나타나기 떄문에 제외하고 게시글 수 구한다.
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			
+			con.close();
+			
+			return count;
+		}
+		
+		public int getCount(String boType, String type, String keyword) throws Exception {
+			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+			
+			String sql = "select count(*) from"
+					+ " (select * from board B"
+					+ " inner join employees E on B.emp_no=E.emp_no"
+					+ " where bo_type = ?)"
+					+ " where instr("+type+", ?) > 0";
+		
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, boType);
+			ps.setString(2, keyword);
+			
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			
+			con.close();
+			
+			return count;
+		}
+		
+		public int getCount(String type, String keyword) throws Exception {
+			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+			
+			String sql = "select count(*) from"
+					+ " (select * from board B"
+					+ " inner join employees E on B.emp_no=E.emp_no)"
+					+ " where instr("+type+", ?) > 0";
+		
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, keyword);
+			
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			
+			con.close();
+			
+			return count;
+		}
+		
+		public int getCount(String boType) throws Exception {
+			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+			
+			String sql = "select count(*) from board where bo_type=?";//공지는 1페이지 상단에 나타나기 떄문에 제외하고 게시글 수 구한다.
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, boType);
+			
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			
+			con.close();
+			
+			return count;
+		}
+
+
 }
