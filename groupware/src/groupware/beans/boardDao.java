@@ -40,6 +40,8 @@ public class boardDao {
 		
 		return list;
 	}
+	
+	// 게시글 등록
 	public void registration(boardDto boarddto)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate)";
