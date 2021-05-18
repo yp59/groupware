@@ -120,7 +120,6 @@ public class boardDao {
 		
 		return list;
 	}
->>>>>>> branch 'master' of https://github.com/yp59/groupware.git
 	public void registration(boardDto boarddto)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate)";
