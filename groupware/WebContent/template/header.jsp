@@ -23,6 +23,7 @@
 	<meta charset="UTF-8">
 	
 	<title>groupware5</title>
+	
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -32,7 +33,7 @@
 	<!-- 가장 바깥 영역 -->
 	<main>
 	<header>
-	<div class="text-center"><h2>groupware</h2></div>
+	<div class="text-center"><h2><a href="<%=root%>/index.jsp">groupware5</a></h2></div>
 	<%if(isLogin){ %>
 		<div class="row text-right"><%=employeesdto.getEmpName()%>님 환영합니다.
 			<a href="<%=root%>/login/logOut.gw">로그아웃</a>

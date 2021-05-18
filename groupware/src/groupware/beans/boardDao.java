@@ -120,7 +120,6 @@ public class boardDao {
 	}
 	public void registration(boardDto boarddto)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
-		//글 작성자 자동으로 찾게 해야함 아직 로그인 구현 못해서 못만듬 (구현 완료)
 		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate)";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -134,6 +133,7 @@ public class boardDao {
 		con.close();
 	}
 	
+	// 게시글 상세보기
 	public boardDto detail(int boardNo)throws Exception{
 		
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
@@ -173,6 +173,7 @@ public class boardDao {
 	return boarddto;
 	}
 	
+	// 게시글 삭제
 	public void Delete(int boardNo)throws Exception{
 		
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
@@ -189,6 +190,7 @@ public class boardDao {
 		
 	}
 	
+	// 게시글 수정
 	public void edit(boardDto boarddto)throws Exception{
 		
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
@@ -210,20 +212,23 @@ public class boardDao {
 		
 		con.close();
 	}
-	// 게시판 조회수 1차 구현
-	public void BoConunt(int boardNo) throws Exception {
-		
+	// 게시판 조회수 완성
+	public boolean boCount(int boardNo, String empNo) throws Exception {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql = "update board set bo_count = bo_count + 1 where board_No =" + boardNo;
-		
+		String sql = "update board "
+							+ "set bo_count = bo_count + 1 "
+							+ "where board_no = ? and emp_no != ?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		
-		ResultSet rs = ps.executeQuery();
+		ps.setInt(1, boardNo);
+		ps.setString(2, empNo);
+		int count = ps.executeUpdate(); 
 		
 		con.close();
+		
+		return count > 0;
 	}
-	
+	// 게시판 검색 창-1
 	public List<boardDto> boardSearch(String boType,String type,String keyword)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
@@ -259,6 +264,7 @@ public class boardDao {
 		return list;
 	}
 	
+	// 게시판 검색 창 - 2
 	public List<boardDto> boardSearch(String type,String keyword)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
@@ -293,6 +299,7 @@ public class boardDao {
 		return list;
 	}
 	
+
 	public List<boardDto> boardSearch(String type,String keyword ,int startRow , int endRow)throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
@@ -446,4 +453,6 @@ public class boardDao {
 			
 			return count;
 		}
+
+
 }

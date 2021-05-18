@@ -1,3 +1,7 @@
+<%@page import="groupware.beans.employeesDto"%>
+<%@page import="groupware.beans.employeesDao"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="groupware.beans.boardDto"%>
 <%@page import="groupware.beans.boardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,7 +11,19 @@ int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 
 boardDao boarddao = new boardDao();
 boardDto boarddto = boarddao.detail(boardNo);
-boarddao.BoConunt(boardNo);
+
+// 타인의 게시글에만 조회수 증가
+String empNo = (String)session.getAttribute("id");
+Set<Integer> boardNoSet;
+if(session.getAttribute("boardNoSet") != null){
+	boardNoSet = (Set<Integer>)session.getAttribute("boardNoSet");
+}
+else{
+	boardNoSet = new HashSet<>();
+}
+if(boardNoSet.add(boardNo)){
+	boarddao.boCount(boardNo, empNo);
+}
 
 	String loginId = (String)session.getAttribute("id");
 	String writerId = boarddto.getEmpNo();
@@ -35,6 +51,7 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 <%if(loginId.equals(writerId)||authoritylevel==1){ %><!-- 접속한 아이디와 작성자 아이디가 같으면 수정과 삭제 가능
 														 or 권한레벨이 1이면 게시글 수정 삭제 가능  -->
 	<a href = "boardEdit.jsp?boardNo=<%=boarddto.getBoardNo()%>">수정하기</a>
+	<a href = "boardmain.jsp">목록보기</a>
 	<form action="boardDelete.gw" method="post">
 		<input type="hidden" name="boardNo" value="<%=boarddto.getBoardNo()%>">
 		<input type="submit" value="삭제하기">
