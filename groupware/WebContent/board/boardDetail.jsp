@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="groupware.beans.BoardCommentsDao"%>
+<%@page import="groupware.beans.BoardCommentsDto"%>
 <%@page import="groupware.beans.employeesDto"%>
 <%@page import="groupware.beans.employeesDao"%>
 <%@page import="java.util.Set"%>
@@ -33,6 +36,9 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 
 //session int 로 변환해야 한다.
 
+//댓글 목록 불러오기
+	BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
+	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list(boardNo);
 %>    
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -59,10 +65,46 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 <%}else{ }%>	
 	
 </div>
+<div class="row text-left">
+		<h4>댓글 목록</h4>
+	</div>
+	<%for(BoardCommentsDto boardCommentsDto : boardCommentsList) { %>
+	<div class="row text-left" style="border:1px solid gray;">
+		<div class="float-container">
+			<div class="left"><%=boardCommentsDto.getEmpNo()%></div>
+			
+			<%if(loginId == writerId){ %>
+			<div class="right">
+				<a class="reply-edit-btn">수정</a> 
+				| 
+				<a class="reply-delete-btn" href="replyDelete.kh?replyNo=<%=boardCommentsDto.getComNo()%>&replyOrigin=<%=boardNo%>">삭제</a>
+			</div>
+			<%} %>
+		</div>
+<div class="com-display-area">
+			<pre><%=boardCommentsDto.getComContent()%></pre>
+		</div>
+		
+		<%if(loginId == writerId){ %>
+		<div class="com-edit-area">
+			<form action="comEdit.gw" method="post">
+				<input type="hidden" name="comNo" value="<%=boardCommentsDto.getComNo()%>">
+				<input type="hidden" name="empNo" value="<%=boardCommentsDto.getEmpNo()%>">
+				
+				<textarea name="comContent" required><%=boardCommentsDto.getComContent()%></textarea>
+				<input type="submit" value="댓글 수정">		
+				<input type="button" value="작성 취소" class="reply-edit-cancel-btn">		
+			</form>
+		</div> 
+		<%} %>
+		<div><%=boardCommentsDto.getDate().toLocaleString()%></div>
+	</div>
+	<%} %>
 
-<form action="commentInsert.gw" method="post">
+<form action="comInsert.gw" method="post"> 
+<input type="hidden" name="empNo">
 	<div class="row">
-		<textarea rows="4" class="form-input" required name="com_content" placeholder="댓글 입력"></textarea>
+		<textarea rows="4" class="form-input" required name="comContent" placeholder="댓글 입력"></textarea>
 	</div>
 	<div class="row">
 		<input type="submit" value="댓글 작성" class="form-btn form-btn-normal">
