@@ -20,10 +20,8 @@ public class BoardCommentsEditServlet extends HttpServlet{
 			BoardCommentsDto boardCommentsDto = new BoardCommentsDto();
 			boardCommentsDto.setComNo(Integer.parseInt(req.getParameter("comNo")));
 			boardCommentsDto.setComContent(req.getParameter("ComContent"));
+			boardCommentsDto.setBoardNo(Integer.parseInt(req.getParameter("boardNo")));
 			boardCommentsDto.setEmpNo(req.getParameter("empNo"));
-			
-			String empNo = (String)req.getSession().getAttribute("empNo");
-			boardCommentsDto.setEmpNo(empNo);
 			
 			//처리
 			BoardCommentsDao boardCommentsDao = new BoardCommentsDao();

@@ -43,6 +43,32 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 <jsp:include page="/template/section.jsp"></jsp:include>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function(){
+		$(".reply-delete-btn").click(function(e){
+			var choice = window.confirm("정말 삭제하시겠습니까?");
+			if(!choice){
+				e.preventDefault();
+			}
+		});
+	});
+	
+	$(function(){
+		
+		$(".reply-edit-area").hide();
+		
+		$(".reply-edit-btn").click(function(){
+			$(this).parent().parent().next().hide();
+			$(this).parent().parent().next().next().show();
+		});
+		
+		$(".reply-edit-cancel-btn").click(function(){
+			$(this).parent().parent().prev().show();
+			$(this).parent().parent().hide();
+		});
+	});
+</script>
 <div class ="row text-center">
 <%=boarddto.getBoardNo() %><br>
 <%=boarddto.getBoTitle() %><br>
@@ -73,11 +99,11 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 		<div class="float-container">
 			<div class="left"><%=boardCommentsDto.getEmpNo()%></div>
 			
-			<%if(loginId == writerId){ %>
+			<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
 			<div class="right">
 				<a class="reply-edit-btn">수정</a> 
 				| 
-				<a class="reply-delete-btn" href="replyDelete.kh?replyNo=<%=boardCommentsDto.getComNo()%>&replyOrigin=<%=boardNo%>">삭제</a>
+				<a class="reply-delete-btn" href="comDelete.gw?comNo=<%=boardCommentsDto.getComNo()%>&boardNo=<%=boardNo%>">삭제</a>
 			</div>
 			<%} %>
 		</div>
@@ -85,11 +111,11 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 			<pre><%=boardCommentsDto.getComContent()%></pre>
 		</div>
 		
-		<%if(loginId == writerId){ %>
+		<%if(loginId.equals(writerId)){ %>
 		<div class="com-edit-area">
 			<form action="comEdit.gw" method="post">
 				<input type="hidden" name="comNo" value="<%=boardCommentsDto.getComNo()%>">
-				<input type="hidden" name="empNo" value="<%=boardCommentsDto.getEmpNo()%>">
+				<input type="hidden" name="boardNo" value="<%=boardCommentsDto.getBoardNo()%>">
 				
 				<textarea name="comContent" required><%=boardCommentsDto.getComContent()%></textarea>
 				<input type="submit" value="댓글 수정">		
@@ -102,7 +128,8 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 	<%} %>
 
 <form action="comInsert.gw" method="post"> 
-<input type="hidden" name="empNo">
+<input type="hidden" name="boardNo" value="<%=boardNo%>">
+<input type="hidden" name="empNo" value="<%=empNo%>">
 	<div class="row">
 		<textarea rows="4" class="form-input" required name="comContent" placeholder="댓글 입력"></textarea>
 	</div>

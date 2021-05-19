@@ -16,13 +16,11 @@ public class BoardCommentsDeleteServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			req.setCharacterEncoding("UTF-8");
+			req.setCharacterEncoding("UTF-8"); 
 			BoardCommentsDto boardCommentsDto = new BoardCommentsDto();
 			boardCommentsDto.setComNo(Integer.parseInt(req.getParameter("comNo")));
+			boardCommentsDto.setBoardNo(Integer.parseInt(req.getParameter("boardNo")));
 			boardCommentsDto.setEmpNo(req.getParameter("empNo"));
-			
-			String empNo = (String) req.getSession().getAttribute("empNo");
-			boardCommentsDto.setEmpNo(empNo);
 			
 			//처리
 			BoardCommentsDao boardCommentsDao = new BoardCommentsDao();

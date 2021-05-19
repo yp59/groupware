@@ -59,7 +59,7 @@ public class BoardCommentsDao {
 		while(rs.next()) {
 			BoardCommentsDto boardCommentsDto = new BoardCommentsDto();
 			boardCommentsDto.setComNo(rs.getInt("com_no"));
-			boardCommentsDto.setBoardNo(rs.getInt("borad_no"));
+			boardCommentsDto.setBoardNo(rs.getInt("board_no"));
 			boardCommentsDto.setEmpNo(rs.getString("emp_no"));
 			boardCommentsDto.setComContent(rs.getString("com_content"));
 			boardCommentsDto.setDate(rs.getDate("com_date"));

@@ -19,17 +19,15 @@ public class BoardCommentsInsertServlet extends HttpServlet{
 			req.setCharacterEncoding("UTF-8");
 			BoardCommentsDto boardCommentsDto = new BoardCommentsDto();
 			boardCommentsDto.setComContent(req.getParameter("comContent"));
+			boardCommentsDto.setBoardNo(Integer.parseInt(req.getParameter("boardNo")));
 			boardCommentsDto.setEmpNo(req.getParameter("empNo"));
-			
-			String empNo = (String)req.getSession().getAttribute("empNo");
-			boardCommentsDto.setEmpNo(empNo);
 			
 			//처리
 			BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
 			boardCommentsDao.insert(boardCommentsDto);
 			
 			//출력 : 상세페이지로 복귀(redirect)
-			resp.sendRedirect("boardDetail.jsp?boardNo="+boardCommentsDto.getEmpNo());
+			resp.sendRedirect("boardDetail.jsp?boardNo="+boardCommentsDto.getBoardNo());
 		}
 		catch(Exception e) {
 			e.printStackTrace();
