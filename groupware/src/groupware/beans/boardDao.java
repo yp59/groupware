@@ -40,6 +40,8 @@ public class boardDao {
 		
 		return list;
 	}
+	
+	// 게시글 등록
 
 	public List<boardDto> boardList(int startRow , int endRow)throws Exception{
 		Connection con = jdbcUtils.getConnection();
