@@ -5,5 +5,4 @@
 
 <jsp:include page="/template/section.jsp"></jsp:include>
 
-
 <jsp:include page="/template/footer.jsp"></jsp:include>
