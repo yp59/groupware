@@ -15,7 +15,7 @@ public class employeesDao {
 	
 	public boolean login(employeesDto employeesdto)throws Exception{
 		
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select * from employees"
 				+ " where emp_no = ? and emp_pw = ?";
@@ -38,7 +38,7 @@ public class employeesDao {
 	
 	public void regist(employeesDto employeesdto)throws Exception{
 		
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "insert into employees values"
 				+ " (?,?,?,?,?,?,?,?)";
@@ -59,7 +59,7 @@ public class employeesDao {
 	}
 	public employeesDto loginInfo(String empNo)throws Exception{
 		
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select * from employees where emp_no=?";
 		
@@ -92,7 +92,7 @@ public class employeesDao {
 	}
 
 	public String position(String empNo)throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select E.emp_no,E.emp_name,P.posi"
 				+ " from employees E inner join"
@@ -114,7 +114,7 @@ public class employeesDao {
 	}
 	
 	public void loginInfoEdit(employeesDto employeesdto)throws Exception{//회원정보 수정 Dao
-		Connection con  = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con  = jdbcUtils.getConnection();
 		
 		String sql = "update employees set"
 					+" emp_pw=?,"
