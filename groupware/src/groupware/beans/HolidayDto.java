@@ -9,6 +9,7 @@ public class HolidayDto {
 	private String holContent;
 	private String holStart;
 	private String holEnd;
+	private Date holWriteDate;
 	
 	public int getHolNo() {
 		return holNo;
@@ -56,9 +57,6 @@ public class HolidayDto {
 	public void setHolWriteDate(Date holWriteDate) {
 		this.holWriteDate = holWriteDate;
 	}
-	private Date holWriteDate;
-	
-	
-	
+
 	
 }
