@@ -4,7 +4,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600 center">
-	<form action="holidayInsert.kh" method="post">
+	<form action="holidayInsert.gw" method="post">
 	
 		<div class="row text-left">
 			<label>휴가 종류</label>
