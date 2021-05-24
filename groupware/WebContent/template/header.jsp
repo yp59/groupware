@@ -92,7 +92,7 @@
 			</ul>
 			<ul>
 				<li class = "menu menu-title">
-					<a href="#">제목</a>
+					<a href="<%=root%>/holiday/holidayList.jsp">휴가</a>
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
