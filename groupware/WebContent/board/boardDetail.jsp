@@ -79,6 +79,8 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 <%=boarddto.getEmpName() %><br>
 </div>
 
+<!-- 게시글 작성창 -->
+
 <div class = "row text-right">
 <%if(loginId.equals(writerId)||authoritylevel==1){ %><!-- 접속한 아이디와 작성자 아이디가 같으면 수정과 삭제 가능
 														 or 권한레벨이 1이면 게시글 수정 삭제 가능  -->
@@ -93,6 +95,7 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 </div>
 
 <!-- 댓글 목록창 -->
+
 <div class="row text-left">
 		<h4>댓글 목록</h4>
 	</div>
@@ -129,6 +132,7 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 	</div>
 	<%} %>
 <!-- 댓글 작성 창 -->
+
 <form action="comInsert.gw" method="post"> 
 <input type="hidden" name="boardNo" value="<%=boardNo%>">
 <input type="hidden" name="empNo" value="<%=empNo%>">

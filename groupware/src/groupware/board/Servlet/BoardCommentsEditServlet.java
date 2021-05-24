@@ -19,9 +19,11 @@ public class BoardCommentsEditServlet extends HttpServlet{
 			req.setCharacterEncoding("UTF-8");
 			BoardCommentsDto boardCommentsDto = new BoardCommentsDto();
 			boardCommentsDto.setComNo(Integer.parseInt(req.getParameter("comNo")));
-			boardCommentsDto.setComContent(req.getParameter("ComContent"));
+			boardCommentsDto.setComContent(req.getParameter("comContent"));
 			boardCommentsDto.setBoardNo(Integer.parseInt(req.getParameter("boardNo")));
-			boardCommentsDto.setEmpNo(req.getParameter("empNo"));
+			
+			String empNo = (String)req.getSession().getAttribute("id");
+			boardCommentsDto.setEmpNo(empNo);
 			
 			//처리
 			BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
