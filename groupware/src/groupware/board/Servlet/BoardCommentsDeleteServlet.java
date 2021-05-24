@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import groupware.beans.BoardCommentsDao;
 import groupware.beans.BoardCommentsDto;
+import groupware.beans.boardDao;
 
 @WebServlet(urlPatterns = "/board/comDelete.gw")
 public class BoardCommentsDeleteServlet extends HttpServlet{
@@ -23,11 +24,12 @@ public class BoardCommentsDeleteServlet extends HttpServlet{
 			boardCommentsDto.setEmpNo(req.getParameter("empNo"));
 			
 			//처리
+			//댓글 삭제
 			BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
 			boardCommentsDao.delete(boardCommentsDto);
 			
 			//출력
-			resp.sendRedirect("boardDetail.jsp?boardNo="+boardCommentsDto.getEmpNo());
+			resp.sendRedirect("boardDetail.jsp?boardNo="+boardCommentsDto.getBoardNo());
 		}
 		catch(Exception e) {
 			e.printStackTrace();

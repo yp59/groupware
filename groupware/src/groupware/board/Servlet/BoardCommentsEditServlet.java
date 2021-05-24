@@ -28,7 +28,7 @@ public class BoardCommentsEditServlet extends HttpServlet{
 			boardCommentsDao.edit(boardCommentsDto);
 			
 			//출력 : 원래의 게시글로 복귀(redirect)
-			resp.sendRedirect("boardDetail.jsp?boardNo=" + boardCommentsDto.getEmpNo());
+			resp.sendRedirect("boardDetail.jsp?boardNo=" + boardCommentsDto.getBoardNo());
 		}
 		catch(Exception e) {
 			e.printStackTrace();
