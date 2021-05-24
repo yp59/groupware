@@ -6,11 +6,29 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class HolidayDao {
+	
+	public static final String USERNAME = "kh75";
+	public static final String PASSWORD = "kh75";
+	
+	//시퀀스 번호를 생성하는 기능
+	public int getSequence() throws Exception {
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select board_seq.nextval from dual";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int no = rs.getInt(1);
+		
+		con.close();
+		return no;
+	}
 	
 	// 휴가신청
 	public void insert(HolidayDto holidayDto) throws Exception{
-		Connection con = jdbcUtils.getConnection();
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql = "insert into holiday values(?,?,?,?,?,?,sysdate)";
 		
@@ -30,8 +48,9 @@ public class HolidayDao {
 	//휴가 리스트
 	public List<HolidayDto> list(String empNo) throws Exception {
 		
-		Connection con = jdbcUtils.getConnection();
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
+		//사원 자신의 휴가 신청 내역 볼수 있도록 설정
 		String sql = "select * from holiday where emp_no =?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -58,7 +77,7 @@ public class HolidayDao {
 	
 	//휴가 수정
 	public boolean edit(HolidayDto holidayDto) throws Exception {
-		Connection con = jdbcUtils.getConnection();
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql = "update holiday "
 					+ "set hol_type=?, hol_content=?, hol_start=?, hol_end=?, hol_writer_date=sysdate "
@@ -79,7 +98,7 @@ public class HolidayDao {
 	
 	//휴가 삭제
 	public boolean delete(String empNo, int holNo) throws Exception {
-		Connection con = jdbcUtils.getConnection();
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql = "delete holiday where emp_no=? and hol_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -90,5 +109,36 @@ public class HolidayDao {
 		
 		con.close();
 		return count>0;
+	}
+	
+	//신청 내역 상세 보기 
+	public HolidayDto get(String empNo, int holNo) throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select * from holiday where emp_no =? and hol_no=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setInt(2, holNo);
+		ResultSet rs = ps.executeQuery();
+		
+		HolidayDto holidayDto;
+		if(rs.next()) {
+			holidayDto = new HolidayDto();
+			holidayDto.setHolNo(rs.getInt("hol_no"));
+			holidayDto.setEmpNo(rs.getString("emp_no"));
+			holidayDto.setHolType(rs.getString("hol_type"));
+			holidayDto.setHolContent(rs.getString("hol_content"));
+			holidayDto.setHolStart(rs.getDate("hol_start"));
+			holidayDto.setHolEnd(rs.getDate("hol_end"));
+			holidayDto.setHolWriteDate(rs.getDate("hol_write_date"));
+			
+		}
+		else {
+			holidayDto = null;
+		}
+	
+		con.close();
+		return holidayDto;
 	}
 }
