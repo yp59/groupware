@@ -7,17 +7,16 @@ public class HolidayDto {
 	private String empNo;
 	private String holType;
 	private String holContent;
-	private Date holStart;
-	private Date holEnd;
-	private Date holWriteDate;
+	private String holStart;
+	private String holEnd;
 	
-	
-	public HolidayDto() {
-		super();
-	}
 	public int getHolNo() {
 		return holNo;
+		
+	}public HolidayDto() {
+		super();
 	}
+
 	public void setHolNo(int holNo) {
 		this.holNo = holNo;
 	}
@@ -39,16 +38,16 @@ public class HolidayDto {
 	public void setHolContent(String holContent) {
 		this.holContent = holContent;
 	}
-	public Date getHolStart() {
+	public String getHolStart() {
 		return holStart;
 	}
-	public void setHolStart(Date holStart) {
+	public void setHolStart(String holStart) {
 		this.holStart = holStart;
 	}
-	public Date getHolEnd() {
+	public String getHolEnd() {
 		return holEnd;
 	}
-	public void setHolEnd(Date holEnd) {
+	public void setHolEnd(String holEnd) {
 		this.holEnd = holEnd;
 	}
 	public Date getHolWriteDate() {
@@ -57,5 +56,9 @@ public class HolidayDto {
 	public void setHolWriteDate(Date holWriteDate) {
 		this.holWriteDate = holWriteDate;
 	}
+	private Date holWriteDate;
+	
+	
+	
 	
 }

@@ -37,8 +37,8 @@ public class HolidayDao {
 		ps.setString(2,holidayDto.getEmpNo());
 		ps.setString(3,holidayDto.getHolType());
 		ps.setString(4, holidayDto.getHolContent());
-		ps.setDate(5, holidayDto.getHolStart());
-		ps.setDate(6,holidayDto.getHolEnd());
+		ps.setString(5, holidayDto.getHolStart());
+		ps.setString(6,holidayDto.getHolEnd());
 		
 		ps.execute();
 		con.close();
@@ -64,8 +64,8 @@ public class HolidayDao {
 			holidayDto.setEmpNo(rs.getString("emp_no"));
 			holidayDto.setHolType(rs.getString("hol_type"));
 			holidayDto.setHolContent(rs.getString("hol_content"));
-			holidayDto.setHolStart(rs.getDate("hol_start"));
-			holidayDto.setHolEnd(rs.getDate("hol_end"));
+			holidayDto.setHolStart(rs.getString("hol_start"));
+			holidayDto.setHolEnd(rs.getString("hol_end"));
 			holidayDto.setHolWriteDate(rs.getDate("hol_write_date"));
 			
 			list.add(holidayDto);
@@ -85,8 +85,8 @@ public class HolidayDao {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,holidayDto.getHolType());
 		ps.setString(2,holidayDto.getHolContent());
-		ps.setDate(3, holidayDto.getHolStart());
-		ps.setDate(4, holidayDto.getHolEnd());
+		ps.setString(3, holidayDto.getHolStart());
+		ps.setString(4, holidayDto.getHolEnd());
 		ps.setString(5,holidayDto.getEmpNo());
 		ps.setInt(6, holidayDto.getHolNo());
 		
@@ -129,8 +129,8 @@ public class HolidayDao {
 			holidayDto.setEmpNo(rs.getString("emp_no"));
 			holidayDto.setHolType(rs.getString("hol_type"));
 			holidayDto.setHolContent(rs.getString("hol_content"));
-			holidayDto.setHolStart(rs.getDate("hol_start"));
-			holidayDto.setHolEnd(rs.getDate("hol_end"));
+			holidayDto.setHolStart(rs.getString("hol_start"));
+			holidayDto.setHolEnd(rs.getString("hol_end"));
 			holidayDto.setHolWriteDate(rs.getDate("hol_write_date"));
 			
 		}
