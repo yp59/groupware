@@ -6,8 +6,8 @@ public class AttendanceDto {
 	
 	private String attDate;
 	private String empNo;
-	private Date attAttend;
-	private Date attLeave;
+	private String attAttend;
+	private String attLeave;
 	private int attOvertime;
 
 	public AttendanceDto() {
@@ -25,16 +25,16 @@ public class AttendanceDto {
 	public void setEmpNo(String empNo) {
 		this.empNo = empNo;
 	}
-	public Date getAttAttend() {
+	public String getAttAttend() {
 		return attAttend;
 	}
-	public void setAttAttend(Date attAttend) {
+	public void setAttAttend(String attAttend) {
 		this.attAttend = attAttend;
 	}
-	public Date getAttLeave() {
+	public String getAttLeave() {
 		return attLeave;
 	}
-	public void setAttLeave(Date attLeave) {
+	public void setAttLeave(String attLeave) {
 		this.attLeave = attLeave;
 	}
 	public int getAttOvertime() {

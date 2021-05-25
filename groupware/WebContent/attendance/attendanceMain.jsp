@@ -39,7 +39,7 @@
             <%for(AttendanceDto attendanceDto : attendanceList){ %>
             <tr>
                <td>
-               <a href="attendanceDetail.jsp?<%=attendanceDto.getAttDate() %>">
+               <a href="attendanceDetail.jsp?attDate=<%=attendanceDto.getAttDate() %>">
                <%=attendanceDto.getAttDate()%>
                </a>
                </td>
