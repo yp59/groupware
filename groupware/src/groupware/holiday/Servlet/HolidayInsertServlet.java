@@ -23,6 +23,7 @@ public class HolidayInsertServlet extends HttpServlet{
 			HolidayDto holidayDto = new HolidayDto();
 			holidayDto.setHolType(req.getParameter("holidayType"));
 			holidayDto.setHolStart(req.getParameter("holidayStart"));
+			holidayDto.setHolContent(req.getParameter("holidayContent"));
 			holidayDto.setHolEnd(req.getParameter("holidayEnd"));
 			
 			String empNo = (String)req.getSession().getAttribute("id");
