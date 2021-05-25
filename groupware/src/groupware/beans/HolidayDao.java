@@ -97,13 +97,12 @@ public class HolidayDao {
 	}
 	
 	//휴가 삭제
-	public boolean delete(String empNo, int holNo) throws Exception {
+	public boolean delete(int holNo) throws Exception {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql = "delete holiday where emp_no=? and hol_no=?";
+		String sql = "delete holiday where hol_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, empNo);
-		ps.setInt(2, holNo);
+		ps.setInt(1, holNo);
 		
 		int count = ps.executeUpdate();
 		
