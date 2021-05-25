@@ -70,7 +70,7 @@ public class BoardCommentsDao {
 		con.close();
 		return boardCommentsList;
 	}
-	
+	 
 	//댓글 리스트 (comments_view 사용, 이름연동)
 		public List<BoardCommentsDto> list1(int boardNo) throws Exception {
 			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
