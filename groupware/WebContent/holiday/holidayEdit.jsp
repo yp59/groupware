@@ -18,7 +18,7 @@
 	</div>
 	
 	<form action="holidayEdit.gw" method="post">
-		<input type="hidden" name="holidayNo" value="<%=holNo%>">
+		<input type="hidden" name="holidayNo" value="<%=holidayDto.getHolNo()%>">
 	
 		<div class="row text-left">
 			<label>휴가 종류</label>

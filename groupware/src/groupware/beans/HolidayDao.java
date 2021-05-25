@@ -80,7 +80,7 @@ public class HolidayDao {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql = "update holiday "
-					+ "set hol_type=?, hol_content=?, hol_start=?, hol_end=?, hol_writer_date=sysdate "
+					+ "set hol_type=?, hol_content=?, hol_start=?, hol_end=? "
 					+ "where emp_no=? and hol_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,holidayDto.getHolType());
