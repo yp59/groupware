@@ -1,6 +1,7 @@
 package groupware.beans;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class AttendanceDao {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql="update attendance "
-				+ "set att_leave= sysdate where emp_no=?,att_date=?";
+				+ "set att_leave= sysdate where emp_no=? and att_date=?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,attendanceDto.getEmpNo());
@@ -45,7 +46,7 @@ public class AttendanceDao {
 	
 	// 근태목록 보기 
 	public List<AttendanceDto> list(String empNo) throws Exception{
-		Connection con = jdbcUtils.getConnection();
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql ="select * from attendance where emp_no=? order by att_date asc";
 
@@ -69,6 +70,36 @@ public class AttendanceDao {
 			
 			return attendanceList;
 		}
+	
+	
+	// 근태 내역 상세보기 
+		public AttendanceDto get(String empNo, Date attDate) throws Exception{
+			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+			
+			String sql = "select * from attendance where emp_no =? and att_date=?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, empNo);
+			ps.setDate(2, attDate);
+			ResultSet rs = ps.executeQuery();
+			
+			AttendanceDto attendanceDto;
+			if(rs.next()) {
+				attendanceDto = new AttendanceDto();
+				attendanceDto.setAttDate(rs.getDate("att_date"));
+				attendanceDto.setEmpNo(rs.getString("emp_no"));
+				attendanceDto.setAttAttend(rs.getDate("att_attend"));
+				attendanceDto.setAttLeave(rs.getDate("att_leave"));
+				attendanceDto.setAttOvertime(rs.getInt("att_overtime"));				
+			}
+			else {
+				attendanceDto = null;
+			}
+		
+			con.close();
+			return attendanceDto;
+		}
+	
 
 	
 	
