@@ -54,7 +54,7 @@
 	<div class="row text-right">
 		<a href="holidayList.jsp" class="link-btn">목록</a>
 		<a href="holidayEdit.jsp?holNo=<%=holNo%>" class="link-btn">수정</a>
-		<a href="holidayDelete.kh?holNo=<%=holNo%>" class="link-btn">삭제</a>	
+		<a href="holidayDelete.gw?holNo=<%=holNo%>" class="link-btn">삭제</a>	
 	</div>
 	
 </div>
