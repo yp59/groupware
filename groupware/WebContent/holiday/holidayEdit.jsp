@@ -8,9 +8,14 @@
 	HolidayDao holidayDao = new HolidayDao();
 	HolidayDto holidayDto = holidayDao.get(empNo, holNo);
 %>
-    
-<jsp:include page="/template/header.jsp"></jsp:include>
 
+<jsp:include page="/template/header.jsp"></jsp:include>
+<script>
+	$(function(){
+		//목표 : 시작하자마자 휴가 종류를 holidayDto의 값으로 설정
+		$("select[name=boardHeader]").val("<%=holidayDto.getHolType()%>");
+	});
+</script>
 <div class="container-600">
 	
 	<div class="row">
