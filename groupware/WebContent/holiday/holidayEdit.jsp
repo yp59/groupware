@@ -10,10 +10,16 @@
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
 	$(function(){
 		//목표 : 시작하자마자 휴가 종류를 holidayDto의 값으로 설정
-		$("select[name=holidayNo]").val("<%=holidayDto.getHolType()%>");
+		$("select[name=holidayType]").val("<%=holidayDto.getHolType()%>");
+	
+		//이거 왜 실행 안될까 . . . 
+		$("input[name=holidayStart]").val("<%=holidayDto.getHolStart()%>");
+		$("input[name=holidayStartEnd]").val("<%=holidayDto.getHolEnd()%>");
 	});
 </script>
 <div class="container-600">
@@ -42,15 +48,14 @@
 			<input type="date" name="holidayStart" class="form-input form-input-underline">
 		</div>
 		<div class="row text-left">
-			<label>휴가 내용</label>
-			<textarea name="holidayContent" rows="15" class="form-input"></textarea>
-		</div>
-		<div class="row text-left">
 			<label>종료일</label>
 			<input type="date" name="holidayEnd" class="form-input form-input-underline">
 		</div>
 		
-		
+		<div class="row text-left">
+			<label>휴가 내용</label>
+			<textarea name="holidayContent" rows="15" class="form-input"></textarea>
+		</div>
 		
 		<div class="row">
 			<input type="submit" value="수정" class="form-btn form-btn-positive">
