@@ -20,6 +20,7 @@ public class HolidayInsertServlet extends HttpServlet{
 			
 			req.setCharacterEncoding("UTF-8");
 			
+			//전달
 			HolidayDto holidayDto = new HolidayDto();
 			holidayDto.setHolType(req.getParameter("holidayType"));
 			holidayDto.setHolStart(req.getParameter("holidayStart"));
