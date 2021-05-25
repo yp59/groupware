@@ -33,8 +33,6 @@ public class filter implements Filter{
 		
 		if(session.getAttribute("id")!=null) {
 			chain.doFilter(request, response);//통과코드
-			
-			
 		}
 		else
 		{	

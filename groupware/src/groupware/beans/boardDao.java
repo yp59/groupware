@@ -13,9 +13,9 @@ public class boardDao {
 	
 	public List<boardDto> boardList()throws Exception{
 		Connection con = jdbcUtils.getConnection();
-		
+		 
 		String sql = "select B.*,E.emp_name from board B "
-				+ "inner join employees E "
+				+ "inner join employees E " 
 				+ "on E.emp_no = B.emp_no order by bo_date desc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -214,7 +214,7 @@ public class boardDao {
 		
 		con.close();
 	}
-	// 게시판 조회수 완성
+	// 게시판 조회수
 	public boolean boCount(int boardNo, String empNo) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		

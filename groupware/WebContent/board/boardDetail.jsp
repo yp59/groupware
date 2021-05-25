@@ -37,8 +37,11 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 //session int 로 변환해야 한다.
 
 //댓글 목록 불러오기
+// 	BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
+// 	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list(boardNo);
+	
 	BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
-	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list(boardNo);
+	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list1(boardNo);
 %>    
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -102,7 +105,7 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 	<%for(BoardCommentsDto boardCommentsDto : boardCommentsList) { %>
 	<div class="row text-left" style="border:1px solid gray;">
 		<div class="float-container">
-			<div class="left"><%=boardCommentsDto.getEmpNo()%></div>
+			<div class="left"><%=boardCommentsDto.getEmpName()%></div>
 			
 			<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
 			<div class="right">
