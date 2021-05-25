@@ -6,11 +6,11 @@
     pageEncoding="UTF-8"%>
     
 <%
-	//Date attDate = new Date();
-	String empNo = (String)session.getAttribute("id");
-	AttendanceDao attendanceDao = new AttendanceDao();
-	List<AttendanceDto> attendanceList = attendanceDao.list(empNo);
-	
+   //Date attDate = new Date();
+   String empNo = (String)session.getAttribute("id");
+   AttendanceDao attendanceDao = new AttendanceDao();
+   List<AttendanceDto> attendanceList = attendanceDao.list(empNo);
+   
 %>    
 <jsp:include page="/template/header.jsp"></jsp:include>
 
