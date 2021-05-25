@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.websocket.Session;
-
 public class employeesDao {
 
 	public static final String USERNAME= "kh75";
@@ -136,4 +134,36 @@ public class employeesDao {
 
 		con.close();
 	}
+	
+	///
+	public List<employeesDto> list() throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql ="select*from employees";
+		PreparedStatement ps =con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		List<employeesDto> list = new ArrayList<>();
+		
+		
+		while(rs.next()) {
+		employeesDto empDto = new employeesDto();
+		
+		empDto.setEmpNo(rs.getString("emp_no"));
+		empDto.setEmpPw(rs.getString("emp_pw"));
+		empDto.setPono(rs.getInt("po_no"));
+		empDto.setEmpName(rs.getString("emp_name"));	
+		empDto.setJoinDate(rs.getString("join_date"));
+		empDto.setEmpPhone(rs.getString("emp_phone"));
+		empDto.setEmail(rs.getString("email"));
+		empDto.setAddress(rs.getString("address"));
+		
+		list.add(empDto);	
+		}
+		con.close();
+		return list;
+		
+		
+	}
+	
 }
