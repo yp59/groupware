@@ -13,7 +13,7 @@
 <script>
 	$(function(){
 		//목표 : 시작하자마자 휴가 종류를 holidayDto의 값으로 설정
-		$("select[name=boardHeader]").val("<%=holidayDto.getHolType()%>");
+		$("select[name=holidayNo]").val("<%=holidayDto.getHolType()%>");
 	});
 </script>
 <div class="container-600">
