@@ -50,6 +50,19 @@
 		<div class="menu">
 			<ul>
 				<li class = "menu menu-title">
+					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
+				</li>
+			<ul>
+				<li class = "menu menu_detail">
+				<a href="#">기안서 작성</a>
+				</li>
+				<li class = "menu menu_detail">
+				<a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a>
+				</li>
+			</ul>
+			</ul>
+			<ul>
+				<li class = "menu menu-title">
 					<a href="#">제목</a>
 				</li>
 			<ul>
@@ -74,6 +87,7 @@
 				</li>
 			</ul>
 			</ul>
+			
 			<ul>
 				<li class = "menu menu-title">
 					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
@@ -104,6 +118,19 @@
 			</ul>
 			</ul>
 		</div>
+		<ul>
+				<li class = "menu menu-title">
+					<a href="#">제목</a>
+				</li>
+			<ul>
+				<li class = "menu menu_detail">
+				<a href="#">분류</a>
+				</li>
+				<li class = "menu menu_detail">
+				<a href="#">분류</a>
+				</li>
+			</ul>
+			</ul>
 		</aside>
 		
 		<!-- 컨텐츠영역 -->
