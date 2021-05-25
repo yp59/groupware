@@ -92,7 +92,7 @@
 			</ul>
 			<ul>
 				<li class = "menu menu-title">
-					<a href="<%=root%>/atttendance/attendanceMain.jsp">출퇴근</a>
+					<a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근</a>
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
