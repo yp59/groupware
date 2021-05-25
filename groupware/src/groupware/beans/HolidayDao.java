@@ -51,7 +51,7 @@ public class HolidayDao {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		//사원 자신의 휴가 신청 내역 볼수 있도록 설정
-		String sql = "select * from holiday where emp_no =? order by desc";
+		String sql = "select * from holiday where emp_no =? order by hol_no desc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
