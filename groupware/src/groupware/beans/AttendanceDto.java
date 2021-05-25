@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class AttendanceDto {
 	
-	private Date attDate;
+	private String attDate;
 	private String empNo;
 	private Date attAttend;
 	private Date attLeave;
@@ -13,10 +13,10 @@ public class AttendanceDto {
 	public AttendanceDto() {
 		super();
 	}
-	public Date getAttDate() {
+	public String getAttDate() {
 		return attDate;
 	}
-	public void setAttDate(Date attDate) {
+	public void setAttDate(String attDate) {
 		this.attDate = attDate;
 	}
 	public String getEmpNo() {

@@ -18,7 +18,7 @@ public class AttendanceDao {
 	public void attend(AttendanceDto attendanceDto) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql ="insert into attendance values(sysdate,?,sysdate,sysdate,0)";
+		String sql ="insert into attendance values(to_char(sysdate, 'yyyy-mm-dd'),?, sysdate, null, 0)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,attendanceDto.getEmpNo());
 		
@@ -31,11 +31,11 @@ public class AttendanceDao {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql="update attendance "
-				+ "set att_leave= sysdate where emp_no=? and att_date=?";
+				+ "set att_leave= sysdate where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd HH24:mi:ss')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,attendanceDto.getEmpNo());
-		ps.setDate(2,attendanceDto.getAttDate());
+		ps.setString(2,attendanceDto.getAttDate());
 		
 		int count = ps.executeUpdate();
 		
@@ -58,7 +58,7 @@ public class AttendanceDao {
 			
 			while(rs.next()) {
 				AttendanceDto attendanceDto = new AttendanceDto();
-				attendanceDto.setAttDate(rs.getDate("att_date"));
+				attendanceDto.setAttDate(rs.getString("att_date"));
 				attendanceDto.setEmpNo(rs.getString("emp_no"));
 				attendanceDto.setAttAttend(rs.getDate("att_attend"));
 				attendanceDto.setAttLeave(rs.getDate("att_leave"));
@@ -86,7 +86,7 @@ public class AttendanceDao {
 			AttendanceDto attendanceDto;
 			if(rs.next()) {
 				attendanceDto = new AttendanceDto();
-				attendanceDto.setAttDate(rs.getDate("att_date"));
+				attendanceDto.setAttDate(rs.getString("att_date"));
 				attendanceDto.setEmpNo(rs.getString("emp_no"));
 				attendanceDto.setAttAttend(rs.getDate("att_attend"));
 				attendanceDto.setAttLeave(rs.getDate("att_leave"));

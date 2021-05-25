@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="groupware.beans.AttendanceDao"%>
 <%@page import="groupware.beans.AttendanceDto"%>
@@ -5,6 +6,7 @@
     pageEncoding="UTF-8"%>
     
 <%
+	//Date attDate = new Date();
 	String empNo = (String)session.getAttribute("id");
 	AttendanceDao attendanceDao = new AttendanceDao();
 	List<AttendanceDto> attendanceList = attendanceDao.list(empNo);
@@ -17,8 +19,8 @@
    </div>
    
    <div class="row text-right">
-      <a href="attend.gw" class="link-btn">출근</a>
-      <a href="leave.gw" class="link-btn">퇴근</a>
+      <a href="attend.gw?" class="link-btn">출근</a>
+      <a href="leave.gw?" class="link-btn">퇴근</a>
    </div>
    
    <div class="row">
@@ -37,7 +39,7 @@
             <%for(AttendanceDto attendanceDto : attendanceList){ %>
             <tr>
                <td>
-               <a href="attendanceDetail.jsp?attDate=<%=attendanceDto.getAttDate()%>">
+               <a href="attendanceDetail.jsp?<%=attendanceDto.getAttDate() %>">
                <%=attendanceDto.getAttDate()%>
                </a>
                </td>
