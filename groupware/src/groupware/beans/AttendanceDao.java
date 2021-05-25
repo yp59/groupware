@@ -30,7 +30,7 @@ public class AttendanceDao {
 	public boolean leave(AttendanceDto attendanceDto) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql="update attendance set att_leave= to_char(sysdate, 'HH24:mi:ss') " 
+		String sql="update attendance set att_leave=sysdate " 
 				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
