@@ -24,6 +24,8 @@ public class LeaveServlet extends HttpServlet{
 			
 			AttendanceDao attendanceDao = new AttendanceDao();
 			attendanceDao.attend(attendanceDto);
+			//왜 안되지
+			
 			
 			resp.sendRedirect("attendanceMain.jsp");
 		}
