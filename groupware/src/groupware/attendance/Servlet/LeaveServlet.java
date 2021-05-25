@@ -22,8 +22,6 @@ public class LeaveServlet extends HttpServlet{
 			String empNo = (String)req.getSession().getAttribute("id");
 			attendanceDto.setEmpNo(empNo);
 			
-			attendanceDto.setAttAttend(att_date);
-			
 			AttendanceDao attendanceDao = new AttendanceDao();
 			attendanceDao.attend(attendanceDto);
 			

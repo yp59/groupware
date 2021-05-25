@@ -35,7 +35,6 @@ public class AttendanceDao {
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,attendanceDto.getEmpNo());
-		ps.setString(2,attendanceDto.getAttDate());
 		
 		int count = ps.executeUpdate();
 		
