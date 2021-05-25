@@ -31,10 +31,11 @@ public class AttendanceDao {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql="update attendance "
-				+ "set att_leave= sysdate where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd HH24:mi:ss')";
+				+ "set att_leave= sysdate where emp_no=? and att_date = sysdate";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,attendanceDto.getEmpNo());
+		ps.setString(2,attendanceDto.getAttDate());
 		
 		int count = ps.executeUpdate();
 		
