@@ -15,7 +15,7 @@
 <div class="container-600">
 
 	<div class="row">
-		<h2>아이템 정보보기</h2>
+		<h2>휴가 내역</h2>
 	</div>
 	
 	<div class="row">
