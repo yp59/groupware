@@ -6,7 +6,8 @@
     
 <%
 	String empNo = (String)session.getAttribute("id");
-	Date attDate = request.getParameter("attDate");
+	String attDate = (String)request.getParameter("attDate");
+	
 	AttendanceDao attendanceDao = new AttendanceDao();
 	AttendanceDto attendanceDto = attendanceDao.get(empNo, attDate);
 %>
@@ -46,8 +47,7 @@
 	
 	<div class="row text-right">
 		<a href="attendanceMain.jsp" class="link-btn">목록</a>
-		<a href="holidayEdit.jsp?holNo=<%=holNo%>" class="link-btn">수정</a>
-		<a href="holidayDelete.kh?holNo=<%=holNo%>" class="link-btn">삭제</a>	
+		<a href="attendanceEdit.jsp?empNo=<%=empNo%>" class="link-btn">수정</a>
 	</div>
 	
 </div>
