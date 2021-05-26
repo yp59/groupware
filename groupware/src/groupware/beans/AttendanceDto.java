@@ -10,7 +10,14 @@ public class AttendanceDto {
 	private String attLeave;
 	private float attOvertime;
 	private float attTotaltime;
+	private String empName;
 
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 	public AttendanceDto() {
 		super();
 	}
