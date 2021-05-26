@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import groupware.beans.BoardCommentsDao;
 import groupware.beans.BoardCommentsDto;
+import groupware.beans.boardDao;
 
 @WebServlet(urlPatterns = "/board/comDelete.gw")
 public class BoardCommentsDeleteServlet extends HttpServlet{
@@ -29,8 +30,8 @@ public class BoardCommentsDeleteServlet extends HttpServlet{
 			BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
 			boardCommentsDao.delete(boardCommentsDto);
 			//댓글 개수 갱신
-//			BoardDao boardDao = new BoardDao();
-//			boardDao.refreshBoardReply(replyDto.getReplyOrigin());
+			boardDao boarddao = new boardDao();
+			boarddao.refreshBoardComments(boardCommentsDto.getBoardNo());
 			
 			//출력
 			resp.sendRedirect("boardDetail.jsp?boardNo="+boardCommentsDto.getBoardNo());

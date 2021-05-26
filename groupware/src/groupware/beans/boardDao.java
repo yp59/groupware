@@ -73,6 +73,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
 			boarddto.setEmpName(rs.getString("emp_name"));
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 			list.add(boarddto);
 		}
@@ -114,6 +115,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
 			boarddto.setEmpName(rs.getString("emp_name"));
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 			list.add(boarddto);
 		}
@@ -168,6 +170,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt(6));
 			boarddto.setBoDate(rs.getString(7));
 			boarddto.setEmpName(rs.getString(8));
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 		}
 		else {
@@ -262,6 +265,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
 			boarddto.setEmpName(rs.getString("emp_name"));
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 			list.add(boarddto);
 		}
@@ -297,6 +301,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
 			boarddto.setEmpName(rs.getString("emp_name"));
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 			list.add(boarddto);
 		}
@@ -337,6 +342,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
 			boarddto.setEmpName(rs.getString("emp_name"));
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 			list.add(boarddto);
 		}
@@ -378,6 +384,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
 			boarddto.setEmpName(rs.getString("emp_name"));
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 			list.add(boarddto);
 		}
@@ -460,6 +467,20 @@ public class boardDao {
 			con.close();
 			
 			return count;
+		}
+		
+		//댓글 개수 갱신 기능
+		public boolean refreshBoardComments(int boardNo) throws Exception {
+			Connection con = jdbcUtils.getConnection();;
+			String sql = "update board "
+								+ "set bo_comments = ( select count(*) from comments where board_no = ? ) "
+								+ "where board_no = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			ps.setInt(2, boardNo);
+			int count = ps.executeUpdate();
+			con.close();
+			return count > 0;
 		}
 
 }
