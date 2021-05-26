@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	
@@ -54,7 +55,7 @@
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
-				<a href="#">기안서 작성</a>
+				<a href="<%=root%>/approval/approvalInsertMain.jsp">기안서 작성</a>
 				</li>
 				<li class = "menu menu_detail">
 				<a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a>
