@@ -32,9 +32,9 @@ try{
 int pageSize1; //1페이지에 보여줄 글의 개수
 try{
 	pageSize1=Integer.parseInt(request.getParameter("pageSize1"));
-	if(pageSize1<10) throw new Exception(); //강제 예외 처리
+	if(pageSize1<5) throw new Exception(); //강제 예외 처리
 }catch(Exception e){
-	pageSize1=10; //기본값 설정
+	pageSize1=5; //기본값 설정
 }
 //2.로우넘을 통한 start_row와 end_row 도출
 int startRow1 = page_no1 * pageSize1 - (pageSize1-1); //한 페이지의 시작번호
@@ -102,9 +102,9 @@ int pageSize2; //1페이지에 보여줄 글의 개수
 
 try{
 	pageSize2=Integer.parseInt(request.getParameter("pageSize2"));
-	if(pageSize2<10) throw new Exception(); //강제 예외 처리
+	if(pageSize2<5) throw new Exception(); //강제 예외 처리
 }catch(Exception e){
-	pageSize2=10; //기본값 설정
+	pageSize2=5; //기본값 설정
 }
 
 
