@@ -9,6 +9,7 @@ public class AttendanceDto {
 	private String attAttend;
 	private String attLeave;
 	private float attOvertime;
+	private float attTotaltime;
 
 	public AttendanceDto() {
 		super();
@@ -43,6 +44,12 @@ public class AttendanceDto {
 	public void setAttOvertime(float attOvertime) {
 		this.attOvertime = attOvertime;
 	}
+	public float getAttTotaltime() {
+		return attTotaltime;
+	}
+	public void setAttTotaltime(float attTotaltime) {
+		this.attTotaltime = attTotaltime;
+	}
 	
-	
+
 }

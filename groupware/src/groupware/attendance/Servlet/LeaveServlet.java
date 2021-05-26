@@ -24,14 +24,13 @@ public class LeaveServlet extends HttpServlet{
 			
 			AttendanceDao attendanceDao = new AttendanceDao();
 			attendanceDao.leave(attendanceDto); //퇴근시간 update
-			attendanceDao.overtime(attendanceDto); //업데이트된 퇴근시간 이용해 추가근무시간 update
 			
-			float overtime = attendanceDao.getOvertime(empNo);
-			if(overtime > 0) {
-				
+			//업데이트된 퇴근시간 이용해 총 근무시간 update
+			//업데이트된 총 근무시간 이용해서 추가 근무시간 계산 후 update
+			if(attendanceDao.totaltime(empNo) && attendanceDao.overtime(empNo)) {
+				resp.sendRedirect("attendanceMain.jsp");
 			}
 			
-			resp.sendRedirect("attendanceMain.jsp");
 		}
 		catch(Exception e) {
 			e.printStackTrace();

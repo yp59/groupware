@@ -18,7 +18,7 @@ public class AttendanceDao {
 	public void attend(AttendanceDto attendanceDto) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql ="insert into attendance values(to_char(sysdate, 'yyyy-mm-dd'),?, sysdate, null, 0)";
+		String sql ="insert into attendance values(to_char(sysdate, 'yyyy-mm-dd'),?, sysdate, null, 0, 0)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,attendanceDto.getEmpNo());
 		
@@ -44,18 +44,16 @@ public class AttendanceDao {
 	}
 	
 	
-	// 추가 근무시간 계산
-	public boolean overtime(AttendanceDto attendanceDto) throws Exception{
+	//총 근무시간 계산
+	public boolean totaltime(String empNo) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		//총 근무시간(원래 근무시간 + 추가 근무시간) 계산
-		//근무 시간 : 9시간으로 설정
-		//추가근무시간 : 총 근무시간 - 9시간
-		String sql="update attendance set att_overtime = round((att_leave-att_attend)*24,1) "
+		String sql="update attendance set att_totaltime = round((att_leave-att_attend)*24,1) "
 				+ "where emp_no = ? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1,attendanceDto.getEmpNo());
+		ps.setString(1,empNo);
 		
 		int count = ps.executeUpdate();
 		
@@ -63,24 +61,22 @@ public class AttendanceDao {
 		return count>0;
 	}
 	
-	//추가 근무 시간 계산 가져오기
-	public float getOvertime(String empNo) throws Exception{
+	//추가 근무 시간 계산 가져오기 + 값 수정
+	public boolean overtime(String empNo) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
-		
-		String sql = "select att_overtime from attendance "
-				+ "where emp_no=? and att_date=att_date = to_char(sysdate, 'yyyy-mm-dd')";
+
+		//근무 시간 : 8시간으로 설정
+		//추가근무시간 : 총 근무시간 - 8시간
+		String sql = "update attendance set att_overtime = att_totaltime - 8 "
+				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
 		
-		ResultSet rs = ps.executeQuery();
+		int count = ps.executeUpdate();
 		
-		float overtime = 0;
-		if(rs.next()) {
-			overtime = rs.getFloat("att_overtime");
-		}
-		
-		return overtime;
+		con.close();
+		return count>0;
 	}
 	
 	// 근태목록 보기 
@@ -88,7 +84,8 @@ public class AttendanceDao {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql ="select "
-				+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave, att_overtime "
+				+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave, "
+				+ "att_totaltime, att_overtime "
 				+ "from attendance where emp_no=? order by att_date asc";
 
 			PreparedStatement ps =con.prepareStatement(sql);
@@ -103,6 +100,7 @@ public class AttendanceDao {
 				attendanceDto.setEmpNo(rs.getString("emp_no"));
 				attendanceDto.setAttAttend(rs.getString("att_attend"));
 				attendanceDto.setAttLeave(rs.getString("att_leave"));
+				attendanceDto.setAttTotaltime(rs.getFloat("att_totaltime"));
 				attendanceDto.setAttOvertime(rs.getInt("att_overtime"));
 				
 				attendanceList.add(attendanceDto);
@@ -118,7 +116,8 @@ public class AttendanceDao {
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
 		String sql = "select "
-					+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave , att_overtime "
+					+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave, "
+					+ "att_totaltime,att_overtime "
 					+ "from attendance where emp_no =? and att_date=?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -133,6 +132,7 @@ public class AttendanceDao {
 			attendanceDto.setEmpNo(rs.getString("emp_no"));
 			attendanceDto.setAttAttend(rs.getString("att_attend"));
 			attendanceDto.setAttLeave(rs.getString("att_leave"));
+			attendanceDto.setAttTotaltime(rs.getFloat("att_totaltime"));
 			attendanceDto.setAttOvertime(rs.getInt("att_overtime"));				
 		}
 		else {

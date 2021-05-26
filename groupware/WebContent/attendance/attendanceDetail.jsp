@@ -39,6 +39,10 @@
             <td><%=attendanceDto.getAttLeave()%></td>
          </tr>
          <tr>
+            <th>총 근무 시간</th>
+            <td><%=attendanceDto.getAttTotaltime()%></td>
+         </tr>
+         <tr>
             <th>추가 근무시간</th>
             <td><%=attendanceDto.getAttOvertime()%></td>
          </tr>
