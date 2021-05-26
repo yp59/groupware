@@ -299,7 +299,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	
 
 	<!-- 페이지네이션 블록 자리 1 : ing -->
-	<div>
+	<div class="row text-center">
 		<div class="pagination1">
 			<%if(startBlock1>1){ %> <!-- startBlock이 1보다 클때만 이전버튼이 보이게 설정 -->
 		<a class="move-link1">이전</a> <!--이전구간으로: 누르면 10페이지로 가야한다. -->
@@ -325,7 +325,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	</div>
 	
 	<!-- 검색화면 1 : ing -->
-	<div>
+	<div class="row text-center">
 		<form class="search-form1" action="scheduleList.jsp" method="get">
 			<input type="hidden" name="page_no1">
 			
@@ -376,7 +376,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	</div>
 	
 	<!-- 페이지네이션 블록 자리 2 : end -->
-	<div>
+	<div class="row text-center">
 		<div class="pagination2">
 			<% if(startBlock2>1) {%>
 			<a class="move-link2">이전</a>
@@ -395,11 +395,11 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 			<%} %>
 		</div>
 	
-	
+	 
 	</div>
 	
 	<!-- 검색화면 2 : end -->
-	<div>	
+	<div class="row text-center">	
 		<form class="search-form2" action="scheduleList.jsp" method="get">
 			<input type="hidden" name="page_no2">
 			<select name="type2">

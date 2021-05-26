@@ -131,8 +131,8 @@ public class ScheduleDao {
 			String ing ="진행중";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1,ing);
-			ps.setInt(1, scheduleDto.getSc_no());
-			ps.setString(2, scheduleDto.getEmpNo());
+			ps.setInt(2, scheduleDto.getSc_no());
+			ps.setString(3, scheduleDto.getEmpNo());
 			
 			int count= ps.executeUpdate();
 			
