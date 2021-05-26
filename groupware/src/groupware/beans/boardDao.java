@@ -11,6 +11,7 @@ public class boardDao {
 	public static final String USERNAME = "kh75";
 	public static final String PASSWORD = "kh75";
 	
+	// 게시글 목록
 	public List<boardDto> boardList()throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		 
@@ -32,7 +33,7 @@ public class boardDao {
 			boarddto.setBoCount(rs.getInt("bo_count"));
 			boarddto.setBoDate(rs.getString("bo_date"));
 			boarddto.setEmpName(rs.getString("emp_name"));
-			
+			boarddto.setComComments(rs.getInt("bo_comments"));
 			list.add(boarddto);
 		}
 		
@@ -41,7 +42,7 @@ public class boardDao {
 		return list;
 	}
 	
-	// 게시글 등록
+	// 페이지네이션 1
 
 	public List<boardDto> boardList(int startRow , int endRow)throws Exception{
 		Connection con = jdbcUtils.getConnection();
@@ -81,6 +82,7 @@ public class boardDao {
 		return list;
 	}
 	
+	// 페이지네이션 2
 	public List<boardDto> boardList(int startRow , int endRow, String boType)throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
@@ -120,9 +122,11 @@ public class boardDao {
 		
 		return list;
 	}
+	
+	// 게시글 등록
 	public void registration(boardDto boarddto)throws Exception{
 		Connection con = jdbcUtils.getConnection();
-		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate)";
+		String sql = "insert into board values(board_seq.nextval,?,?,?,?,0,sysdate,0)";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, boarddto.getEmpNo());
@@ -230,6 +234,7 @@ public class boardDao {
 		
 		return count > 0;
 	}
+	
 	// 게시판 검색 창-1
 	public List<boardDto> boardSearch(String boType,String type,String keyword)throws Exception{
 		Connection con = jdbcUtils.getConnection();
@@ -301,7 +306,7 @@ public class boardDao {
 		return list;
 	}
 	
-
+	// 게시판 검색 3
 	public List<boardDto> boardSearch(String type,String keyword ,int startRow , int endRow)throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
@@ -341,6 +346,7 @@ public class boardDao {
 		return list;
 	}
 	
+	// 페이지 검색 4
 	public List<boardDto> boardSearch(String boType,String type,String keyword, int startRow,int endRow)throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		

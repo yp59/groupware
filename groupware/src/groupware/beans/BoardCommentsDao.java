@@ -13,7 +13,7 @@ public class BoardCommentsDao {
 	
 	//댓글 등록 : 댓글내용, 원본글번호, 회원번호 --> 댓글정보
 	public void insert(BoardCommentsDto boardCommentsDto) throws Exception {
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		String sql = "insert into comments values(com_seq.nextval, ?, ?, ?, sysdate)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, boardCommentsDto.getBoardNo());
@@ -25,7 +25,7 @@ public class BoardCommentsDao {
 	
 	//댓글 수정 : 댓글내용, 댓글번호, 회원번호 --> 댓글정보
 	public boolean edit(BoardCommentsDto boardCommentsDto) throws Exception {
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		String sql = "update comments set com_content = ? where com_no = ? and emp_no = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, boardCommentsDto.getComContent());
@@ -38,7 +38,7 @@ public class BoardCommentsDao {
 	
 	//댓글 삭제 : 댓글번호, 회원번호 --> 댓글정보
 	public boolean delete(BoardCommentsDto boardCommentsDto) throws Exception {
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		String sql = "delete comments where com_no = ? and emp_no = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, boardCommentsDto.getComNo());
@@ -50,7 +50,7 @@ public class BoardCommentsDao {
 	
 	//댓글 리스트(사원번호)
 	public List<BoardCommentsDto> list(int boardNo) throws Exception {
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		String sql = "select * from comments where board_no = ? order by com_no asc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, boardNo);
@@ -73,7 +73,7 @@ public class BoardCommentsDao {
 	 
 	//댓글 리스트 (comments_view 사용, 이름연동)
 		public List<BoardCommentsDto> list1(int boardNo) throws Exception {
-			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+			Connection con = jdbcUtils.getConnection();
 			String sql = "select * from comments_view where board_no = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, boardNo);
