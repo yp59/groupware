@@ -27,8 +27,12 @@
             <td><%=attendanceDto.getAttDate()%></td>
          </tr>
          <tr>
-            <th>사원 번호</th> <!-- 이름으로 바꾸기! -->
+            <th>사원 번호</th> 
             <td><%=attendanceDto.getEmpNo()%></td>
+         </tr>
+         <tr>
+            <th>사원 이름</th> 
+            <td><%=attendanceDto.getEmpName()%></td>
          </tr>
          <tr>   
             <th>출근 시간</th>

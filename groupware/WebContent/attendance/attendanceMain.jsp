@@ -28,6 +28,7 @@
             <tr>
                <th>날짜</th>
                <th>사원 번호</th>
+               <th>사원 이름</th>
                <th>출근 시간</th>
                <th>퇴근 시간</th>
                <th>총 근무시간</th>
@@ -44,6 +45,7 @@
                </a>
                </td>
                <td><%=attendanceDto.getEmpNo()%></td>
+               <td><%=attendanceDto.getEmpName()%></td>
                <td><%=attendanceDto.getAttAttend()%></td>
                <td><%=attendanceDto.getAttLeave()%></td>
                <td><%=attendanceDto.getAttTotaltime()%></td>
