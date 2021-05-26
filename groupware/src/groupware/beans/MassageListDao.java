@@ -41,13 +41,19 @@ public class MassageListDao {
 	}
 	
 	
-	//메세지 수신자 목록
-	public List<MassageListDto> list_receiver(String m_receiver) throws Exception {
+	//메세지 수신자 목록 : 페이지네이션으로 변경
+	public List<MassageListDto> list_receiver(String e2_no, int start_row, int end_row) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select*from massage_list where e2_no=? order by m_date desc";
+		String sql = "select*from( "
+						+ "select rownum rn, TMP.* from ( "
+						+ "select*from massage_list where e2_no=? order by m_date desc "
+						+ ")TMP "
+					+ ") where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, m_receiver);
+		ps.setString(1, e2_no);
+		ps.setInt(2, start_row);
+		ps.setInt(3, end_row);
 		ResultSet rs = ps.executeQuery();
 		
 		List<MassageListDto> list = new ArrayList<>();
@@ -73,13 +79,23 @@ public class MassageListDao {
 	
 		
 	}
-	//메세지 발신자 목록
-	public List<MassageListDto> list_sender(String empNo) throws Exception {
+	
+	
+	
+	
+	//메세지 발신자 목록 :페이지네이션으로 변경
+	public List<MassageListDto> list_sender(String empNo, int start_row, int end_row) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select*from massage_list where emp_no=? order by m_date desc";
+		String sql = "select*from( "
+						+ "select rownum rn, TMP.* from ( "
+							+ "select*from massage_list where emp_no=? order by m_date desc "
+						+ ")TMP "
+					+ ") where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
+		ps.setInt(2, start_row);
+		ps.setInt(3, end_row);
 		ResultSet rs = ps.executeQuery();
 		
 		List<MassageListDto> list = new ArrayList<>();

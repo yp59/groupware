@@ -31,7 +31,41 @@ public class MassageDao {
 	
 	//디테일 조회 detail --> massageListDao 에 생성
 
-
+	//수신함 리스트 페이지네이션 블록 count 구하기 
+	public int getCount_receiverList(String e2_no)throws Exception {
+		Connection con =jdbcUtils.getConnection();
+		
+		String sql ="select count(*)from massage_list where e2_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, e2_no);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		
+		con.close();
+		return count;
+		
+		
+	}
+	
+	//발신함 리스트 페이지네이션 블록 count 구하기 
+	public int getCount_senderList(String empNo)throws Exception {
+		Connection con =jdbcUtils.getConnection();
+		
+		String sql ="select count(*)from massage_list where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		
+		con.close();
+		return count;
+		
+		
+	}
 
 	
 }
