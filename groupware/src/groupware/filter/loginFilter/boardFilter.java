@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import groupware.beans.boardDao;
 import groupware.beans.boardDto;
 @WebFilter(urlPatterns = {
-"/board/boardEdit.jsp","/board/boardDelete.gw","/board/boardEdit.gw"
+"/board/boardEdit.jsp","/board/boardDelete.gw","/board/boardEdit.gw", "/board/comDelete.gw"
 })
 public class boardFilter implements Filter{
 
