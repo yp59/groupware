@@ -34,7 +34,8 @@ public class approvalDao {
 		
 		String sql= "select A.*,E.emp_name from approval A inner join"
 				+ 	" employees E on E.emp_no = A.drafter"
-				+ 	" order by A.app_no where A.drafter = ?";
+				+ 	" where A.drafter = ?"
+				+ 	" order by app_date_start desc";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		
