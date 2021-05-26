@@ -22,9 +22,14 @@ public class LeaveServlet extends HttpServlet{
 			String empNo = (String)req.getSession().getAttribute("id");
 			attendanceDto.setEmpNo(empNo);
 			
-			
 			AttendanceDao attendanceDao = new AttendanceDao();
-			attendanceDao.leave(attendanceDto);
+			attendanceDao.leave(attendanceDto); //퇴근시간 update
+			attendanceDao.overtime(attendanceDto); //업데이트된 퇴근시간 이용해 추가근무시간 update
+			
+			attendanceDto = attendanceDao.get(empNo, att_date);
+			if(attendanceDto.getAttOvertime() > 0) {
+				
+			}
 			
 			resp.sendRedirect("attendanceMain.jsp");
 		}

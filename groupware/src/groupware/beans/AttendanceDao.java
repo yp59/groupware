@@ -48,22 +48,29 @@ public class AttendanceDao {
 	public boolean overtime(AttendanceDto attendanceDto) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql="update attendance set att_leave=sysdate, att_overtime=? " 
-				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
+		String sql="update attendance set att_overtime = round((att_leave-att_attend)*24,1) "
+				+ "where emp_no = ? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
-		
-		String spl2="select where att_leave-att_attend> ";
-		
-		int overTime = 0;
-		ps.setInt(1, overTime);
-		ps.setString(2,attendanceDto.getEmpNo());
+		ps.setString(1,attendanceDto.getEmpNo());
 		
 		int count = ps.executeUpdate();
 		
-		
 		con.close();
 		return count>0;
+	}
+	
+	//추가 근무 시간 계산2
+	public float overtime(AttendanceDto attendanceDto) throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		
+		String sql = "select att_overtime from attendance where emp_no=? and att_date=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, attendanceDto.getEmpNo());
+		ps.setString(2, attendanceDto.getAttDate());
+		
+		ResultSet rs = ps.executeQuery();
 	}
 	
 	// 근태목록 보기 

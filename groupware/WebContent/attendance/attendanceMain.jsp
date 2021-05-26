@@ -1,4 +1,3 @@
-<%@page import="java.sql.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="groupware.beans.AttendanceDao"%>
 <%@page import="groupware.beans.AttendanceDto"%>
@@ -6,7 +5,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-   //Date attDate = new Date();
+   
    String empNo = (String)session.getAttribute("id");
    AttendanceDao attendanceDao = new AttendanceDao();
    List<AttendanceDto> attendanceList = attendanceDao.list(empNo);
