@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MassageListDao {
 
-	//수신자 번호 가져오는 메소드 : 수신자 이름을 통해 번호를 가져오는 메소드이다.
+	//수신자 번호 가져오는 메소드 : 수신자 이름을 통해 번호를 가져오는 메소드이다. 수신자 목록(list)에서 사용됨
 	public MassageListDto getReceiver_no (String e2_name) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		

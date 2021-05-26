@@ -135,7 +135,7 @@ public class employeesDao {
 		con.close();
 	}
 	
-	///
+	/// 회원목록 전체 : massageInsert에서 목록 불러와야해서 만들었습니다. - 윤준하
 	public List<employeesDto> list() throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		

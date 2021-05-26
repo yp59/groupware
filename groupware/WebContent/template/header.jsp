@@ -109,10 +109,10 @@
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
-				<a href="#">분류</a>
+				<a href="<%=root%>/massage/massageSenderList.jsp">발신함</a>
 				</li>
 				<li class = "menu menu_detail">
-				<a href="#">분류</a>
+				<a href="<%=root%>/massage/massageReceiverList.jsp">수신함</a>
 				</li>
 			</ul>
 			</ul>
