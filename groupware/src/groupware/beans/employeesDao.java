@@ -135,7 +135,8 @@ public class employeesDao {
 		con.close();
 	}
 	
-	/// 회원목록 전체 : massageInsert에서 목록 불러와야해서 만들었습니다. - 윤준하
+	//윤준하
+	/// 회원목록 전체 : massageInsert에서 목록 호출때 사용
 	public List<employeesDto> list() throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
@@ -162,6 +163,32 @@ public class employeesDao {
 		}
 		con.close();
 		return list;
+		
+		
+	}
+	//윤준하
+	//수신자 번호 가져오는 메소드 : 수신자 이름을 통해 번호를 가져오는 메소드이다. 수신자 목록(list)에서 사용됨
+	public employeesDto getReceiver_no (String e2_name) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select emp_no from employees where emp_name=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, e2_name);
+		
+		ResultSet rs = ps.executeQuery();
+		employeesDto  empDto; 
+		
+		if(rs.next()) {
+			empDto= new employeesDto();
+
+			empDto.setEmpNo(rs.getString("e2_no"));
+
+			
+		}else {
+			empDto=null;
+		}
+		con.close();
+		return empDto;
 		
 		
 	}

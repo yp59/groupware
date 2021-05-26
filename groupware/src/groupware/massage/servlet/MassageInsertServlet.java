@@ -12,6 +12,8 @@ import groupware.beans.MassageDao;
 import groupware.beans.MassageDto;
 import groupware.beans.MassageListDao;
 import groupware.beans.MassageListDto;
+import groupware.beans.employeesDao;
+import groupware.beans.employeesDto;
 
 @WebServlet(urlPatterns = "/massage/massageInsert.kh")
 public class MassageInsertServlet extends HttpServlet{
@@ -28,18 +30,18 @@ public class MassageInsertServlet extends HttpServlet{
 			String writer =(String)req.getSession().getAttribute("id"); // empNo 발신자번호 저장
 			massageDto.setEmpNo(writer);
 			
-			massageDto.setM_name(req.getParameter("m_name")); //제목 저장
+			massageDto.setM_name(req.getParameter("m_name")); //메세지 제목 저장
 			massageDto.setM_content(req.getParameter("m_content"));//내용 저장
 			
-			//수신자 번호 구하기(수신자 이름 -> 번호 change!)
-			//MassageListDao 에서 가져온다.
 			
-			MassageListDao massageListDao = new MassageListDao();
+//			수신자 번호 구하기(수신자 이름 -> 번호 change!)			
+//			수신자 이름을 -> 수신자 번호로 바꾸는 getReceiver_no 메소드 : employeesDao 에 만듦.
 			String e2_name = req.getParameter("e2_name");
-			MassageListDto massageListDto = massageListDao.getReceiver_no(e2_name); //파라미터로 받아온 e2_name을 ListDao 매개변수로 넣어서 e2_no 받아오기.
-			String receiver_no = massageListDto.getE2_no();
-			massageDto.setReceiver_no(receiver_no); //수신자번호 저장
+			employeesDao empDao = new employeesDao();
+			employeesDto empDto = empDao.getReceiver_no(e2_name); //파라미터로 받아온 e2_name을 ListDao 매개변수로 넣어서 e2_no 받아오기.
+			String receiver_no = empDto.getEmpNo();
 			
+			massageDto.setReceiver_no(receiver_no); //수신자번호 저장
 			
 			
 			

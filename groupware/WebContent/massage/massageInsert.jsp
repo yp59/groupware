@@ -20,7 +20,6 @@ boolean isSender=answer_name!=null;
 
 %>
 
- 
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
@@ -41,7 +40,7 @@ boolean isSender=answer_name!=null;
 			<%if(isSender) {%>
 			<div class="row">
 				<label for="name">제목</label>
-				<input id="name" type ="text" name="m_name" value="re:<%=answer_title %>"required>		
+				<input class="form-btn" id="name" type ="text" name="m_name" value="re:<%=answer_title %>"required>		
 			</div>
 			<%} else{%>
 			<div class="row">
@@ -49,12 +48,6 @@ boolean isSender=answer_name!=null;
 				<input id="name" type ="text" name="m_name" required>		
 			</div>
 			<%} %>
-			
-			
-			<div class="row">
-				<label for="content">내용</label>
-				<textarea id="content" name="m_content"></textarea>
-			</div>
 			
 			
 			<div class="row">
@@ -75,6 +68,14 @@ boolean isSender=answer_name!=null;
 					</select>
 				<%} %>
 			</div>
+			
+			<div class="row">
+				<label for="content">내용</label>
+				<textarea class="form-btn" id="content" name="m_content"></textarea>
+			</div>
+			
+			
+			
 			<div class="row">
 				<input type="submit" value ="보내기" class="form-btn">
 			</div>

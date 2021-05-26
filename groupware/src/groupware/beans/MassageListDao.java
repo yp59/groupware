@@ -8,37 +8,38 @@ import java.util.List;
 
 public class MassageListDao {
 
-	//수신자 번호 가져오는 메소드 : 수신자 이름을 통해 번호를 가져오는 메소드이다. 수신자 목록(list)에서 사용됨
-	public MassageListDto getReceiver_no (String e2_name) throws Exception{
-		Connection con = jdbcUtils.getConnection();
-		
-		String sql = "select*from massage_list where e2_name=?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, e2_name);
-		
-		ResultSet rs = ps.executeQuery();
-		MassageListDto massageListDto; 
-		
-		if(rs.next()) {
-			massageListDto= new MassageListDto();
-//			massageListDto.setM_no(rs.getInt("m_no"));
-//			massageListDto.setM_name(rs.getString("m_name"));
-//			massageListDto.setM_date(rs.getDate("m_date"));
-//			massageListDto.setM_content(rs.getString("m_content"));
-//			massageListDto.setEmpNo(rs.getString("empNo"));
-//			massageListDto.setEmp_name(rs.getString("emp_name"));//발신자 이름
-//			massageListDto.setE2_name(rs.getString("e2_name"));
-			massageListDto.setE2_no(rs.getString("e2_no"));
-
-			
-		}else {
-			massageListDto=null;
-		}
-		con.close();
-		return massageListDto;
-		
-		
-	}
+//	//수신자 번호 가져오는 메소드 : 수신자 이름을 통해 번호를 가져오는 메소드이다. 수신자 목록(list)에서 사용됨
+//	public employeesDto getReceiver_no (String e2_name) throws Exception{
+//		Connection con = jdbcUtils.getConnection();
+//		
+//		String sql = "select emp_no from employees where emp_name=?";
+//		PreparedStatement ps = con.prepareStatement(sql);
+//		ps.setString(1, e2_name);
+//		
+//		ResultSet rs = ps.executeQuery();
+//		employeesDto  empDto; 
+//		
+//		if(rs.next()) {
+//			empDto= new employeesDto ();
+////			massageListDto.setM_no(rs.getInt("m_no"));
+////			massageListDto.setM_name(rs.getString("m_name"));
+////			massageListDto.setM_date(rs.getDate("m_date"));
+////			massageListDto.setM_content(rs.getString("m_content"));
+////			massageListDto.setEmpNo(rs.getString("empNo"));
+////			massageListDto.setEmp_name(rs.getString("emp_name"));//발신자 이름
+////			massageListDto.setE2_name(rs.getString("e2_name"));
+//			empDto.setEmpNo(rs.getString("e2_no"));
+//
+//			
+//		}else {
+//			empDto=null;
+//		}
+//		con.close();
+//		return empDto;
+//		
+//		
+//	} 
+	//위의 메소드는 employeesDao로 옮김.
 	
 	
 	//메세지 수신자 목록 : 페이지네이션으로 변경

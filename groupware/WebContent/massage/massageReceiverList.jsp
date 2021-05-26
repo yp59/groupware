@@ -64,12 +64,12 @@ if(end_block>last_block){
 
 
 
-<div>
-	<div>
+<div class="container-800">
+	<div class="row">
 		<h2>메세지 수신함</h2>
 	</div>
 	
-	<div>
+	<div class="row">
 		<table class="table table-border">
 			<thead>
 				<tr>
