@@ -29,32 +29,8 @@ public class MassageDao {
 	
 	
 	
-	//디테일 조회 detail 
-	public MassageDto detail (String empNo) throws Exception {
-		Connection con = jdbcUtils.getConnection();
-		
-		String sql ="select*from massage where emp_no=? ";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, empNo);
-		
-		ResultSet rs = ps.executeQuery();
-		
-		
-		MassageDto massageDto = new MassageDto();
-		if(rs.next()) {
-			massageDto.setM_no(rs.getInt("m_no"));
-			massageDto.setEmpNo(rs.getString("emp_no"));
-			massageDto.setM_date(rs.getDate("m_date"));
-			massageDto.setM_content(rs.getString("m_content"));
-			massageDto.setReceiver_no(rs.getString("receiver_no"));
-		}else {
-			massageDto=null;
-		}
-		con.close();
-		return massageDto;
-		
-		
-	}
+	//디테일 조회 detail --> massageListDao 에 생성
+
 
 
 	

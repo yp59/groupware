@@ -36,7 +36,14 @@ List<MassageListDto> list = massageListDao.list_sender(empNo);
 				<%for(MassageListDto massageListDto : list) {%>
 				<tr>
 					<td><%=massageListDto.getM_no() %></td>
-					<td><%=massageListDto.getM_name() %></td>
+					<td>
+						<a href ="massageDetail.jsp?m_no=<%=massageListDto.getM_no()%>">
+						
+						<%=massageListDto.getM_name() %></a>
+						
+						
+					
+					</td>
 					<td><%=massageListDto.getEmp_name() %></td>
 					<td><%=massageListDto.getE2_name()%></td>
 					<td><%=massageListDto.getM_date() %></td>
