@@ -6,14 +6,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String empNo = (String)request.getSession().getAttribute("id");
-MassageDao massageDao = new MassageDao();//받은사람 이름 가져오기 위한 메소드
-MassageDto massageDto =massageDao.detail(empNo);
-String receiver = massageDto.getM_receiver();
+
+String e2_no = (String)request.getSession().getAttribute("id"); //수신자 번호 가져오기
+
+
 
 
 MassageListDao massageListDao = new MassageListDao();
-List<MassageListDto> list = massageListDao.list_receiver(receiver);
+List<MassageListDto> list = massageListDao.list_receiver(e2_no);
 
 
 
@@ -44,7 +44,7 @@ List<MassageListDto> list = massageListDao.list_receiver(receiver);
 					<td><%=massageListDto.getM_no() %></td>
 					<td><%=massageListDto.getM_name() %></td>
 					<td><%=massageListDto.getEmp_name() %></td>
-					<td><%=massageListDto.getM_receiver() %></td>
+					<td><%=massageListDto.getE2_name() %></td>
 					<td><%=massageListDto.getM_date() %></td>
 				</tr>
 				<%} %>

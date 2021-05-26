@@ -38,7 +38,7 @@ List<MassageListDto> list = massageListDao.list_sender(empNo);
 					<td><%=massageListDto.getM_no() %></td>
 					<td><%=massageListDto.getM_name() %></td>
 					<td><%=massageListDto.getEmp_name() %></td>
-					<td><%=massageListDto.getM_receiver() %></td>
+					<td><%=massageListDto.getE2_name()%></td>
 					<td><%=massageListDto.getM_date() %></td>
 				</tr>
 				<%} %>

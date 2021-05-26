@@ -30,10 +30,11 @@ List<employeesDto> empList =empDao.list();
 			<textarea id="content" name="m_content"></textarea>
 			<br>
 			<label>수신자</label>
-			<select name="receiver_no">
+			<select name="e2_name">
+				 <!-- 수신자 이름 보냄 -->
 				<%for(employeesDto empDto : empList) {%>
-					<option><%=empDto.getEmpNo() %></option>
-				<%} %> <!-- 일단 수신자는 번호 보냄...... -->
+					<option><%=empDto.getEmpName()%></option>
+				<%} %>
 			</select>
 			<input type="submit" value ="보내기" class="form-btn">
 		</form>

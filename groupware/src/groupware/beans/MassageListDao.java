@@ -8,12 +8,44 @@ import java.util.List;
 
 public class MassageListDao {
 
+	//수신자 번호 가져오는 메소드 : 수신자 이름을 통해 번호를 가져오는 메소드이다.
+	public MassageListDto getReceiver_no (String e2_name) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select*from massage_list where e2_name=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, e2_name);
+		
+		ResultSet rs = ps.executeQuery();
+		MassageListDto massageListDto; 
+		
+		if(rs.next()) {
+			massageListDto= new MassageListDto();
+//			massageListDto.setM_no(rs.getInt("m_no"));
+//			massageListDto.setM_name(rs.getString("m_name"));
+//			massageListDto.setM_date(rs.getDate("m_date"));
+//			massageListDto.setM_content(rs.getString("m_content"));
+//			massageListDto.setEmpNo(rs.getString("empNo"));
+//			massageListDto.setEmp_name(rs.getString("emp_name"));//발신자 이름
+//			massageListDto.setE2_name(rs.getString("e2_name"));
+			massageListDto.setE2_no(rs.getString("e2_no"));
+
+			
+		}else {
+			massageListDto=null;
+		}
+		con.close();
+		return massageListDto;
+		
+		
+	}
+	
 	
 	//메세지 수신자 목록
 	public List<MassageListDto> list_receiver(String m_receiver) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select*from massage_list where m_receiver=?";
+		String sql = "select*from massage_list where e2_no=? order by m_date desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, m_receiver);
 		ResultSet rs = ps.executeQuery();
@@ -26,8 +58,11 @@ public class MassageListDao {
 			massageListDto.setM_name(rs.getString("m_name"));
 			massageListDto.setM_date(rs.getDate("m_date"));
 			massageListDto.setM_content(rs.getString("m_content"));
-			massageListDto.setE2_name(rs.getString("e2_name")); //수신자
-			massageListDto.setEmp_name(rs.getString("emp_name"));//발신자
+			
+			massageListDto.setEmp_name(rs.getString("emp_name"));//발신자 이름
+			
+			massageListDto.setE2_name(rs.getString("e2_name")); //수신자 이름
+			
 			
 			list.add(massageListDto);
 			
@@ -42,7 +77,7 @@ public class MassageListDao {
 	public List<MassageListDto> list_sender(String empNo) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select*from massage_list where emp_no=?";
+		String sql = "select*from massage_list where emp_no=? order by m_date desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
 		ResultSet rs = ps.executeQuery();
@@ -55,7 +90,7 @@ public class MassageListDao {
 			massageListDto.setM_name(rs.getString("m_name"));
 			massageListDto.setM_date(rs.getDate("m_date"));
 			massageListDto.setM_content(rs.getString("m_content"));
-			massageListDto.setM_receiver(rs.getString("m_receiver")); //수신자
+			massageListDto.setE2_name(rs.getString("e2_name")); //수신자
 			massageListDto.setEmp_name(rs.getString("emp_name"));//발신자
 			
 			list.add(massageListDto);

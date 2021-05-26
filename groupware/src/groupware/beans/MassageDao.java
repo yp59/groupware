@@ -8,17 +8,17 @@ import java.util.List;
 
 public class MassageDao {
 	
-	//메세지 입력창
+	//메세지 입력창 (입력 메소드)
 	
 	public void insert(MassageDto massageDto) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql ="insert into  massage values (massage_seq.nextval,?,?,sysdate,?,?)";
 		PreparedStatement ps =con.prepareStatement(sql);
-		ps.setString(1, massageDto.getEmpNo());
-		ps.setString(2, massageDto.getM_name());
-		ps.setString(3, massageDto.getM_content());
-		ps.setString(4, massageDto.getReceiver_no());
+		ps.setString(1, massageDto.getEmpNo()); //발신자번호
+		ps.setString(2, massageDto.getM_name());//쪽지제목
+		ps.setString(3, massageDto.getM_content());//쪽지내용
+		ps.setString(4, massageDto.getReceiver_no());//수신자번호
 		
 		ps.execute();
 		
@@ -29,7 +29,7 @@ public class MassageDao {
 	
 	
 	
-	//디테일 조회 detail
+	//디테일 조회 detail 
 	public MassageDto detail (String empNo) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		

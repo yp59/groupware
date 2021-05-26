@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class MassageListDto  {
 	private int m_no;
-//	private String empNo; //발신자 사원번호
+	private String empNo; //발신자 사원번호
 	private String m_name;
 	private Date m_date;
 	private String m_content;
 	private String emp_name; //발신자
 
 	
-//	private String e2_no;	//수신자 사원번호
+	private String e2_no;	//수신자 사원번호
 	private String e2_name;	//수신자
 	public MassageListDto() {
 		super();
@@ -58,6 +58,12 @@ public class MassageListDto  {
 	}
 	public void setE2_name(String e2_name) {
 		this.e2_name = e2_name;
+	}
+	public String getEmpNo() {
+		return empNo;
+	}
+	public void setEmpNo(String empNo) {
+		this.empNo = empNo;
 	}
 	
 	
