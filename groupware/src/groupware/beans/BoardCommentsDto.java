@@ -8,7 +8,14 @@ public class BoardCommentsDto {
 	String empNo;
 	String comContent;
 	Date date;
+	String empName;
 	
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 	public int getComNo() {
 		return comNo;
 	}
