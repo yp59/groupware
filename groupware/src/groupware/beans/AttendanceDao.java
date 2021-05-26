@@ -83,10 +83,12 @@ public class AttendanceDao {
 	public List<AttendanceDto> list(String empNo) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql ="select "
-				+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave, "
-				+ "att_totaltime, att_overtime "
-				+ "from attendance where emp_no=? order by att_date asc";
+		String sql ="select"
+						+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend,"
+						+ "to_char(A.att_leave,'HH24:mi:ss') as att_leave, A.att_totaltime ,"
+						+ " A.att_overtime, E.emp_name"
+					+ " from attendance A inner join employees E "
+				+ "on E.emp_no = A.emp_no and A.emp_no=? order by att_date desc";
 
 			PreparedStatement ps =con.prepareStatement(sql);
 			ps.setString(1,empNo);
@@ -98,6 +100,7 @@ public class AttendanceDao {
 				AttendanceDto attendanceDto = new AttendanceDto();
 				attendanceDto.setAttDate(rs.getString("att_date"));
 				attendanceDto.setEmpNo(rs.getString("emp_no"));
+				attendanceDto.setEmpName(rs.getString("emp_name"));
 				attendanceDto.setAttAttend(rs.getString("att_attend"));
 				attendanceDto.setAttLeave(rs.getString("att_leave"));
 				attendanceDto.setAttTotaltime(rs.getFloat("att_totaltime"));
@@ -115,10 +118,12 @@ public class AttendanceDao {
 	public AttendanceDto get(String empNo, String attDate) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql = "select "
-					+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave, "
-					+ "att_totaltime,att_overtime "
-					+ "from attendance where emp_no =? and att_date=?";
+		String sql = "select"
+							+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend, "
+							+ "to_char(A.att_leave,'HH24:mi:ss') as att_leave, A.att_totaltime ,"
+							+ " A.att_overtime, E.emp_name "
+						+ "from attendance A inner join employees E "
+				+ "on E.emp_no = A.emp_no and A.emp_no=? and A.att_date=?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
@@ -129,6 +134,7 @@ public class AttendanceDao {
 		if(rs.next()) {
 			attendanceDto = new AttendanceDto();
 			attendanceDto.setAttDate(rs.getString("att_date"));
+			attendanceDto.setEmpName(rs.getString("emp_name"));
 			attendanceDto.setEmpNo(rs.getString("emp_no"));
 			attendanceDto.setAttAttend(rs.getString("att_attend"));
 			attendanceDto.setAttLeave(rs.getString("att_leave"));
