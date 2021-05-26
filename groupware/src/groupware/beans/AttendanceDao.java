@@ -48,6 +48,9 @@ public class AttendanceDao {
 	public boolean overtime(AttendanceDto attendanceDto) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
+		//총 근무시간(원래 근무시간 + 추가 근무시간) 계산
+		//근무 시간 : 9시간으로 설정
+		//추가근무시간 : 총 근무시간 - 9시간
 		String sql="update attendance set att_overtime = round((att_leave-att_attend)*24,1) "
 				+ "where emp_no = ? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
@@ -60,17 +63,24 @@ public class AttendanceDao {
 		return count>0;
 	}
 	
-	//추가 근무 시간 계산2
-	public float overtime(AttendanceDto attendanceDto) throws Exception{
+	//추가 근무 시간 계산 가져오기
+	public float getOvertime(String empNo) throws Exception{
 		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-		String sql = "select att_overtime from attendance where emp_no=? and att_date=?";
+		String sql = "select att_overtime from attendance "
+				+ "where emp_no=? and att_date=att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, attendanceDto.getEmpNo());
-		ps.setString(2, attendanceDto.getAttDate());
+		ps.setString(1, empNo);
 		
 		ResultSet rs = ps.executeQuery();
+		
+		float overtime = 0;
+		if(rs.next()) {
+			overtime = rs.getFloat("att_overtime");
+		}
+		
+		return overtime;
 	}
 	
 	// 근태목록 보기 
@@ -87,7 +97,7 @@ public class AttendanceDao {
 			
 			List<AttendanceDto> attendanceList = new ArrayList<>();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				AttendanceDto attendanceDto = new AttendanceDto();
 				attendanceDto.setAttDate(rs.getString("att_date"));
 				attendanceDto.setEmpNo(rs.getString("emp_no"));
@@ -104,37 +114,33 @@ public class AttendanceDao {
 	
 	
 	// 근태 내역 상세보기 
-		public AttendanceDto get(String empNo, String attDate) throws Exception{
-			Connection con = jdbcUtils.con(USERNAME, PASSWORD);
-			
-			String sql = "select "
-						+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave , att_overtime "
-						+ "from attendance where emp_no =? and att_date=?";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, empNo);
-			ps.setString(2, attDate);
-			ResultSet rs = ps.executeQuery();
-			
-			AttendanceDto attendanceDto;
-			if(rs.next()) {
-				attendanceDto = new AttendanceDto();
-				attendanceDto.setAttDate(rs.getString("att_date"));
-				attendanceDto.setEmpNo(rs.getString("emp_no"));
-				attendanceDto.setAttAttend(rs.getString("att_attend"));
-				attendanceDto.setAttLeave(rs.getString("att_leave"));
-				attendanceDto.setAttOvertime(rs.getInt("att_overtime"));				
-			}
-			else {
-				attendanceDto = null;
-			}
+	public AttendanceDto get(String empNo, String attDate) throws Exception{
+		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
 		
-			con.close();
-			return attendanceDto;
+		String sql = "select "
+					+ "att_date, emp_no, to_char(att_attend,'HH24:mi:ss') as att_attend, to_char(att_leave,'HH24:mi:ss') as att_leave , att_overtime "
+					+ "from attendance where emp_no =? and att_date=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setString(2, attDate);
+		ResultSet rs = ps.executeQuery();
+		
+		AttendanceDto attendanceDto;
+		if(rs.next()) {
+			attendanceDto = new AttendanceDto();
+			attendanceDto.setAttDate(rs.getString("att_date"));
+			attendanceDto.setEmpNo(rs.getString("emp_no"));
+			attendanceDto.setAttAttend(rs.getString("att_attend"));
+			attendanceDto.setAttLeave(rs.getString("att_leave"));
+			attendanceDto.setAttOvertime(rs.getInt("att_overtime"));				
+		}
+		else {
+			attendanceDto = null;
 		}
 	
-
-	
-	
+		con.close();
+		return attendanceDto;
+	}
 
 }
