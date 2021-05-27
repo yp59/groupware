@@ -16,7 +16,7 @@ public class AttendanceDao {
 	
 	// 출근
 	public void attend(AttendanceDto attendanceDto) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql ="insert into attendance values(to_char(sysdate, 'yyyy-mm-dd'),?, sysdate, null, 0, 0)";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -28,7 +28,7 @@ public class AttendanceDao {
 	
 	// 퇴근
 	public boolean leave(AttendanceDto attendanceDto) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql="update attendance set att_leave=sysdate " 
 				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
@@ -46,7 +46,7 @@ public class AttendanceDao {
 	
 	//총 근무시간 계산
 	public boolean totaltime(String empNo) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		//총 근무시간(원래 근무시간 + 추가 근무시간) 계산
 		String sql="update attendance set att_totaltime = round((att_leave-att_attend)*24,1) "
@@ -63,7 +63,7 @@ public class AttendanceDao {
 	
 	//추가 근무 시간 계산 가져오기 + 값 수정
 	public boolean overtime(String empNo) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 
 		//근무 시간 : 8시간으로 설정
 		//추가근무시간 : 총 근무시간 - 8시간
@@ -81,7 +81,7 @@ public class AttendanceDao {
 	
 	// 근태목록 보기 
 	public List<AttendanceDto> list(String empNo) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql ="select"
 						+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend,"
@@ -116,7 +116,7 @@ public class AttendanceDao {
 	
 	// 근태 내역 상세보기 
 	public AttendanceDto get(String empNo, String attDate) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select"
 							+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend, "

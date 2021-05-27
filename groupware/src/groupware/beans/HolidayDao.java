@@ -14,7 +14,7 @@ public class HolidayDao {
 	
 	//시퀀스 번호를 생성하는 기능
 	public int getSequence() throws Exception {
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select board_seq.nextval from dual";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -28,7 +28,7 @@ public class HolidayDao {
 	
 	// 휴가신청
 	public void insert(HolidayDto holidayDto) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "insert into holiday values(?,?,?,?,?,?,sysdate)";
 		
@@ -48,7 +48,7 @@ public class HolidayDao {
 	//휴가 리스트
 	public List<HolidayDto> list(String empNo) throws Exception {
 		
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		//사원 자신의 휴가 신청 내역 볼수 있도록 설정
 		String sql = "select * from holiday where emp_no =? order by hol_no desc";
@@ -77,7 +77,7 @@ public class HolidayDao {
 	
 	//휴가 수정
 	public boolean edit(HolidayDto holidayDto) throws Exception {
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "update holiday "
 					+ "set hol_type=?, hol_content=?, hol_start=?, hol_end=? "
@@ -98,7 +98,7 @@ public class HolidayDao {
 	
 	//휴가 삭제
 	public boolean delete(int holNo) throws Exception {
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "delete holiday where hol_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class HolidayDao {
 	
 	//신청 내역 상세 보기 
 	public HolidayDto get(String empNo, int holNo) throws Exception{
-		Connection con = jdbcUtils.con(USERNAME, PASSWORD);
+		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select * from holiday where emp_no =? and hol_no=?";
 		
