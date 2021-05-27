@@ -37,11 +37,11 @@
 				<td><%=holidayDto.getHolContent()%></td>
 			</tr>
 			<tr>
-				<th>시작 날짜</th>
+				<th>시작일</th>
 				<td><%=holidayDto.getHolStart()%></td>
 			</tr>
 			<tr>
-				<th>끝 날짜</th>
+				<th>종료일</th>
 				<td><%=holidayDto.getHolEnd()%></td>
 			</tr>
 			<tr>
