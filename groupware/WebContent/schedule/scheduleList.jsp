@@ -58,7 +58,7 @@ if(isSearch1){ // 패러미터가 있는 경우 --> 검색호출 한다.
 
 
 int blockSize1 = 10;
-int startBlock1 = ((page_no1 - 1) / blockSize1) * blockSize1 + 1;
+int startBlock1 = (page_no1 - 1) / blockSize1 * blockSize1 + 1;
 int endBlock1 = startBlock1 + blockSize1 - 1;
 
 ScheduleDao scheduleDao = new ScheduleDao();
@@ -129,7 +129,7 @@ if(isSearch2){ // 패러미터가 있는 경우 --> 검색호출 한다.
 
 
 int blockSize2 = 10;
-int startBlock2 = ((page_no2 - 1) / blockSize2) * blockSize2 + 1;
+int startBlock2 = (page_no2 - 1) / blockSize2 * blockSize2 + 1;
 int endBlock2 = startBlock2 + blockSize2 - 1;
 
 // ScheduleDao scheduleDao = new ScheduleDao();
@@ -171,7 +171,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	$(function(){
 		$("select[name=type1]").val("<%=type1%>");
 		$("input[name=keyword1]").val("<%=keyword1%>");
-		$(".search-form1").submit();
+
 	});
 	
 	</script>
@@ -184,7 +184,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	$(function(){
 		$("select[name=type2]").val("<%=type2%>");
 		$("input[name=keyword2]").val("<%=keyword2%>");
-		$(".search-form2").submit();
+
 	
 	});
 	
