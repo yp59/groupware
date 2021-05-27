@@ -10,7 +10,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
-메일 리스트
+메일 리스트 
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
 </body>
