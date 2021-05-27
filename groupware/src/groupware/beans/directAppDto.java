@@ -6,6 +6,7 @@ public class directAppDto {
 	private String approval;
 	private String type;
 	private String consesus;
+	private String appDate;
 	
 	
 	public directAppDto() {
@@ -34,5 +35,12 @@ public class directAppDto {
 	}
 	public void setConsesus(String consesus) {
 		this.consesus = consesus;
+	}
+	
+	public String getAppDate() {
+		return appDate;
+	}
+	public void setAppDate(String appDate) {
+		this.appDate = appDate;
 	}
 }

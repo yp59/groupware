@@ -11,7 +11,7 @@ public class approvalDao {
 	public void approvalInsert(approvalDto approvaldto)throws Exception{
 	Connection con = jdbcUtils.getConnection();	
 	
-	String sql = "insert into approval values(app_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,'상신')";
+	String sql = "insert into approval values(app_seq.nextval,?,?,?,?,?,?,?,?,?,?,'상신')";
 		
 	PreparedStatement ps =con.prepareStatement(sql);
 	
@@ -25,8 +25,7 @@ public class approvalDao {
 	ps.setString(7, approvaldto.getAppTitle());//
 	ps.setString(8, approvaldto.getAppContent());//
 	ps.setString(9, approvaldto.getAppDateStart());//
-	ps.setString(10, approvaldto.getAppDate());
-	ps.setString(11, approvaldto.getAppDateEnd());
+	ps.setString(10, approvaldto.getAppDateEnd());
 	}
 	
 	public List<approvalDto> approvalList(String id)throws Exception{//session id값으로 기안 목록 조회
@@ -58,9 +57,8 @@ public class approvalDao {
 			approvaldto.setAppTitle(rs.getString(8));
 			approvaldto.setAppContent(rs.getString(9));
 			approvaldto.setAppDateStart(rs.getString(10));
-			approvaldto.setAppDate(rs.getString(11));
-			approvaldto.setAppDateEnd(rs.getString(12));
-			approvaldto.setAppState(rs.getString(13));
+			approvaldto.setAppDateEnd(rs.getString(11));
+			approvaldto.setAppState(rs.getString(12));
 			
 			list.add(approvaldto);
 		
