@@ -10,9 +10,9 @@ public class employeesDto {
 	private String empPhone;
 	private String email;
 	private String address;
-	
+	private String department;
 	public employeesDto(String empNo, String empPw, int poNo, String empName, String joinDate, String empPhone,
-			String email, String address) {
+			String email, String address, String department) {
 		super();
 		this.empNo = empNo;
 		this.empPw = empPw;
@@ -22,6 +22,7 @@ public class employeesDto {
 		this.empPhone = empPhone;
 		this.email = email;
 		this.address = address;
+		this.department = department;
 	}
 
 	
@@ -98,4 +99,13 @@ public class employeesDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	
 }
