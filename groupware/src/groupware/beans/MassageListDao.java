@@ -58,8 +58,8 @@ public class MassageListDao {
 		ResultSet rs = ps.executeQuery();
 		
 		List<MassageListDto> list = new ArrayList<>();
-		
-		while(rs.next()) {
+		   
+		while(rs.next()) { //
 			MassageListDto massageListDto = new MassageListDto();
 			massageListDto.setM_no(rs.getInt("m_no"));
 			massageListDto.setM_name(rs.getString("m_name"));
