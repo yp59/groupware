@@ -15,23 +15,27 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <title>기안서 작성</title>
 <script>
-var x = document.querySelector(".startDate");
-	x.value=new Date().toISOString().substring(0, 10);
-	console.log(x);
+$(function(){
+	$(".startDate").on("load",function(){
+		
+	})
+	
+});
 </script>
 </head>
 <body>
 
-<div class = "container-900">
+<div class = "container-700">
 <form action="approvalInsert.gw" method ="post">
-<div class = "row">
+<div>
 	<input type="hidden" name ="drafter" value="<%=id%>">
+	
 일자 : <input type = "date" class= "startDate" name = "appDateStart"> 
 </div>
-<div class = "row">
+<div>
 제목 : <input type = "text" name = "appTitle"> 
 </div>
-<div class = "row">
+<div>
 <!-- 결재라인은 외래키이기 때문에 서블릿에서 먼저 들어가야함
 window 새 창으로 해서 값 넣어야 함 -->
 결재라인 : <input type = "text" name = "midApprovalNo">
@@ -41,31 +45,20 @@ window 새 창으로 해서 값 넣어야 함 -->
 		<input type = "text" name = "implemneterNo">  
 </div>
 
-<div class = "row">
+<div>
  : <input type = "date" name = "appDateStart"> 
 </div>
-<div class = "row">
+<div>
 첨부 : <input type = "date" name = "appDateStart"> 
 </div>
-<div class = "row">
+<div>
 일자 : <input type = "date" name = "appDateStart"> 
 </div>
-<div class = "row">
+<div>
 내용 : <textarea rows="16" class="input" name="appContent">
-	</textarea>
+</textarea>
 </div>
-
 </form>
- 
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

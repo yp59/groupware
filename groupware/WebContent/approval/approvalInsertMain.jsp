@@ -18,7 +18,7 @@
 <script>
 
 $(function(){
-var option ="width=900 , depth=600";
+var option ="width=750px , height=500px";
 	$(".appinsert").click(function(){
 		 window.open("approvalInsert.jsp","x",option);
 	
