@@ -166,7 +166,7 @@ public class employeesDao {
 		
 		
 	}
-	//윤준하
+	//윤준하  
 	//수신자 번호 가져오는 메소드 : 수신자 이름을 통해 번호를 가져오는 메소드이다. 수신자 목록(list)에서 사용됨
 	public employeesDto getReceiver_no (String e2_name) throws Exception{
 		Connection con = jdbcUtils.getConnection();
@@ -181,7 +181,7 @@ public class employeesDao {
 		if(rs.next()) {
 			empDto= new employeesDto();
 
-			empDto.setEmpNo(rs.getString("e2_no"));
+			empDto.setEmpNo(rs.getString("emp_no"));
 
 			
 		}else {
