@@ -88,6 +88,40 @@ $(function(){
 	});
 	
 	////////////////////////////////////////////////////////////////////////
+	
+	$('.appSelect').click(function(){//선택한 사원을 아래에 표시해 주는 jquery 구문 체크박스를 체크하고 버튼을 누르면 해당값이 나타남
+		//console.log($('.appSelect:checked').val()); //여러개 선택하면 처음 값만 나온다.
+		
+		$('#mid').click(function(){
+			
+			$('#mids').html($('.appSelect:checked').val());
+		
+		});
+		
+		$('#final').click(function(){
+			
+			$('#finals').html($('.appSelect:checked').val());
+		
+		});
+		
+		$('#con').click(function(){
+			
+			$('#cons').html($('.appSelect:checked').val());
+		
+		});
+	
+		$('#ref').click(function(){
+		
+		$('#refs').html($('.appSelect:checked').val());
+	
+	});
+	
+		$('#imple').click(function(){
+		
+		$('#imples').html($('.appSelect:checked').val());
+	
+	});
+	});
 });
 
 
@@ -129,7 +163,7 @@ $(function(){
 			<table class="table table-border table-hover">
 		<thead>
 		
-			<tr>
+			<tr><th>√</th>
 				<th>부서</th>
 				<th>직급</th>
 				<th>이름</th>
@@ -137,9 +171,10 @@ $(function(){
 		</thead>
 		<tbody><%for(employeesDto employeesdto : insa){%>	
 				<tr>
+					<th><input type = "checkbox" class ="appSelect" value = "<%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]"></th>
 					<td><%=employeesdto.getDepartment()%></td>
-					<td><%=employeesdto.getPono()%></td>
-					<td><%=employeesdto.getEmpName()%></td>
+					<td><%=employeesdto.getPoSi()%></td>
+					<td><%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]</td>
 				</tr>
 		<%}%>
 		</tbody>
@@ -150,7 +185,7 @@ $(function(){
 			<table class="table table-border table-hover">
 		<thead>
 		
-			<tr>
+			<tr><th>√</th>
 				<th>부서</th>
 				<th>직급</th>
 				<th>이름</th>
@@ -158,9 +193,10 @@ $(function(){
 		</thead>
 		<tbody><%for(employeesDto employeesdto : chong){%>	
 				<tr>
+					<th><input type = "checkbox" class ="appSelect" value = "<%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]"></th>
 					<td><%=employeesdto.getDepartment()%></td>
-					<td><%=employeesdto.getPono()%></td>
-					<td><%=employeesdto.getEmpName()%></td>
+					<td><%=employeesdto.getPoSi()%></td>
+					<td><%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]</td>
 				</tr>
 		<%}%>
 		</tbody>
@@ -170,7 +206,7 @@ $(function(){
 			<table class="table table-border table-hover">
 		<thead>
 		
-			<tr>
+			<tr><th>√</th>
 				<th>부서</th>
 				<th>직급</th>
 				<th>이름</th>
@@ -178,9 +214,10 @@ $(function(){
 		</thead>
 		<tbody><%for(employeesDto employeesdto : hwa){%>	
 				<tr>
+					<th><input type = "checkbox" class ="appSelect" value = "<%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]"></th>
 					<td><%=employeesdto.getDepartment()%></td>
-					<td><%=employeesdto.getPono()%></td>
-					<td><%=employeesdto.getEmpName()%></td>
+					<td><%=employeesdto.getPoSi()%></td>
+					<td><%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]</td>
 				</tr>
 		<%}%>
 		</tbody>
@@ -190,7 +227,7 @@ $(function(){
 			<table class="table table-border table-hover">
 		<thead>
 		
-			<tr>
+			<tr><th>√</th>
 				<th>부서</th>
 				<th>직급</th>
 				<th>이름</th>
@@ -198,9 +235,10 @@ $(function(){
 		</thead>
 		<tbody><%for(employeesDto employeesdto : gi){%>	
 				<tr>
+					<th><input type = "checkbox" class ="appSelect" value = "<%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]"></th>
 					<td><%=employeesdto.getDepartment()%></td>
-					<td><%=employeesdto.getPono()%></td>
-					<td><%=employeesdto.getEmpName()%></td>
+					<td><%=employeesdto.getPoSi()%></td>
+					<td><%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]</td>
 				</tr>
 		<%}%>
 		</tbody>
@@ -210,7 +248,7 @@ $(function(){
 			<table class="table table-border table-hover">
 		<thead>
 		
-			<tr>
+			<tr><th>√</th>
 				<th>부서</th>
 				<th>직급</th>
 				<th>이름</th>
@@ -218,20 +256,28 @@ $(function(){
 		</thead>
 		<tbody><%for(employeesDto employeesdto : young){%>	
 				<tr>
+					<th><input type = "checkbox" class ="appSelect" value = "<%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]"></th>
+					<!-- check박스의 value를  넣어서 값을 넣어준다. empNo뽑아낼때는 subString 사용???-->
 					<td><%=employeesdto.getDepartment()%></td>
-					<td><%=employeesdto.getPono()%></td>
-					<td><%=employeesdto.getEmpName()%></td>
+					<td><%=employeesdto.getPoSi()%></td>
+					<td><%=employeesdto.getEmpName()%>[<%=employeesdto.getEmpNo()%>]</td>
 				</tr>
 		<%}%>
 		</tbody>
 </table>
-</div>	
-			</header>
-			<article>
-			
-			</article>
-		</section>
-		
+</div>
+
+</header>
+		<article>
+	<div class="row"><!-- 결재 파트 사원 클릭하고 버튼 누르면 결재자 지정됨 -->
+				<input type = "button" id = "mid" value = "중간 결재"><span id = "mids"></span><br><br>
+				<input type = "button" id = "final" value = "최종 결재"><span id = "finals"></span><br><br>
+				<input type = "button" id = "con" value = "합의"><span id = "cons"></span><br><br>
+				<input type = "button" id = "ref" value = "참조"><span id = "refs"></span><br><br>
+				<input type = "button" id = "imple" value = "시행"><span id = "imples"></span><br><br>
+	</div>
+		</article>
+	</section>
 	</main>
 </body>
 </html>
