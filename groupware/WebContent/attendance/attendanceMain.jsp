@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="groupware.beans.AttendanceDao"%>
 <%@page import="groupware.beans.AttendanceDto"%>
@@ -5,7 +6,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-   
+   DecimalFormat df=new DecimalFormat("#.#"); //근무시간 소수점 첫째자리가 0이면 안나오게
    String empNo = (String)session.getAttribute("id");
    AttendanceDao attendanceDao = new AttendanceDao();
    List<AttendanceDto> attendanceList = attendanceDao.list(empNo);
@@ -47,15 +48,21 @@
                <td><%=attendanceDto.getEmpNo()%></td>
                <td><%=attendanceDto.getEmpName()%></td>
                <td><%=attendanceDto.getAttAttend()%></td>
-               <td><%=attendanceDto.getAttLeave()%></td>
-               <td><%=attendanceDto.getAttTotaltime()%></td>
-               <td><%=attendanceDto.getAttOvertime()%></td>
+               <td><%if(attendanceDto.getAttLeave() != null){%>
+               <%=attendanceDto.getAttLeave()%>
+               <%} %>
+               </td>
+               <td>
+               	<!-- 내림하고 소수점자리 자르기 -->
+				<%=df.format(Math.floor(attendanceDto.getAttTotaltime()))%>시간                
+				<%=df.format(attendanceDto.getAttTotaltime()*60 % 60) %>분            
+               </td>
+               <td>
+				<%=df.format(attendanceDto.getAttOvertime()) %>시간             
+               </td>
             </tr>
             <%} %>
          </tbody>
       </table>
    </div>
-
-
-
 <jsp:include page="/template/footer.jsp"></jsp:include>
