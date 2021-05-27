@@ -11,6 +11,7 @@ public class employeesDto {
 	private String email;
 	private String address;
 	private String department;
+	private String poSi;
 	public employeesDto(String empNo, String empPw, int poNo, String empName, String joinDate, String empPhone,
 			String email, String address, String department) {
 		super();
@@ -106,6 +107,14 @@ public class employeesDto {
 
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+
+	public String getPoSi() {
+		return poSi;
+	}
+
+	public void setPoSi(String poSi) {
+		this.poSi = poSi;
 	}
 	
 }

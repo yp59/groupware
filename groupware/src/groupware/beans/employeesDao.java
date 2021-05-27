@@ -195,7 +195,9 @@ public class employeesDao {
 	public List<employeesDto> list(String depart) throws Exception {//부서별 사원 리스트 
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql ="select*from employees where department = ?";
+		String sql ="select E.*,P.posi from employees E inner join"
+				+ " position P on E.po_no = P.po_no"
+				+ " where department = ? ";
 		PreparedStatement ps =con.prepareStatement(sql);
 		ps.setString(1, depart);
 		ResultSet rs = ps.executeQuery();
@@ -215,7 +217,7 @@ public class employeesDao {
 		empDto.setEmail(rs.getString("email"));
 		empDto.setAddress(rs.getString("address"));
 		empDto.setDepartment(rs.getString("department"));
-		
+		empDto.setPoSi(rs.getString("posi"));
 		list.add(empDto);	
 		}
 		con.close();
