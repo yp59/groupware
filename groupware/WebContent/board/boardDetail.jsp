@@ -34,12 +34,6 @@ if(boardNoSet.add(boardNo)){
 
 int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue();
 
-//session int 로 변환해야 한다.
-
-//댓글 목록 불러오기
-// 	BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
-// 	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list(boardNo);
-	
 	BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
 	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list1(boardNo);
 %>    
@@ -134,6 +128,7 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 		<div><%=boardCommentsDto.getDate().toLocaleString()%></div>
 	</div>
 	<%} %>
+	
 <!-- 댓글 작성 창 -->
 
 <form action="comInsert.gw" method="post"> 
