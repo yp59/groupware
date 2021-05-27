@@ -107,7 +107,23 @@
 			</ul>
 			<ul>
 				<li class = "menu menu-title">
+
+					<a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근</a>
+				</li>
+			<ul>
+				<li class = "menu menu_detail">
+				<a href="#">분류</a>
+				</li>
+				<li class = "menu menu_detail">
+				<a href="#">분류</a>
+				</li>
+			</ul>
+			</ul>
+			<ul>
+				<li class = "menu menu-title">
+					<a href="<%=root%>/holiday/holidayList.jsp">휴가</a>
 					<a href="<%=root%>/schedule/scheduleList.jsp">일정 목록</a>
+
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
