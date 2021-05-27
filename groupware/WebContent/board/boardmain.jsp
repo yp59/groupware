@@ -156,7 +156,11 @@
 					if(boarddto.getBoType().equals("공지")){%><!-- 공지 게시글을 먼저 if문으로 구별해서 표의 상단에 위치하게 한다. -->
 				<tr>
 					<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>">
-					<%=boarddto.getBoTitle()%></a></td>
+					<%=boarddto.getBoTitle()%>
+<!-- 					댓글 개수 출력 -->
+					<%if(boarddto.getComComments() > 0){ %>
+						[<%=boarddto.getComComments()%>]
+						<%} %></a></td>
 					<td><%=boarddto.getEmpName()%></td>
 					<td><%=boarddto.getBoType() %></td>
 					<td><%=boarddto.getBoCount()%></td>
@@ -168,7 +172,11 @@
 				<%for(boardDto boarddto : list){ %>
 					<tr>
 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>">
-						<%=boarddto.getBoTitle()%></a></td>
+						<%=boarddto.getBoTitle()%>
+<!-- 						댓글 개수 출력 -->
+						<%if(boarddto.getComComments() > 0){ %>
+						[<%=boarddto.getComComments()%>]
+						<%} %></a></td>
 						<td><%=boarddto.getEmpName()%></td>
 						<td><%=boarddto.getBoType() %></td>
 						<td><%=boarddto.getBoCount()%></td>

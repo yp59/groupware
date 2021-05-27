@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import groupware.beans.BoardCommentsDao;
 import groupware.beans.BoardCommentsDto;
+import groupware.beans.boardDao;
 
 
 @WebServlet(urlPatterns = "/board/comInsert.gw")
@@ -25,6 +26,10 @@ public class BoardCommentsInsertServlet extends HttpServlet{
 			//처리
 			BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
 			boardCommentsDao.insert(boardCommentsDto);
+			//댓글 개수 갱신
+			boardDao boarddao = new boardDao();
+			boarddao.refreshBoardComments(boardCommentsDto.getBoardNo());
+			
 			
 			//출력 : 상세페이지로 복귀(redirect)
 			resp.sendRedirect("boardDetail.jsp?boardNo="+boardCommentsDto.getBoardNo());

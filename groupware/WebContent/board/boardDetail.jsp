@@ -37,8 +37,11 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 //session int 로 변환해야 한다.
 
 //댓글 목록 불러오기
+// 	BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
+// 	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list(boardNo);
+	
 	BoardCommentsDao boardCommentsDao = new BoardCommentsDao();
-	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list(boardNo);
+	List<BoardCommentsDto> boardCommentsList = boardCommentsDao.list1(boardNo);
 %>    
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -46,8 +49,8 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
-		$(".reply-delete-btn").click(function(e){
-			var choice = window.confirm("정말 삭제하시겠습니까?");
+		$(".com-delete-btn").click(function(e){
+			var choice = window.confirm("삭제하시겠습니까?");
 			if(!choice){
 				e.preventDefault();
 			}
@@ -56,14 +59,14 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 	
 	$(function(){
 		
-		$(".reply-edit-area").hide();
+		$(".com-edit-area").hide();
 		
-		$(".reply-edit-btn").click(function(){
+		$(".com-edit-btn").click(function(){
 			$(this).parent().parent().next().hide();
 			$(this).parent().parent().next().next().show();
 		});
 		
-		$(".reply-edit-cancel-btn").click(function(){
+		$(".com-edit-cancel-btn").click(function(){
 			$(this).parent().parent().prev().show();
 			$(this).parent().parent().hide();
 		});
@@ -79,6 +82,8 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 <%=boarddto.getEmpName() %><br>
 </div>
 
+<!-- 게시글 작성창 -->
+
 <div class = "row text-right">
 <%if(loginId.equals(writerId)||authoritylevel==1){ %><!-- 접속한 아이디와 작성자 아이디가 같으면 수정과 삭제 가능
 														 or 권한레벨이 1이면 게시글 수정 삭제 가능  -->
@@ -91,19 +96,22 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 <%}else{ }%>	
 	
 </div>
+
+<!-- 댓글 목록창 -->
+
 <div class="row text-left">
 		<h4>댓글 목록</h4>
 	</div>
 	<%for(BoardCommentsDto boardCommentsDto : boardCommentsList) { %>
 	<div class="row text-left" style="border:1px solid gray;">
 		<div class="float-container">
-			<div class="left"><%=boardCommentsDto.getEmpNo()%></div>
+			<div class="left"><%=boardCommentsDto.getEmpName()%></div>
 			
 			<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
 			<div class="right">
-				<a class="reply-edit-btn">수정</a> 
+				<a class="com-edit-btn">수정</a> 
 				| 
-				<a class="reply-delete-btn" href="comDelete.gw?comNo=<%=boardCommentsDto.getComNo()%>&boardNo=<%=boardNo%>">삭제</a>
+				<a class="com-delete-btn" href="comDelete.gw?comNo=<%=boardCommentsDto.getComNo()%>&boardNo=<%=boardNo%>">삭제</a>
 			</div>
 			<%} %>
 		</div>
@@ -111,7 +119,7 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 			<pre><%=boardCommentsDto.getComContent()%></pre>
 		</div>
 		
-		<%if(loginId.equals(writerId)){ %>
+		<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
 		<div class="com-edit-area">
 			<form action="comEdit.gw" method="post">
 				<input type="hidden" name="comNo" value="<%=boardCommentsDto.getComNo()%>">
@@ -119,13 +127,14 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 				
 				<textarea name="comContent" required><%=boardCommentsDto.getComContent()%></textarea>
 				<input type="submit" value="댓글 수정">		
-				<input type="button" value="작성 취소" class="reply-edit-cancel-btn">		
+				<input type="button" value="작성 취소" class="com-edit-cancel-btn">		
 			</form>
 		</div> 
 		<%} %>
 		<div><%=boardCommentsDto.getDate().toLocaleString()%></div>
 	</div>
 	<%} %>
+<!-- 댓글 작성 창 -->
 
 <form action="comInsert.gw" method="post"> 
 <input type="hidden" name="boardNo" value="<%=boardNo%>">

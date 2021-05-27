@@ -1,5 +1,6 @@
 package groupware.beans;
 
+import java.io.Console;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,7 +48,7 @@ public class BoardCommentsDao {
 		return count > 0;
 	}
 	
-	//댓글 리스트 : 원본글번호
+	//댓글 리스트(사원번호)
 	public List<BoardCommentsDto> list(int boardNo) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		String sql = "select * from comments where board_no = ? order by com_no asc";
@@ -69,4 +70,28 @@ public class BoardCommentsDao {
 		con.close();
 		return boardCommentsList;
 	}
+	 
+	//댓글 리스트 (comments_view 사용, 이름연동)
+		public List<BoardCommentsDto> list1(int boardNo) throws Exception {
+			Connection con = jdbcUtils.getConnection();
+			String sql = "select * from comments_view where board_no = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			ResultSet rs = ps.executeQuery();
+			
+			List<BoardCommentsDto> boardCommentsList = new ArrayList<>();
+			while(rs.next()) {
+				BoardCommentsDto boardCommentsDto = new BoardCommentsDto();
+				boardCommentsDto.setComNo(rs.getInt("com_no"));
+				boardCommentsDto.setBoardNo(rs.getInt("board_no"));
+				boardCommentsDto.setEmpNo(rs.getString("emp_no"));
+				boardCommentsDto.setComContent(rs.getString("com_content"));
+				boardCommentsDto.setDate(rs.getDate("com_date"));
+				boardCommentsDto.setEmpName(rs.getString("emp_name"));
+				boardCommentsList.add(boardCommentsDto);
+			}
+			
+			con.close();
+			return boardCommentsList;
+		}
 }
