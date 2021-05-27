@@ -20,7 +20,7 @@ public class BoardCommentsDao {
 		ps.setString(2, boardCommentsDto.getEmpNo());
 		ps.setString(3, boardCommentsDto.getComContent());
 		ps.execute();
-		con.close();
+		con.close(); 
 	}
 	
 	//댓글 수정 : 댓글내용, 댓글번호, 회원번호 --> 댓글정보
