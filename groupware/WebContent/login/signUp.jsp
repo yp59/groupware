@@ -11,6 +11,8 @@ javaScript로 구현-->
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 <script>
 
 function confirmId(){//아이디 확인 함수
@@ -165,7 +167,17 @@ function postNumSearch() {//참고항목을 제외한 다음 주소 api 함수
         }
     }).open();
 }
+var today = new Date();   
 
+var year = today.getFullYear(); // 년도
+var month = today.getMonth() + 1;  // 월
+var date = today.getDate();  // 날짜
+var cal = year+"-0"+month+"-"+date;//joinDate에 오늘날짜 넣을 변수
+
+$(function(){
+	
+	$('.joinDate').val(cal);
+});
 </script>
 </head>
 <body>
@@ -190,7 +202,7 @@ function postNumSearch() {//참고항목을 제외한 다음 주소 api 함수
 이름 : <input type="text" name="empName" pattern="[가-힣]{2,7}" required onblur="confirmName();">
 		<span class="error"></span><br><br>
 
-입사일 : <input type="date" name="joinDate" required>
+입사일 : <input type="date" name="joinDate" class = "joinDate" required>
 		<span class="error"></span><br><br><!-- date type 스크립트로 정규식 어떻게 줄까 아니면 select로 년월일 바꿔서 구현?-->
 
 전화번호 : 010-<input type="text" name="empPhonemid" pattern="\d{4}" required onblur="confirmPhone();">-<input type="text" name="empPhonelast" pattern="\d{4}" required onblur="confirmPhone2();">
@@ -211,7 +223,14 @@ function postNumSearch() {//참고항목을 제외한 다음 주소 api 함수
 		<!-- 직접입력 아직 미구현 -->
 	</select><span class="error"></span><br><br>
 
-
+부서 <select name = "department"><!-- 회원가입 시 부서 선택 가능하도록 구현 -->
+	<option>인사부</option>
+	<option>총무부</option>
+	<option>회계부</option>
+	<option>기획부</option>
+	<option>영업부</option>
+	</select>
+<br><br>
 <input type="text" name="postNumber" placeholder="우편번호"> <!-- 다음 api를 활용한 주소 넣기 -->
 <input type="button" onclick="postNumSearch();" value="우편번호 찾기"><br>
 <input type="text" name="addressNum" placeholder="주소">

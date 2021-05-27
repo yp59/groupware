@@ -41,7 +41,8 @@ public class signUp extends HttpServlet{
 				req.getParameter("joinDate"),
 				phone,
 				email,
-				address);
+				address,
+				req.getParameter("department"));//부서 받아서 db 저장가능하게 구현
 		
 		employeesdao.regist(employeesdto);
 		
