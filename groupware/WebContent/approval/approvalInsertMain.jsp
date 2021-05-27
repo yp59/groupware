@@ -18,9 +18,9 @@
 <script>
 
 $(function(){
-var option ="width=750px , height=500px";
+var option ="width=750px , height=550px";
 	$(".appinsert").click(function(){
-		 window.open("approvalInsert.jsp","x",option);
+		 window.open("approvalInsert.jsp","draftPopUp",option);
 	
 	});
 });
