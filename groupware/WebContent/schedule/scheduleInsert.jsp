@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
+
+
+
+
+<jsp:include page="/template/header.jsp"></jsp:include>
+
+<div class="container-600">
+	<div class="row">
+		<h2>일정등록하기</h2>
+	</div>
+	<div class="row"><!-- 일정 제목, 일정 내용, 데드라인 -->
+		<form action="scheduleInsert.kh" method="post">
+			<div class="row">
+				<label for="name">제목</label>
+				<input id="name" name="sc_name" type="text" placeholder="제목을 입력하세요" required>
+			</div>
+			<div class="row">
+				<label for="deadline">마감날짜</label>
+				<input id="deadline" type="date" name="sc_deadline" required>
+			</div>
+			<div class="row">
+				<label for="content">세부내용</label>
+				<textarea name="sc_content"></textarea>
+			</div>
+			<input type="submit" value="일정등록" class="form-btn">
+		</form>
+	</div>
+	<div>
+		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
+	</div>
+</div>
+
+
+
+<jsp:include page="/template/footer.jsp"></jsp:include>
