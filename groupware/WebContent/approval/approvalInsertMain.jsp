@@ -16,15 +16,15 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <script>
-/* 제이쿼리 새창이 안먹힙니다 .... 나중에 연결해야 될듯
-$(function{
 
+$(function(){
+var option ="width=900 , depth=600";
 	$(".appinsert").click(function(){
-		 window.open("approvalInsert.jsp");
+		 window.open("approvalInsert.jsp","x",option);
 	
 	});
 });
-*/
+
 </script>
 <div class = "container-900">
 <table class="table table-border table-hover" >

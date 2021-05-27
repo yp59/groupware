@@ -16,15 +16,15 @@ public class approvalDao {
 	PreparedStatement ps =con.prepareStatement(sql);
 	
 	
-	ps.setString(1,approvaldto.getDrafter());
-	ps.setInt(2,approvaldto.getMidApprovalNo());
-	ps.setInt(3,approvaldto.getFinalApprovalNo());
-	ps.setInt(4,approvaldto.getConsesusNo());
-	ps.setInt(5,approvaldto.getReferrerNo());
-	ps.setInt(6,approvaldto.getImplementerNo());
-	ps.setString(7, approvaldto.getAppTitle());
-	ps.setString(8, approvaldto.getAppContent());
-	ps.setString(9, approvaldto.getAppDateStart());
+	ps.setString(1,approvaldto.getDrafter());//
+	ps.setInt(2,approvaldto.getMidApprovalNo());//
+	ps.setInt(3,approvaldto.getFinalApprovalNo());//
+	ps.setInt(4,approvaldto.getConsesusNo());//
+	ps.setInt(5,approvaldto.getReferrerNo());//
+	ps.setInt(6,approvaldto.getImplementerNo());//
+	ps.setString(7, approvaldto.getAppTitle());//
+	ps.setString(8, approvaldto.getAppContent());//
+	ps.setString(9, approvaldto.getAppDateStart());//
 	ps.setString(10, approvaldto.getAppDate());
 	ps.setString(11, approvaldto.getAppDateEnd());
 	}
