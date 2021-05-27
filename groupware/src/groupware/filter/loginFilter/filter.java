@@ -17,11 +17,14 @@ import javax.servlet.http.HttpSession;
 "/board/boardDetail.jsp","/board/boardEdit.jsp","/board/boardInsert.jsp",
 "/board/boardmain.jsp","/board/boardmainNotice.jsp","/board/boardmainQuestion.jsp",
 "/board/boardmainFree.jsp","/board/boardDelete.gw","/board/boardEdit.gw",
+
 "/board/boardInsert.gw", //로그인이랑 게시판 필터 적용
+"/board/boardInsert.gw","/board/comEdit.gw","/board/comDelete.gw", //로그인이랑 게시판 필터 적용
 
 "/holiday/*", //휴가 메뉴 필터 적용
 "/attendance/*" //근태메뉴 필터 적용
 })
+
 
 
 public class filter implements Filter{
@@ -37,8 +40,6 @@ public class filter implements Filter{
 		
 		if(session.getAttribute("id")!=null) {
 			chain.doFilter(request, response);//통과코드
-			
-			
 		}
 		else
 		{	

@@ -10,8 +10,14 @@ public class boardDto {
 	private int boCount;
 	private String boDate;
 	private String empName;
+	private int comComments;
 	
-	
+	public int getComComments() {
+		return comComments;
+	}
+	public void setComComments(int comComments) {
+		this.comComments = comComments;
+	}
 	public boardDto() {
 		super();
 	}
