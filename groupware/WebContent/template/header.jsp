@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
 	
@@ -50,27 +51,14 @@
 		<div class="menu">
 			<ul>
 				<li class = "menu menu-title">
-					<a href="#">제목</a>
+					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
-				<a href="#">분류</a>
+				<a href="<%=root%>/approval/approvalInsertMain.jsp">기안서 작성</a>
 				</li>
 				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-			</ul>
-			</ul>
-			<ul>
-				<li class = "menu menu-title">
-					<a href="#">제목</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
+				<a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a>
 				</li>
 			</ul>
 			</ul>
@@ -133,6 +121,19 @@
 			</ul>
 			</ul>
 		</div>
+		<ul>
+				<li class = "menu menu-title">
+					<a href="#">제목</a>
+				</li>
+			<ul>
+				<li class = "menu menu_detail">
+				<a href="#">분류</a>
+				</li>
+				<li class = "menu menu_detail">
+				<a href="#">분류</a>
+				</li>
+			</ul>
+			</ul>
 		</aside>
 		
 		<!-- 컨텐츠영역 -->
