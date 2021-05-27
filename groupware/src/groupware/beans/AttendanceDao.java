@@ -67,7 +67,7 @@ public class AttendanceDao {
 
 		//근무 시간 : 8시간으로 설정
 		//추가근무시간 : 총 근무시간 - 8시간
-		String sql = "update attendance set att_overtime = att_totaltime - 8 "
+		String sql = "update attendance set att_overtime = GREATEST(att_totaltime-8, 0)"
 				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
