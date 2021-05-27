@@ -107,7 +107,7 @@
 			</ul>
 			<ul>
 				<li class = "menu menu-title">
-					<a href="#">제목</a>
+					<a href="<%=root%>/schedule/scheduleList.jsp">일정 목록</a>
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
@@ -115,6 +115,19 @@
 				</li>
 				<li class = "menu menu_detail">
 				<a href="#">분류</a>
+				</li>
+			</ul>
+			</ul>
+			<ul>
+				<li class = "menu menu-title">
+					<a href="<%=root%>/massage/massageInsert.jsp">쪽지 쓰기</a>
+				</li>
+			<ul>
+				<li class = "menu menu_detail">
+				<a href="<%=root%>/massage/massageSenderList.jsp">발신함</a>
+				</li>
+				<li class = "menu menu_detail">
+				<a href="<%=root%>/massage/massageReceiverList.jsp">수신함</a>
 				</li>
 			</ul>
 			</ul>
