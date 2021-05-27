@@ -96,7 +96,7 @@ public class AttendanceDao {
 			
 			List<AttendanceDto> attendanceList = new ArrayList<>();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				AttendanceDto attendanceDto = new AttendanceDto();
 				attendanceDto.setAttDate(rs.getString("att_date"));
 				attendanceDto.setEmpNo(rs.getString("emp_no"));
