@@ -11,6 +11,12 @@ public class SalaryDto {
 	private int salary_transportation;
 	private Date salary_date;
 	
+	public Date getSalary_date() {
+		return salary_date;
+	}
+	public void setSalary_date(Date salary_date) {
+		this.salary_date = salary_date;
+	}
 	public SalaryDto() {
 		super();
 	}
