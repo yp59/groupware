@@ -135,19 +135,7 @@
 			</ul>
 			</ul>
 		</div>
-		<ul>
-				<li class = "menu menu-title">
-					<a href="#">제목</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-			</ul>
-			</ul>
+		
 		</aside>
 		
 		<!-- 컨텐츠영역 -->
