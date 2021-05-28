@@ -79,6 +79,31 @@ public class AttendanceDao {
 		return count>0;
 	}
 	
+	// 추가 근무시간 값 가져오기
+	public int getOvertime(String empNo,String year,String month) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql ="select sum(att_overtime) sumovertime "
+				+ "from attendance where emp_no= ? and "
+				+ "att_date between to_date('#1-#2-01') and to_date('#1-#2-31')";
+		
+		sql = sql.replaceAll("#1", year);
+		sql = sql.replaceAll("#2", month);
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1,empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("sumovertime");
+		}
+		
+		con.close();
+		return 0;
+	}
+	
+	
+	
 	// 근태목록 보기 
 	public List<AttendanceDto> list(String empNo) throws Exception{
 		Connection con = jdbcUtils.getConnection();
