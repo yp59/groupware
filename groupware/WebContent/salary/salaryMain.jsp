@@ -55,12 +55,11 @@
 				<tr>
 					<td><%=salaryDto.getSalaryDate().substring(0,10)%></td>
 					<td>
-					<a href="#">
+					<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate()%>">
 					<%=salaryDto.getSalaryDate().substring(5, 7)%>월 급여 명세서
 					</a>
 					</td>
-					<td>₩<%=df.format(salaryDto.getSalaryPay()+salaryDto.getSalaryOvertime()
-					+salaryDto.getSalaryMeal()+salaryDto.getSalaryTransportation())%></td>
+					<td>₩<%=df.format(salaryDto.getSalaryTotal())%></td>
 				</tr>
 				<%} %>
 			</tbody>

@@ -10,6 +10,14 @@ public class SalaryDto {
 	private int salaryMeal;
 	private int salaryTransportation;
 	private String salaryDate;
+	private int salaryTotal;
+	
+	public int getSalaryTotal() {
+		return salaryTotal;
+	}
+	public void setSalaryTotal(int salaryTotal) {
+		this.salaryTotal = salaryTotal;
+	}
 	public SalaryDto() {
 		super();
 	}
