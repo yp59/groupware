@@ -44,8 +44,8 @@
                </td>
                <td><%=holidayDto.getEmpNo()%></td>
                <td><%=holidayDto.getHolType()%></td>
-               <td><%=holidayDto.getHolStart()%></td>
-               <td><%=holidayDto.getHolEnd()%></td>
+               <td><%=holidayDto.getHolStart().substring(0,10)%></td>
+               <td><%=holidayDto.getHolEnd().substring(0,10)%></td>
                <td><%=holidayDto.getHolWriteDate()%></td>
             </tr>
             <%} %>
