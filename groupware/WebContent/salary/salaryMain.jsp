@@ -8,6 +8,7 @@
    String empNo = (String)session.getAttribute("id");
    AttendanceDao attendanceDao = new AttendanceDao();
    List<String> yearList = attendanceDao.getYear(empNo);
+   List<String> monthList = attendanceDao.getMonth(empNo);
    
    int overtime = attendanceDao.getOvertime(empNo,"2021","05");   
 %>
@@ -18,11 +19,19 @@
       <h2>급여</h2>
 </div>
 	<div class="row">
-		<select>
-		<%for(String year : yearList){ %>
-			<option value=""><%=year%></option>
-		<%} %>
-		</select>
+		<form action="searchSalary.gw" method="post">
+			<select name="searchYear" class="form-input form-input-inline">
+			<%for(String year : yearList){ %>
+				<option value=""><%=year%></option>
+			<%} %>
+			</select>
+			<select name="searchMonth" class="form-input form-input-inline">
+			<%for(String month : monthList){ %>
+				<option value=""><%=month%></option>
+			<%} %>
+			</select>
+			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
+		</form>
 	</div>
 			   	
 		   

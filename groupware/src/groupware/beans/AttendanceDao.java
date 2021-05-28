@@ -102,7 +102,7 @@ public class AttendanceDao {
 		return 0;
 	}
 	
-	//년도 가져오기
+	//년도 가져오기(화면 select에 추가)
 	public List<String> getYear(String empNo) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
@@ -117,6 +117,23 @@ public class AttendanceDao {
 		
 		con.close();
 		return yearList;
+	}
+	
+	//월 가져오기(화면 select에 추가)
+	public List<String> getMonth(String empNo) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select distinct(substr(att_date,6,2)) as month from attendance where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		List<String> monthList = new ArrayList<>();
+		while(rs.next()) {
+			monthList.add(rs.getString("month"));
+		}
+		
+		con.close();
+		return monthList;
 	}
 	
 	// 근태목록 보기 
