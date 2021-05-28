@@ -26,6 +26,7 @@ public class approvalDao {
 	ps.setString(8, approvaldto.getAppContent());//
 	ps.setString(9, approvaldto.getAppDateStart());//
 	ps.setString(10, approvaldto.getAppDateEnd());
+	con.close();
 	}
 	
 	public List<approvalDto> approvalList(String id)throws Exception{//session id값으로 기안 목록 조회
@@ -63,6 +64,7 @@ public class approvalDao {
 			list.add(approvaldto);
 		
 		}
+		con.close();
 		return list;
 	}
 	

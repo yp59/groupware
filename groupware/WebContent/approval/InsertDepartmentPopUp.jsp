@@ -168,6 +168,14 @@ $(function(){
 		console.log($('input[name=implementer]').val());// console창 값 확인용
 	});
 	});
+	
+	$('input[name=subb]').click(function(){//submit을 누르면 부모창으로 값을 보내고 팝업창 종료
+		window.opener.name = "draftPopUp";
+		document.appForm.target = "draftPopUp";
+		document.appForm.action = "approvalInsert.jsp";
+		document.appForm.submit();
+		self.close();
+	});
 });
 
 
@@ -324,14 +332,14 @@ $(function(){
 	</div>
 	
 	<div>
-	<form action="approvalInsert.jsp" method = "get"><!-- 부서 리스트에서 결재자를 선택하고 실제로 데이터를 보내는 파트
+	<form name ="appForm" method = "get"><!-- 부서 리스트에서 결재자를 선택하고 실제로 데이터를 보내는 파트
 														post로 보내면 한글 깨진다 -->
 	<input type ="hidden" name = "midApproval">
 	<input type ="hidden" name = "finalApproval">
 	<input type ="hidden" name = "consesus">
 	<input type ="hidden" name = "reffer">
 	<input type ="hidden" name = "implementer">
-	<input type = "submit" value ="전송√">
+	<input type = "submit" value ="전송√" name ="subb">
 	</form>
 	</div>
 	

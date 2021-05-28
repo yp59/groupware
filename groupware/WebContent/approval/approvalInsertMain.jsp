@@ -18,6 +18,9 @@
 <script>
 
 $(function(){
+	window.name = "approvalMain";
+	
+	////////////////////////////////////////////////////////////////////////
 	var _width = '700';
     var _height = '500';
  
@@ -28,8 +31,11 @@ $(function(){
 var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top ;
 	$(".appinsert").click(function(){
 		 window.open("approvalInsert.jsp","draftPopUp",option);
-	
+		 
 	});
+///////////////////////////////////////////////////////////////////////////////
+
+	
 });
 
 </script>
