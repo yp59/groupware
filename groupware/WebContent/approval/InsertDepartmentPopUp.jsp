@@ -23,10 +23,12 @@ $(function(){
 //////////제이쿼리를 이용하여 부서별 사원 리스트를 display로 on/off 할 수 있게끔 함////////////////////////////////
 	
 	$('#insa').click(function(){
+		$('.appSelect').prop('checked',false);//부서 리스트를 닫았을 때 체크를 해제
+		
 		if($('#view1').css('display')=='block'){
 			$('.view').css('display','none');
 			$('#view1').css('display','none');
-			
+		
 		}
 		else{
 			$('.view').css('display','none');
@@ -36,9 +38,12 @@ $(function(){
 	});
 	
 	$('#chong').click(function(){
+		$('.appSelect').prop('checked',false);//부서 리스트를 닫았을 때 체크를 해제
+		
 		if($('#view2').css('display')=='block'){
 			$('.view').css('display','none');
 			$('#view2').css('display','none');
+			
 			
 		}
 		else{
@@ -49,9 +54,12 @@ $(function(){
 	});
 	
 	$('#hwa').click(function(){
+		$('.appSelect').prop('checked',false);//부서 리스트를 닫았을 때 체크를 해제
+		
 		if($('#view3').css('display')=='block'){
 			$('.view').css('display','none');
 			$('#view3').css('display','none');
+		
 			
 		}
 		else{
@@ -62,9 +70,12 @@ $(function(){
 	});
 	
 	$('#gi').click(function(){
+		$('.appSelect').prop('checked',false);//부서 리스트를 닫았을 때 체크를 해제
+		
 		if($('#view4').css('display')=='block'){
 			$('.view').css('display','none');
 			$('#view4').css('display','none');
+			
 			
 		}
 		else{
@@ -75,10 +86,12 @@ $(function(){
 	});
 	
 	$('#young').click(function(){
+		$('.appSelect').prop('checked',false);//부서 리스트를 닫았을 때 체크를 해제
+		
 		if($('#view5').css('display')=='block'){
 			$('.view').css('display','none');
 			$('#view5').css('display','none');
-			
+				
 		}
 		else{
 			$('.view').css('display','none');
@@ -91,10 +104,26 @@ $(function(){
 	
 	$('.appSelect').click(function(){//선택한 사원을 아래에 표시해 주는 jquery 구문 체크박스를 체크하고 버튼을 누르면 해당값이 나타남
 		//console.log($('.appSelect:checked').val()); //여러개 선택하면 처음 값만 나온다.
-		
+		/*
 		$('#mid').click(function(){
 			
 			$('#mids').html($('.appSelect:checked').val());
+			
+			var empNo = $('.appSelect:checked').val();
+			empNo = empNo.slice(-5,-1);//뒤에서부터 empNO을 잘라서 empNo을 구한다
+			$('input[name=midApproval]').val(empNo);//empNo값을 저장한다.
+			console.log($('input[name=midApproval]').val());// console창 값 확인용
+		
+		});
+		*/
+		$('#mid').click(function(){
+			
+			$('#mids').html($('.appSelect:checked').val());
+			
+			var emp = $('.appSelect:checked').val();
+			
+			$('input[name=midApproval]').val(emp);//emp값을 저장한다.
+			console.log($('input[name=midApproval]').val());// console창 값 확인용
 		
 		});
 		
@@ -102,24 +131,41 @@ $(function(){
 			
 			$('#finals').html($('.appSelect:checked').val());
 		
+			var emp = $('.appSelect:checked').val();
+			
+			$('input[name=finalApproval]').val(emp);//empNo값을 저장한다.
+			console.log($('input[name=finalApproval]').val());// console창 값 확인용
+			
 		});
 		
 		$('#con').click(function(){
 			
 			$('#cons').html($('.appSelect:checked').val());
 		
+			var emp = $('.appSelect:checked').val();
+			
+			$('input[name=consesus]').val(emp);//empNo값을 저장한다.
+			console.log($('input[name=consesus]').val());// console창 값 확인용
 		});
 	
 		$('#ref').click(function(){
 		
 		$('#refs').html($('.appSelect:checked').val());
 	
+		var emp = $('.appSelect:checked').val();
+	
+		$('input[name=reffer]').val(emp);//empNo값을 저장한다.
+		console.log($('input[name=reffer]').val());// console창 값 확인용
 	});
 	
 		$('#imple').click(function(){
 		
 		$('#imples').html($('.appSelect:checked').val());
 	
+		var emp = $('.appSelect:checked').val();
+	
+		$('input[name=implementer]').val(emp);//empNo값을 저장한다.
+		console.log($('input[name=implementer]').val());// console창 값 확인용
 	});
 	});
 });
@@ -276,6 +322,19 @@ $(function(){
 				<input type = "button" id = "ref" value = "참조"><span id = "refs"></span><br><br>
 				<input type = "button" id = "imple" value = "시행"><span id = "imples"></span><br><br>
 	</div>
+	
+	<div>
+	<form action="approvalInsert.jsp" method = "get"><!-- 부서 리스트에서 결재자를 선택하고 실제로 데이터를 보내는 파트
+														post로 보내면 한글 깨진다 -->
+	<input type ="hidden" name = "midApproval">
+	<input type ="hidden" name = "finalApproval">
+	<input type ="hidden" name = "consesus">
+	<input type ="hidden" name = "reffer">
+	<input type ="hidden" name = "implementer">
+	<input type = "submit" value ="전송√">
+	</form>
+	</div>
+	
 		</article>
 	</section>
 	</main>

@@ -4,6 +4,19 @@
     
 <%String id = (String) request.getAttribute("id");
 
+String mid = request.getParameter("midApproval");
+String fin = request.getParameter("finalApproval");
+String con = request.getParameter("consesus");
+String ref = request.getParameter("reffer");
+String imp = request.getParameter("implementer");
+
+if(mid==null){mid="";}
+if(fin==null){fin="";}
+if(con==null){con="";}
+if(ref==null){ref="";}
+if(imp==null){imp="";}
+
+
 %>    
 
 <body>
@@ -24,7 +37,8 @@ $(function(){//window.load와 같은의미
 	
 	$(".appPeople").click(function(){
 		var option ="width=750px , height=550px";//창 크기
-		window.open("InsertDepartmentPopUp.jsp","DepartPopUp",option);//이름이 같으면 같은 창에서 열림 주의하자
+		//window.open("InsertDepartmentPopUp.jsp","DepartPopUp",option);//이름이 같으면 같은 창에서 열림 주의하자
+		window.open("InsertDepartmentPopUp.jsp","draftPopUp",option);
 	});	
 });
 </script>
@@ -53,11 +67,11 @@ $(function(){//window.load와 같은의미
 <div>
 <!-- 결재라인은 외래키이기 때문에 서블릿에서 먼저 들어가야함
 window 새 창으로 해서 값 넣어야 함 -->
-중간 결재자 :<input type = "text" class="appPeople" name = "midApprovalNo">
-최종 결재자 :<input type = "text" class="appPeople" name = "finalApprovalNo"> 
-합의자 :<input type = "text" class="appPeople" name = "consesusNo"> 
-참조자 :<input type = "text" class="appPeople" name = "refferNo">
-시행자 :<input type = "text" class="appPeople" name = "implemneterNo">  
+중간 결재자 :<input type = "text" class="appPeople" name = "midApprovalNo" value="<%=mid%>">
+최종 결재자 :<input type = "text" class="appPeople" name = "finalApprovalNo" value="<%=fin%>"> 
+합의자 :<input type = "text" class="appPeople" name = "consesusNo" value="<%=con%>"> 
+참조자 :<input type = "text" class="appPeople" name = "refferNo" value="<%=ref%>">
+시행자 :<input type = "text" class="appPeople" name = "implemneterNo" value="<%=imp%>">  
 </div>
 <div>
 마감일 :<input type = "date" name = "appDateStart"> 
