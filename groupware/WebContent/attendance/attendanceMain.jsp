@@ -34,6 +34,7 @@
                <th>퇴근 시간</th>
                <th>총 근무시간</th>
                <th>추가 근무시간</th>
+               <th>기타</th>
             </tr>
          </thead>
          
@@ -59,6 +60,9 @@
                </td>
                <td>
 				<%=df.format(attendanceDto.getAttOvertime()) %>시간             
+               </td>
+               <td width="15%">
+               <a href="#" class="link-btn">수정 요청</a>
                </td>
             </tr>
             <%} %>
