@@ -44,7 +44,7 @@ public class SalaryDao {
 	public List<SalaryDto> list(String empNo) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select * from salary where emp_no=?";
+		String sql = "select * from salary where emp_no=? order by salary_date desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
 		
@@ -97,6 +97,72 @@ public class SalaryDao {
 	
 		con.close();
 		return salaryDto;
+	}
+	
+	//년도 가져오기(화면 select에 추가)
+	public List<String> getYear(String empNo) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select distinct(to_char(salary_date,'yyyy')) as year from salary where emp_no=? order by year";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		List<String> yearList = new ArrayList<>();
+		while(rs.next()) {
+			yearList.add(rs.getString("year"));
+		}
+		
+		con.close();
+		return yearList;
+	}
+	
+	//월 가져오기(화면 select에 추가)
+	public List<String> getMonth(String empNo) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select distinct(to_char(salary_date,'mm')) as month from salary where emp_no=? order by month";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		List<String> monthList = new ArrayList<>();
+		while(rs.next()) {
+			monthList.add(rs.getString("month"));
+		}
+		
+		con.close();
+		return monthList;
+	}
+	
+	//검색 기능
+	public List<SalaryDto> search(String empNo,String year, String month) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select * from( "
+			    		+"select rownum rn, TMP.* from( "
+			    			+"select salary_date, salary_total from salary "
+			    		+"where instr(to_char(salary_date,'yyyy'),?)>0 and instr(to_char(salary_date,'mm'),?)>0 "
+			    		+ "and emp_no= ?"
+			    	+ ") TMP "
+			    	+")";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, year);
+		ps.setString(2, month);
+		ps.setString(3, empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		List<SalaryDto> salaryList = new ArrayList<>();
+		while(rs.next()) {
+			SalaryDto salaryDto = new SalaryDto();
+			salaryDto.setSalaryDate(rs.getString("salary_date"));
+			salaryDto.setSalaryTotal(rs.getInt("salary_total"));
+			
+			salaryList.add(salaryDto);
+		}
+		
+		con.close();
+		return salaryList;
 	}
 
 }

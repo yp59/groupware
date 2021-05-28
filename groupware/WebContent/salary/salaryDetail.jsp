@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="groupware.beans.SalaryDto"%>
 <%@page import="groupware.beans.SalaryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,6 +11,8 @@
    
    SalaryDao salaryDao = new SalaryDao();
    SalaryDto salaryDto = salaryDao.get(empNo, salaryDate);
+   
+   DecimalFormat df = new DecimalFormat("###,###");
 %>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -32,27 +35,27 @@
          </tr>
          <tr>
             <th>기본급</th>
-            <td><%=salaryDto.getSalaryPay()%></td>
+            <td><%=df.format(salaryDto.getSalaryPay())%></td>
          </tr>         
          <tr>
             <th>추가 근무수당</th>
-            <td><%=salaryDto.getSalaryOvertime()%></td>
+            <td><%=df.format(salaryDto.getSalaryOvertime())%></td>
          </tr>
          <tr>
             <th>식대</th>
-            <td><%=salaryDto.getSalaryMeal()%></td>
+            <td><%=df.format(salaryDto.getSalaryMeal())%></td>
          </tr>
          <tr>
             <th>교통비</th>
-            <td><%=salaryDto.getSalaryTransportation()%></td>
+            <td><%=df.format(salaryDto.getSalaryTransportation())%></td>
          </tr>
          <tr>
             <th>지급일</th>
-            <td><%=salaryDto.getSalaryDate()%></td>
+            <td><%=salaryDto.getSalaryDate().substring(0,10)%></td>
          </tr>
          <tr>
             <th>실수령액</th>
-            <td><%=salaryDto.getSalaryTotal()%></td>
+            <td><%=df.format(salaryDto.getSalaryTotal())%></td>
          </tr>
       </table>
    </div>

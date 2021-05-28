@@ -9,32 +9,52 @@
     
 <%
    String empNo = (String)session.getAttribute("id");
-   AttendanceDao attendanceDao = new AttendanceDao();
-   List<String> yearList = attendanceDao.getYear(empNo);
-   List<String> monthList = attendanceDao.getMonth(empNo);
+	SalaryDao salaryDao = new SalaryDao();
+   List<String> yearList = salaryDao.getYear(empNo);
+   List<String> monthList = salaryDao.getMonth(empNo);
    
-   SalaryDao salaryDao = new SalaryDao();
+   String searchYear = request.getParameter("searchYear");
+   String searchMonth = request.getParameter("searchMonth");
+   
+   boolean isSearch = searchYear != null && searchMonth != null;
+   
+  
    List<SalaryDto> salaryList = salaryDao.list(empNo);
+   
+   if(isSearch){
+	   salaryList = salaryDao.search(empNo,searchYear, searchMonth);
+	} 
+	else{
+		salaryList = salaryDao.list(empNo); 
+	}
    
    //지급액에 , 찍어주기
    DecimalFormat df = new DecimalFormat("###,###");
 %>
   
 <jsp:include page="/template/header.jsp"></jsp:include>
-
+<%if(isSearch){ %>
+<script>
+	//서버에서 수신한 searchYear와 searchMonth에 해당하는 값들을 각각의 입력창에 설정하여 유지되는것처럼 보이도록 구현
+	$(function(){
+		$("select[name=searchYear]").val("<%=searchYear%>");
+		$("input[name=searchMonth]").val("<%=searchMonth%>");
+	});
+</script>
+<%} %>
 <div class="row">
       <h2>급여</h2>
 </div>
 	<div class="row">
-		<form action="searchSalary.gw" method="post">
+		<form action="salaryMain.jsp" method="get">
 			<select name="searchYear" class="form-input form-input-inline">
 			<%for(String year : yearList){ %>
-				<option value=""><%=year%></option>
+				<option value="<%=year %>"><%=year%></option>
 			<%} %>
 			</select>
 			<select name="searchMonth" class="form-input form-input-inline">
 			<%for(String month : monthList){ %>
-				<option value=""><%=month%></option>
+				<option value="<%=month%>"><%=month%></option>
 			<%} %>
 			</select>
 			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
@@ -55,7 +75,7 @@
 				<tr>
 					<td><%=salaryDto.getSalaryDate().substring(0,10)%></td>
 					<td>
-					<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate()%>">
+					<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>">
 					<%=salaryDto.getSalaryDate().substring(5, 7)%>월 급여 명세서
 					</a>
 					</td>
