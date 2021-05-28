@@ -2,6 +2,9 @@ package groupware.beans;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SalaryDao {
 	
@@ -10,20 +13,20 @@ public class SalaryDao {
 		
 		String sql= "insert into salary values(?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1,salaryDto.getEmp_no());
-		ps.setInt(2,salaryDto.getPo_no());
+		ps.setString(1,salaryDto.getEmpNo());
+		ps.setInt(2,salaryDto.getPoNo());
 		
 		PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
-		PositionSalaryDto positionSalaryDto = positionSalaryDao.get(salaryDto.getPo_no());
+		PositionSalaryDto positionSalaryDto = positionSalaryDao.get(salaryDto.getPoNo());
 		
 		AttendanceDao attendanceDao = new AttendanceDao();
-		int overtime = attendanceDao.getOvertime(salaryDto.getEmp_no(),year,month);
+		int overtime = attendanceDao.getOvertime(salaryDto.getEmpNo(),year,month);
 		
 		ps.setInt(3, positionSalaryDto.getSalaryPay());
 		ps.setInt(4, positionSalaryDto.getSalaryOvertime() * overtime );
 		ps.setInt(5, positionSalaryDto.getSalaryMeal());
 		ps.setInt(6, positionSalaryDto.getSalaryTransportation());
-		ps.setDate(7,salaryDto.getSalary_date());
+		ps.setString(7,salaryDto.getSalaryDate());
 		
 		
 		ps.execute();
@@ -33,7 +36,32 @@ public class SalaryDao {
 	
 	
 	//자신 월급 내역
-			//1월,2월,3월, ... => 표? 'yyyy-mm' 2021년 5월달 월급 
+	//1월,2월,3월, ... => 표? 'yyyy-mm' 2021년 5월달 월급
+	public List<SalaryDto> list(String empNo) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select * from salary where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		List<SalaryDto> list = new ArrayList<>();
+		while(rs.next()) {
+			SalaryDto salaryDto = new SalaryDto();
+			salaryDto.setEmpNo(rs.getString("emp_no"));
+			salaryDto.setPoNo(rs.getInt("po_no"));
+			salaryDto.setSalaryPay(rs.getInt("salary_pay"));
+			salaryDto.setSalaryOvertime(rs.getInt("salary_overtime"));
+			salaryDto.setSalaryMeal(rs.getInt("salary_meal"));
+			salaryDto.setSalaryTransportation(rs.getInt("salary_transportation"));
+			salaryDto.setSalaryDate(rs.getString("salary_date"));
+			
+			list.add(salaryDto);
+		}
+		
+		con.close();
+		return list;
+	}
 	
 
 }
