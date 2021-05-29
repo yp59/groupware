@@ -242,7 +242,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 				$(".search-form2").submit(); // 강제서브밋 
 				
 			}else if(page_no2=="다음"){//다음 링크 눌렀을 때
-				var page_no = parseInt($(".pagination2>a:not(.move-link2)").last().text())+1;
+				var page_no2 = parseInt($(".pagination2>a:not(.move-link2)").last().text())+1;
 				//현재 링크중 .move-link를 제외한 마지막 항목의 pareInt형 에서 +1
 				$("input[name=page_no2]").val(page_no2);
 				$(".search-form2").submit(); // 강제서브밋 
