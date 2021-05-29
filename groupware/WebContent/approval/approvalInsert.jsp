@@ -4,14 +4,12 @@
     
 <%String id = (String) request.getAttribute("id");
 
-String mid = request.getParameter("midApproval");
-String fin = request.getParameter("finalApproval");
+String app = request.getParameter("approval");
 String con = request.getParameter("consesus");
 String ref = request.getParameter("reffer");
 String imp = request.getParameter("implementer");
 
-if(mid==null){mid="";}//아직 부서 리스트 별 결재자 값을 안받아 왔을 때 해당값을 공백으로 설정한다.
-if(fin==null){fin="";}
+if(app==null){app="";}//아직 부서 리스트 별 결재자 값을 안받아 왔을 때 해당값을 공백으로 설정한다.
 if(con==null){con="";}
 if(ref==null){ref="";}
 if(imp==null){imp="";}
@@ -82,8 +80,7 @@ $(function(){//window.load와 같은의미
 <div>
 <!-- 결재라인은 외래키이기 때문에 서블릿에서 먼저 들어가야함
 window 새 창으로 해서 값 넣어야 함(구현하기 어려워서 해당 팝업에서 넘어가는걸로 변경) -->
-중간 결재자 :<input type = "text" class="appPeople" name = "midApprovalNo" value="<%=mid%>">
-최종 결재자 :<input type = "text" class="appPeople" name = "finalApprovalNo" value="<%=fin%>"> 
+결재자 :<input type = "text" class="appPeople" name = "midApprovalNo" value="<%=app%>">
 합의자 :<input type = "text" class="appPeople" name = "consesusNo" value="<%=con%>"> 
 참조자 :<input type = "text" class="appPeople" name = "refferNo" value="<%=ref%>">
 시행자 :<input type = "text" class="appPeople" name = "implemneterNo" value="<%=imp%>">  

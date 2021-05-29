@@ -102,73 +102,102 @@ $(function(){
 	
 	////////////////////////////////////////////////////////////////////////
 	
-	$('.appSelect').click(function(){//선택한 사원을 아래에 표시해 주는 jquery 구문 체크박스를 체크하고 버튼을 누르면 해당값이 나타남
-		//console.log($('.appSelect:checked').val()); //여러개 선택하면 처음 값만 나온다.
-		/*
-		$('#mid').click(function(){
-			
-			$('#mids').html($('.appSelect:checked').val());
-			
-			var empNo = $('.appSelect:checked').val();
-			empNo = empNo.slice(-5,-1);//뒤에서부터 empNO을 잘라서 empNo을 구한다
-			$('input[name=midApproval]').val(empNo);//empNo값을 저장한다.
-			console.log($('input[name=midApproval]').val());// console창 값 확인용
+	
+	
+		////////////////////////////////////// 부서별 사원 리스트에서 결재 합의 참조 시행자를 선택해서 부모창으로 값을 보내는 구문/////////////////
 		
-		});
-		*/
-		$('#mid').click(function(){
+		$('#approval').click(function(){// 결재자 버튼을 누르면 체크박스 클래스 appSelect에서 체크된 값을 변수 text에 저장한다.
 			
-			$('#mids').html($('.appSelect:checked').val());
+			var person = "";
 			
-			var emp = $('.appSelect:checked').val();
+			$('.appSelect').each(function(idx){
 			
-			$('input[name=midApproval]').val(emp);//emp값을 저장한다.
-			console.log($('input[name=midApproval]').val());// console창 값 확인용
-		
-		});
-		
-		$('#final').click(function(){
+			if($(this).is(":checked")){
 			
-			$('#finals').html($('.appSelect:checked').val());
-		
-			var emp = $('.appSelect:checked').val();
+				person += $(this).val();
+				person += "\n";
+			}	
+			$('input[name=approval]').val(person);
 			
-			$('input[name=finalApproval]').val(emp);//empNo값을 저장한다.
-			console.log($('input[name=finalApproval]').val());// console창 값 확인용
 			
-		});
-		
-		$('#con').click(function(){
-			
-			$('#cons').html($('.appSelect:checked').val());
-		
-			var emp = $('.appSelect:checked').val();
-			
-			$('input[name=consesus]').val(emp);//empNo값을 저장한다.
-			console.log($('input[name=consesus]').val());// console창 값 확인용
+			});
+			console.log($('input[name=approval]').val());
+			$('#approvals').text(person);
 		});
 	
-		$('#ref').click(function(){
 		
-		$('#refs').html($('.appSelect:checked').val());
-	
-		var emp = $('.appSelect:checked').val();
-	
-		$('input[name=reffer]').val(emp);//empNo값을 저장한다.
-		console.log($('input[name=reffer]').val());// console창 값 확인용
-	});
-	
-		$('#imple').click(function(){
 		
-		$('#imples').html($('.appSelect:checked').val());
-	
-		var emp = $('.appSelect:checked').val();
-	
-		$('input[name=implementer]').val(emp);//empNo값을 저장한다.
-		console.log($('input[name=implementer]').val());// console창 값 확인용
-	});
-	});
-	
+		
+		$('#consesus').click(function(){// 합의자 버튼을 누르면 체크박스 클래스 appSelect에서 체크된 값을 변수 text에 저장한다.
+			
+			var person = "";
+			
+			$('.appSelect').each(function(idx){
+			
+			if($(this).is(":checked")){
+			
+				person += $(this).val();
+				person += "\n";
+			}	
+			$('input[name=consesus]').val(person);
+			
+			
+			});
+			console.log($('input[name=consesus]').val());
+			$('#consesuses').text(person);
+		});
+		
+		
+		
+		
+		
+		$('#reffer').click(function(){// 참조자 버튼을 누르면 체크박스 클래스 appSelect에서 체크된 값을 변수 text에 저장한다.
+			
+			var person = "";
+			
+			$('.appSelect').each(function(idx){
+			
+			if($(this).is(":checked")){
+			
+				person += $(this).val();
+				person += "\n";
+			}	
+			$('input[name=reffer]').val(person);
+			
+			
+			});
+			console.log($('input[name=reffer]').val());
+			$('#reffers').text(person);
+		});
+			
+		
+		
+		
+		
+		$('#implementer').click(function(){// 시행자 버튼을 누르면 체크박스 클래스 appSelect에서 체크된 값을 변수 text에 저장한다.
+			
+			var person = "";
+			
+			$('.appSelect').each(function(idx){
+			
+			if($(this).is(":checked")){
+			
+				person += $(this).val();
+				person += "\n";
+			}	
+			$('input[name=implementer]').val(person);
+			
+			
+			});
+			console.log($('input[name=implementer]').val());
+			$('#implementers').text(person);
+		});
+		
+		
+//////////////////////////////////////////////////////////////////////////////////
+
+		
+		
 	$('input[name=subb]').click(function(){//submit을 누르면 부모창으로 값을 보내고 팝업창 종료
 		window.opener.name = "draftPopUp";
 		document.appForm.target = "draftPopUp";
@@ -324,18 +353,16 @@ $(function(){
 </header>
 		<article>
 	<div class="row"><!-- 결재 파트 사원 클릭하고 버튼 누르면 결재자 지정됨 -->
-				<input type = "button" id = "mid" value = "중간 결재"><span id = "mids"></span><br><br>
-				<input type = "button" id = "final" value = "최종 결재"><span id = "finals"></span><br><br>
-				<input type = "button" id = "con" value = "합의"><span id = "cons"></span><br><br>
-				<input type = "button" id = "ref" value = "참조"><span id = "refs"></span><br><br>
-				<input type = "button" id = "imple" value = "시행"><span id = "imples"></span><br><br>
+				<button id = "approval">결재자</button><div id = "approvals"></div><br><br>
+				<button id = "consesus">합의자</button><div id = "consesuses"></div><br><br>
+				<button id = "reffer">참조자</button><div id = "reffers"></div><br><br>
+				<button id = "implementer">시행자</button><div id = "implementers"></div><br><br>
 	</div>
 	
 	<div>
 	<form name ="appForm" method = "get"><!-- 부서 리스트에서 결재자를 선택하고 실제로 데이터를 보내는 파트
 														post로 보내면 한글 깨진다 -->
-	<input type ="hidden" name = "midApproval">
-	<input type ="hidden" name = "finalApproval">
+	<input type ="hidden" name = "approval">
 	<input type ="hidden" name = "consesus">
 	<input type ="hidden" name = "reffer">
 	<input type ="hidden" name = "implementer">
