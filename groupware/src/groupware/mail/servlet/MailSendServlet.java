@@ -43,7 +43,7 @@ public class MailSendServlet extends HttpServlet{
             InternetAddress to = new InternetAddress(req.getParameter("mailRecipient"));         
             msg.setRecipient(Message.RecipientType.TO, to);            
             msg.setSubject(req.getParameter("mailTitle"), "UTF-8");            
-            msg.setText(req.getParameter("mailContent"), "UTF-8");            
+            msg.setText(req.getParameter("mailContent") + " [본 메일은 발신 전용입니다.]", "UTF-8");            
             
             Transport.send(msg);
 			
