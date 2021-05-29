@@ -5,11 +5,6 @@ public class approvalDto {
 	
 	private int appNo;
 	private String drafter;
-	private int midApprovalNo;
-	private int finalApprovalNo;
-	private int consesusNo;
-	private int referrerNo;
-	private int implementerNo;
 	private String appTitle;
 	private String appContent;
 	private String appDateStart;
@@ -34,46 +29,6 @@ public class approvalDto {
 
 	public void setDrafter(String drafter) {
 		this.drafter = drafter;
-	}
-
-	public int getMidApprovalNo() {
-		return midApprovalNo;
-	}
-
-	public void setMidApprovalNo(int midApprovalNo) {
-		this.midApprovalNo = midApprovalNo;
-	}
-
-	public int getFinalApprovalNo() {
-		return finalApprovalNo;
-	}
-
-	public void setFinalApprovalNo(int finalApprovalNo) {
-		this.finalApprovalNo = finalApprovalNo;
-	}
-
-	public int getConsesusNo() {
-		return consesusNo;
-	}
-
-	public void setConsesusNo(int consesusNo) {
-		this.consesusNo = consesusNo;
-	}
-
-	public int getReferrerNo() {
-		return referrerNo;
-	}
-
-	public void setReferrerNo(int referrerNo) {
-		this.referrerNo = referrerNo;
-	}
-
-	public int getImplementerNo() {
-		return implementerNo;
-	}
-
-	public void setImplementerNo(int implementerNo) {
-		this.implementerNo = implementerNo;
 	}
 
 	public String getAppTitle() {

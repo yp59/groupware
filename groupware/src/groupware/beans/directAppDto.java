@@ -3,6 +3,7 @@ package groupware.beans;
 public class directAppDto {
 
 	private int approvalNo;
+	private int appNo;
 	private String approval;
 	private String type;
 	private String consesus;
@@ -17,6 +18,13 @@ public class directAppDto {
 	}
 	public void setApprovalNo(int approvalNo) {
 		this.approvalNo = approvalNo;
+	}
+	
+	public int getAppNo() {
+		return appNo;
+	}
+	public void setAppNo(int appNo) {
+		this.appNo = appNo;
 	}
 	public String getApproval() {
 		return approval;

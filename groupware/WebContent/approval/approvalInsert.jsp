@@ -72,7 +72,7 @@ $(function(){//window.load와 같은의미
 기안일 : <input type = "date" id= "appDateStart" name = "appDateStart" >
 </div>
 <div>
-마감일 :<input type = "date" name = "appDateStart"> 
+마감일 :<input type = "date" name = "appDateEnd"> 
 </div>
 <div>
 제목 : <input type = "text" name = "appTitle"> 
@@ -80,7 +80,7 @@ $(function(){//window.load와 같은의미
 <div>
 <!-- 결재라인은 외래키이기 때문에 서블릿에서 먼저 들어가야함
 window 새 창으로 해서 값 넣어야 함(구현하기 어려워서 해당 팝업에서 넘어가는걸로 변경) -->
-결재자 :<input type = "text" class="appPeople" name = "midApprovalNo" value="<%=app%>">
+결재자 :<input type = "text" class="appPeople" name = "approvalNo" value="<%=app%>">
 합의자 :<input type = "text" class="appPeople" name = "consesusNo" value="<%=con%>"> 
 참조자 :<input type = "text" class="appPeople" name = "refferNo" value="<%=ref%>">
 시행자 :<input type = "text" class="appPeople" name = "implemneterNo" value="<%=imp%>">  

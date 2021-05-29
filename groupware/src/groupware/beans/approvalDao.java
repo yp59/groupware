@@ -11,22 +11,44 @@ public class approvalDao {
 	public void approvalInsert(approvalDto approvaldto)throws Exception{
 	Connection con = jdbcUtils.getConnection();	
 	
-	String sql = "insert into approval values(app_seq.nextval,?,?,?,?,?,?,?,?,?,?,'상신')";
-		
+	String sql = "insert into approval values(app_seq.nextval,?,?,?,?,?,'상신')";
+		//마감일은 기본 기안일 +7일로 설정함 결재 상태도 기본 상신으로 설정
 	PreparedStatement ps =con.prepareStatement(sql);
 	
+	ps.setString(1,approvaldto.getDrafter());
+	ps.setString(2, approvaldto.getAppTitle());
+	ps.setString(3, approvaldto.getAppContent());
+	ps.setString(4, approvaldto.getAppDateStart());
+	ps.setString(5, approvaldto.getAppDateEnd());
 	
-	ps.setString(1,approvaldto.getDrafter());//
-	ps.setInt(2,approvaldto.getMidApprovalNo());//
-	ps.setInt(3,approvaldto.getFinalApprovalNo());//
-	ps.setInt(4,approvaldto.getConsesusNo());//
-	ps.setInt(5,approvaldto.getReferrerNo());//
-	ps.setInt(6,approvaldto.getImplementerNo());//
-	ps.setString(7, approvaldto.getAppTitle());//
-	ps.setString(8, approvaldto.getAppContent());//
-	ps.setString(9, approvaldto.getAppDateStart());//
-	ps.setString(10, approvaldto.getAppDateEnd());
 	con.close();
+	}
+	
+	public int pkKeyValue(String drafter)throws Exception{//approval PK값을 구해서 direct indirect 외래키 넣을 값을 구한다.
+		
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select max(app_no) from"
+				+ " approval where drafter= ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, drafter);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		int number;
+		
+		if(rs.next()) {
+			number =rs.getInt("app_no");
+		}
+		else {
+			number = 0;
+		}
+			
+		con.close();
+		
+		return number;
 	}
 	
 	public List<approvalDto> approvalList(String id)throws Exception{//session id값으로 기안 목록 조회
@@ -50,16 +72,11 @@ public class approvalDao {
 			
 			approvaldto.setAppNo(rs.getInt(1));
 			approvaldto.setDrafter(rs.getString(2));
-			approvaldto.setMidApprovalNo(rs.getInt(3));
-			approvaldto.setFinalApprovalNo(rs.getInt(4));
-			approvaldto.setConsesusNo(rs.getInt(5));
-			approvaldto.setReferrerNo(rs.getInt(6));
-			approvaldto.setImplementerNo(rs.getInt(7));
-			approvaldto.setAppTitle(rs.getString(8));
-			approvaldto.setAppContent(rs.getString(9));
-			approvaldto.setAppDateStart(rs.getString(10));
-			approvaldto.setAppDateEnd(rs.getString(11));
-			approvaldto.setAppState(rs.getString(12));
+			approvaldto.setAppTitle(rs.getString(3));
+			approvaldto.setAppContent(rs.getString(4));
+			approvaldto.setAppDateStart(rs.getString(5));
+			approvaldto.setAppDateEnd(rs.getString(6));
+			approvaldto.setAppState(rs.getString(7));
 			
 			list.add(approvaldto);
 		
