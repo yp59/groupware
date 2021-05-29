@@ -43,7 +43,8 @@ public class MailSendServlet extends HttpServlet{
             InternetAddress to = new InternetAddress(req.getParameter("mailRecipient"));         
             msg.setRecipient(Message.RecipientType.TO, to);            
             msg.setSubject(req.getParameter("mailTitle"), "UTF-8");            
-            msg.setText(req.getParameter("mailContent") + " [본 메일은 발신 전용입니다.]", "UTF-8");            
+            msg.setText(req.getParameter("mailContent") +
+            "\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "UTF-8");            
             
             Transport.send(msg);
 			
