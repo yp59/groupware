@@ -26,6 +26,7 @@ public class MailSendServlet extends HttpServlet{
 			
 			req.setCharacterEncoding("UTF-8");
 			
+			// 메일 설정
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
 			prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -36,6 +37,7 @@ public class MailSendServlet extends HttpServlet{
 			Session session = Session.getDefaultInstance(prop, login);
 			MimeMessage msg = new MimeMessage(session);
 			
+			// 메일 내용
 			msg.setSentDate(new Date());
         	msg.setFrom(new InternetAddress("5groupware@gmail.com", "그룹웨어 관리자"));
             InternetAddress to = new InternetAddress(req.getParameter("mailRecipient"));         
@@ -45,6 +47,7 @@ public class MailSendServlet extends HttpServlet{
             
             Transport.send(msg);
 			
+            // 메일 리스트로 리다이렉트
 			resp.sendRedirect("http://localhost:8080/groupware/mail/mailList.jsp");
 		}catch(Exception e) {
 			
