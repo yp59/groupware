@@ -22,7 +22,8 @@ import javax.servlet.http.HttpSession;
 "/board/boardInsert.gw","/board/comEdit.gw","/board/comDelete.gw", //로그인이랑 게시판 필터 적용
 
 "/holiday/*", //휴가 메뉴 필터 적용
-"/attendance/*" //근태메뉴 필터 적용
+"/attendance/*", //근태메뉴 필터 적용
+"/mail/mailSend.gw", "/mail/mailList.jsp", "/mail/mailSend.jsp" // 메일 필터 적용
 })
 
 

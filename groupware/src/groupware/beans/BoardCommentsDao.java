@@ -11,7 +11,7 @@ public class BoardCommentsDao {
 	public static final String USERNAME = "kh75";
 	public static final String PASSWORD = "kh75";
 	
-	//댓글 등록 : 댓글내용, 원본글번호, 회원번호 --> 댓글정보
+	//댓글 등록
 	public void insert(BoardCommentsDto boardCommentsDto) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		String sql = "insert into comments values(com_seq.nextval, ?, ?, ?, sysdate)";
@@ -20,10 +20,10 @@ public class BoardCommentsDao {
 		ps.setString(2, boardCommentsDto.getEmpNo());
 		ps.setString(3, boardCommentsDto.getComContent());
 		ps.execute();
-		con.close();
+		con.close(); 
 	}
 	
-	//댓글 수정 : 댓글내용, 댓글번호, 회원번호 --> 댓글정보
+	//댓글 수정
 	public boolean edit(BoardCommentsDto boardCommentsDto) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		String sql = "update comments set com_content = ? where com_no = ? and emp_no = ?";
@@ -36,7 +36,7 @@ public class BoardCommentsDao {
 		return count > 0;
 	}
 	
-	//댓글 삭제 : 댓글번호, 회원번호 --> 댓글정보
+	//댓글 삭제
 	public boolean delete(BoardCommentsDto boardCommentsDto) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		String sql = "delete comments where com_no = ? and emp_no = ?";
@@ -93,5 +93,5 @@ public class BoardCommentsDao {
 			
 			con.close();
 			return boardCommentsList;
-		}
+		} 
 }
