@@ -294,7 +294,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 						<%=scheduleIngDto.getSc_name() %>
 						</a>
 					</td>
-					<td><%=scheduleIngDto.getEmpNo() %></td>
+					<td><%=scheduleIngDto.getEmpName() %></td>
 					<td><%=scheduleIngDto.getSc_made() %></td>
 					<td><%=scheduleIngDto.getSc_deadline() %></td>
 				</tr>
@@ -336,7 +336,8 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 			<input type="hidden" name="page_no1">
 			
 			<select name="type1">
-				<option value="sc_name">제목만</option>
+				<option value="sc_name">제목</option>
+				<option value="emp_name">이름</option>
 			</select>
 			<input type="text" name="keyword1" placeholder="키워드">
 			<input type="submit" value="조회하기">
@@ -373,7 +374,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 						<%=scheduleEndDto.getSc_name() %>
 						</a>
 					</td>
-					<td><%=scheduleEndDto.getEmpNo() %></td>
+					<td><%=scheduleEndDto.getEmpName() %></td>
 					<td><%=scheduleEndDto.getSc_made() %></td>
 					<td><%=scheduleEndDto.getSc_deadline() %></td>
 				</tr>
@@ -410,7 +411,8 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<form class="search-form2" action="scheduleList.jsp" method="get">
 			<input type="hidden" name="page_no2">
 			<select name="type2">
-				<option value="sc_name">제목만</option>
+				<option value="sc_name">제목</option>
+				<option value="emp_name">이름</option>
 			</select>
 			<input type="text" name="keyword2" placeholder="키워드">
 			<input type="submit" value="조회하기">
