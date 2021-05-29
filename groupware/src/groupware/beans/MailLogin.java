@@ -18,6 +18,6 @@ public class MailLogin extends Authenticator{
 	// 인증 반환
 	public PasswordAuthentication getPasswordAuthentication() {
 		return pa;
-	}
+	} 
 
 }
