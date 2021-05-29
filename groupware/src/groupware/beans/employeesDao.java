@@ -39,7 +39,7 @@ public class employeesDao {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "insert into employees values"
-				+ " (?,?,?,?,?,?,?,?)";
+				+ " (?,?,?,?,?,?,?,?,?)";
 				
 		PreparedStatement ps = con.prepareStatement(sql);
 		
@@ -51,7 +51,7 @@ public class employeesDao {
 		ps.setString(6, employeesdto.getEmpPhone());
 		ps.setString(7, employeesdto.getEmail());
 		ps.setString(8, employeesdto.getAddress());
-		
+		ps.setString(9, employeesdto.getDepartment());
 		ps.executeUpdate();
 		con.close();
 	}
@@ -158,7 +158,7 @@ public class employeesDao {
 		empDto.setEmpPhone(rs.getString("emp_phone"));
 		empDto.setEmail(rs.getString("email"));
 		empDto.setAddress(rs.getString("address"));
-		
+		empDto.setDepartment(rs.getString("department"));//부서 추가
 		list.add(empDto);	
 		}
 		con.close();
@@ -192,5 +192,39 @@ public class employeesDao {
 		
 		
 	}
+	public List<employeesDto> list(String depart) throws Exception {//부서별 사원 리스트 
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql ="select E.*,P.posi from employees E inner join"
+				+ " position P on E.po_no = P.po_no"
+				+ " where department = ? ";
+		PreparedStatement ps =con.prepareStatement(sql);
+		ps.setString(1, depart);
+		ResultSet rs = ps.executeQuery();
+		
+		List<employeesDto> list = new ArrayList<>();
+		
+		
+		while(rs.next()) {
+		employeesDto empDto = new employeesDto();
+		
+		empDto.setEmpNo(rs.getString("emp_no"));
+		empDto.setEmpPw(rs.getString("emp_pw"));
+		empDto.setPono(rs.getInt("po_no"));
+		empDto.setEmpName(rs.getString("emp_name"));	
+		empDto.setJoinDate(rs.getString("join_date"));
+		empDto.setEmpPhone(rs.getString("emp_phone"));
+		empDto.setEmail(rs.getString("email"));
+		empDto.setAddress(rs.getString("address"));
+		empDto.setDepartment(rs.getString("department"));
+		empDto.setPoSi(rs.getString("posi"));
+		list.add(empDto);	
+		}
+		con.close();
+		return list;
+		
+		
+	}
+	
 	
 }
