@@ -12,7 +12,7 @@ public class approvalDao {
 	Connection con = jdbcUtils.getConnection();	
 	
 	String sql = "insert into approval values(app_seq.nextval,?,?,?,?,?,'상신')";
-		//마감일은 기본 기안일 +7일로 설정함 결재 상태도 기본 상신으로 설정
+		//결재 상태 기본 상신으로 설정
 	PreparedStatement ps =con.prepareStatement(sql);
 	
 	ps.setString(1,approvaldto.getDrafter());
@@ -20,6 +20,8 @@ public class approvalDao {
 	ps.setString(3, approvaldto.getAppContent());
 	ps.setString(4, approvaldto.getAppDateStart());
 	ps.setString(5, approvaldto.getAppDateEnd());
+	
+	ps.executeUpdate();
 	
 	con.close();
 	}
@@ -40,7 +42,7 @@ public class approvalDao {
 		int number;
 		
 		if(rs.next()) {
-			number =rs.getInt("app_no");
+			number =rs.getInt("max(app_no)");//집계함수 coulmn값 주의
 		}
 		else {
 			number = 0;

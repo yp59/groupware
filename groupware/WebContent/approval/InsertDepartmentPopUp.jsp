@@ -7,7 +7,7 @@
 <jsp:include page="/template/departmentPopUp.jsp"></jsp:include>
 <%
 employeesDao employeesdao = new employeesDao();//jquery와 jsp 는 연동이 안되기 때문에(jsp-->jquery는 가능)
-List<employeesDto> insa = employeesdao.list("인사부");//화면을 미리 만들어두고 event에 따라 보여줄지 안보여줄지 선택
+List<employeesDto> insa = employeesdao.list("인사부");//화면을 미리 만들어두고 event에 따라 보여줄지 안보여줄지 선택하는 방식으로 구현
 List<employeesDto> chong = employeesdao.list("총무부");
 List<employeesDto> hwa = employeesdao.list("회계부");
 List<employeesDto> gi = employeesdao.list("기획부");
@@ -22,15 +22,15 @@ $(function(){
 
 //////////제이쿼리를 이용하여 부서별 사원 리스트를 display로 on/off 할 수 있게끔 함////////////////////////////////
 	
-	$('#insa').click(function(){
-		$('.appSelect').prop('checked',false);//부서 리스트를 닫았을 때 체크를 해제
+	$('#insa').click(function(){//id가 insa인 태그를 클릭했을 때
+		$('.appSelect').prop('checked',false);//초기화면으로 체크박스를 false로 초기화
 		
-		if($('#view1').css('display')=='block'){
+		if($('#view1').css('display')=='block'){//id가 view1인 태그의 display가 보여질때 view 클래스를 전부 none로 사라지게 함
 			$('.view').css('display','none');
 			$('#view1').css('display','none');
 		
 		}
-		else{
+		else{// view1이 안보인다면 보이게 하고 나머지 view 클래스가 중복으로 보이는 걸 방지하기 위해서 none으로 한다.
 			$('.view').css('display','none');
 			$('#view1').css('display','block');
 		}
@@ -104,25 +104,25 @@ $(function(){
 	
 	
 	
-		////////////////////////////////////// 부서별 사원 리스트에서 결재 합의 참조 시행자를 선택해서 부모창으로 값을 보내는 구문/////////////////
+///////////////////// 부서별 사원 리스트에서 결재 합의 참조 시행자를 선택해서 부모창으로 값을 보내는 구문/////////////////
 		
 		$('#approval').click(function(){// 결재자 버튼을 누르면 체크박스 클래스 appSelect에서 체크된 값을 변수 text에 저장한다.
 			
-			var person = "";
+			var person = "";//값 초기화 변수
 			
-			$('.appSelect').each(function(idx){
+			$('.appSelect').each(function(idx){//appselect클래스(체크박스)를 반복문으로
 			
-			if($(this).is(":checked")){
+			if($(this).is(":checked")){//현재 index의 체크박스가 체크면
 			
-				person += $(this).val();
-				person += "\n";
+				person += $(this).val();//person 변수에 체크박스 val() 저장
+				person += "&";//후에 서블릿으로 DB에 넣을때 구분짓기 위해서 구분자로 사용  
 			}	
-			$('input[name=approval]').val(person);
+			$('input[name=approval]').val(person);//실제로 결재자 정보가 담겨져 넘어가는 input태그
 			
 			
 			});
-			console.log($('input[name=approval]').val());
-			$('#approvals').text(person);
+			console.log($('input[name=approval]').val());//잘 들어갔나 console창 확인용
+			$('#approvals').text(person);//선택된 결재자를 화면에 나타내기 위해서 id가 approvals인 태그에 person을 넣어 보여준다.
 		});
 	
 		
@@ -137,7 +137,7 @@ $(function(){
 			if($(this).is(":checked")){
 			
 				person += $(this).val();
-				person += "\n";
+				person += "&";
 			}	
 			$('input[name=consesus]').val(person);
 			
@@ -160,7 +160,7 @@ $(function(){
 			if($(this).is(":checked")){
 			
 				person += $(this).val();
-				person += "\n";
+				person += "&";
 			}	
 			$('input[name=reffer]').val(person);
 			
@@ -183,7 +183,7 @@ $(function(){
 			if($(this).is(":checked")){
 			
 				person += $(this).val();
-				person += "\n";
+				person += "&";
 			}	
 			$('input[name=implementer]').val(person);
 			
@@ -199,11 +199,11 @@ $(function(){
 		
 		
 	$('input[name=subb]').click(function(){//submit을 누르면 부모창으로 값을 보내고 팝업창 종료
-		window.opener.name = "draftPopUp";
-		document.appForm.target = "draftPopUp";
-		document.appForm.action = "approvalInsert.jsp";
+		window.opener.name = "draftPopUp";//부모 창 이름 설정
+		document.appForm.target = "draftPopUp";//어느 창으로 갈건지 target지정
+		document.appForm.action = "approvalInsert.jsp";//실제 데이터가 넘어가는 페이지
 		document.appForm.submit();
-		self.close();
+		self.close();//현재 창을 닫는다.
 	});
 });
 

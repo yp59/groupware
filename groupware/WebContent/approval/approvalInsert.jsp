@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/template/referencePopUp.jsp"></jsp:include>
     
-<%String id = (String) request.getAttribute("id");
+<%String id = (String) session.getAttribute("id");
 
-String app = request.getParameter("approval");
+String app = request.getParameter("approval");//부서리스트에서 얻은 데이터값을 파라미터로 저장한다.
 String con = request.getParameter("consesus");
 String ref = request.getParameter("reffer");
 String imp = request.getParameter("implementer");
@@ -22,16 +22,16 @@ if(imp==null){imp="";}
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
 
-var today = new Date();   
+	var today = new Date();   
 
-var year = today.getFullYear(); // 년도
-var month = today.getMonth() + 1;  // 월
-var date = today.getDate();  // 날짜
-var cal = year+"-0"+month+"-"+date;//appDateStart에 오늘날짜 넣을 변수
-
-$(function(){//window.load와 같은의미
-	$('#appDateStart').val(cal);//작은 따옴표만 된다?    date로 받은 값 cal을 appDateStart에 넣는다.
+		var year = today.getFullYear(); // 년도
+		var month = today.getMonth() + 1;  // 월
+		var date = today.getDate();  // 날짜
+		var cal = year+"-0"+month+"-"+date;//appDateStart에 오늘날짜 넣을 변수
 	
+$(function(){//window.load와 같은의미
+	$('input[name=appDateStart]').val(cal);//    date로 받은 값 cal을 appDateStart에 넣는다.
+	$('input[name=appDateEnd]').val(cal);//    date로 받은 값 cal을 appDateEnd에 넣는다.
 	
 	$(".appPeople").click(function(){
 		var _width = '750';
@@ -47,54 +47,55 @@ $(function(){//window.load와 같은의미
 	});
 	
 	$('input[name=subb]').click(function(){//submit을 누르면 부모창으로 값을 보내고 팝업창 종료
-		window.opener.name = "approvalMain";//확실하지는 않으나 일단 서블릿에서 한번 구현해 보자.
-		document.appForm.target = "approvalMain";
-		document.appForm.action = "directIndirectAppInsert.gw";
+		window.opener.name = "approvalMain";//부모창 이름 설정
+		document.appForm.target = "approvalMain";//기안서 보낼때 어느 화면으로 갈껀지 선택
+		document.appForm.action = "approvalInsert.gw";//실제 데이터가 보내지는 페이지
 		document.appForm.submit();
-		self.close();
+		self.close();//지금 보고있는 창은 종료된다.
 	});
+	
+	
+	
 });
 </script>
 	<!-- 가장 바깥 영역 -->
-	<main>
+<main>
 		
 		<!-- 사이드영역 -->
-		<aside>
-		
-		</aside>
+	<aside></aside>
 		
 		<!-- 컨텐츠영역 -->
-		<section>
+	<section>
 		<form name = "appForm" method ="post">
-<div>
-	<input type="hidden" name ="drafter" value="<%=id%>"><!-- 기안자 hidden으로 전송 -->
-	
-기안일 : <input type = "date" id= "appDateStart" name = "appDateStart" >
-</div>
-<div>
-마감일 :<input type = "date" name = "appDateEnd"> 
-</div>
-<div>
-제목 : <input type = "text" name = "appTitle"> 
-</div>
-<div>
-<!-- 결재라인은 외래키이기 때문에 서블릿에서 먼저 들어가야함
-window 새 창으로 해서 값 넣어야 함(구현하기 어려워서 해당 팝업에서 넘어가는걸로 변경) -->
-결재자 :<input type = "text" class="appPeople" name = "approvalNo" value="<%=app%>">
-합의자 :<input type = "text" class="appPeople" name = "consesusNo" value="<%=con%>"> 
-참조자 :<input type = "text" class="appPeople" name = "refferNo" value="<%=ref%>">
-시행자 :<input type = "text" class="appPeople" name = "implemneterNo" value="<%=imp%>">  
-<!-- 숫자는 servlet에서 처리-->
-</div>
-<div>
-내용 : <textarea rows="16" class="input" name="appContent">
-</textarea>
-</div>
-<!-- 첨부 아직 미구현 -->
-<input type ="submit" value = "기안" name ="subb">
-</form>
-		</section>
-		
-	</main>
+			<div>
+				<input type="hidden" name ="drafter" value="<%=id%>"><!-- 기안자 hidden으로 전송 -->
+					기안일 : <input type = "date" name = "appDateStart" ><br>
+			</div>
+			
+			<div>
+					결재자 :<input type = "text" class="appPeople" name = "approvalNo" value="<%=app%>"><br>
+					합의자 :<input type = "text" class="appPeople" name = "consesusNo" value="<%=con%>"><br> 
+					참조자 :<input type = "text" class="appPeople" name = "refferNo" value="<%=ref%>"><br>
+					시행자 :<input type = "text" class="appPeople" name = "implemneterNo" value="<%=imp%>"><br>  
+				<!-- 숫자는 servlet에서 처리-->
+			</div>
+			
+			<div>
+					제목 : <input type = "text" name = "appTitle"><br> 
+			</div>
+			
+			<div>
+				내용 : <textarea rows="16" class="input" name="appContent"></textarea>
+			</div>
+			
+			<div>
+				마감일 :<input type = "date" name = "appDateEnd"> 
+			</div>
+			
+			<!-- 첨부 아직 미구현 -->
+					<input type ="submit" value = "기안" name ="subb">
+		</form>
+	</section>	
+</main>
 </body>
 </html>

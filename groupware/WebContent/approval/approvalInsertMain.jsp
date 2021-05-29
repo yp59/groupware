@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String id = (String) request.getAttribute("id");
+	String id = (String) session.getAttribute("id");
 
     approvalDao approvaldao = new approvalDao();
 	List<approvalDto> list = approvaldao.approvalList(id);//세션아이디로 작성한 기안서 리스트 출력
@@ -18,10 +18,9 @@
 <script>
 
 $(function(){
-	window.name = "approvalMain";
-	
+
 	////////////////////////////////////////////////////////////////////////
-	var _width = '700';
+	var _width = '750';
     var _height = '500';
  
     // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
