@@ -197,10 +197,11 @@ public class employeesDao {
 	}
 	
 	//노승연,오하영
+	//휴가 사용시 휴가 일수 차감하도록 update
 	public boolean holidayCount(String empNo, int holCount) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "update employees set holiday_count=? where emp_no=?";
+		String sql = "update employees set holiday_count= holiday_count-? where emp_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, holCount);
 		ps.setString(2, empNo);
