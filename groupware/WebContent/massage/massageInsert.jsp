@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+request.setCharacterEncoding("UTF-8");
+
 employeesDao empDao = new employeesDao();
 
 List<employeesDto> empList =empDao.list();
@@ -16,7 +18,22 @@ List<employeesDto> empList =empDao.list();
 String answer_name =request.getParameter("sender");
 String answer_title = request.getParameter("m_name");
 
+
 boolean isSender=answer_name!=null;
+
+//주소록을 통해 연동해서 메세지 작성기능:
+// 답장기능과 차이를 두어야 한다. 공통점: 수신자이름을 파라미터로 받아와서 보냄. 차이점: ...
+// 주소를 통해 사원번호르 받아와서 이를 통해 empName을 가져온다.
+String answer_empNo=request.getParameter("empNo");
+
+boolean isAadressSend=answer_empNo!=null;
+
+
+
+if(isAadressSend) {
+	String answer_empName=empDao.getName(answer_empNo);
+	answer_name=answer_empName;
+	} 
 
 %>
 
@@ -52,7 +69,7 @@ boolean isSender=answer_name!=null;
 			
 			<div class="row">
 			<!-- 수신자 명단 : 1. 답장일 때 2. 새로운 massage일때 -->
-				<%if(isSender) {%>
+				<%if(isSender||isAadressSend) {%>
 					<label>수신자</label>
 					<select name="e2_name">
 						 <!-- 수신자 이름 보냄 -->

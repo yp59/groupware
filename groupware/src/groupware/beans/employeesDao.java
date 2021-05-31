@@ -192,6 +192,27 @@ public class employeesDao {
 		
 		
 	}
+
+	//윤준하
+	//empNo->empName 불러오는 메소드
+	public String getName(String empNo)throws Exception {
+		Connection con =jdbcUtils.getConnection();
+		
+		String sql ="select emp_name from employees where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		rs.next();
+		String empName =rs.getString("emp_name");
+		
+		con.close();
+		return empName;
+		
+		
+	}
+
 	public List<employeesDto> list(String depart) throws Exception {//부서별 사원 리스트 
 		Connection con = jdbcUtils.getConnection();
 		
@@ -227,4 +248,5 @@ public class employeesDao {
 	}
 	
 	
+
 }

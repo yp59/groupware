@@ -8,6 +8,9 @@ public class ScheduleEndDto {
 	private String sc_made;
 	private String sc_deadline;
 	private String sc_state;
+	
+	private String empName;
+	
 	public ScheduleEndDto() {
 		super();
 	}
@@ -53,6 +56,12 @@ public class ScheduleEndDto {
 	}
 	public void setSc_state(String sc_state) {
 		this.sc_state = sc_state;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 	
 	
