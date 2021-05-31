@@ -1,3 +1,5 @@
+<%@page import="groupware.beans.employeesDto"%>
+<%@page import="groupware.beans.employeesDao"%>
 <%@page import="groupware.beans.HolidayDto"%>
 <%@page import="java.util.List"%>
 <%@page import="groupware.beans.HolidayDao"%>
@@ -9,6 +11,9 @@
    HolidayDao holidayDao = new HolidayDao();
    List<HolidayDto> holidayList = holidayDao.list(empNo);
    
+   employeesDao employeesDao  = new employeesDao();
+   employeesDto employeesDto = employeesDao.loginInfo(empNo);
+   
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -17,8 +22,11 @@
       <h2>휴가 신청 내역</h2>
    </div>
    
-   <div class="row text-right">
-      <a href="holidayInsert.jsp" class="link-btn">휴가 신청</a>
+   <div class= "row float-container">
+   		<div class="left" style="margin-top:5px;margin-left:5px"> 남은 휴가 일수 : <%=employeesDto.getHolidayCount()%> </div>
+   		<div class="right">	  
+      		<a href="holidayInsert.jsp" class="link-btn">휴가 신청</a>
+   		</div>  
    </div>
    
    <div class="row">
