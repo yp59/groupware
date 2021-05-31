@@ -22,7 +22,17 @@ import javax.servlet.http.HttpSession;
 "/board/boardInsert.gw","/board/comEdit.gw","/board/comDelete.gw", //로그인이랑 게시판 필터 적용
 
 "/holiday/*", //휴가 메뉴 필터 적용
-"/attendance/*" //근태메뉴 필터 적용
+"/attendance/*", //근태메뉴 필터 적용
+
+"/schedule/scheduleList.jsp","/schedule/scheduleDetail.jsp","/schedule/scheduleInsert.jsp","/schedule/scheduleEdit.jsp",
+"/schedule/scheduleSuccess.jsp","/schedule/scheduleSuccessCancel.jsp","/scheduleDeleteSuccess.jsp",
+"/schedule/scheduleInsert.kh","/schedule/scheduleEdit.kh","/schedule/scheduleComplete.kh",
+
+"/address/*",
+
+"/massage/massageReceiverList.jsp","/massage/massageDetail.jsp","/massage/massageInsert.jsp","/massage/massageSenderList.jsp",
+"/massage/massageInsert.kh"
+
 })
 
 
