@@ -11,8 +11,19 @@ public class employeesDto {
 	private String email;
 	private String address;
 	
+	private int holidayCount; // 사원별 남은 휴가일수 추가했습니다 ! 
+	
+
+	public int getHolidayCount() {
+		return holidayCount;
+	}
+
+	public void setHolidayCount(int holidayCount) {
+		this.holidayCount = holidayCount;
+	}
+
 	public employeesDto(String empNo, String empPw, int poNo, String empName, String joinDate, String empPhone,
-			String email, String address) {
+			String email, String address, int holidayCount) {
 		super();
 		this.empNo = empNo;
 		this.empPw = empPw;
@@ -22,12 +33,11 @@ public class employeesDto {
 		this.empPhone = empPhone;
 		this.email = email;
 		this.address = address;
+		this.holidayCount = holidayCount;
+		
 	}
 
 	
-	
-	
-
 	public employeesDto() {
 		super();
 	}

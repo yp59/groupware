@@ -79,6 +79,7 @@ public class employeesDao {
 			employeesdto.setEmpPhone(rs.getString(6));
 			employeesdto.setEmail(rs.getString(7));
 			employeesdto.setAddress(rs.getString(8));
+			employeesdto.setHolidayCount(rs.getInt("holiday_count"));
 			
 		}
 		else {
