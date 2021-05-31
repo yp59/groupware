@@ -17,6 +17,7 @@ boolean amI = request.getSession().getAttribute("id").equals(scheduleDto.getEmpN
 //empNo->emoName : body에서 작성
 employeesDao empDao = new employeesDao(); 
 
+//dep_no->dep_name
 
 %>
 

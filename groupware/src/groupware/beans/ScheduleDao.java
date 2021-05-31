@@ -28,7 +28,7 @@ public class ScheduleDao {
 	//스케줄등록
 	public void insert(ScheduleDto scheduleDto) throws Exception {
 		Connection con =jdbcUtils.getConnection();
-		String sql ="insert into schedule values (?,?,?,?,sysdate,?,'진행중')";
+		String sql ="insert into schedule values (?,?,?,?,sysdate,?,'진행중',?)";
 		PreparedStatement ps =con.prepareStatement(sql);
 		
 		ps.setInt(1, scheduleDto.getSc_no());
@@ -36,6 +36,7 @@ public class ScheduleDao {
 		ps.setString(3, scheduleDto.getSc_name());
 		ps.setString(4, scheduleDto.getSc_content());
 		ps.setString(5, scheduleDto.getSc_deadline());
+		ps.setInt(6, scheduleDto.getSc_no());
 		
 		ps.execute();
 		

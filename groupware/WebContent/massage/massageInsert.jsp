@@ -52,6 +52,9 @@ if(isAadressSend) {
 
 
 
+
+
+
 <div class="container-800">
 	<%if(isSender) {%>
 	<div class="row text-center">
@@ -91,12 +94,6 @@ if(isAadressSend) {
 				<%} else{ %>
 					<label>수신자</label>
 					<input type="text" name="e2_name">
-<!-- 					<select name="e2_name"> -->
-<!-- <!-- 					 수신자 이름 보냄 --> 
-<%-- 					<%for(employeesDto empDto : empList) {%> --%>
-<%-- 						<option><%=empDto.getEmpName()%></option> --%>
-<%-- 					<%} %> --%>
-<!-- 					</select> -->
 				<%} %>
 				
 				<%if(!isSender&&!isAadressSend){ %>

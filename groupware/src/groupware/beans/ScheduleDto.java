@@ -10,6 +10,8 @@ public class ScheduleDto {
 	private String sc_made;
 	private String sc_deadline;
 	private String sc_state;
+	
+	private int dep_no;
 	public ScheduleDto() {
 		super();
 	}
@@ -57,6 +59,13 @@ public class ScheduleDto {
 	public void setSc_state(String sc_state) {
 		this.sc_state = sc_state;
 	}
+	public int getDep_no() {
+		return dep_no;
+	}
+	public void setDep_no(int dep_no) {
+		this.dep_no = dep_no;
+	}
+	
 	
 	
 	
