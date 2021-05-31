@@ -123,6 +123,7 @@
 		</div>
 		<ul>
 				<li class = "menu menu-title">
+					<a href="<%=root%>/address/addressList.jsp">주소록</a>
 					<a href="<%=root%>/mail/mailList.jsp">메일</a>
 				</li>
 			<ul>

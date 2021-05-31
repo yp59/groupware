@@ -1,3 +1,4 @@
+<%@page import="groupware.beans.employeesDao"%>
 <%@page import="groupware.beans.ScheduleDto"%>
 <%@page import="groupware.beans.ScheduleDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,6 +12,12 @@ ScheduleDto scheduleDto = scheduleDao.detail(sc_no);
 
 
 boolean amI = request.getSession().getAttribute("id").equals(scheduleDto.getEmpNo());
+
+
+//empNo->emoName : body에서 작성
+employeesDao empDao = new employeesDao(); 
+
+
 %>
 
 
@@ -61,7 +68,7 @@ boolean amI = request.getSession().getAttribute("id").equals(scheduleDto.getEmpN
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><%=scheduleDto.getEmpNo() %></td>
+				<td><%=empDao.getName(scheduleDto.getEmpNo()) %></td>
 			</tr>
 			<tr>
 				<th>작성일</th>
@@ -80,8 +87,10 @@ boolean amI = request.getSession().getAttribute("id").equals(scheduleDto.getEmpN
 		</table>
 	</div>
 	<div class="row">
+		<%if(amI) {%>
 		<a class="link-btn" href="scheduleEdit.jsp?sc_no=<%=sc_no%>">수정</a>
 		<a class="link-btn" href="scheduleDelete.kh?sc_no=<%=sc_no%>">삭제</a>
+		<%} %>
 		<a class="link-btn" href="scheduleList.jsp">목록</a>
 	</div>
 	<div class="row">
