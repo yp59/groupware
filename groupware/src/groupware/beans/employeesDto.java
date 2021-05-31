@@ -23,7 +23,7 @@ public class employeesDto {
 	}
 
 	public employeesDto(String empNo, String empPw, int poNo, String empName, String joinDate, String empPhone,
-			String email, String address, int holidayCount) {
+			String email, String address) {
 		super();
 		this.empNo = empNo;
 		this.empPw = empPw;
@@ -33,7 +33,6 @@ public class employeesDto {
 		this.empPhone = empPhone;
 		this.email = email;
 		this.address = address;
-		this.holidayCount = holidayCount;
 		
 	}
 
