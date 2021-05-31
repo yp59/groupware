@@ -10,6 +10,7 @@ public class approvalDto {
 	private String appDateStart;
 	private String appDateEnd;
 	private String appState;
+	private String empName;
 	
 	public approvalDto() {
 		super();
@@ -69,6 +70,14 @@ public class approvalDto {
 
 	public void setAppState(String appState) {
 		this.appState = appState;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 	
 	

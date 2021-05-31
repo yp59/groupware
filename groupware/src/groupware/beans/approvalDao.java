@@ -80,12 +80,135 @@ public class approvalDao {
 			approvaldto.setAppDateStart(rs.getString(5));
 			approvaldto.setAppDateEnd(rs.getString(6));
 			approvaldto.setAppState(rs.getString(7));
-			
+			approvaldto.setEmpName(rs.getString(8));
 			list.add(approvaldto);
 		
 		}
 		con.close();
 		return list;
+	}
+	
+	public List<approvalDto> approvalList(String id, int startRow, int endRow)throws Exception{//session id값으로 기안 목록 조회
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql= "select * from ("
+				+ " select rownum rn, A.*, E.emp_name"
+				+ " from approval A"
+				+ " inner join employees E on"
+				+ " A.drafter = E.emp_no"
+				+ " where A.drafter = ?)"
+				+ " where rn between ? and ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, id);
+		ps.setInt(2, startRow);
+		ps.setInt(3, endRow);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		List<approvalDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			approvalDto approvaldto = new approvalDto();
+			
+			approvaldto.setAppNo(rs.getInt(2));//rownum 이 column 1이므로 2부터 시작
+			approvaldto.setDrafter(rs.getString(3));
+			approvaldto.setAppTitle(rs.getString(4));
+			approvaldto.setAppContent(rs.getString(5));
+			approvaldto.setAppDateStart(rs.getString(6));
+			approvaldto.setAppDateEnd(rs.getString(7));
+			approvaldto.setAppState(rs.getString(8));
+			approvaldto.setEmpName(rs.getString(9));
+			list.add(approvaldto);
+		
+		}
+		con.close();
+		return list;
+	}
+	
+	public List<approvalDto> approvalSearch(String id , String keyword, int startRow, int endRow)throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql= "select * from ("
+				+ " select rownum rn, A.*, E.emp_name"
+				+ " from approval A"
+				+ " inner join employees E on"
+				+ " A.drafter = E.emp_no"
+				+ " where A.drafter = ? and instr(app_title,?)>0)"
+				+ " where rn between ? and ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, id);
+		ps.setString(2, keyword);
+		ps.setInt(3, startRow);
+		ps.setInt(4, endRow);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		List<approvalDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			approvalDto approvaldto = new approvalDto();
+			
+			approvaldto.setAppNo(rs.getInt(2));//rownum 이 column 1이므로 2부터 시작
+			approvaldto.setDrafter(rs.getString(3));
+			approvaldto.setAppTitle(rs.getString(4));
+			approvaldto.setAppContent(rs.getString(5));
+			approvaldto.setAppDateStart(rs.getString(6));
+			approvaldto.setAppDateEnd(rs.getString(7));
+			approvaldto.setAppState(rs.getString(8));
+			approvaldto.setEmpName(rs.getString(9));
+			list.add(approvaldto);
+		
+		}
+		con.close();
+		
+		return list;
+	}
+	
+	public int getCount(String id)throws Exception{//작성한 기안서 수 출력
+		
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select count(*) from approval where drafter = ?";
+	
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, id);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		int count;
+		if(rs.next()) {
+			count = rs.getInt(1);
+		}
+		else {
+			count=0;
+		}
+	return count;
+	}
+	
+	public int getCount(String id, String keyword)throws Exception{//검색한 기안서의 수를 출력
+		
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select count(*) from approval where instr(app_title,?)>0 and drafter = ?";
+	
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, keyword);
+		ps.setString(2, id);
+		ResultSet rs = ps.executeQuery();
+		
+		int count;
+		if(rs.next()) {
+			count = rs.getInt(1);
+		}
+		else {
+			count=0;
+		}
+	return count;
 	}
 	
 }
