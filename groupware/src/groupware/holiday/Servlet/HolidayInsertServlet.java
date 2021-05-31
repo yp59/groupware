@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import groupware.beans.HolidayDao;
 import groupware.beans.HolidayDto;
 import groupware.beans.employeesDao;
+import groupware.beans.employeesDto;
 
 @WebServlet(urlPatterns="/holiday/holidayInsert.gw")
 public class HolidayInsertServlet extends HttpServlet{
@@ -35,17 +36,22 @@ public class HolidayInsertServlet extends HttpServlet{
 			
 			int holNo = holidayDao.getSequence();//게시글번호(DB시퀀스)
 			holidayDto.setHolNo(holNo);
-
 			holidayDao.insert(holidayDto);
 			
-			int holCount = holidayDao.count(empNo,holNo);
-			
-			
+			int holCount = holidayDao.count(empNo,holNo); //한번 신청한 휴가 날짜
+
 			employeesDao employeesDao = new employeesDao();
+			employeesDto employeesDto = employeesDao.loginInfo(empNo); //단일조회
 			
-			if(employeesDao.holidayCount(empNo, holCount)) {
-				resp.sendRedirect("holidayList.jsp");
-			}	
+			int holDay = employeesDto.getHolidayCount();
+			if(holDay -holCount>0) { 
+				if(employeesDao.holidayCount(empNo, holCount)) { //제대로 업데이트 됐다면
+					resp.sendRedirect("holidayList.jsp");
+				}	
+			}
+			else {
+				resp.sendRedirect("holidayDelete.gw?holNo="+holNo);
+			}
 			
 		}
 		catch(Exception e) {

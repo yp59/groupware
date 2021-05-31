@@ -58,6 +58,8 @@ public class employeesDao {
 		ps.executeUpdate();
 		con.close();
 	}
+	
+	//단일 조회
 	public employeesDto loginInfo(String empNo)throws Exception{
 		
 		Connection con = jdbcUtils.getConnection();
@@ -211,6 +213,7 @@ public class employeesDao {
 		con.close();
 		return count>0;
 	}
+
 
 	//윤준하
 	//empNo->empName 불러오는 메소드
