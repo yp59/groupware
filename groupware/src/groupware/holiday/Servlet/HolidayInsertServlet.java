@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import groupware.beans.HolidayDao;
 import groupware.beans.HolidayDto;
+import groupware.beans.employeesDao;
 
 @WebServlet(urlPatterns="/holiday/holidayInsert.gw")
 public class HolidayInsertServlet extends HttpServlet{
@@ -37,9 +38,14 @@ public class HolidayInsertServlet extends HttpServlet{
 
 			holidayDao.insert(holidayDto);
 			
-			resp.sendRedirect("holidayList.jsp");
-
+			int holCount = holidayDao.count(empNo,holNo);
 			
+			
+			employeesDao employeesDao = new employeesDao();
+			
+			if(employeesDao.holidayCount(empNo, holCount)) {
+				resp.sendRedirect("holidayList.jsp");
+			}	
 			
 		}
 		catch(Exception e) {

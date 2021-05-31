@@ -141,4 +141,26 @@ public class HolidayDao {
 		return holidayDto;
 	}
 	
+
+	// 휴가 사용일수 계산
+	public int count(String empNo, int holNo) throws Exception{
+		
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select (hol_end - hol_start)+1 as count from holiday where emp_no=? and hol_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setInt(2, holNo);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		int count=0;
+		if(rs.next()) {
+			count = rs.getInt("count");
+		}
+		
+		con.close();
+		return count;
+	}
+	
 }
