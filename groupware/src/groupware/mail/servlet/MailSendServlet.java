@@ -9,6 +9,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -57,17 +58,21 @@ public class MailSendServlet extends HttpServlet{
             InternetAddress to = new InternetAddress(mr.getParameter("mailRecipient"));         
             msg.setRecipient(Message.RecipientType.TO, to);            
             msg.setSubject(mr.getParameter("mailTitle"), "UTF-8");            
-            msg.setText(mr.getParameter("mailContent") +
-            "\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "UTF-8");            
             
 //             파일 첨부
             File file = mr.getFile("mailFile");
             MimeMultipart mmp = new MimeMultipart();
             MimeBodyPart mbp = new MimeBodyPart();
+            mbp.setContent(mr.getParameter("mailContent") +
+            		"\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
+            mmp.addBodyPart(mbp);
+            
+            mbp = new MimeBodyPart();
             FileDataSource fds = new FileDataSource(file.getAbsolutePath());
             mbp.setDataHandler(new DataHandler(fds));
             mbp.setFileName(MimeUtility.encodeText(mr.getOriginalFileName("mailFile"), "UTF-8", "B"));
 			mmp.addBodyPart(mbp);
+			
 			msg.setContent(mmp);
 			
             //메일 전송
