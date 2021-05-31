@@ -137,13 +137,9 @@ public class SalaryDao {
 	public List<SalaryDto> search(String empNo,String year, String month) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select * from( "
-			    		+"select rownum rn, TMP.* from( "
-			    			+"select salary_date, salary_total from salary "
+		String sql = "select salary_date, salary_total from salary "
 			    		+"where instr(to_char(salary_date,'yyyy'),?)>0 and instr(to_char(salary_date,'mm'),?)>0 "
-			    		+ "and emp_no= ?"
-			    	+ ") TMP "
-			    	+")";
+			    		+ "and emp_no= ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, year);

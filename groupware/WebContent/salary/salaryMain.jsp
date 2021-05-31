@@ -38,7 +38,7 @@
 	//서버에서 수신한 searchYear와 searchMonth에 해당하는 값들을 각각의 입력창에 설정하여 유지되는것처럼 보이도록 구현
 	$(function(){
 		$("select[name=searchYear]").val("<%=searchYear%>");
-		$("input[name=searchMonth]").val("<%=searchMonth%>");
+		$("select[name=searchMonth]").val("<%=searchMonth%>");
 	});
 </script>
 <%} %>
