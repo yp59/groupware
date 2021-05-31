@@ -15,6 +15,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,7 +66,7 @@ public class MailSendServlet extends HttpServlet{
             MimeBodyPart mbp = new MimeBodyPart();
             FileDataSource fds = new FileDataSource(file.getAbsolutePath());
             mbp.setDataHandler(new DataHandler(fds));
-            mbp.setFileName(mr.getOriginalFileName("mailFile"));
+            mbp.setFileName(MimeUtility.encodeText(mr.getOriginalFileName("mailFile"), "UTF-8", "B"));
 			mmp.addBodyPart(mbp);
 			msg.setContent(mmp);
 			
