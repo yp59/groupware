@@ -39,7 +39,7 @@ public class employeesDao {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "insert into employees values"
-				+ " (?,?,?,?,?,?,?,?)";
+				+ " (?,?,?,?,?,?,?,?,?)";
 				
 		PreparedStatement ps = con.prepareStatement(sql);
 		
@@ -51,7 +51,9 @@ public class employeesDao {
 		ps.setString(6, employeesdto.getEmpPhone());
 		ps.setString(7, employeesdto.getEmail());
 		ps.setString(8, employeesdto.getAddress());
-		
+		//직급별휴가 일수 설정
+		ps.setInt(9, employeesdto.getHolidayCount());
+	
 		ps.executeUpdate();
 		con.close();
 	}
@@ -190,8 +192,22 @@ public class employeesDao {
 		}
 		con.close();
 		return empDto;
+	
+	}
+	
+	//노승연,오하영
+	public boolean holidayCount(String empNo, int holCount) throws Exception {
+		Connection con = jdbcUtils.getConnection();
 		
+		String sql = "update employees set holiday_count=? where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, holCount);
+		ps.setString(2, empNo);
 		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
 	}
 	
 }
