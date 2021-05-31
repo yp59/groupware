@@ -142,7 +142,7 @@ public class HolidayDao {
 	}
 	
 
-	// 휴가 사용일수 계산
+	// 휴가 사용일수 계산.
 	public int count(String empNo, int holNo) throws Exception{
 		
 		Connection con = jdbcUtils.getConnection();
