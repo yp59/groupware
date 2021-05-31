@@ -19,15 +19,14 @@ String answer_name =request.getParameter("sender");
 String answer_title = request.getParameter("m_name");
 
 
-boolean isSender=answer_name!=null;
+boolean isSender=answer_name!=null; //답장하기인가?
 
 //주소록을 통해 연동해서 메세지 작성기능:
 // 답장기능과 차이를 두어야 한다. 공통점: 수신자이름을 파라미터로 받아와서 보냄. 차이점: ...
 // 주소를 통해 사원번호르 받아와서 이를 통해 empName을 가져온다.
 String answer_empNo=request.getParameter("empNo");
 
-boolean isAadressSend=answer_empNo!=null;
-
+boolean isAadressSend=answer_empNo!=null; //주소타고 들어온 메세지 작성인가?
 
 
 if(isAadressSend) {
@@ -39,6 +38,19 @@ if(isAadressSend) {
 
 
 <jsp:include page="/template/header.jsp"></jsp:include>
+
+
+<script>
+	$(function(){
+		$(".search-btn").click(function(e){
+			e.preventDefault();
+			
+			window.open(this.href, 'new', 'width=600, height=400');
+		});
+	});
+</script>
+
+
 
 <div class="container-800">
 	<%if(isSender) {%>
@@ -68,21 +80,27 @@ if(isAadressSend) {
 			
 			
 			<div class="row">
-			<!-- 수신자 명단 : 1. 답장일 때 2. 새로운 massage일때 -->
+				
+			<!-- 수신자 명단 : 1. 답장일 때 || address타고 들어왔을 때  2. 새로운 massage일때 -->
 				<%if(isSender||isAadressSend) {%>
 					<label>수신자</label>
 					<select name="e2_name">
-						 <!-- 수신자 이름 보냄 -->
+<!-- 						 수신자 이름 보냄 -->
 							<option><%=answer_name%></option>
 					</select>
 				<%} else{ %>
 					<label>수신자</label>
-					<select name="e2_name">
-					 <!-- 수신자 이름 보냄 -->
-					<%for(employeesDto empDto : empList) {%>
-						<option><%=empDto.getEmpName()%></option>
-					<%} %>
-					</select>
+					<input type="text" name="e2_name">
+<!-- 					<select name="e2_name"> -->
+<!-- <!-- 					 수신자 이름 보냄 --> 
+<%-- 					<%for(employeesDto empDto : empList) {%> --%>
+<%-- 						<option><%=empDto.getEmpName()%></option> --%>
+<%-- 					<%} %> --%>
+<!-- 					</select> -->
+				<%} %>
+				
+				<%if(!isSender&&!isAadressSend){ %>
+				<span><a class="link-btn search-btn" href="massageInsertList.jsp" onclick="">검색</a></span>
 				<%} %>
 			</div>
 			
