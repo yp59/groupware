@@ -22,8 +22,11 @@ public class employeesDto {
 		this.holidayCount = holidayCount;
 	}
 
+	private String department;
+	private String poSi;
+	
 	public employeesDto(String empNo, String empPw, int poNo, String empName, String joinDate, String empPhone,
-			String email, String address) {
+			String email, String address, String department, int holidayCount) {
 		super();
 		this.empNo = empNo;
 		this.empPw = empPw;
@@ -34,6 +37,8 @@ public class employeesDto {
 		this.email = email;
 		this.address = address;
 		
+		this.department = department;
+		this.holidayCount = holidayCount;
 	}
 
 	
@@ -107,4 +112,21 @@ public class employeesDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getPoSi() {
+		return poSi;
+	}
+
+	public void setPoSi(String poSi) {
+		this.poSi = poSi;
+	}
+	
 }

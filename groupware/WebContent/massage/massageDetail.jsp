@@ -58,8 +58,8 @@ boolean isReceiver = massageListDto.getE2_no().equals(request.getSession().getAt
 	<div class="row">
 		<!-- 답변기능 : 
 			1.이 기능의 경우 수신자 목록을 통해 들어온 경우만 가능해야 한다. 
-			2.이 경우 파라미터를 통해 작성자 이름을 보내고 그 값을 수신자 이름으로 받아야한다.
-				-> 이 때 발신자 이름을 보내야한다.	-->
+			2.이 경우 파라미터를 통해 작성자 이름을 보내고 그 값을 수신자 이름으로 받아야한다. -> 이 때 발신자 이름을 보내야한다.
+				+ 메세지 제목 	-->
 			 
 
 		 <%if(isReceiver) {%>
