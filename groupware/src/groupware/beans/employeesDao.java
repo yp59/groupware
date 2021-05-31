@@ -39,7 +39,7 @@ public class employeesDao {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "insert into employees values"
-				+ " (?,?,?,?,?,?,?,?,?)";
+				+ " (?,?,?,?,?,?,?,?,?,?)";
 				
 		PreparedStatement ps = con.prepareStatement(sql);
 		
