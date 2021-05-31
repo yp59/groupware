@@ -3,6 +3,7 @@ package groupware.beans;
 public class indirectAppDto {
 
 	private int referrerNo;
+	private int appNo;
 	private String referrer;
 	private String type;
 	
@@ -16,6 +17,14 @@ public class indirectAppDto {
 
 	public void setReferrerNo(int referrerNo) {
 		this.referrerNo = referrerNo;
+	}
+
+	public int getAppNo() {
+		return appNo;
+	}
+
+	public void setAppNo(int appNo) {
+		this.appNo = appNo;
 	}
 
 	public String getReferrer() {
@@ -33,6 +42,8 @@ public class indirectAppDto {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	
 	
 	
 }
