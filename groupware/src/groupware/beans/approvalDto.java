@@ -11,6 +11,8 @@ public class approvalDto {
 	private String appDateEnd;
 	private String appState;
 	private String empName;
+	private String dirType;
+	private String indirType;
 	
 	public approvalDto() {
 		super();
@@ -78,6 +80,22 @@ public class approvalDto {
 
 	public void setEmpName(String empName) {
 		this.empName = empName;
+	}
+
+	public String getDirType() {
+		return dirType;
+	}
+
+	public void setDirType(String dirType) {
+		this.dirType = dirType;
+	}
+
+	public String getIndirType() {
+		return indirType;
+	}
+
+	public void setIndirType(String indirType) {
+		this.indirType = indirType;
 	}
 	
 	

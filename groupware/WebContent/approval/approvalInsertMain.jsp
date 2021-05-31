@@ -141,14 +141,18 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 
 <form class = "search-form" action="approvalInsertMain.jsp">
 <input type="hidden" name="pageNo">
+
+<div class = "text-right">
 <input type="text" name="keyword" placeholder="기안서 검색"><!-- 검색 keyword 입력창-->
 <input type ="submit" value = "검색">
+</div>
+
 </form>
 
 <table class="table table-border table-hover" >
 		<thead>
 			<tr>
-				<th>결제 서류 번호</th>
+				<th>결재 서류 번호</th>
 				<th>제목</th>
 				<th>기안자</th>
 				<th>기안일</th>
