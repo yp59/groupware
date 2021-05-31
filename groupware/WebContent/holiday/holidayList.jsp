@@ -39,6 +39,7 @@
                <th>시작 날짜</th>
                <th>끝 날짜</th>
                <th>작성일</th>
+               <th width="10%">신청 일수</th>
             </tr>
          </thead>
          
@@ -55,6 +56,7 @@
                <td><%=holidayDto.getHolStart().substring(0,10)%></td>
                <td><%=holidayDto.getHolEnd().substring(0,10)%></td>
                <td><%=holidayDto.getHolWriteDate()%></td>
+               <td><%=holidayDao.count(empNo,holidayDto.getHolNo())%></td>
             </tr>
             <%} %>
          </tbody>

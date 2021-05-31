@@ -14,19 +14,30 @@
 	$(function(){
 		
 		$("#holSubmit").click(function(){
-			var startDay = document.getElementById("startDay").value;
-			var endDay = document.getElementById("endDay").value;
+			var startArr = $('#startDay').val().split("-");
+			var endArr = $('#endDay').val().split("-");
 			
-			if(endDay - startDay > 0 ){ //시작일이 종료일보다 뒤 일경우
-				if(<%=employeesDto.getHolidayCount()%> - endDay - startDay+1 > 0){ //남은 휴가 일수가 사용하려는 휴가 일수보다 클경우만
-					return true;
-					
-				}
+			var startDay = new Date(startArr[0], startArr[1], startArr[2]);
+			var endDay = new Date(endArr[0], endArr[1], endArr[2]);
+			
+			
+			if(startDay.getTime() > endDay.getTime()){ //시작일이 종료일보다 뒤 일경우
+				console.log((endDay)/ 1000 / 60 / 60 / 24);
+				window.alert("휴가 신청을 할 수 없습니다.\n날짜를 조정하세요");
+				return false;
+			
 			}
-			else{
-				window.alert("휴가 신청을 할 수 없습니다.\n 날짜를 조정하세요");
+			
+			//남은 휴가 일수가 사용하려는 휴가 일수보다 작은 경우
+			else if(<%=employeesDto.getHolidayCount()%>
+					- ((endDay.getTime() - startDay.getTime())/ 1000 / 60 / 60 / 24 + 1) < 0){	
+				window.alert("남은 휴가 일수를 초과하였습니다.\n날짜를 조정하세요");
 				return false;
 			}
+			else{
+				return true;
+			}
+			
 		});
 		
 	});
