@@ -136,6 +136,17 @@
 			</ul>
 		</div>
 		
+		<ul>
+				<li class = "menu menu-title">
+					<a href="<%=root%>/address/addressList.jsp">주소록</a>
+					<a href="<%=root%>/mail/mailList.jsp">메일</a>
+				</li>
+			<ul>
+				<li class = "menu menu_detail">
+				<a href="<%=root%>/mail/mailSend.jsp">메일보내기</a>
+				</li>
+			</ul>
+			</ul>
 		</aside>
 		
 		<!-- 컨텐츠영역 -->

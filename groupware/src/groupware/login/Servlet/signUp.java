@@ -47,7 +47,9 @@ public class signUp extends HttpServlet{
 				phone,
 				email,
 				address,
-				holiday);
+				req.getParameter("department"),//부서 받아서 db 저장가능하게 구현
+				holiday //직급별 휴가일수 설정
+				);
 		
 		employeesdao.regist(employeesdto);
 		
