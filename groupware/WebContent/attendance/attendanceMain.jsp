@@ -11,7 +11,26 @@
    AttendanceDao attendanceDao = new AttendanceDao();
    List<AttendanceDto> attendanceList = attendanceDao.list(empNo);
    
-%>    
+%>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+
+		$(".attend-btn").click(function(){
+			var date = new Date();
+			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"출근했습니다.");
+		});
+		
+		$(".leave-btn").click(function(){
+			var date = new Date();
+			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"퇴근했습니다.");
+		});
+		
+	});
+
+
+</script>
+    
 <jsp:include page="/template/header.jsp"></jsp:include>
 
  <div class="row">
@@ -19,8 +38,8 @@
    </div>
    
    <div class="row text-right">
-      <a href="attend.gw?" class="link-btn">출근</a>
-      <a href="leave.gw?" class="link-btn">퇴근</a>
+      <a href="attend.gw?" class="link-btn attend-btn">출근</a>
+      <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>
    </div>
    
    <div class="row">
