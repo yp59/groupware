@@ -47,7 +47,7 @@ boolean isReceiver = massageListDto.getE2_no().equals(request.getSession().getAt
 			</tr>
 			<tr>
 				<th>보낸시간</th>
-				<td><%=massageListDto.getM_date() %></td>
+				<td><%=massageListDto.getM_date().toLocaleString() %></td>
 			</tr>
 			<tr>
 				<th>내용</th>

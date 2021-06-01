@@ -10,6 +10,8 @@ public class ScheduleIngDto {
 	private String sc_state;
 	private String empName;
 	
+	private String dep_name;
+	
 	public ScheduleIngDto() {
 		super();
 	}
@@ -62,6 +64,15 @@ public class ScheduleIngDto {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
+	public String getDep_name() {
+		return dep_name;
+	}
+	public void setDep_name(String dep_name) {
+		this.dep_name = dep_name;
+	}
+	
+	
+
 	
 	
 	

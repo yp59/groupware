@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="groupware.beans.DepartmentDao"%>
+<%@page import="groupware.beans.DepartmentDto"%>
 <%@page import="groupware.beans.ScheduleDao"%>
 <%@page import="groupware.beans.ScheduleDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,11 +11,16 @@ int sc_no =Integer.parseInt(request.getParameter("sc_no"));
 ScheduleDto scheduleDto = scheduleDao.detail(sc_no);
 
 
+DepartmentDao departmentDao = new DepartmentDao();
+List<DepartmentDto>list = departmentDao.list();
 
 
 %>
 
 <jsp:include page="/template/header.jsp"></jsp:include>
+
+
+
 
 <div class="container-600">
 	<div class="row">
@@ -27,6 +35,21 @@ ScheduleDto scheduleDto = scheduleDao.detail(sc_no);
 			<div class="row">
 				제목<input type="text" value="<%=scheduleDto.getSc_name() %>" name="sc_name">
 			</div>
+			
+			<div>
+				<label>담당부서</label>
+				<select name="dep_name">
+					<option><%=scheduleDto.getDep_name() %></option>			
+					
+					
+					<%for(DepartmentDto departmentDto:list){%>
+						<%if(!departmentDto.getDep_name().equals(scheduleDto.getDep_name())) {%>
+						<option><%=departmentDto.getDep_name() %></option>
+						<%} %>
+					<%} %>
+				</select>
+			</div>
+			
 			<div class="row">
 				내용<textarea name="sc_content"><%=scheduleDto.getSc_content() %></textarea>
 			</div>
