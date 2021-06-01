@@ -61,7 +61,7 @@ public class MailSendServlet extends HttpServlet{
             msg.setRecipient(Message.RecipientType.TO, to);            
             msg.setSubject(mr.getParameter("mailTitle"), "UTF-8");            
             
-//            본문
+            //본문
             File file = mr.getFile("mailFile");
             MimeMultipart mmp = new MimeMultipart();
             MimeBodyPart mbp = new MimeBodyPart();
@@ -69,7 +69,7 @@ public class MailSendServlet extends HttpServlet{
             		"\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
             mmp.addBodyPart(mbp);
             
-//             파일 첨부
+            //파일 첨부
             mbp = new MimeBodyPart();
             FileDataSource fds = new FileDataSource(file.getAbsolutePath());
             mbp.setDataHandler(new DataHandler(fds));
