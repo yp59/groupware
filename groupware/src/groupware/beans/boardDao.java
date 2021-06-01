@@ -482,5 +482,63 @@ public class boardDao {
 			con.close();
 			return count > 0;
 		}
-
+		
+		// 이전글 조회 기능
+		public boardDto getPrevious(int boardNo) throws Exception {
+			Connection con = jdbcUtils.getConnection();
+			String sql = "select * from board "
+							+ "where board_no = ( select max(board_no) from board where board_no < ? )";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			ResultSet rs = ps.executeQuery();
+			boardDto boarddto;
+			if(rs.next()) {
+				boarddto = new boardDto();
+				boarddto.setBoardNo(rs.getInt("board_no"));
+				boarddto.setEmpNo(rs.getString("emp_no"));
+				boarddto.setBoTitle(rs.getString("bo_title"));
+				boarddto.setBoType(rs.getString("bo_type"));
+				boarddto.setBoContent(rs.getString("bo_content"));
+				boarddto.setBoCount(rs.getInt("bo_count"));
+				boarddto.setBoDate(rs.getString("bo_date"));
+				boarddto.setComComments(rs.getInt("bo_comments"));
+			}
+			
+			else {
+			boarddto = null;	
+			}
+			
+			con.close();
+			
+			return boarddto;
+		}
+		// 다음글 조회 기능
+		public boardDto getNext(int boardNo) throws Exception {
+			Connection con = jdbcUtils.getConnection();
+			String sql = "select * from board "
+							+ "where board_no = ( select min(board_no) from board where board_no > ? )";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			ResultSet rs = ps.executeQuery();
+			boardDto boarddto;
+			if(rs.next()) {
+				boarddto = new boardDto();
+				boarddto.setBoardNo(rs.getInt("board_no"));
+				boarddto.setEmpNo(rs.getString("emp_no"));
+				boarddto.setBoTitle(rs.getString("bo_title"));
+				boarddto.setBoType(rs.getString("bo_type"));
+				boarddto.setBoContent(rs.getString("bo_content"));
+				boarddto.setBoCount(rs.getInt("bo_count"));
+				boarddto.setBoDate(rs.getString("bo_date"));
+				boarddto.setComComments(rs.getInt("bo_comments"));
+			}
+			
+			else {
+			boarddto = null;	
+			}
+			
+			con.close();
+			
+			return boarddto;
+		}
 }
