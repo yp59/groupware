@@ -24,25 +24,72 @@
 	boolean isSearchBoth = searchYear == "" && searchMonth == "";
 	boolean isSearch = searchYear != null && searchMonth != null;
 	
-	  
-	 
+	
+	int pageNo;//현재 페이지 번호
+	try{
+		pageNo = Integer.parseInt(request.getParameter("pageNo"));
+		if(pageNo < 1) {
+			throw new Exception();
+		}
+	}
+	catch(Exception e){
+		pageNo = 1;//기본값 1페이지
+	}
+	
+	int pageSize;
+	try{
+		pageSize = Integer.parseInt(request.getParameter("pageSize"));
+		if(pageSize < 5){
+			throw new Exception();
+		}
+	}
+	catch(Exception e){
+		pageSize = 5;//기본값 5개
+	}
+	
+	//(2) rownum의 시작번호(startRow)와 종료번호(endRow)를 계산
+	int startRow = pageNo * pageSize - (pageSize-1);
+	int endRow = pageNo * pageSize;
+	
+	//List<SalaryDto> boardList;
 	List<SalaryDto> salaryList = null;
 	SalaryDto salaryDto = null;
-	  
+	
 	if(isSearch){
 		salaryDto = salaryDao.search(empNo,searchYear, searchMonth);
 		if(isSearchYear){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth);
+			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow);
 		}
 		else if(isSearchMonth){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth);
+			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow);
 		}
 		else if(isSearchBoth){
-			salaryList = salaryDao.list(empNo); 
+			salaryList = salaryDao.list(empNo, startRow, endRow);
 		}
 	}
 	else{
-		salaryList = salaryDao.list(empNo); 
+		salaryList = salaryDao.list(empNo, startRow, endRow);
+	}
+	
+	/////////////////////////////////////////////////////////////////////
+	// 페이지 네비게이션 영역 계산
+	/////////////////////////////////////////////////////////////////////
+	
+	int count;
+	if(isSearch){
+		count = salaryDao.getCount(empNo,searchYear, searchMonth); 
+	}
+	else{
+		count = salaryDao.getCount(empNo);
+	}
+	int blockSize = 10;
+	int lastBlock = (count + pageSize - 1) / pageSize;
+// 	int lastBlock = (count - 1) / pageSize + 1;
+	int startBlock = (pageNo - 1) / blockSize * blockSize + 1;
+	int endBlock = startBlock + blockSize - 1;
+	
+	if(endBlock > lastBlock){//범위를 벗어나면
+		endBlock = lastBlock;//범위를 수정
 	}
 	  
 	//지급액에 , 찍어주기
@@ -95,9 +142,7 @@ function monthSelect(monthList){
 		var option = $("<option>" + monthList[count] + "</option>");
 		$("select[name=searchMonth]").append(option);
 	}
-	
 }
-
 </script>
 
 <%if(isSearch){ %>
@@ -109,6 +154,28 @@ function monthSelect(monthList){
 	});
 </script>
 <%} %>
+
+<script>
+	$(function(){
+		$(".pagination > a").click(function(){
+			var pageNo = $(this).text();
+			if(pageNo == "이전"){//이전 링크 : 현재 링크 중 첫 번째 항목 값 - 1
+				pageNo = parseInt($(".pagination > a:not(.move-link)").first().text()) - 1;
+				$("input[name=pageNo]").val(pageNo);
+				$(".search-form").submit();//강제 submit 발생
+			}	
+			else if(pageNo == "다음"){//다음 링크 : 현재 링크 중 마지막 항목 값 + 1
+				pageNo = parseInt($(".pagination > a:not(.move-link)").last().text()) + 1;
+				$("input[name=pageNo]").val(pageNo);
+				$(".search-form").submit();//강제 submit 발생
+			}
+			else{//숫자 링크
+				$("input[name=pageNo]").val(pageNo);
+				$(".search-form").submit();//강제 submit 발생
+			}
+		});
+	});
+</script>
 <div class="row">
       <h2>급여</h2>
 </div>
@@ -170,9 +237,31 @@ function monthSelect(monthList){
 		</table>
 	</div>
 			   	
-		   
+	<form class="search-form" action="salaryMain.jsp" method="get">
+		<input type="hidden" name="pageNo">
+	</form>
+   
    <div class="row">
-     
-        
-   </div>
+		<!-- 페이지 네비게이션 자리 -->
+		<div class="pagination">
+		
+			<%if(startBlock > 1){ %>
+			<a class="move-link">이전</a>
+			<%} %>
+			
+			<%for(int i = startBlock; i <= endBlock; i++){ %>
+				<%if(i == pageNo){ %>
+					<a class="on"><%=i%></a>
+				<%}else{ %>
+					<a><%=i%></a>
+				<%} %>
+			<%} %>
+			
+			<%if(endBlock < lastBlock){ %>
+			<a class="move-link">다음</a>
+			<%} %>
+			
+		</div>	
+	</div>
+	
 <jsp:include page="/template/footer.jsp"></jsp:include>

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SalaryDao {
 	
 	public void insert(SalaryDto salaryDto,String year, String month) throws Exception {
@@ -41,12 +42,18 @@ public class SalaryDao {
 	
 	//자신 월급 내역
 	//1월,2월,3월, ... => 표? 'yyyy-mm' 2021년 5월달 월급
-	public List<SalaryDto> list(String empNo) throws Exception {
+	public List<SalaryDto> list(String empNo, int startRow, int endRow) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select * from salary where emp_no=? order by salary_date desc";
+		String sql = "select * from("
+						+ "select rownum rn, TMP.* from("
+							+"select * from salary where emp_no=? order by salary_date desc"
+						+ ")TMP"
+					+ ") where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
+		ps.setInt(2, startRow);
+		ps.setInt(3, endRow);
 		
 		ResultSet rs = ps.executeQuery();
 		List<SalaryDto> list = new ArrayList<>();
@@ -162,19 +169,25 @@ public class SalaryDao {
 	}
 	
 	//연도별, 월별 검색 기능
-	public List<SalaryDto> searchList(String empNo, String year, String month) throws Exception {
+	public List<SalaryDto> searchList(String empNo, String year, String month, int startRow, int endRow) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select salary_date, salary_total from salary "
-			    		+"where emp_no= ? and "
-			    		+ "instr(to_char(salary_date,'yyyy'),?)>0 or instr(to_char(salary_date,'mm'),?)>0 "
-			    		+ "and emp_no = ?";
+		String sql = "select * from("
+						+ "select rownum rn, TMP.* from(" 
+							+"select salary_date, salary_total from salary "
+				    		+"where emp_no= ? and "
+				    		+ "instr(to_char(salary_date,'yyyy'),?)>0 or instr(to_char(salary_date,'mm'),?)>0 "
+				    		+ "and emp_no = ?"
+				    	+ ")TMP"
+					+ ") where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
 		ps.setString(2, year);
 		ps.setString(3, month);
 		ps.setString(4, empNo);
+		ps.setInt(5, startRow);
+		ps.setInt(6, endRow);
 		
 		
 		ResultSet rs = ps.executeQuery();
@@ -192,4 +205,41 @@ public class SalaryDao {
 		return salaryList;
 	}
 
+	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
+	public int getCount(String empNo) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select count(*) from salary where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		
+		con.close();
+		
+		return count;
+	}
+	
+	public int getCount(String empNo, String year, String month) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select count(*) from salary "
+	    		+"where emp_no= ? and "
+	    		+ "instr(to_char(salary_date,'yyyy'),?)>0 or instr(to_char(salary_date,'mm'),?)>0 "
+	    		+ "and emp_no = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setString(2, year);
+		ps.setString(3, month);
+		ps.setString(4, empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		
+		con.close();
+		
+		return count;
+	}
 }
