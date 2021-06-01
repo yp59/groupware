@@ -14,15 +14,15 @@
 	$(function(){
 		
 		$("#holSubmit").click(function(){
-			var startArr = $('#startDay').val().split("-");
+		
+			
+			var startArr = $('#startDay').val().split("-"); // 2021-06-01
 			var endArr = $('#endDay').val().split("-");
 			
 			var startDay = new Date(startArr[0], startArr[1], startArr[2]);
 			var endDay = new Date(endArr[0], endArr[1], endArr[2]);
 			
-			
 			if(startDay.getTime() > endDay.getTime()){ //시작일이 종료일보다 뒤 일경우
-				console.log((endDay)/ 1000 / 60 / 60 / 24);
 				window.alert("휴가 신청을 할 수 없습니다.\n날짜를 조정하세요");
 				return false;
 			
