@@ -11,6 +11,8 @@ public class ScheduleEndDto {
 	
 	private String empName;
 	
+	private String dep_name;
+	
 	public ScheduleEndDto() {
 		super();
 	}
@@ -63,6 +65,15 @@ public class ScheduleEndDto {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
+	public String getDep_name() {
+		return dep_name;
+	}
+	public void setDep_name(String dep_name) {
+		this.dep_name = dep_name;
+	}
+	
+	
+	
 	
 	
 }
