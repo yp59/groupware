@@ -43,7 +43,7 @@ public class MailSendServlet extends HttpServlet{
 			
 			req.setCharacterEncoding("UTF-8");
 			
-			// 메일 설정 
+			// 메일 설정
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
 			prop.put("mail.smtp.host", "smtp.gmail.com");
