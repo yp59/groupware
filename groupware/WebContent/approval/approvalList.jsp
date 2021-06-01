@@ -114,7 +114,28 @@
 	});
 </script>
 
+<script>
 
+$(function(){
+
+	////////////////////////////////////////////////////////////////////////
+	var _width = '700';
+    var _height = '700';
+ 
+    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+    var _left = Math.ceil(( window.screen.width - _width )/2);
+    var _top = Math.ceil(( window.screen.height - _height )/2);
+    
+var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top ;
+	$("#approvalDetail").click(function(){
+		 window.open("approvalDetail.jsp","appDetail",option);
+		 
+	});
+///////////////////////////////////////////////////////////////////////////////
+	
+	
+});
+</script>
 <div class = "container-900">
 
 <form class = "search-form" action="approvalList.jsp">
@@ -144,7 +165,8 @@
 				<tr>
 					<td><%=approvaldto.getAppNo()%></td>
 					<td><%=approvaldto.getDirType() %></td>
-					<td><%=approvaldto.getAppTitle()%></td>
+					<td><a id ="approvalDetail"><%=approvaldto.getAppTitle()%>
+					</a></td>
 					<td><%=approvaldto.getEmpName()%></td>
 					<td><%=approvaldto.getAppDateStart()%></td>
 					<td><%=approvaldto.getAppDateEnd()%></td>
