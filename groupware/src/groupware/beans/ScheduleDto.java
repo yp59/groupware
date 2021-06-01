@@ -11,7 +11,9 @@ public class ScheduleDto {
 	private String sc_deadline;
 	private String sc_state;
 	
-	private int dep_no;
+	private int dep_no; 
+	private String dep_name;
+	
 	public ScheduleDto() {
 		super();
 	}
@@ -64,6 +66,12 @@ public class ScheduleDto {
 	}
 	public void setDep_no(int dep_no) {
 		this.dep_no = dep_no;
+	}
+	public String getDep_name() {
+		return dep_name;
+	}
+	public void setDep_name(String dep_name) {
+		this.dep_name = dep_name;
 	}
 	
 	

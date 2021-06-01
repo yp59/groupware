@@ -23,8 +23,8 @@ public class ScheduleCompleteServlet extends HttpServlet{
 			
 			scheduleDto.setSc_no(Integer.parseInt(req.getParameter("sc_no")));
 			
-			String empNo =(String)req.getSession().getAttribute("id");
-			scheduleDto.setEmpNo(empNo); 
+//			String empNo =(String)req.getSession().getAttribute("id");
+//			scheduleDto.setEmpNo(empNo); 
 			
 			ScheduleDao scheduleDao =new ScheduleDao();
 			
