@@ -2,7 +2,7 @@ package groupware.beans;
 
 public class approvalDto {
 
-	
+	private int rowNum;
 	private int appNo;
 	private String drafter;
 	private String appTitle;
@@ -12,8 +12,11 @@ public class approvalDto {
 	private String appState;
 	private String empName;
 	private String dirType;
+	private String consesus;
+	private String app_date;
+	private int poNo;
 	private String indirType;
-	
+	private String approval;
 	public approvalDto() {
 		super();
 	}
@@ -96,6 +99,46 @@ public class approvalDto {
 
 	public void setIndirType(String indirType) {
 		this.indirType = indirType;
+	}
+
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+
+	public String getConsesus() {
+		return consesus;
+	}
+
+	public void setConsesus(String consesus) {
+		this.consesus = consesus;
+	}
+
+	public String getApp_date() {
+		return app_date;
+	}
+
+	public void setApp_date(String app_date) {
+		this.app_date = app_date;
+	}
+
+	public int getPoNo() {
+		return poNo;
+	}
+
+	public void setPoNo(int poNo) {
+		this.poNo = poNo;
+	}
+
+	public String getApproval() {
+		return approval;
+	}
+
+	public void setApproval(String approval) {
+		this.approval = approval;
 	}
 	
 	

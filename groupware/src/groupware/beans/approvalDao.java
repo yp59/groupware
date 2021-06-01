@@ -278,6 +278,7 @@ public class approvalDao {
 		else {
 			count=0;
 		}
+		con.close();
 	return count;
 	}
 	//작성한 기안서 수 중 검색한 문서 출력
@@ -300,6 +301,7 @@ public class approvalDao {
 		else {
 			count=0;
 		}
+		con.close();
 	return count;
 	}
 
@@ -323,6 +325,7 @@ public class approvalDao {
 			else {
 				count=0;
 			}
+			con.close();
 		return count;
 		}
 		//결재할 기안서 중 검색한 문서 수 출력
@@ -348,7 +351,101 @@ public class approvalDao {
 			else {
 				count=0;
 			}
+			con.close();
 		return count;
 		}
 	
+/*	시퀀스 전체 값 
+ * public List<approvalDto> sequence(int appNo)throws Exception{
+		
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = " select * from ("
+				+ "    select rownum rn,TMP.* from("
+				+ "            select * from("
+				+ "                        select A.*,D.approval,D.type,D.consesus,D.app_date,E.po_no from directapp D"
+				+ "                        inner join  approval A "
+				+ "                        on A.app_no = D.app_no"
+				+ "                        inner join employees E"
+				+ "                        on D.approval = E.emp_no"
+				+ "                        where A.app_no =? and consesus ='1'"
+				+ "                        order by po_no desc)"
+				+ "                        "
+				+ "				union all"
+				+ "            select * from"
+				+ "                        ( select A.*,D.approval,D.type,D.consesus,D.app_date,E.po_no from directapp D"
+				+ "                        inner join approval A "
+				+ "                        on A.app_no = D.app_no"
+				+ "                        inner join employees E"
+				+ "                        on D.approval = E.emp_no"
+				+ "                        where A.app_no =? and consesus ='0'"
+				+ "                        order by po_no desc)"
+				+ "                         )"
+				+ "                         TMP)";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, appNo);
+		ps.setInt(2, appNo);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		List<approvalDto> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			approvalDto approvaldto = new approvalDto();
+			approvaldto.setRowNum(rs.getInt(1));
+			approvaldto.setAppNo(rs.getInt(2));
+			approvaldto.setDrafter(rs.getString(3));
+			approvaldto.setAppTitle(rs.getString(4));
+			approvaldto.setAppContent(rs.getString(5));
+			approvaldto.setAppDateStart(rs.getString(6));
+			approvaldto.setAppDateEnd(rs.getString(7));
+			approvaldto.setAppState(rs.getString(8));
+			approvaldto.setApproval(rs.getString(9));
+			approvaldto.setDirType(rs.getString(10));
+			approvaldto.setConsesus(rs.getString(11));
+			approvaldto.setApp_date(rs.getString(12));
+			approvaldto.setPoNo(rs.getInt(13));
+			
+			list.add(approvaldto);
+			
+		}
+		con.close();
+		return list;
+	}*/
+		
+		//approvaldetail에서 기안서 내용 조회값
+		public approvalDto draftDoc(int appNo)throws Exception{//session id값으로 기안 목록 조회
+			Connection con = jdbcUtils.getConnection();
+			
+			String sql= "select A.*,E.emp_name from approval A"
+					+ " inner join employees E"
+					+ " on A.drafter = E.emp_no"
+					+ " where app_no = ?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, appNo);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			approvalDto approvaldto = new approvalDto();
+			
+			while(rs.next()) {
+				
+				approvaldto.setAppNo(rs.getInt(1));
+				approvaldto.setDrafter(rs.getString(2));
+				approvaldto.setAppTitle(rs.getString(3));
+				approvaldto.setAppContent(rs.getString(4));
+				approvaldto.setAppDateStart(rs.getString(5));
+				approvaldto.setAppDateEnd(rs.getString(6));
+				approvaldto.setAppState(rs.getString(7));
+				approvaldto.setEmpName(rs.getString(8));
+			
+			}
+			con.close();
+			return approvaldto;
+		}
+		
 }
