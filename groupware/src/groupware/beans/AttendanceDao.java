@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,18 +105,24 @@ public class AttendanceDao {
 	
 	
 	// 근태목록 보기 
-	public List<AttendanceDto> list(String empNo) throws Exception{
+	public List<AttendanceDto> list(String empNo,int startRow, int endRow) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql ="select"
-						+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend,"
-						+ "to_char(A.att_leave,'HH24:mi:ss') as att_leave, A.att_totaltime ,"
-						+ " A.att_overtime, E.emp_name"
-					+ " from attendance A inner join employees E "
-				+ "on E.emp_no = A.emp_no and A.emp_no=? order by att_date desc";
+		String sql ="select * from("
+						+ "select rownum rn, TMP.* from("
+							+"select"
+								+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend,"
+								+ "to_char(A.att_leave,'HH24:mi:ss') as att_leave, A.att_totaltime ,"
+								+ " A.att_overtime, E.emp_name"
+							+ " from attendance A inner join employees E "
+							+ "on E.emp_no = A.emp_no and A.emp_no=? order by att_date desc"
+						+")TMP"
+					+") where rn between ? and ?";
 
 			PreparedStatement ps =con.prepareStatement(sql);
 			ps.setString(1,empNo);
+			ps.setInt(2, startRow);
+			ps.setInt(3, endRow);
 			ResultSet rs = ps.executeQuery();
 			
 			List<AttendanceDto> attendanceList = new ArrayList<>();
@@ -172,5 +179,20 @@ public class AttendanceDao {
 		con.close();
 		return attendanceDto;
 	}
+	
+	
+	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
+		public int getCount() throws Exception {
+			Connection con = jdbcUtils.getConnection();
+			String sql = "select count(*) from attendance";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			
+			con.close();
+			
+			return count;
+		}
 
 }
