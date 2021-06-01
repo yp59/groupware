@@ -182,17 +182,18 @@ public class AttendanceDao {
 	
 	
 	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
-		public int getCount() throws Exception {
-			Connection con = jdbcUtils.getConnection();
-			String sql = "select count(*) from attendance";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			int count = rs.getInt(1);
-			
-			con.close();
-			
-			return count;
-		}
+	public int getCount(String empNo) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		String sql = "select count(*) from attendance where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		
+		con.close();
+		
+		return count;
+	}
 
 }

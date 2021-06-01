@@ -26,7 +26,7 @@
 	int pageSize;
 	try{
 		pageSize = Integer.parseInt(request.getParameter("pageSize"));
-		if(pageSize < 10){
+		if(pageSize < 5){
 			throw new Exception();
 		}
 	}
@@ -40,16 +40,16 @@
 	List<AttendanceDto> attendanceList = attendanceDao.list(empNo,startRow,endRow);
 	
 	// 페이지 네비게이션 영역 계산
-		int count = attendanceDao.getCount();
+	int count = attendanceDao.getCount(empNo);
+
+	int blockSize = 10;
+	int lastBlock = (count + pageSize - 1) / pageSize; //(8+5-1)/5=2.4 = 2
+	int startBlock = (pageNo - 1) / blockSize * blockSize + 1; //(5-1)/10*10 + 1 = 1
+	int endBlock = startBlock + blockSize - 1; // 10
 	
-		int blockSize = 10;
-		int lastBlock = (count + pageSize - 1) / pageSize;
-		int startBlock = (pageNo - 1) / blockSize * blockSize + 1;
-		int endBlock = startBlock + blockSize - 1;
-		
-		if(endBlock > lastBlock){
-			endBlock = lastBlock;
-		}   
+	if(endBlock > lastBlock){ // 10>2
+		endBlock = lastBlock;
+	}   
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
@@ -146,6 +146,10 @@
          </tbody>
       </table>
    </div>
+   
+  	<form class="search-form" action="attendanceMain.jsp" method="get">
+		<input type="hidden" name="pageNo">
+	</form>
    
    <div class="row">
 		<!-- 페이지 네비게이션 자리 -->

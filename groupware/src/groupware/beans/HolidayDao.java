@@ -46,15 +46,21 @@ public class HolidayDao {
 	}
 	
 	//휴가 리스트
-	public List<HolidayDto> list(String empNo) throws Exception {
+	public List<HolidayDto> list(String empNo,int startRow, int endRow) throws Exception {
 		
 		Connection con = jdbcUtils.getConnection();
 		
 		//사원 자신의 휴가 신청 내역 볼수 있도록 설정
-		String sql = "select * from holiday where emp_no =? order by hol_no desc";
+		String sql = "select * from( "
+						+ "select rownum rn, TMP.* from( "
+								+"select * from holiday where emp_no =? order by hol_no desc "
+						+")TMP "
+						+") where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
+		ps.setInt(2, startRow);
+		ps.setInt(3, endRow);
 		ResultSet rs = ps.executeQuery();
 		
 		List<HolidayDto> list = new ArrayList<>();
@@ -163,4 +169,18 @@ public class HolidayDao {
 		return count;
 	}
 	
+	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
+	public int getCount(String empNo) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		String sql = "select count(*) from holiday where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		
+		con.close();
+		
+		return count;
+	}
 }
