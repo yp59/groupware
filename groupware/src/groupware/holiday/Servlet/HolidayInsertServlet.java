@@ -38,7 +38,6 @@ public class HolidayInsertServlet extends HttpServlet{
 			holidayDao.insert(holidayDto);
 			
 			int holCount = holidayDao.count(empNo,holNo); //한번 신청한 휴가 일수 가져오기
-
 			employeesDao employeesDao = new employeesDao();
 			
 			if(employeesDao.holidayMinus(empNo, holCount)) { //제대로 업데이트 됐다면

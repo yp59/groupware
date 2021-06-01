@@ -3,7 +3,9 @@ package groupware.beans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -148,12 +150,18 @@ public class HolidayDao {
 	}
 	
 
-	// 휴가 사용일수 계산.
+	// 휴가 사용일수 계산 
+	// + 주말일 경우 휴가 사용일 수에서 주말 제외한 일수만 반환하도록 수정
 	public int count(String empNo, int holNo) throws Exception{
 		
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select (hol_end - hol_start)+1 as count from holiday where emp_no=? and hol_no=?";
+		String sql = "select count(1) as count from("
+						+ "select start_date + level -1 from("
+								+ "select trunc(hol_start) start_date, trunc(hol_end) end_date "
+								+ "from holiday where emp_no=? and hol_no=? )"
+					 + "where to_char(start_date + level -1,'d') != 7 and to_char(start_date + level -1,'d') != 1"
+				+ "connect by level <= end_date - start_date + 1)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
 		ps.setInt(2, holNo);
@@ -161,6 +169,7 @@ public class HolidayDao {
 		ResultSet rs = ps.executeQuery();
 		
 		int count=0;
+		
 		if(rs.next()) {
 			count = rs.getInt("count");
 		}
