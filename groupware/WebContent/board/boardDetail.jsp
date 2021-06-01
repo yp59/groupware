@@ -94,7 +94,9 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 		<input type="submit" value="삭제하기">
 	</form>
 <%}else{ }%>	
-	
+
+<!-- 이전글 다음글 목록 -->
+
 </div>
 <div class="row text-left">
 다음글 :
