@@ -103,7 +103,8 @@ public class SalaryDao {
 	public List<String> getYear(String empNo) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select distinct(to_char(salary_date,'yyyy')) as year from salary where emp_no=? order by year";
+		String sql = "select distinct(to_char(salary_date,'yyyy')) as year from salary "
+				+ "where emp_no=? order by year";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
 		ResultSet rs = ps.executeQuery();
@@ -116,11 +117,12 @@ public class SalaryDao {
 		return yearList;
 	}
 	
-	//월 가져오기(화면 select에 추가)
+	//연도와 월 가져오기(화면 select에 추가)
 	public List<String> getMonth(String empNo) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select distinct(to_char(salary_date,'mm')) as month from salary where emp_no=? order by month";
+		String sql = "select to_char(salary_date,'yyyy-mm') as month from salary "
+				+ "where emp_no=? order by month";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
 		ResultSet rs = ps.executeQuery();
@@ -134,7 +136,7 @@ public class SalaryDao {
 	}
 	
 	//검색 기능
-	public List<SalaryDto> search(String empNo,String year, String month) throws Exception {
+	public SalaryDto search(String empNo, String year, String month) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select salary_date, salary_total from salary "
@@ -145,6 +147,35 @@ public class SalaryDao {
 		ps.setString(1, year);
 		ps.setString(2, month);
 		ps.setString(3, empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		SalaryDto salaryDto = null;
+		if(rs.next()) {
+			salaryDto = new SalaryDto();
+			salaryDto.setSalaryDate(rs.getString("salary_date"));
+			salaryDto.setSalaryTotal(rs.getInt("salary_total"));
+			
+		}
+		con.close();
+		return salaryDto;
+	}
+	
+	//연도별, 월별 검색 기능
+	public List<SalaryDto> searchList(String empNo, String year, String month) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select salary_date, salary_total from salary "
+			    		+"where emp_no= ? and "
+			    		+ "instr(to_char(salary_date,'yyyy'),?)>0 or instr(to_char(salary_date,'mm'),?)>0 "
+			    		+ "and emp_no = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setString(2, year);
+		ps.setString(3, month);
+		ps.setString(4, empNo);
+		
 		
 		ResultSet rs = ps.executeQuery();
 		
