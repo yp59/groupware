@@ -31,7 +31,7 @@
 		}
 	}
 	catch(Exception e){
-		pageSize = 10; //기본값 10개
+		pageSize = 5; //기본값 5개
 	}
    
 	int startRow = pageNo * pageSize - (pageSize-1);
@@ -47,8 +47,8 @@
 		int startBlock = (pageNo - 1) / blockSize * blockSize + 1;
 		int endBlock = startBlock + blockSize - 1;
 		
-		if(endBlock > lastBlock){//범위를 벗어나면
-			endBlock = lastBlock;//범위를 수정
+		if(endBlock > lastBlock){
+			endBlock = lastBlock;
 		}   
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -64,9 +64,12 @@
 			var date = new Date();
 			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"퇴근했습니다.");
 		});
-		
+	});
+</script>
+
+<script>
+	$(function(){
 		$(".pagination > a").click(function(){
-			//주인공 == a태그
 			var pageNo = $(this).text();
 			if(pageNo == "이전"){//이전 링크 : 현재 링크 중 첫 번째 항목 값 - 1
 				pageNo = parseInt($(".pagination > a:not(.move-link)").first().text()) - 1;
@@ -82,9 +85,8 @@
 				$("input[name=pageNo]").val(pageNo);
 				$(".search-form").submit();//강제 submit 발생
 			}
-		});		
+		});
 	});
-
 </script>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
