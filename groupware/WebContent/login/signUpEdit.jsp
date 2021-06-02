@@ -11,7 +11,7 @@ String empNo = request.getParameter("empNo");
 
 
 employeesDao empDao = new employeesDao();
-employeesDto empDto = empDao.loginInfo(empNo);
+employeesDto empDto = empDao.loginInfo(empNo); 
 
 
 
