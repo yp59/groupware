@@ -62,29 +62,32 @@
 	
 	AttendanceDto attendance = attendanceDao.get(empNo, date);
 %>
-<script>
-	$(function(){
+<!-- <script>
+//	$(function(){
 
-		$(".attend-btn").click(function(){
-// 			var date = new Date();
-// 			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"출근했습니다.");
-			//location.href="attend.gw";
-			if(<%=attendance.getAttAttend()%>==null){
-				$(this).disabled = true;
-				//return false;	
-			}
-			else{
-				$(this).disabled = false;
-			}
+// 		$(".attend-btn").click(function(){
+// // 			var date = new Date();
+// // 			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"출근했습니다.");
+// 			//location.href="attend.gw";
+<%-- 			var attend = "<%=attendance.getAttAttend()%>" == "null" ? null : "<%=attendance.getAttAttend()%>"; --%>
+// 			if(attend){
+// 				this.disabled = true;
+// 				//$(this).prop("disabled", true);
+// 				//return false;	
+// 			}
+// 			else{
+// 				//$(this).disabled = false;
+// 				$(this).prop("disabled", false);
+// 			}
 			
-		});
+// 		});
 		
-		$(".leave-btn").click(function(){
-			
-			return false;
-		});
-	});
+//		$(".leave-btn").click(function(){			
+//			return false;
+//		});
+//	});
 </script>
+-->
 
 <script>
 	$(function(){
@@ -115,8 +118,19 @@
    </div>
    
    <div class="row text-right">
-      <a href="attend.gw?" class="link-btn attend-btn">출근</a>
-      <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>
+   		<!-- 출/퇴근 버튼 null일때만 서블릿으로 이동하도록 구현 -->
+   		<%if(attendance.getAttAttend() == null){ %>
+		    <a href="attend.gw?" class="link-btn attend-btn">출근</a>   		
+   		<%}else{ %>
+   			<a href="#" class="link-btn attend-btn">출근</a>   	
+   		<%} %>
+   		
+   		
+   		<%if(attendance.getAttLeave() == null){ %>
+		    <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>  		
+   		<%}else{ %>
+   			<a href="#" class="link-btn leave-btn">퇴근</a>   	
+   		<%} %>
    </div>
    
    <div class="row">
