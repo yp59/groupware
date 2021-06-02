@@ -102,36 +102,39 @@
 
 <script>
 	$(function(){
-
+		monthPrepare();
 		$("select[name=searchYear]").on("click",function(){
 			$("select[name=searchMonth]").empty();
-			var month = new Array;
-			var year = $(this).val();
-			
-			<%for(String yearMonth : yearMonthList){%>
-				if(year==""){
-					month.push(<%=yearMonth.substring(5, 7)%>);
-				}
-				else if(year ==<%=yearMonth.substring(0, 4)%>){ //'yyyy'가 같으면
-					month.push(<%=yearMonth.substring(5, 7)%>); //2021-06 숫자로 인식되어 뺄셈 적용됨ㅠ
-				}
-			<%}%>
-			
-			//중복된 월 제거 -> 월만 검색
-			var result = [];
-			$.each(month, function(i, value){
-			        if(result.indexOf(value) === -1) result.push(value);
-			});
-			
-			console.log(result);
-			monthSelect(result);
-			
+			monthPrepare();
 		});
 		
 		$("select[name=searchYear]").on("click",function(){});
 		
 		
 	});
+	
+	function monthPrepare(){
+		var month = [];
+		var year = $("select[name=searchYear]").val();
+		
+		<%for(String yearMonth : yearMonthList){%>
+			if(year==""){
+				month.push("<%=yearMonth.substring(5, 7)%>");
+			}
+			else if(year == "<%=yearMonth.substring(0, 4)%>"){ //'yyyy'가 같으면
+				month.push("<%=yearMonth.substring(5, 7)%>"); //2021-06 숫자로 인식되어 뺄셈 적용됨ㅠ
+			}
+		<%}%>
+		
+		//중복된 월 제거 -> 월만 검색
+		var result = [];
+		$.each(month, function(i, value){
+		        if(result.indexOf(value) === -1) result.push(value);
+		});
+		
+		console.log(result);
+		monthSelect(result);
+	}
 	</script>
 
 <script>
@@ -183,13 +186,12 @@ function monthSelect(monthList){
 	<div class="row">
 		<form action="salaryMain.jsp" method="get">
 			<select name="searchYear" class="form-input form-input-inline">
-			<option value="" selected>선택하세요</option>
+			<option value="">선택하세요</option>
 			<%for(String year : yearList){ %>
 				<option value="<%=year %>"><%=year%></option>
 			<%} %>
 			</select>
 			<select name="searchMonth" class="form-input form-input-inline">
-			<option value="" selected>선택하세요</option>
 			</select>
 			
 			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
