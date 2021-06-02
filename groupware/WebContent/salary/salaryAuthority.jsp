@@ -258,7 +258,7 @@ function monthSelect(monthList){
 		</table>
 	</div>
 			   	
-	<form class="search-form" action="salaryMain.jsp" method="get">
+	<form class="search-form" action="salaryAuthority.jsp" method="get">
 		<input type="hidden" name="pageNo">
 	</form>
    
