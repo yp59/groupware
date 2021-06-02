@@ -39,7 +39,7 @@ public class employeesDao {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "insert into employees values"
-				+ " (?,?,?,?,?,?,?,?,?)";
+				+ " (?,?,?,?,?,?,?,?,?,?)";
 				
 		PreparedStatement ps = con.prepareStatement(sql);
 		
@@ -52,9 +52,14 @@ public class employeesDao {
 		ps.setString(7, employeesdto.getEmail());
 		ps.setString(8, employeesdto.getAddress());
 		ps.setString(9, employeesdto.getDepartment());
+
+		//직급별휴가 일수 설정
+		ps.setInt(10, employeesdto.getHolidayCount());
 		ps.executeUpdate();
 		con.close();
 	}
+	
+	//단일 조회
 	public employeesDto loginInfo(String empNo)throws Exception{
 		
 		Connection con = jdbcUtils.getConnection();
@@ -79,6 +84,7 @@ public class employeesDao {
 			employeesdto.setEmpPhone(rs.getString(6));
 			employeesdto.setEmail(rs.getString(7));
 			employeesdto.setAddress(rs.getString(8));
+			employeesdto.setHolidayCount(rs.getInt("holiday_count"));
 			
 		}
 		else {
@@ -189,9 +195,39 @@ public class employeesDao {
 		}
 		con.close();
 		return empDto;
-		
-		
+	
 	}
+	
+	//노승연,오하영
+	//휴가 사용시 휴가 일수 차감하도록 update
+	public boolean holidayMinus(String empNo, int holCount) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "update employees set holiday_count= holiday_count-? where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, holCount);
+		ps.setString(2, empNo);
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
+	}
+	
+	public boolean holidayPlus(String empNo, int holCount) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "update employees set holiday_count= holiday_count+? where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, holCount);
+		ps.setString(2, empNo);
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
+	}
+
 
 	//윤준하
 	//empNo->empName 불러오는 메소드

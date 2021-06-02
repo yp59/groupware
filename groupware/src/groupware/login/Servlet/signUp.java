@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import groupware.beans.PositionHolidayDao;
 import groupware.beans.employeesDao;
 import groupware.beans.employeesDto;
 
@@ -32,6 +33,10 @@ public class signUp extends HttpServlet{
 		
 		employeesDao employeesdao = new employeesDao();
 		
+		//회원가입시 직급에 따른 휴가 일수 설정
+		PositionHolidayDao positionHolidayDao = new PositionHolidayDao();
+		int holiday = positionHolidayDao.get(Integer.parseInt(req.getParameter("poNo")));
+		
 		employeesDto employeesdto = new employeesDto(
 				
 				req.getParameter("empNo"),
@@ -42,7 +47,9 @@ public class signUp extends HttpServlet{
 				phone,
 				email,
 				address,
-				req.getParameter("department"));//부서 받아서 db 저장가능하게 구현
+				req.getParameter("department"),//부서 받아서 db 저장가능하게 구현
+				holiday //직급별 휴가일수 설정
+				);
 		
 		employeesdao.regist(employeesdto);
 		

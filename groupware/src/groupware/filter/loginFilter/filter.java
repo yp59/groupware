@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 
 "/holiday/*", //휴가 메뉴 필터 적용
 "/attendance/*", //근태메뉴 필터 적용
-
+"/salary/*", //급여 메뉴 필터 적용
 
 "/schedule/scheduleList.jsp","/schedule/scheduleDetail.jsp","/schedule/scheduleInsert.jsp","/schedule/scheduleEdit.jsp",
 "/schedule/scheduleSuccess.jsp","/schedule/scheduleSuccessCancel.jsp","/scheduleDeleteSuccess.jsp",
