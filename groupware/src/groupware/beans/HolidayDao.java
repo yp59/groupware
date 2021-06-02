@@ -3,7 +3,9 @@ package groupware.beans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -46,15 +48,21 @@ public class HolidayDao {
 	}
 	
 	//휴가 리스트
-	public List<HolidayDto> list(String empNo) throws Exception {
+	public List<HolidayDto> list(String empNo,int startRow, int endRow) throws Exception {
 		
 		Connection con = jdbcUtils.getConnection();
 		
 		//사원 자신의 휴가 신청 내역 볼수 있도록 설정
-		String sql = "select * from holiday where emp_no =? order by hol_no desc";
+		String sql = "select * from( "
+						+ "select rownum rn, TMP.* from( "
+								+"select * from holiday where emp_no =? order by hol_no desc "
+						+")TMP "
+						+") where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
+		ps.setInt(2, startRow);
+		ps.setInt(3, endRow);
 		ResultSet rs = ps.executeQuery();
 		
 		List<HolidayDto> list = new ArrayList<>();
@@ -139,5 +147,49 @@ public class HolidayDao {
 	
 		con.close();
 		return holidayDto;
+	}
+	
+
+	// 휴가 사용일수 계산 
+	// + 주말일 경우 휴가 사용일 수에서 주말 제외한 일수만 반환하도록 수정
+	public int count(String empNo, int holNo) throws Exception{
+		
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select count(1) as count from("
+						+ "select start_date + level -1 from("
+								+ "select trunc(hol_start) start_date, trunc(hol_end) end_date "
+								+ "from holiday where emp_no=? and hol_no=? )"
+					 + "where to_char(start_date + level -1,'d') != 7 and to_char(start_date + level -1,'d') != 1"
+				+ "connect by level <= end_date - start_date + 1)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setInt(2, holNo);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		int count=0;
+		
+		if(rs.next()) {
+			count = rs.getInt("count");
+		}
+		
+		con.close();
+		return count;
+	}
+	
+	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
+	public int getCount(String empNo) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		String sql = "select count(*) from holiday where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		
+		con.close();
+		
+		return count;
 	}
 }
