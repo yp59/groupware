@@ -197,7 +197,7 @@ function monthSelect(monthList){
 </div>
 
 	<div class="row">
-		<form action="salaryMain.jsp" method="get">
+		<form action="salaryAuthority.jsp" method="get">
 			<select name="searchYear" class="form-input form-input-inline">
 			<option value="">선택하세요</option>
 			<%for(String year : yearList){ %>
@@ -229,7 +229,7 @@ function monthSelect(monthList){
 						<td><%=salaryDto.getEmpNo() %></td>
 						<td><%=salaryDto.getEmpName() %></td>
 						<td>
-						<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>">
+						<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>&empNo=<%=salaryDto.getEmpNo()%>">
 						<%=salaryDto.getSalaryDate().substring(5, 7)%>월 급여 명세서
 						</a>
 						</td>
@@ -246,7 +246,7 @@ function monthSelect(monthList){
 					<td><%=salary.getEmpNo() %></td>
 					<td><%=salary.getEmpName() %></td>
 					<td>
-					<a href="salaryDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>">
+					<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>&empNo=<%=salary.getEmpNo()%>">
 					<%=salary.getSalaryDate().substring(5, 7)%>월 급여 명세서
 					</a>
 					</td>

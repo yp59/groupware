@@ -44,9 +44,12 @@ public class SalaryAuthorityDao {
 		
 		String sql = "select * from("
 						+ "select rownum rn, TMP.* from("
-							+"select * from salary order by salary_date desc"
+							+"select S.*, E.emp_name from salary S inner join employees E "
+							+ "on E.emp_no = S.emp_no order by salary_date desc"
 						+ ")TMP"
 					+ ") where rn between ? and ?";
+		
+		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, startRow);
 		ps.setInt(2, endRow);
@@ -56,6 +59,7 @@ public class SalaryAuthorityDao {
 		while(rs.next()) {
 			SalaryDto salaryDto = new SalaryDto();
 			salaryDto.setEmpNo(rs.getString("emp_no"));
+			salaryDto.setEmpName(rs.getString("emp_name"));
 			salaryDto.setPoNo(rs.getInt("po_no"));
 			salaryDto.setSalaryPay(rs.getInt("salary_pay"));
 			salaryDto.setSalaryOvertime(rs.getInt("salary_overtime"));
@@ -76,7 +80,8 @@ public class SalaryAuthorityDao {
 	public SalaryDto get(String empNo, String salaryDate) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select * from salary where emp_no=? and salary_date = to_date(?,'yyyy-mm-dd')";
+		String sql = "select S.*, E.emp_name from salary S inner join employees E "
+						+ "on E.emp_no = S.emp_no and S.emp_no=? and salary_date = to_date(?,'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
@@ -87,6 +92,7 @@ public class SalaryAuthorityDao {
 		if(rs.next()) {
 			salaryDto = new SalaryDto();
 			salaryDto.setEmpNo(rs.getString("emp_no"));
+			salaryDto.setEmpName(rs.getString("emp_name"));
 			salaryDto.setPoNo(rs.getInt("po_no"));
 			salaryDto.setSalaryPay(rs.getInt("salary_pay"));
 			salaryDto.setSalaryOvertime(rs.getInt("salary_overtime"));
@@ -141,8 +147,9 @@ public class SalaryAuthorityDao {
 	public SalaryDto search(String year, String month) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select salary_date, salary_total from salary "
-			    		+"where instr(to_char(salary_date,'yyyy'),?)>0 and instr(to_char(salary_date,'mm'),?)>0 ";
+		String sql = "select S.*, E.emp_name from salary S inner join employees E "
+							+ "on E.emp_no = S.emp_no "
+							+"and instr(to_char(salary_date,'yyyy'),?)>0 and instr(to_char(salary_date,'mm'),?)>0 ";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, year);
@@ -153,6 +160,8 @@ public class SalaryAuthorityDao {
 		SalaryDto salaryDto = null;
 		if(rs.next()) {
 			salaryDto = new SalaryDto();
+			salaryDto.setEmpNo(rs.getString("emp_no"));
+			salaryDto.setEmpName(rs.getString("emp_name"));
 			salaryDto.setSalaryDate(rs.getString("salary_date"));
 			salaryDto.setSalaryTotal(rs.getInt("salary_total"));
 			
@@ -165,11 +174,13 @@ public class SalaryAuthorityDao {
 	public List<SalaryDto> searchList(String year, String month, int startRow, int endRow) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select * from("
-						+ "select rownum rn, TMP.* from(" 
-							+"select salary_date, salary_total from salary "
-				    		+"where instr(to_char(salary_date,'yyyy'),?)>0 or instr(to_char(salary_date,'mm'),?)>0 "
-				    	+ ")TMP"
+		String sql = "select * from( "
+						+ "select rownum rn, TMP.* from( " 
+							+"select S.*, E.emp_name from salary S inner join employees E "
+							+"on E.emp_no = S.emp_no "
+				    		+"and instr(to_char(salary_date,'yyyy'),?)>0 or instr(to_char(salary_date,'mm'),?)>0 "
+				    		+ "and E.emp_no = S.emp_no "
+				    	+ ")TMP "
 					+ ") where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -184,6 +195,8 @@ public class SalaryAuthorityDao {
 		List<SalaryDto> salaryList = new ArrayList<>();
 		while(rs.next()) {
 			SalaryDto salaryDto = new SalaryDto();
+			salaryDto.setEmpNo(rs.getString("emp_no"));
+			salaryDto.setEmpName(rs.getString("emp_name"));
 			salaryDto.setSalaryDate(rs.getString("salary_date"));
 			salaryDto.setSalaryTotal(rs.getInt("salary_total"));
 			
