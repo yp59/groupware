@@ -72,7 +72,7 @@ public class SalaryDao {
 			salaryDto.setSalaryTotal(rs.getInt("salary_total"));
 		}
 		else {
-			salaryDto = null;
+			salaryDto = null;///
 		}
 	
 		con.close();
