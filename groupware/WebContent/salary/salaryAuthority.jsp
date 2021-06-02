@@ -215,6 +215,8 @@ function monthSelect(monthList){
 			<thead>
 				<tr>
 					<th width=20%>지급일</th>
+					<th>사원번호</th>
+					<th>사원명</th>
 					<th>제목</th>
 					<th>지급액</th>
 					
@@ -224,6 +226,8 @@ function monthSelect(monthList){
 				<tbody>
 					<tr>
 						<td><%=salaryDto.getSalaryDate().substring(0,10)%></td>
+						<td><%=salaryDto.getEmpNo() %></td>
+						<td><%=salaryDto.getEmpName() %></td>
 						<td>
 						<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>">
 						<%=salaryDto.getSalaryDate().substring(5, 7)%>월 급여 명세서
@@ -239,6 +243,8 @@ function monthSelect(monthList){
 					for(SalaryDto salary : salaryList){ %>
 				<tr>
 					<td><%=salary.getSalaryDate().substring(0,10)%></td>
+					<td><%=salary.getEmpNo() %></td>
+					<td><%=salary.getEmpName() %></td>
 					<td>
 					<a href="salaryDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>">
 					<%=salary.getSalaryDate().substring(5, 7)%>월 급여 명세서

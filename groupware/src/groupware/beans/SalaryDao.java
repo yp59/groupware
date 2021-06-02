@@ -16,7 +16,10 @@ public class SalaryDao {
 		
 		String sql = "select * from("
 						+ "select rownum rn, TMP.* from("
-							+"select * from salary where emp_no=? order by salary_date desc"
+							+"select"
+							+ "S.*, E.emp_name"
+							+ "from salary S inner join employees E"
+							+ "on E.emp_no = S.emp_no and S.emp_no=? order by salary_date desc"
 						+ ")TMP"
 					+ ") where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -30,6 +33,7 @@ public class SalaryDao {
 			SalaryDto salaryDto = new SalaryDto();
 			salaryDto.setEmpNo(rs.getString("emp_no"));
 			salaryDto.setPoNo(rs.getInt("po_no"));
+			salaryDto.setEmpName(rs.getString("emp_name"));
 			salaryDto.setSalaryPay(rs.getInt("salary_pay"));
 			salaryDto.setSalaryOvertime(rs.getInt("salary_overtime"));
 			salaryDto.setSalaryMeal(rs.getInt("salary_meal"));
