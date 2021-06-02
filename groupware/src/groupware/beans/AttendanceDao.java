@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class AttendanceDao {
 
 		//근무 시간 : 8시간으로 설정
 		//추가근무시간 : 총 근무시간 - 8시간
-		String sql = "update attendance set att_overtime = att_totaltime - 8 "
+		String sql = "update attendance set att_overtime = GREATEST(att_totaltime-8, 0)"
 				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -79,24 +80,54 @@ public class AttendanceDao {
 		return count>0;
 	}
 	
-	// 근태목록 보기 
-	public List<AttendanceDto> list(String empNo) throws Exception{
+	// 추가 근무시간 값 가져오기
+	public int getOvertime(String empNo,String year,String month) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql ="select"
-						+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend,"
-						+ "to_char(A.att_leave,'HH24:mi:ss') as att_leave, A.att_totaltime ,"
-						+ " A.att_overtime, E.emp_name"
-					+ " from attendance A inner join employees E "
-				+ "on E.emp_no = A.emp_no and A.emp_no=? order by att_date desc";
+		String sql ="select sum(att_overtime) sumovertime "
+				+ "from attendance where emp_no= ? and "
+				+ "att_date between to_date('#1-#2-01') and to_date('#1-#2-31')";
+		
+		sql = sql.replaceAll("#1", year);
+		sql = sql.replaceAll("#2", month);
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1,empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("sumovertime");
+		}
+		
+		con.close();
+		return 0;
+	}
+	
+	
+	// 근태목록 보기 
+	public List<AttendanceDto> list(String empNo,int startRow, int endRow) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql ="select * from("
+						+ "select rownum rn, TMP.* from("
+							+"select"
+								+ " A.att_date,A.emp_no,to_char(A.att_attend,'HH24:mi:ss') as att_attend,"
+								+ "to_char(A.att_leave,'HH24:mi:ss') as att_leave, A.att_totaltime ,"
+								+ " A.att_overtime, E.emp_name"
+							+ " from attendance A inner join employees E "
+							+ "on E.emp_no = A.emp_no and A.emp_no=? order by att_date desc"
+						+")TMP"
+					+") where rn between ? and ?";
 
 			PreparedStatement ps =con.prepareStatement(sql);
 			ps.setString(1,empNo);
+			ps.setInt(2, startRow);
+			ps.setInt(3, endRow);
 			ResultSet rs = ps.executeQuery();
 			
 			List<AttendanceDto> attendanceList = new ArrayList<>();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				AttendanceDto attendanceDto = new AttendanceDto();
 				attendanceDto.setAttDate(rs.getString("att_date"));
 				attendanceDto.setEmpNo(rs.getString("emp_no"));
@@ -147,6 +178,22 @@ public class AttendanceDao {
 	
 		con.close();
 		return attendanceDto;
+	}
+	
+	
+	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
+	public int getCount(String empNo) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		String sql = "select count(*) from attendance where emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		
+		con.close();
+		
+		return count;
 	}
 
 }
