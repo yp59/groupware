@@ -34,7 +34,9 @@
 			</tr>
 			<tr>
 				<th>휴가 내용</th>
-				<td><%=holidayDto.getHolContent()%></td>
+				<td><%if(holidayDto.getHolContent() != null){%>
+				<%=holidayDto.getHolContent()%>
+				<%} %></td>
 			</tr>
 			<tr>
 				<th>시작일</th>
