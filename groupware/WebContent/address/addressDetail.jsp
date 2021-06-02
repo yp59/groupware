@@ -13,6 +13,9 @@ AddressDetailDto addressDetailDto = addressDetailDao.detail(emp_no);
 String id = (String)request.getSession().getAttribute("id");
 boolean amI = id.equals(emp_no);
 
+//관리자 기능 추가
+int authLev = (int)request.getSession().getAttribute("authorityLevel");
+boolean isManage = authLev==1;
 %>
 
 
@@ -58,10 +61,19 @@ boolean amI = id.equals(emp_no);
 		</table>
 	</div>
 	<div class="row text-right">
+
 		<%if(!amI) {%>
 		<a class="link-btn " href="<%=request.getContextPath()%>/massage/massageInsert.jsp?empNo=<%=emp_no%>">메세지</a>
 		<%} %>
 		<a class="link-btn " href="addressList.jsp">주소록</a>
+
+	
+	
+		<!-- 관리자일 경우에만 사원정보 수정가능 -->
+		<%if(isManage) {%>
+		<a href="<%=request.getContextPath()%>/login/signUpEdit.jsp?empNo=<%=emp_no%>">정보수정</a>
+		<%} %>
+	
 	</div>
 </div>
 
