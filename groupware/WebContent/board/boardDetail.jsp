@@ -15,6 +15,12 @@ int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 boardDao boarddao = new boardDao();
 boardDto boarddto = boarddao.detail(boardNo);
 
+// 이전글 정보 불러오기
+boardDto prevBoardDto = boarddao.getPrevious(boardNo);
+
+// 다음글 정보 불러오기
+boardDto nextBoardDto = boarddao.getNext(boardNo);
+
 // 타인의 게시글에만 조회수 증가
 String empNo = (String)session.getAttribute("id");
 Set<Integer> boardNoSet;
@@ -88,7 +94,30 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
 		<input type="submit" value="삭제하기">
 	</form>
 <%}else{ }%>	
-	
+
+<!-- 이전글 다음글 목록 -->
+
+</div>
+<div class="row text-left">
+다음글 :
+<%if(nextBoardDto == null){ %>
+다음글이 없습니다.
+<%}else{ %>
+<a href="boardDetail.jsp?boardNo=<%=nextBoardDto.getBoardNo()%>">
+	<%=nextBoardDto.getBoTitle()%>
+</a>
+<%} %>
+</div>
+
+<div class="row text-left">
+이전글 :
+<%if(prevBoardDto == null){ %>
+이전글이 없습니다.
+<%}else{ %>
+<a href="boardDetail.jsp?boardNo=<%=prevBoardDto.getBoardNo()%>">
+	<%=prevBoardDto.getBoTitle()%>
+</a>
+<%} %>
 </div>
 
 <!-- 댓글 목록창 -->
