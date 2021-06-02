@@ -117,7 +117,8 @@
 <script>
 
 $(function(){
-
+	
+/*
 	////////////////////////////////////////////////////////////////////////
 	var _width = '700';
     var _height = '700';
@@ -132,15 +133,17 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 		   var pop_title = "appDetail" ;//팝업 이름 설정
 		   window.open("approvalDetail.jsp",pop_title,option);//어느 jsp를 열고 팝업의 이름은 무엇이며 어떤 옵션을 줄것인지 설정 
 		    
-		   document.popUpDetail.target = pop_title ;//밑에서 선언한 form 의 target을 누구로 설정할지 결정
+		   document.popUpDetail.target = pop_title;//popUPname과 target의 이름은 동일해야한다?
 		    document.popUpDetail.action = "approvalDetail.jsp" ;//어떤 페이지로 데이터를 보낼지 설정  
 		    popUpDetail.submit() ;     //form의 submit을 선언해줌
 		    
 		    
 	});
 ///////////////////////////////////////////////////////////////////////////////
+*/
+		
 	
-	console.log($('input[name=appNo]').val());
+	
 });
 </script>
 <div class = "container-900">
@@ -154,7 +157,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 </div>
 
 </form>
-<form name="popUpDetail" method="get"><!-- appNo가 한번에 들어감 why? -->
+<!-- appNo가 한번에 들어감 why? -->
 <table class="table table-border table-hover" >
 		<thead>
 			<tr>
@@ -173,14 +176,15 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					<td><%=approvaldto.getAppNo()%></td>
 					<td><%=approvaldto.getDirType() %></td>
 					<td >
-						<a id = "approvalDetail">
-						<%=approvaldto.getAppTitle()%>
-						
-					<!-- 기안서에 현재 선택한 appNo을 보내는 구문 -->
-					<input type = "hidden" name = "appNo" value = "<%=approvaldto.getAppNo()%>">
-					</a>
+					<a href="<%=request.getContextPath()%>/approval/approvalDetail.jsp?appNo=<%=approvaldto.getAppNo()%>" 
+					onclick="window.open(this.href, '_blank', 'width=700, height=700'); return false;">
+					<!-- 기안서에 현재 선택한 appNo을 보내는 구문 -->	
+					<%=approvaldto.getAppTitle()%>
+					</a>	
+					
 					</td>
-					<td><%=approvaldto.getEmpName()%></td>
+					<td><%=approvaldto.getEmpName()%>
+					</td>
 					<td><%=approvaldto.getAppDateStart()%></td>
 					<td><%=approvaldto.getAppDateEnd()%></td>
 					<td><%=approvaldto.getAppState()%></td>
@@ -191,7 +195,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 		<%}%>
 		</tbody>
 </table>
-</form><!-- 일단 appNo만 보내고 필요시 다른 것도 보내주도록 설정 -->
+<!-- 일단 appNo만 보내고 필요시 다른 것도 보내주도록 설정 -->
 </div>
 	<div class="row">
 		<!-- 페이지 네비게이션 자리 -->
@@ -217,6 +221,6 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 	</div>
 
 
-
+	 
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

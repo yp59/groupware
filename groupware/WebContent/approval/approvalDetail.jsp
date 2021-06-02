@@ -63,6 +63,7 @@ else{
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/layout.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script >
+window.name ='appDetail';
 $(function(){
 	if(<%=isConsesus%>){
 		$('.isConsesus').css('display','block');
@@ -74,7 +75,7 @@ $(function(){
 	}
 	//버튼을 없앨까 경고창으로 막을까 고민중
 	
-	
+	console.log(window.name);
 });
 
 </script>
