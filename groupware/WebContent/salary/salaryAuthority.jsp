@@ -1,7 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="groupware.beans.SalaryDto"%>
-<%@page import="groupware.beans.SalaryDao"%>
+<%@page import="groupware.beans.SalaryAuthorityDao"%>
 <%@page import="java.util.List"%>
 <%@page import="groupware.beans.AttendanceDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,15 +10,17 @@
     
 <%
 	String empNo = (String)session.getAttribute("id");
-	SalaryDao salaryDao = new SalaryDao();
+	SalaryAuthorityDao salaryAuthorityDao = new SalaryAuthorityDao();
 	
-	List<String> yearList = salaryDao.getYear(empNo);
-	List<String> yearMonthList = salaryDao.getMonth(empNo); //yyyy-mm 형태
+	List<String> yearList = salaryAuthorityDao.getYear();
+	List<String> yearMonthList = salaryAuthorityDao.getMonth(); //yyyy-mm 형태
 	  
 	String searchYear = request.getParameter("searchYear");
 	String searchMonth = request.getParameter("searchMonth");
 	//searchMonth = searchMonth.replace("월","");
-		
+	
+	int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue(); //관리자번호 
+	
 	int pageNo;//현재 페이지 번호
 	try{
 		pageNo = Integer.parseInt(request.getParameter("pageNo"));
@@ -58,20 +60,20 @@
 	if(isSearch){
 
 		if(isSearchYear){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow); //연도만 검색
+			salaryList = salaryAuthorityDao.searchList(searchYear, searchMonth, startRow, endRow); //연도만 검색
 		}
 		else if(isSearchMonth){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow); //월만 검색
+			salaryList = salaryAuthorityDao.searchList(searchYear, searchMonth, startRow, endRow); //월만 검색
 		}
 		else if(isSearchBoth){ //둘다 선택하세요 일 때
-			salaryList = salaryDao.list(empNo, startRow, endRow);
+			salaryList = salaryAuthorityDao.list(startRow, endRow);
 		}
 		else{
-			salaryDto = salaryDao.search(empNo,searchYear, searchMonth); //둘다 값설정해서 검색했을때
+			salaryDto = salaryAuthorityDao.search(searchYear, searchMonth); //둘다 값설정해서 검색했을때
 		}
 	}
 	else{
-		salaryList = salaryDao.list(empNo, startRow, endRow);
+		salaryList = salaryAuthorityDao.list(startRow, endRow);
 	}
 	
 	/////////////////////////////////////////////////////////////////////
@@ -81,17 +83,17 @@
 	int count;
 	if(isSearch){
 		if(isSearchYear || isSearchMonth ){
-			count = salaryDao.getCount2(empNo,searchYear, searchMonth); // or
+			count = salaryAuthorityDao.getCount2(searchYear, searchMonth); // or
 		}
 		else if(isSearchBoth){
-			count = salaryDao.getCount(empNo); //둘다 선택하세요일때
+			count = salaryAuthorityDao.getCount(); //둘다 선택하세요일때
 		}
 		else{
-			count = salaryDao.getCount1(empNo,searchYear, searchMonth); //and
+			count = salaryAuthorityDao.getCount1(searchYear, searchMonth); //and
 		}
 	}
 	else{
-		count = salaryDao.getCount(empNo);
+		count = salaryAuthorityDao.getCount();
 	}
 	int blockSize = 10;
 	int lastBlock = (count + pageSize - 1) / pageSize;
