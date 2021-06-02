@@ -142,6 +142,7 @@
 		$.each(month, function(i, value){
 		        if(result.indexOf(value) === -1) result.push(value);
 		});
+		result.sort();
 		
 		console.log(result);
 		monthSelect(result);
