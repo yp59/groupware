@@ -1,11 +1,15 @@
+<%@page import="groupware.beans.DepartmentDto"%>
+<%@page import="java.util.List"%>
+<%@page import="groupware.beans.DepartmentDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+DepartmentDao departmentDao = new DepartmentDao();
+List<DepartmentDto>list = departmentDao.list();
 
 
 
-
-
-
+%>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600">
@@ -17,6 +21,14 @@
 			<div class="row">
 				<label for="name">제목</label>
 				<input id="name" name="sc_name" type="text" placeholder="제목을 입력하세요" required>
+			</div>
+			<div>
+				<label>담당부서</label>
+				<select name="dep_name">
+					<%for(DepartmentDto departmentDto:list){%>
+					<option><%=departmentDto.getDep_name() %></option>
+					<%} %>
+				</select>
 			</div>
 			<div class="row">
 				<label for="deadline">마감날짜</label>

@@ -123,14 +123,12 @@
 		</div>
 		<ul>
 				<li class = "menu menu-title">
-					<a href="#">제목</a>
+					<a href="<%=root%>/address/addressList.jsp">주소록</a>
+					<a href="<%=root%>/mail/mailList.jsp">메일</a>
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
+				<a href="<%=root%>/mail/mailSend.jsp">메일보내기</a>
 				</li>
 			</ul>
 			</ul>

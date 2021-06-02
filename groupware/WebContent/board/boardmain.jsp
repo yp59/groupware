@@ -5,21 +5,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%	
-	
-		
-		String boType = request.getParameter("boType");//아래의 검색창에서 입력받은 boType을 String 변수로 저장
-		String type = request.getParameter("type");//아래의 검색창에서 입력받은 type(제목,내용,작성자)을 String 변수로 저장
-		String keyword = request.getParameter("keyword");//아래의 검색창에서 입력받은 keyword를 String 변수로 저장
+		String boType = request.getParameter("boType");
+		String type = request.getParameter("type");
+		String keyword = request.getParameter("keyword");
 		
 		boolean isSearch = boType != null && type != null && keyword != null && !keyword.trim().equals("");
-		//각 parameter값이 null인지 확인하고 null이 아니면 검색을 실행한다.
 	
-	
-	/////////////////////////////////////////////////////////////////////////////
 	//	페이지 번호를 이용한 계산 과정
-	/////////////////////////////////////////////////////////////////////////////
-	//(1) 페이지 번호는 있을 수도, 없을 수도 있다.
-	//	- 있으면 해당 페이지 번호에 맞게 조회, 없으면 1페이지를 조회
 	int pageNo;//현재 페이지 번호
 	try{
 		pageNo = Integer.parseInt(request.getParameter("pageNo"));
@@ -54,28 +46,21 @@
 	
 	if(isSearch){
 		
-		if(boType.equals("전체")){//boType이 '전체' 값이면 botype에 상관없이 제목 글쓴이 내용에 관해서만 keyword로 검색을 한다.
+		if(boType.equals("전체")){
 			list=boarddao.boardSearch(type, keyword, startRow, endRow);
 
 		}
 		
-		else{//boType 값에 따라(질문,공지,자유) 선택된 게시글 중 제목,글쓴이,내용에 대해서 keyword로 검색을 한다.
+		else{
 			list=boarddao.boardSearch(boType,type,keyword,startRow,endRow);	
 
 		}
 	}
 
-	else{//검색한 parameter값이 모두 null이면 일반 게시글을 나타낸다.
+	else{
 		list=boarddao.boardList(startRow,endRow);
 	}
-	
-	
-	/////////////////////////////////////////////////////////////////////
 	// 페이지 네비게이션 영역 계산
-	/////////////////////////////////////////////////////////////////////
-	// = 하단에 표시되는 숫자 링크의 범위를 페이지번호를 기준으로 계산하여 설정
-	// = 하단 네비게이션 숫자는 startBlock 부터 endBlock 까지 출력
-	// = (주의사항) 게시글 개수를 구해서 마지막 블록 번호를 넘어가지 않도록 처리
 	int count;
 	if(isSearch){
 		if(boType.equals("전체")){
@@ -91,12 +76,11 @@
 	}
 	int blockSize = 10;
 	int lastBlock = (count + pageSize - 1) / pageSize;
-// 	int lastBlock = (count - 1) / pageSize + 1;
 	int startBlock = (pageNo - 1) / blockSize * blockSize + 1;
 	int endBlock = startBlock + blockSize - 1;
 	
-	if(endBlock > lastBlock){//범위를 벗어나면
-		endBlock = lastBlock;//범위를 수정
+	if(endBlock > lastBlock){
+		endBlock = lastBlock;
 	}
 	
 %>    
@@ -106,7 +90,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%if(isSearch){ %>
 <script>
-	//서버에서 수신한 botype과 type과 keyword에 해당하는 값들을 각각의 입력창에 설정하여 유지되는것처럼 보이도록 구현
 	$(function(){
 		$("select[name=boType]").val("<%=boType%>");
 		$("select[name=type]").val("<%=type%>");
@@ -116,11 +99,8 @@
 <%} %>
 
 <script>
-	//페이지 네비게이션에 있는 a태그를 누르면 전송하는 것이 아니라 form 내부에 값을 설정한 뒤 form을 전송
-	//= 검색어, 검색분류, 페이지번호, 페이지크기까지 한 번에 전송해야 화면이 유지되기 때문
 	$(function(){
 		$(".pagination > a").click(function(){
-			//주인공 == a태그
 			var pageNo = $(this).text();
 			if(pageNo == "이전"){//이전 링크 : 현재 링크 중 첫 번째 항목 값 - 1
 				pageNo = parseInt($(".pagination > a:not(.move-link)").first().text()) - 1;
@@ -157,7 +137,7 @@
 				<tr>
 					<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>">
 					<%=boarddto.getBoTitle()%>
-<!-- 					댓글 개수 출력 -->
+					<!-- 댓글 개수 출력 -->
 					<%if(boarddto.getComComments() > 0){ %>
 						[<%=boarddto.getComComments()%>]
 						<%} %></a></td>
@@ -173,7 +153,7 @@
 					<tr>
 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>">
 						<%=boarddto.getBoTitle()%>
-<!-- 						댓글 개수 출력 -->
+						<!-- 댓글 개수 출력 -->
 						<%if(boarddto.getComComments() > 0){ %>
 						[<%=boarddto.getComComments()%>]
 						<%} %></a></td>
@@ -214,14 +194,14 @@
 	
 	<form class="search-form" action="boardmain.jsp" method="get"><!-- 검색창 form 태그 -->
 	<input type="hidden" name="pageNo">
-		<select name="boType">	<!-- boType의 select 화면으로 공지 질문 자유 전체 중 하나 선택가능하다. -->
+		<select name="boType">	<!-- boType의 select 화면으로 공지 질문 자유 전체 중 하나 선택 가능 -->
 			<option>전체</option>
 			<option>공지</option>
 			<option>질문</option>
 			<option>자유</option>
 		</select>
 		
-		<select name="type"> 	<!-- 두번째 type select로 제목 글 작성자 내용 중 하나 선택해서 검색가능 -->
+		<select name="type"> 	<!-- 두번째 type select로 제목 글 작성자 내용 중 하나 선택해서 검색 가능 -->
 			<option value="bo_title">제목</option>
 			<option value="emp_name">글작성자</option>
 			<option value="bo_content">내용</option>

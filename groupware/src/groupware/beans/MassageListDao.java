@@ -121,33 +121,33 @@ public class MassageListDao {
 	}
 	
 	//detail : m_no를 통한 조회
-	public MassageListDto detail (int m_no) throws Exception {
-		Connection con = jdbcUtils.getConnection();
-		
-		String sql ="select*from massage_list where m_no=? ";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, m_no);
-		
-		ResultSet rs = ps.executeQuery();
-		
-		
-		MassageListDto massageListDto = new MassageListDto();
-		if(rs.next()) {
-			massageListDto.setM_no(rs.getInt("m_no"));//번호
-			massageListDto.setM_name(rs.getString("m_name"));//제목
-			massageListDto.setEmp_name(rs.getString("emp_name"));//작성자
-			massageListDto.setE2_no(rs.getString("e2_no"));//수신자 번호 : isReceiver 판단할 때 사용됨
-			massageListDto.setE2_name(rs.getString("e2_name"));//수신자
-			massageListDto.setM_date(rs.getDate("m_date"));//작성시간
-			massageListDto.setM_content(rs.getString("m_content"));//작성내용
-			
-		}else {
-			massageListDto=null;
-		}
-		con.close();
-		return massageListDto;
-		
-		
-	}
+//	public MassageListDto detail (int m_no) throws Exception {
+//		Connection con = jdbcUtils.getConnection();
+//		
+//		String sql ="select*from massage_list where m_no=? ";
+//		PreparedStatement ps = con.prepareStatement(sql);
+//		ps.setInt(1, m_no);
+//		
+//		ResultSet rs = ps.executeQuery();
+//		
+//		
+//		MassageListDto massageListDto = new MassageListDto();
+//		if(rs.next()) {
+//			massageListDto.setM_no(rs.getInt("m_no"));//번호
+//			massageListDto.setM_name(rs.getString("m_name"));//제목
+//			massageListDto.setEmp_name(rs.getString("emp_name"));//작성자
+//			massageListDto.setE2_no(rs.getString("e2_no"));//수신자 번호 : isReceiver 판단할 때 사용됨
+//			massageListDto.setE2_name(rs.getString("e2_name"));//수신자
+//			massageListDto.setM_date(rs.getDate("m_date"));//작성시간
+//			massageListDto.setM_content(rs.getString("m_content"));//작성내용
+//			
+//		}else {
+//			massageListDto=null;
+//		}
+//		con.close();
+//		return massageListDto;
+//		
+//		
+//	}
 	
 }

@@ -58,7 +58,7 @@ if(isSearch1){ // 패러미터가 있는 경우 --> 검색호출 한다.
 
 
 int blockSize1 = 10;
-int startBlock1 = ((page_no1 - 1) / blockSize1) * blockSize1 + 1;
+int startBlock1 = (page_no1 - 1) / blockSize1 * blockSize1 + 1;
 int endBlock1 = startBlock1 + blockSize1 - 1;
 
 ScheduleDao scheduleDao = new ScheduleDao();
@@ -129,7 +129,7 @@ if(isSearch2){ // 패러미터가 있는 경우 --> 검색호출 한다.
 
 
 int blockSize2 = 10;
-int startBlock2 = ((page_no2 - 1) / blockSize2) * blockSize2 + 1;
+int startBlock2 = (page_no2 - 1) / blockSize2 * blockSize2 + 1;
 int endBlock2 = startBlock2 + blockSize2 - 1;
 
 // ScheduleDao scheduleDao = new ScheduleDao();
@@ -171,7 +171,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	$(function(){
 		$("select[name=type1]").val("<%=type1%>");
 		$("input[name=keyword1]").val("<%=keyword1%>");
-		$(".search-form1").submit();
+
 	});
 	
 	</script>
@@ -184,7 +184,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	$(function(){
 		$("select[name=type2]").val("<%=type2%>");
 		$("input[name=keyword2]").val("<%=keyword2%>");
-		$(".search-form2").submit();
+
 	
 	});
 	
@@ -242,7 +242,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 				$(".search-form2").submit(); // 강제서브밋 
 				
 			}else if(page_no2=="다음"){//다음 링크 눌렀을 때
-				var page_no = parseInt($(".pagination2>a:not(.move-link2)").last().text())+1;
+				var page_no2 = parseInt($(".pagination2>a:not(.move-link2)").last().text())+1;
 				//현재 링크중 .move-link를 제외한 마지막 항목의 pareInt형 에서 +1
 				$("input[name=page_no2]").val(page_no2);
 				$(".search-form2").submit(); // 강제서브밋 
@@ -278,6 +278,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 				<tr>
 					<th>진행상황</th>
 					<th>번호</th>
+					<th>담당부서</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -289,12 +290,13 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 				<tr>
 					<td><%=scheduleIngDto.getSc_state() %></td>
 					<td><%=scheduleIngDto.getSc_no() %></td>
+					<td><%=scheduleIngDto.getDep_name() %>
 					<td>
 						<a href="scheduleDetail.jsp?sc_no=<%=scheduleIngDto.getSc_no()%>">
 						<%=scheduleIngDto.getSc_name() %>
 						</a>
 					</td>
-					<td><%=scheduleIngDto.getEmpNo() %></td>
+					<td><%=scheduleIngDto.getEmpName() %></td>
 					<td><%=scheduleIngDto.getSc_made() %></td>
 					<td><%=scheduleIngDto.getSc_deadline() %></td>
 				</tr>
@@ -336,7 +338,9 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 			<input type="hidden" name="page_no1">
 			
 			<select name="type1">
-				<option value="sc_name">제목만</option>
+				<option value="dep_name">부서</option>
+				<option value="sc_name">제목</option>
+				<option value="emp_name">이름</option>
 			</select>
 			<input type="text" name="keyword1" placeholder="키워드">
 			<input type="submit" value="조회하기">
@@ -357,6 +361,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 				<tr>
 					<th>진행상황</th>
 					<th>번호</th>
+					<th>담당부서</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -368,12 +373,13 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 				<tr>
 					<td><%=scheduleEndDto.getSc_state() %></td>
 					<td><%=scheduleEndDto.getSc_no() %></td>
+					<td><%=scheduleEndDto.getDep_name() %>
 					<td>
 						<a href="scheduleDetail.jsp?sc_no=<%=scheduleEndDto.getSc_no()%>">
 						<%=scheduleEndDto.getSc_name() %>
 						</a>
 					</td>
-					<td><%=scheduleEndDto.getEmpNo() %></td>
+					<td><%=scheduleEndDto.getEmpName() %></td>
 					<td><%=scheduleEndDto.getSc_made() %></td>
 					<td><%=scheduleEndDto.getSc_deadline() %></td>
 				</tr>
@@ -410,7 +416,9 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<form class="search-form2" action="scheduleList.jsp" method="get">
 			<input type="hidden" name="page_no2">
 			<select name="type2">
-				<option value="sc_name">제목만</option>
+				<option value="dep_name">부서</option>
+				<option value="sc_name">제목</option>
+				<option value="emp_name">이름</option>
 			</select>
 			<input type="text" name="keyword2" placeholder="키워드">
 			<input type="submit" value="조회하기">

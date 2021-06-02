@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+request.setCharacterEncoding("UTF-8");
+
 employeesDao empDao = new employeesDao();
 
 List<employeesDto> empList =empDao.list();
@@ -16,12 +18,42 @@ List<employeesDto> empList =empDao.list();
 String answer_name =request.getParameter("sender");
 String answer_title = request.getParameter("m_name");
 
-boolean isSender=answer_name!=null;
+
+boolean isSender=answer_name!=null; //답장하기인가?
+
+//주소록을 통해 연동해서 메세지 작성기능:
+// 답장기능과 차이를 두어야 한다. 공통점: 수신자이름을 파라미터로 받아와서 보냄. 차이점: ...
+// 주소를 통해 사원번호르 받아와서 이를 통해 empName을 가져온다.
+String answer_empNo=request.getParameter("empNo");
+
+boolean isAadressSend=answer_empNo!=null; //주소타고 들어온 메세지 작성인가?
+
+
+if(isAadressSend) {
+	String answer_empName=empDao.getName(answer_empNo);
+	answer_name=answer_empName;
+	} 
 
 %>
 
 
 <jsp:include page="/template/header.jsp"></jsp:include>
+
+
+<script>
+	$(function(){
+		$(".search-btn").click(function(e){
+			e.preventDefault();
+			
+			window.open(this.href, 'new', 'width=600, height=400');
+		});
+	});
+</script>
+
+
+
+
+
 
 <div class="container-800">
 	<%if(isSender) {%>
@@ -35,7 +67,7 @@ boolean isSender=answer_name!=null;
 	<%} %>
 	
 	<div class="row">
-		<form action ="massageInsert.kh" method ="post">
+		<form action ="massageInsert.kh" method ="post" enctype="multipart/form-data">
 			<!-- 제목 : 1. 답장일 때 2. 새로운 massage일때 -->
 			<%if(isSender) {%>
 			<div class="row">
@@ -51,21 +83,21 @@ boolean isSender=answer_name!=null;
 			
 			
 			<div class="row">
-			<!-- 수신자 명단 : 1. 답장일 때 2. 새로운 massage일때 -->
-				<%if(isSender) {%>
+				
+			<!-- 수신자 명단 : 1. 답장일 때 || address타고 들어왔을 때  2. 새로운 massage일때 -->
+				<%if(isSender||isAadressSend) {%>
 					<label>수신자</label>
 					<select name="e2_name">
-						 <!-- 수신자 이름 보냄 -->
+<!-- 						 수신자 이름 보냄 -->
 							<option><%=answer_name%></option>
 					</select>
 				<%} else{ %>
 					<label>수신자</label>
-					<select name="e2_name">
-					 <!-- 수신자 이름 보냄 -->
-					<%for(employeesDto empDto : empList) {%>
-						<option><%=empDto.getEmpName()%></option>
-					<%} %>
-					</select>
+					<input type="text" name="e2_name">
+				<%} %>
+				
+				<%if(!isSender&&!isAadressSend){ %>
+				<span><a class="link-btn search-btn" href="massageInsertList.jsp" onclick="">검색</a></span>
 				<%} %>
 			</div>
 			
@@ -74,7 +106,11 @@ boolean isSender=answer_name!=null;
 				<textarea class="form-btn" id="content" name="m_content"></textarea>
 			</div>
 			
-			
+			<!-- 첨부파일 -->
+			<div class="row">
+				첨부파일:
+				<input type="file" name="massage_file">
+			</div>
 			
 			<div class="row">
 				<input type="submit" value ="보내기" class="form-btn">

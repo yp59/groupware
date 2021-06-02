@@ -30,6 +30,8 @@ public class ScheduleEndDao {
 			scheduleEndDto.setSc_made(rs.getString("sc_made"));
 			scheduleEndDto.setSc_deadline(rs.getString("sc_deadline"));
 			scheduleEndDto.setSc_state(rs.getString("sc_state"));
+			scheduleEndDto.setEmpName(rs.getString("emp_name"));
+			scheduleEndDto.setDep_name(rs.getString("dep_name"));
 			
 			list.add(scheduleEndDto);
 		}
@@ -67,6 +69,8 @@ public class ScheduleEndDao {
 			scheduleEndDto.setSc_made(rs.getString("sc_made"));
 			scheduleEndDto.setSc_deadline(rs.getString("sc_deadline"));
 			scheduleEndDto.setSc_state(rs.getString("sc_state"));
+			scheduleEndDto.setEmpName(rs.getString("emp_name"));
+			scheduleEndDto.setDep_name(rs.getString("dep_name"));
 			
 			list.add(scheduleEndDto);
 		}
@@ -103,6 +107,8 @@ public class ScheduleEndDao {
 			scheduleEndDto.setSc_made(rs.getString("sc_made"));
 			scheduleEndDto.setSc_deadline(rs.getString("sc_deadline"));
 			scheduleEndDto.setSc_state(rs.getString("sc_state"));
+			scheduleEndDto.setEmpName(rs.getString("emp_name"));
+			scheduleEndDto.setDep_name(rs.getString("dep_name"));
 			
 			list.add(scheduleEndDto);
 		}

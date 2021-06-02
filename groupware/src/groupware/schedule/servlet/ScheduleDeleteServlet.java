@@ -17,11 +17,11 @@ public class ScheduleDeleteServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			req.setCharacterEncoding("UTF-8");
-			String empNo =(String)req.getSession().getAttribute("id");
+//			String empNo =(String)req.getSession().getAttribute("id");
 			//준비: sc_no(파라미터), id(세션)
 			ScheduleDto scheduleDto = new ScheduleDto();
 			scheduleDto.setSc_no(Integer.parseInt(req.getParameter("sc_no")));
-			scheduleDto.setEmpNo(empNo);
+//			scheduleDto.setEmpNo(empNo);
 		
 			
 			ScheduleDao scheduleDao = new ScheduleDao();

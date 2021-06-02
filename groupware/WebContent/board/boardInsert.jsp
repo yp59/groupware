@@ -10,7 +10,7 @@
 
 <jsp:include page="/template/section.jsp"></jsp:include>
 
-<div class="container-700">
+<div class="container-900">
 	<form action="boardInsert.gw" method ="post">
 		<input type="hidden" name=empNo value=<%=id%>>
 		<div class="row">
