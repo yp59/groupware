@@ -15,6 +15,8 @@
 	employeesDao employeesdao = new employeesDao();
 	employeesDto employeesdto = employeesdao.loginInfo(empNo);
 	
+	int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue(); //관리자번호
+	
 %>        
     
 <!DOCTYPE html>
@@ -94,8 +96,12 @@
 			</ul>
 			<ul>
 				<li class = "menu menu-title">
-
-					<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
+					<%if(authoritylevel == 1) {%>
+						<a href="<%=root%>/salary/salaryAuthority.jsp">급여</a>
+					<%}else{ %>
+						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
+					<%} %>
+					
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
