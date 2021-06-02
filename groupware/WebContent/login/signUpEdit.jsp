@@ -22,6 +22,16 @@ employeesDto empDto = empDao.loginInfo(empNo);
 
 
 <script>
+$(function(){
+	$("select[name=department]").val("<%=empDto.getDepartment()%>");
+		
+});
+
+$(function(){
+	$("select[name=poNo]").val("<%=empDto.getPono()%>");
+		
+});
+
 
 
 </script>
@@ -40,12 +50,29 @@ employeesDto empDto = empDao.loginInfo(empNo);
 	
 주소: <input type="text" name="address" value="<%=empDto.getAddress()%>" disabled="disabled">
 
-부서:<input type="text" value=<%=empDto.getDepartment()%> name="department" required="required">
+부서:<select name ="department">
+		<option>인사부</option>
+		<option>총무부</option>
+		<option>회계부</option>
+		<option>기획부</option>
+		<option>영업부</option>
+	</select>
+
+<%-- <input type="text" value=<%=empDto.getDepartment()%> name="department" required="required"> --%>
 		
-직급:<input type="text" value=<%=empDto.getPono() %> name="po_no" value="<%=empDto.getPono() %>" required="required">
+직급:<select name="poNo">
+		<option value="1">사장</option>
+		<option value="2">부장</option>
+		<option value="3">차장</option>
+		<option value="4">과장</option>
+		<option value="5">대리</option>
+		<option value="6">사원</option>
+	</select>
+
+<%-- <input type="text" value=<%=empDto.getPono() %> name="po_no" value="<%=empDto.getPono() %>" required="required"> --%>
 
 
 <input type="submit" value="사원정보 수정">
 </form>
-<a href = "<%=request.getContextPath()%>/login/loginInfo.jsp">취소</a>
+<a href = "<%=request.getContextPath()%>/address/addressList.jsp?manage=1">취소</a>
 <jsp:include page="/template/footer.jsp"></jsp:include>
