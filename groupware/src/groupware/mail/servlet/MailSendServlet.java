@@ -54,29 +54,44 @@ public class MailSendServlet extends HttpServlet{
 			Session session = Session.getDefaultInstance(prop, login);
 			MimeMessage msg = new MimeMessage(session);
 			
-			// 메일 내용
+			// 제목, 수진자 지정
 			msg.setSentDate(new Date());
         	msg.setFrom(new InternetAddress("5groupware@gmail.com", "그룹웨어 관리자"));
             InternetAddress to = new InternetAddress(mr.getParameter("mailRecipient"));         
             msg.setRecipient(Message.RecipientType.TO, to);            
             msg.setSubject(mr.getParameter("mailTitle"), "UTF-8");            
             
-//            본문
+            //본문
             File file = mr.getFile("mailFile");
+            
+            // 첨부 파일이 없으면
+            if(null == mr.getFile("mailFile")) {
             MimeMultipart mmp = new MimeMultipart();
             MimeBodyPart mbp = new MimeBodyPart();
             mbp.setContent(mr.getParameter("mailContent") +
             		"\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
             mmp.addBodyPart(mbp);
             
-//             파일 첨부
+			msg.setContent(mmp);
+            }
+            
+            // 첨부 파일이 있으면
+            else {
+            MimeMultipart mmp = new MimeMultipart();
+            MimeBodyPart mbp = new MimeBodyPart();
+            mbp.setContent(mr.getParameter("mailContent") +
+                		"\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
+            mmp.addBodyPart(mbp);
+                
+            //파일 첨부
             mbp = new MimeBodyPart();
             FileDataSource fds = new FileDataSource(file.getAbsolutePath());
             mbp.setDataHandler(new DataHandler(fds));
             mbp.setFileName(MimeUtility.encodeText(mr.getOriginalFileName("mailFile"), "UTF-8", "B"));
-			mmp.addBodyPart(mbp);
-			
-			msg.setContent(mmp);
+            mmp.addBodyPart(mbp);
+    			
+            msg.setContent(mmp);	
+            }
 			
             //메일 전송
             Transport.send(msg);

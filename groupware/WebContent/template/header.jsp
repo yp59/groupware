@@ -149,11 +149,16 @@
 		<ul>
 				<li class = "menu menu-title">
 					<a href="<%=root%>/address/addressList.jsp">주소록</a>
-					<a href="<%=root%>/mail/mailList.jsp">메일</a>
+				
+			</ul>
+			
+			<ul>
+				<li class = "menu menu-title">
+					<a href="<%=root%>/mail/mailList.jsp">공지메일</a>
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
-				<a href="<%=root%>/mail/mailSend.jsp">메일보내기</a>
+				<a href="<%=root%>/mail/mailSend.jsp">공지메일발송</a>
 				</li>
 			</ul>
 			</ul>

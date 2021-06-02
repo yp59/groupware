@@ -482,5 +482,100 @@ public class boardDao {
 			con.close();
 			return count > 0;
 		}
-
+		
+		// 이전글 조회 기능
+		public boardDto getPrevious(int boardNo) throws Exception {
+			Connection con = jdbcUtils.getConnection();
+			String sql = "select * from board "
+							+ "where board_no = ( select max(board_no) from board where board_no < ? )";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			ResultSet rs = ps.executeQuery();
+			boardDto boarddto;
+			if(rs.next()) {
+				boarddto = new boardDto();
+				boarddto.setBoardNo(rs.getInt("board_no"));
+				boarddto.setEmpNo(rs.getString("emp_no"));
+				boarddto.setBoTitle(rs.getString("bo_title"));
+				boarddto.setBoType(rs.getString("bo_type"));
+				boarddto.setBoContent(rs.getString("bo_content"));
+				boarddto.setBoCount(rs.getInt("bo_count"));
+				boarddto.setBoDate(rs.getString("bo_date"));
+				boarddto.setComComments(rs.getInt("bo_comments"));
+			}
+			
+			else {
+			boarddto = null;	
+			}
+			
+			con.close();
+			
+			return boarddto;
+		}
+		// 다음글 조회 기능
+		public boardDto getNext(int boardNo) throws Exception {
+			Connection con = jdbcUtils.getConnection();
+			String sql = "select * from board "
+							+ "where board_no = ( select min(board_no) from board where board_no > ? )";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, boardNo);
+			ResultSet rs = ps.executeQuery();
+			boardDto boarddto;
+			if(rs.next()) {
+				boarddto = new boardDto();
+				boarddto.setBoardNo(rs.getInt("board_no"));
+				boarddto.setEmpNo(rs.getString("emp_no"));
+				boarddto.setBoTitle(rs.getString("bo_title"));
+				boarddto.setBoType(rs.getString("bo_type"));
+				boarddto.setBoContent(rs.getString("bo_content"));
+				boarddto.setBoCount(rs.getInt("bo_count"));
+				boarddto.setBoDate(rs.getString("bo_date"));
+				boarddto.setComComments(rs.getInt("bo_comments"));
+			}
+			
+			else {
+			boarddto = null;	
+			}
+			
+			con.close();
+			
+			return boarddto;
+		}
+		
+		//자신이 작성한 게시글 조회 기능
+		public List<boardDto> searchByWriter(String empNo, int startRow, int endRow) throws Exception {
+			Connection con = jdbcUtils.getConnection();;
+			
+			String sql = "select * from("
+					+ "select rownum rn, TMP.* from("
+					+ "select * from board"
+					+ " where emp_no = ?"
+					+ "order by board_no desc"
+					+ ")TMP"
+					+ ") where rn between ? and ?";
+								
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, empNo);
+			ps.setInt(2, startRow);
+			ps.setInt(3, endRow);
+			ResultSet rs = ps.executeQuery();
+			
+			List<boardDto> list = new ArrayList<>();
+			while(rs.next()) {
+				boardDto boarddto = new boardDto();
+				boarddto.setBoardNo(rs.getInt("board_no"));
+				boarddto.setEmpNo(rs.getString("emp_no"));
+				boarddto.setBoTitle(rs.getString("bo_title"));
+				boarddto.setBoType(rs.getString("bo_type"));
+				boarddto.setBoContent(rs.getString("bo_content"));
+				boarddto.setBoCount(rs.getInt("bo_count"));
+				boarddto.setBoDate(rs.getString("bo_date"));
+				boarddto.setComComments(rs.getInt("bo_comments"));
+				list.add(boarddto);
+			}
+			
+			con.close();
+			
+			return list;
+		}
 }
