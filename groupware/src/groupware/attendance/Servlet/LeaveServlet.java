@@ -29,6 +29,7 @@ public class LeaveServlet extends HttpServlet{
 			//업데이트된 총 근무시간 이용해서 추가 근무시간 계산 후 update
 			if(attendanceDao.totaltime(empNo) && attendanceDao.overtime(empNo)) {
 				resp.sendRedirect("attendanceMain.jsp");
+				
 			}
 			
 		}

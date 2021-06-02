@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="groupware.beans.AttendanceDao"%>
@@ -52,17 +54,34 @@
 	}   
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<%
+	String pattern = "yyyy-MM-dd";
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+	String date = simpleDateFormat.format(new Date());
+	
+	AttendanceDto attendance = attendanceDao.get(empNo, date);
+%>
 <script>
 	$(function(){
 
 		$(".attend-btn").click(function(){
-			var date = new Date();
-			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"출근했습니다.");
+// 			var date = new Date();
+// 			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"출근했습니다.");
+			//location.href="attend.gw";
+			if(<%=attendance.getAttAttend()%>==null){
+				$(this).disabled = true;
+				//return false;	
+			}
+			else{
+				$(this).disabled = false;
+			}
+			
 		});
 		
 		$(".leave-btn").click(function(){
-			var date = new Date();
-			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"퇴근했습니다.");
+			
+			return false;
 		});
 	});
 </script>
