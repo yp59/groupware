@@ -154,7 +154,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 </div>
 
 </form>
-<form name="popUpDetail" method="get">
+<form name="popUpDetail" method="get"><!-- appNo가 한번에 들어감 why? -->
 <table class="table table-border table-hover" >
 		<thead>
 			<tr>
@@ -172,12 +172,13 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 				<tr>
 					<td><%=approvaldto.getAppNo()%></td>
 					<td><%=approvaldto.getDirType() %></td>
-					<td id = "approvalDetail">
-						
+					<td >
+						<a id = "approvalDetail">
 						<%=approvaldto.getAppTitle()%>
 						
 					<!-- 기안서에 현재 선택한 appNo을 보내는 구문 -->
 					<input type = "hidden" name = "appNo" value = "<%=approvaldto.getAppNo()%>">
+					</a>
 					</td>
 					<td><%=approvaldto.getEmpName()%></td>
 					<td><%=approvaldto.getAppDateStart()%></td>
