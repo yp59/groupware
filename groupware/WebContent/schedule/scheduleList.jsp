@@ -338,7 +338,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 			<input type="hidden" name="page_no1">
 			
 			<select name="type1">
-				<option value="department">부서</option>
+				<option value="dep_name">부서</option>
 				<option value="sc_name">제목</option>
 				<option value="emp_name">이름</option>
 			</select>
@@ -416,7 +416,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<form class="search-form2" action="scheduleList.jsp" method="get">
 			<input type="hidden" name="page_no2">
 			<select name="type2">
-				<option value="department">부서</option>
+				<option value="dep_name">부서</option>
 				<option value="sc_name">제목</option>
 				<option value="emp_name">이름</option>
 			</select>

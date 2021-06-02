@@ -8,17 +8,35 @@ import java.util.List;
 
 public class MassageDao {
 	
+	public int getSequence()throws Exception {
+		Connection con =jdbcUtils.getConnection();
+		
+		String sql ="select massage_seq.nextval from dual";
+		PreparedStatement ps =con.prepareStatement(sql);
+		ResultSet rs =ps.executeQuery();
+		rs.next();
+		int massage_no=rs.getInt(1);
+		
+		con.close();
+		return massage_no;
+		
+		
+	}
+	
+	
+	
 	//메세지 입력창 (입력 메소드)
 	
 	public void insert(MassageDto massageDto) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql ="insert into  massage values (massage_seq.nextval,?,?,sysdate,?,?)";
+		String sql ="insert into  massage values (?,?,?,sysdate,?,?)";
 		PreparedStatement ps =con.prepareStatement(sql);
-		ps.setString(1, massageDto.getEmpNo()); //발신자번호
-		ps.setString(2, massageDto.getM_name());//쪽지제목
-		ps.setString(3, massageDto.getM_content());//쪽지내용
-		ps.setString(4, massageDto.getReceiver_no());//수신자번호
+		ps.setInt(1, massageDto.getM_no());
+		ps.setString(2, massageDto.getEmpNo()); //발신자번호
+		ps.setString(3, massageDto.getM_name());//쪽지제목
+		ps.setString(4, massageDto.getM_content());//쪽지내용
+		ps.setString(5, massageDto.getReceiver_no());//수신자번호
 		
 		ps.execute();
 		
@@ -26,6 +44,7 @@ public class MassageDao {
 		
 		
 	}
+	
 	
 	
 	
@@ -66,6 +85,7 @@ public class MassageDao {
 		
 		
 	}
+
 
 	
 }

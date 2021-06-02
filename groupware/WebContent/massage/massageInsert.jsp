@@ -67,7 +67,7 @@ if(isAadressSend) {
 	<%} %>
 	
 	<div class="row">
-		<form action ="massageInsert.kh" method ="post">
+		<form action ="massageInsert.kh" method ="post" enctype="multipart/form-data">
 			<!-- 제목 : 1. 답장일 때 2. 새로운 massage일때 -->
 			<%if(isSender) {%>
 			<div class="row">
@@ -106,7 +106,11 @@ if(isAadressSend) {
 				<textarea class="form-btn" id="content" name="m_content"></textarea>
 			</div>
 			
-			
+			<!-- 첨부파일 -->
+			<div class="row">
+				첨부파일:
+				<input type="file" name="massage_file">
+			</div>
 			
 			<div class="row">
 				<input type="submit" value ="보내기" class="form-btn">
