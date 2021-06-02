@@ -142,8 +142,6 @@
 		$.each(month, function(i, value){
 		        if(result.indexOf(value) === -1) result.push(value);
 		});
-		result.sort();
-		
 		console.log(result);
 		monthSelect(result);
 	}
@@ -151,6 +149,7 @@
 
 <script>
 function monthSelect(monthList){
+	monthList.sort();
 	var option = $("<option value='' selected>선택하세요</option>");
 	$("select[name=searchMonth]").append(option);
 	for (var count = 0; count < monthList.length; count++) {
