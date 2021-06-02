@@ -14,13 +14,13 @@ public class SalaryDao {
 	public List<SalaryDto> list(String empNo, int startRow, int endRow) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select * from("
+		String sql = "select * from( "
 						+ "select rownum rn, TMP.* from("
-							+"select"
-							+ "S.*, E.emp_name"
-							+ "from salary S inner join employees E"
-							+ "on E.emp_no = S.emp_no and S.emp_no=? order by salary_date desc"
-						+ ")TMP"
+							+"select "
+							+ "S.*, E.emp_name "
+							+ "from salary S inner join employees E "
+							+ "on E.emp_no = S.emp_no and S.emp_no=? order by salary_date desc "
+						+ ")TMP "
 					+ ") where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
