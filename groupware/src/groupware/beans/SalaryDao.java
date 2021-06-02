@@ -221,7 +221,27 @@ public class SalaryDao {
 		return count;
 	}
 	
-	public int getCount(String empNo, String year, String month) throws Exception {
+	public int getCount1(String empNo, String year, String month) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select count(*) from salary "
+	    		+"where instr(to_char(salary_date,'yyyy'),?)>0 and instr(to_char(salary_date,'mm'),?)>0 "
+	    		+ "and emp_no= ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, year);
+		ps.setString(2, month);
+		ps.setString(3, empNo);
+		
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		
+		con.close();
+		
+		return count;
+	}
+	
+	public int getCount2(String empNo, String year, String month) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "select count(*) from salary "

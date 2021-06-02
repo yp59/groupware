@@ -19,10 +19,6 @@
 	String searchMonth = request.getParameter("searchMonth");
 	//searchMonth = searchMonth.replace("월","");
 	
-	boolean isSearchYear = searchYear != "" && searchMonth == "";
-	boolean isSearchMonth = searchYear == "" && searchMonth != "";
-	boolean isSearchBoth = searchYear == "" && searchMonth == "";
-	boolean isSearch = searchYear != null && searchMonth != null;
 	
 	
 	int pageNo;//현재 페이지 번호
@@ -51,20 +47,29 @@
 	int startRow = pageNo * pageSize - (pageSize-1);
 	int endRow = pageNo * pageSize;
 	
+	boolean isSearchYear = searchYear != "" && searchMonth == "";
+	boolean isSearchMonth = searchYear == "" && searchMonth != "";
+	boolean isSearchBoth = searchYear == "" && searchMonth == ""; //둘다 선택하세요일때
+	boolean isSearch = searchYear != null && searchMonth != null;
+	
+	
 	//List<SalaryDto> boardList;
 	List<SalaryDto> salaryList = null;
 	SalaryDto salaryDto = null;
 	
 	if(isSearch){
-		salaryDto = salaryDao.search(empNo,searchYear, searchMonth);
+
 		if(isSearchYear){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow);
+			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow); //연도만 검색
 		}
 		else if(isSearchMonth){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow);
+			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow); //월만 검색
 		}
-		else if(isSearchBoth){
+		else if(isSearchBoth){ //둘다 선택하세요 일 때
 			salaryList = salaryDao.list(empNo, startRow, endRow);
+		}
+		else{
+			salaryDto = salaryDao.search(empNo,searchYear, searchMonth); //둘다 값설정해서 검색했을때
 		}
 	}
 	else{
@@ -77,7 +82,15 @@
 	
 	int count;
 	if(isSearch){
-		count = salaryDao.getCount(empNo,searchYear, searchMonth); 
+		if(isSearchYear || isSearchMonth ){
+			count = salaryDao.getCount2(empNo,searchYear, searchMonth); // or
+		}
+		else if(isSearchBoth){
+			count = salaryDao.getCount(empNo); //둘다 선택하세요일때
+		}
+		else{
+			count = salaryDao.getCount1(empNo,searchYear, searchMonth); //and
+		}
 	}
 	else{
 		count = salaryDao.getCount(empNo);
@@ -122,7 +135,7 @@
 				month.push("<%=yearMonth.substring(5, 7)%>");
 			}
 			else if(year == "<%=yearMonth.substring(0, 4)%>"){ //'yyyy'가 같으면
-				month.push("<%=yearMonth.substring(5, 7)%>"); //2021-06 숫자로 인식되어 뺄셈 적용됨ㅠ
+				month.push("<%=yearMonth.substring(5, 7)%>"); 
 			}
 		<%}%>
 		
