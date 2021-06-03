@@ -80,7 +80,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <%
-	String pattern = "yyyy-MM-dd";
+	String pattern = "yyyy-MM-dd"; 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 	String date = simpleDateFormat.format(new Date());
 	
