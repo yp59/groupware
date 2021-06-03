@@ -15,7 +15,17 @@
 	employeesDao employeesdao = new employeesDao();
 	employeesDto employeesdto = employeesdao.loginInfo(empNo);
 	
-	int authLev = (int)request.getSession().getAttribute("authorityLevel");
+	
+	int authLev;
+	try{
+	
+	authLev = (int)request.getSession().getAttribute("authorityLevel");
+	
+	}catch(Exception e){
+		authLev = 0;	
+		
+		
+	}
 	boolean isHeader = authLev ==1; //사장님만
 %>        
     

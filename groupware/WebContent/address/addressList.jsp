@@ -215,6 +215,7 @@ $(function(){
 	<div class="row text-center">
 		<form class="search-form" action="addressList.jsp" method="get">
 			<input type="hidden" name="page_no">
+			<input type="hidden" name="manage" value="1">
 			
 			<select name="type">
 				<option value="emp_name">이름</option>
