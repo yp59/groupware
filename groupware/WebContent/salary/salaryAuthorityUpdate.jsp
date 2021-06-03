@@ -34,7 +34,7 @@
 
 			<div class="row text-left">
 			<label>사원 이름</label>
-			<%=salaryDto.getEmpName()%>
+			<%=salaryDto.getEmpName()%> 
 			</div>		
 			<div class="row text-left">
 				<label>지급일</label>
