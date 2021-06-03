@@ -119,6 +119,36 @@ public class SalaryAuthorityDao {
 		return count>0;
 	}
 	
+	// 급여 수정 
+	public boolean edit(SalaryDto salaryDto) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "update salary "
+					+ " set salary_pay=?,salary_overtime=?, salary_meal=?, salary_transportation=?,"
+					+ " salary_total=? "
+					+ " where emp_no=? and salary_date=to_date(?,'yyyy-mm-dd')";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		AttendanceDao attendanceDao = new AttendanceDao();
+		int overtime = attendanceDao.getOvertime(salaryDto.getEmpNo());
+		ps.setInt(1, salaryDto.getSalaryPay());
+		ps.setInt(2, salaryDto.getSalaryOvertime()*overtime);
+		ps.setInt(3,salaryDto.getSalaryMeal());
+		ps.setInt(4, salaryDto.getSalaryTransportation());
+		
+		int totalSalary = salaryDto.getSalaryPay()+salaryDto.getSalaryOvertime()*overtime
+				+salaryDto.getSalaryMeal()+salaryDto.getSalaryTransportation();
+		
+		ps.setInt(5,totalSalary);
+		ps.setString(6, salaryDto.getEmpNo());
+		ps.setString(7, salaryDto.getSalaryDate());
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
+	}
+	
 	//년도 가져오기(화면 select에 추가)
 	public List<String> getYear() throws Exception{
 		Connection con = jdbcUtils.getConnection();

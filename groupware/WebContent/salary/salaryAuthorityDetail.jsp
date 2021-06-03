@@ -62,6 +62,8 @@
    
    <div class="row text-right">
       <a href="salaryAuthority.jsp" class="link-btn">목록</a>
+      <a href="salaryAuthorityUpdate.jsp?empNo=<%=empNo%>&salaryDate=<%=salaryDate %>" class="link-btn">수정</a>
+      <a href="salaryDelte.gw?empNo=<%=empNo%>&salaryDate=<%=salaryDate %>" class="link-btn">삭제</a>
    </div>
    
 </div>
