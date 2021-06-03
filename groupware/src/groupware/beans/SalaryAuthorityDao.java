@@ -9,45 +9,13 @@ import java.util.List;
 public class SalaryAuthorityDao {
 
 	//급여 입력
-	public void insert(SalaryDto salaryDto,String year, String month) throws Exception {
-		Connection con = jdbcUtils.getConnection();
-		
-		String sql= "insert into salary values(?,?,?,?,?,?,to_date(sysdate,'yyyy-mm-dd'),?)";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1,salaryDto.getEmpNo());
-		ps.setInt(2,salaryDto.getPoNo());
-		
-		PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
-		PositionSalaryDto positionSalaryDto = positionSalaryDao.get(salaryDto.getPoNo());
-		
-		AttendanceDao attendanceDao = new AttendanceDao();
-		int overtime = attendanceDao.getOvertime(salaryDto.getEmpNo());
-		
-		int totalSalary = salaryDto.getSalaryPay()+salaryDto.getSalaryOvertime()*overtime
-		+salaryDto.getSalaryMeal()+salaryDto.getSalaryTransportation();
-		
-		ps.setInt(3, positionSalaryDto.getSalaryPay());
-		ps.setInt(4, positionSalaryDto.getSalaryOvertime() * overtime );
-		ps.setInt(5, positionSalaryDto.getSalaryMeal());
-		ps.setInt(6, positionSalaryDto.getSalaryTransportation());
-		ps.setInt(7,totalSalary);
-		
-		
-		ps.execute();
-		con.close();
-	}
-	
-	//급여 입력
 	public void insert(SalaryDto salaryDto) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql= "insert into salary values(?,?,?,?,?,?,to_date(sysdate,'yyyy-mm-dd'),?)";
+		String sql= "insert into salary values(?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,salaryDto.getEmpNo());
 		ps.setInt(2,salaryDto.getPoNo());
-		
-		PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
-		PositionSalaryDto positionSalaryDto = positionSalaryDao.get(salaryDto.getPoNo());
 		
 		AttendanceDao attendanceDao = new AttendanceDao();
 		int overtime = attendanceDao.getOvertime(salaryDto.getEmpNo());
@@ -55,10 +23,10 @@ public class SalaryAuthorityDao {
 		int totalSalary = salaryDto.getSalaryPay()+salaryDto.getSalaryOvertime()*overtime
 		+salaryDto.getSalaryMeal()+salaryDto.getSalaryTransportation();
 		
-		ps.setInt(3, positionSalaryDto.getSalaryPay());
-		ps.setInt(4, positionSalaryDto.getSalaryOvertime() * overtime );
-		ps.setInt(5, positionSalaryDto.getSalaryMeal());
-		ps.setInt(6, positionSalaryDto.getSalaryTransportation());
+		ps.setInt(3, salaryDto.getSalaryPay());
+		ps.setInt(4, salaryDto.getSalaryOvertime() * overtime );
+		ps.setInt(5, salaryDto.getSalaryMeal());
+		ps.setInt(6, salaryDto.getSalaryTransportation());
 		ps.setInt(7,totalSalary);
 		
 		
@@ -135,6 +103,19 @@ public class SalaryAuthorityDao {
 	
 		con.close();
 		return salaryDto;
+	}
+	
+	public boolean delete(String empNo,String salaryDate) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "delete salary where emp_no=? and salary_date=to_date(?,'yyyy-mm-dd')";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setString(2, salaryDate);
+		
+		int count = ps.executeUpdate();
+		
+		return count>0;
 	}
 	
 	//년도 가져오기(화면 select에 추가)
