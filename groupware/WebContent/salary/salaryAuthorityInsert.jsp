@@ -34,10 +34,7 @@
 		</div>
 		
 		
-		<%for(PositionSalaryDto positionSalary : positionSalaryList){
-			AttendanceDao attendanceDao = new AttendanceDao();
-			int overtime = attendanceDao.getOvertime(positionSalary.getEmpNo());
-		%>
+		<%for(PositionSalaryDto positionSalary : positionSalaryList){%>
 			<script>
 				$(function(){
 					$("select[name=employeesChoice]").on("input", function(){
@@ -53,6 +50,10 @@
 				});
 			</script>
 			
+			<%
+				AttendanceDao attendanceDao = new AttendanceDao();
+				int overtime = attendanceDao.getOvertime(positionSalary.getEmpNo());
+			%>
 			<script>
 				function overtimeInsert(){
 					$(".overtime").text("추가 근무 시간 : <%=overtime%>시간");
