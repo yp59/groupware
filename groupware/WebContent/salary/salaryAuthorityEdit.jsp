@@ -1,3 +1,4 @@
+<%@page import="groupware.beans.PositionSalaryDto"%>
 <%@page import="groupware.beans.SalaryAuthorityDao"%>
 <%@page import="groupware.beans.AttendanceDto"%>
 <%@page import="groupware.beans.SalaryDao"%>
@@ -13,13 +14,15 @@
 	String empNo = (String)request.getParameter("empNo");
 	String salaryDate = (String)request.getParameter("salaryDate");
 	 
-     
-	 SalaryAuthorityDao salaryAuthorityDao = new SalaryAuthorityDao();
-	 SalaryDto salaryDto = salaryAuthorityDao.get(empNo, salaryDate);
-	
 	AttendanceDao attendanceDao = new AttendanceDao();
 	int sumOvertime = attendanceDao.getOvertime(empNo);
 	
+	SalaryAuthorityDao salaryAuthorityDao = new SalaryAuthorityDao();
+	SalaryDto salaryDto = salaryAuthorityDao.get(empNo, salaryDate);
+	
+	PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
+	PositionSalaryDto positionSalaryDto = positionSalaryDao.get(empNo);
+
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -29,35 +32,44 @@
 		<h2>급여 명세서 수정</h2>
 	</div>
 
-	<form action="salaryUpdate.gw" method="post">
-
+	<form action="salaryEdit.gw" method="post">
+			<input type="hidden" name="sumOvertime" value="<%=sumOvertime %>">
+			<input type="hidden" name="empNo" value="<%=empNo %>">
+			<input type="hidden" name="salaryDate" value="<%=salaryDate %>">
 
 			<div class="row text-left">
-			<label>사원 이름</label>
-			<%=salaryDto.getEmpName()%> 
+				<label>사원 이름 : </label>
+				<%=salaryDto.getEmpName()%> 
 			</div>		
+			
 			<div class="row text-left">
-				<label>지급일</label>
+				<label>지급일 : </label>
 				<%=salaryDto.getSalaryDate()%>
 			</div>	
+			
 			<div class="row text-left">
 				<label>기본급</label>
-				<input type="text" name="salaryPay" value="<%=salaryDto.getSalaryPay()%>">
+				<input type="text" name="salaryPay" value="<%=salaryDto.getSalaryPay()%>" class="form-input form-input-underline">
 			</div>
+			
 			<div class="row text-left">
 				<label>추가 근무 수당</label>
-				<input type="text" name="salaryOvertime" value= "<%=salaryDto.getSalaryOvertime()%>">
+				<div class="row">추가 근무 시간 : <%=sumOvertime %></div>
+				<input type="text" name="salaryOvertime" value= "<%=positionSalaryDto.getSalaryOvertime()%>" class="form-input form-input-underline">
 			</div>
+			
 			<div class="row text-left">
 				<label>식비</label>
-				<input type="text" name="salaryMeal" value="<%=salaryDto.getSalaryMeal()%>">
-			</div>		
+				<input type="text" name="salaryMeal" value="<%=salaryDto.getSalaryMeal()%>" class="form-input form-input-underline">
+			</div>	
+				
 			<div class="row text-left">
 				<label>교통비</label>
-				<input type="text" name="salaryTransportation" value="<%=salaryDto.getSalaryTransportation()%>">
-			</div>			
+				<input type="text" name="salaryTransportation" value="<%=salaryDto.getSalaryTransportation()%>" class="form-input form-input-underline">
+			</div>	
+					
 			<div class="row">
-				<input type="submit" value="수정완료" class="form-btn form-btn-positive" >
+				<input type="submit" value="수정 완료" class="form-btn form-btn-positive" >
 			</div>
 		
 	</form>

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import groupware.beans.SalaryAuthorityDao;
 import groupware.beans.SalaryDto;
 
-@WebServlet(urlPatterns = "/salary/salaryUpdate.gw")
-public class SalaryUpdateServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/salary/salaryEdit.gw")
+public class SalaryEditServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,8 +22,12 @@ public class SalaryUpdateServlet extends HttpServlet{
 			
 			SalaryDto salaryDto = new SalaryDto();
 			
+			int sumOvertime = (Integer.parseInt(req.getParameter("sumOvertime")));
+			
+			salaryDto.setEmpNo(req.getParameter("empNo"));
+			salaryDto.setSalaryDate(req.getParameter("salaryDate"));
 			salaryDto.setSalaryPay(Integer.parseInt(req.getParameter("salaryPay")));
-			salaryDto.setSalaryOvertime(Integer.parseInt(req.getParameter("salaryOvertime")));
+			salaryDto.setSalaryOvertime(Integer.parseInt(req.getParameter("salaryOvertime"))*sumOvertime);
 			salaryDto.setSalaryMeal(Integer.parseInt(req.getParameter("salaryMeal")));
 			salaryDto.setSalaryTransportation(Integer.parseInt(req.getParameter("salaryTransportation")));
 			
@@ -31,7 +35,7 @@ public class SalaryUpdateServlet extends HttpServlet{
 			SalaryAuthorityDao salaryauthorityDao =new SalaryAuthorityDao();
 			salaryauthorityDao.edit(salaryDto);
 			
-			resp.sendRedirect("salaryAuthority.jsp");
+			resp.sendRedirect("salaryAuthorityDetail.jsp?empNo="+salaryDto.getEmpNo()+"&salaryDate="+salaryDto.getSalaryDate());
 			
 			
 		}
