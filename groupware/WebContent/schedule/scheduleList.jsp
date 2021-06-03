@@ -292,8 +292,8 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 						</a>
 					</td>
 					<td><%=scheduleIngDto.getEmpName() %></td>
-					<td><%=scheduleIngDto.getSc_made() %></td>
-					<td><%=scheduleIngDto.getSc_deadline() %></td>
+					<td><%=scheduleIngDto.getSc_made().substring(0,10) %></td>
+					<td><%=scheduleIngDto.getSc_deadline().substring(0,10) %></td>
 				</tr>
 				<%} %>
 			</tbody>
@@ -375,8 +375,8 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 						</a>
 					</td>
 					<td><%=scheduleEndDto.getEmpName() %></td>
-					<td><%=scheduleEndDto.getSc_made() %></td>
-					<td><%=scheduleEndDto.getSc_deadline() %></td>
+					<td><%=scheduleEndDto.getSc_made().substring(0,10) %></td>
+					<td><%=scheduleEndDto.getSc_deadline().substring(0,10) %></td>
 				</tr>
 				<%} %>
 			</tbody>
