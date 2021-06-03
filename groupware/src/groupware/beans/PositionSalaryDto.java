@@ -1,6 +1,5 @@
 package groupware.beans;
 
-import java.sql.Date;
 
 public class PositionSalaryDto {
 	

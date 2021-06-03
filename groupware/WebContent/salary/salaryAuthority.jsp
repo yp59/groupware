@@ -112,7 +112,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
-	.seach .insert{
+	.search .insert{
 		display:inline-block;
 		
 	}

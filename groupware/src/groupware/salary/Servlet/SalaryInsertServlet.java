@@ -16,8 +16,10 @@ public class SalaryInsertServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			req.setCharacterEncoding("UTF-8");
 			SalaryDto salaryDto = new SalaryDto();
 			salaryDto.setEmpNo(req.getParameter("empNo"));
+			salaryDto.setPoNo(Integer.parseInt(req.getParameter("poNo")));
 			salaryDto.setSalaryDate(req.getParameter("payDate"));
 			salaryDto.setSalaryPay(Integer.parseInt(req.getParameter("payBasic")));
 			salaryDto.setSalaryOvertime(Integer.parseInt(req.getParameter("payOvertime")));

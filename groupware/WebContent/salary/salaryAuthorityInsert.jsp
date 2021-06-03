@@ -7,6 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 	String empNo = (String)session.getAttribute("id");
 	
 	PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
@@ -29,10 +30,11 @@
 				$("input[name=payBasic]").val("<%=positionSalary.getSalaryPay()%>");
 				$("input[name=payOvertime]").val("<%=positionSalary.getSalaryOvertime()%>");
 				$(".overtime").text("추가 근무 시간 : <%=overtime%>시간");
-				$("input[name=totalPayOvertime]").val("<%=positionSalary.getSalaryOvertime()%>*<%=overtime%>");
+				$(".totalPayOvertime").text("<%=positionSalary.getSalaryOvertime()%>*<%=overtime%>원");
 				$("input[name=payMeal]").val("<%=positionSalary.getSalaryMeal()%>");
 				$("input[name=payTransportation]").val("<%=positionSalary.getSalaryTransportation()%>");
 				$(".hiddenEmpNo").val("<%=positionSalary.getEmpNo()%>")
+				$(".hiddenPoNo").val("<%=positionSalary.getPoNo()%>")
 			}
 		});
 	});
@@ -59,10 +61,7 @@
 		
 	
 		<input type="hidden" name="empNo" class="hiddenEmpNo" value="">
-		<div class="row text-left">
-			<label>지급일</label>
-			<input type="date" name="payDate" class="form-input form-input-underline">
-		</div>
+		<input type="hidden" name="poNo" class="hiddenPoNo" value="">
 		
 		<div class="row text-left">
 			<label>기본급</label>
@@ -78,7 +77,7 @@
 		
 		<div class="row text-left">
 			<label>총 추가 근무 수당</label>
-			<input type="text" name="totalPayOvertime" class="form-input form-input-underline">
+			<span class="totalPayOvertime"></span>
 		</div>
 		
 		<div class="row text-left">
@@ -92,7 +91,7 @@
 		</div>
 		
 		<div class="row">
-			<input type="submit" value="작성 완료" class="form-btn form-btn-positive" id="holSubmit">
+			<input type="submit" value="작성 완료" class="form-btn form-btn-positive">
 		</div>
 	
 	</form>
