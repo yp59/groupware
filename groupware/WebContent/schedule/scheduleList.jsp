@@ -421,11 +421,6 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	</div>
 	
 	
-	
-	
-	<div>
-		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
-	</div>
 
 
 

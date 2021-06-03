@@ -41,9 +41,6 @@ List<DepartmentDto>list = departmentDao.list();
 			<input type="submit" value="일정등록" class="form-btn">
 		</form>
 	</div>
-	<div>
-		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
-	</div>
 </div>
 
 
