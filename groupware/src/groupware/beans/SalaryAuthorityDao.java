@@ -21,7 +21,7 @@ public class SalaryAuthorityDao {
 		PositionSalaryDto positionSalaryDto = positionSalaryDao.get(salaryDto.getPoNo());
 		
 		AttendanceDao attendanceDao = new AttendanceDao();
-		int overtime = attendanceDao.getOvertime(salaryDto.getEmpNo(),year,month);
+		int overtime = attendanceDao.getOvertime(salaryDto.getEmpNo());
 		
 		int totalSalary = salaryDto.getSalaryPay()+salaryDto.getSalaryOvertime()*overtime
 		+salaryDto.getSalaryMeal()+salaryDto.getSalaryTransportation();
@@ -30,8 +30,36 @@ public class SalaryAuthorityDao {
 		ps.setInt(4, positionSalaryDto.getSalaryOvertime() * overtime );
 		ps.setInt(5, positionSalaryDto.getSalaryMeal());
 		ps.setInt(6, positionSalaryDto.getSalaryTransportation());
-		ps.setString(7,salaryDto.getSalaryDate());
-		ps.setInt(8,totalSalary);
+		ps.setInt(7,totalSalary);
+		
+		
+		ps.execute();
+		con.close();
+	}
+	
+	//급여 입력
+	public void insert(SalaryDto salaryDto) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql= "insert into salary values(?,?,?,?,?,?,to_date(sysdate,'yyyy-mm-dd'),?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1,salaryDto.getEmpNo());
+		ps.setInt(2,salaryDto.getPoNo());
+		
+		PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
+		PositionSalaryDto positionSalaryDto = positionSalaryDao.get(salaryDto.getPoNo());
+		
+		AttendanceDao attendanceDao = new AttendanceDao();
+		int overtime = attendanceDao.getOvertime(salaryDto.getEmpNo());
+		
+		int totalSalary = salaryDto.getSalaryPay()+salaryDto.getSalaryOvertime()*overtime
+		+salaryDto.getSalaryMeal()+salaryDto.getSalaryTransportation();
+		
+		ps.setInt(3, positionSalaryDto.getSalaryPay());
+		ps.setInt(4, positionSalaryDto.getSalaryOvertime() * overtime );
+		ps.setInt(5, positionSalaryDto.getSalaryMeal());
+		ps.setInt(6, positionSalaryDto.getSalaryTransportation());
+		ps.setInt(7,totalSalary);
 		
 		
 		ps.execute();
