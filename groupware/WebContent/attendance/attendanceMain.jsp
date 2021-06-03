@@ -60,6 +60,7 @@
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 	String date = simpleDateFormat.format(new Date());
 	
+	
 	AttendanceDto attendance = attendanceDao.get(empNo, date);
 %>
 <!-- <script>
@@ -119,18 +120,20 @@
    
    <div class="row text-right">
    		<!-- 출/퇴근 버튼 null일때만 서블릿으로 이동하도록 구현 -->
-   		<%if(attendance.getAttAttend() == null){ %>
-		    <a href="attend.gw?" class="link-btn attend-btn">출근</a>   		
-   		<%}else{ %>
-   			<a href="#" class="link-btn attend-btn">출근</a>   	
-   		<%} %>
+   		<%if(attendance !=null) {%>
+	   		<%if(attendance.getAttAttend() != null){%> 
+			    <a href="#" class="link-btn attend-btn">출근</a> 		
+	   		<%} %>	   		  		
+	   		<%if(attendance.getAttLeave() == null){ %>
+			    <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>  		
+	   		<%}else{ %>
+	   			<a href="#" class="link-btn leave-btn">퇴근</a>   	
+	   		<%} %>
+	   	<%} else{ %>
+	   		<a href="attend.gw?" class="link-btn attend-btn">출근</a>
+	   		<a href="#" class="link-btn leave-btn">퇴근</a>
+	   	<%} %>
    		
-   		
-   		<%if(attendance.getAttLeave() == null){ %>
-		    <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>  		
-   		<%}else{ %>
-   			<a href="#" class="link-btn leave-btn">퇴근</a>   	
-   		<%} %>
    </div>
    
    <div class="row">
