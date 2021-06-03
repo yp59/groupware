@@ -31,7 +31,8 @@ public class directAppDao {
 		String sql= "select D.*, E.emp_name from"
 				+ " directapp D inner join employees E"
 				+ " on D.approval = E.emp_no"
-				+ " where D.app_no = ?";
+				+ " where D.app_no = ?"
+				+ " order by po_no,join_date";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		
@@ -66,21 +67,21 @@ public List<directAppDto> sequence(int appNo)throws Exception{//전체 결재자
 		String sql = "select * from ("
 				+ "    select rownum rn,TMP.* from("
 				+ "            select * from("
-				+ "                        select D.*,E.po_no from directapp D"
+				+ "                        select D.*, E.po_no, E.join_date from directapp D"
 				+ "                        inner join employees E"
 				+ "                        on D.approval = E.emp_no"
 				+ "                        where D.app_no =? and consesus ='1'"
-				+ "                        order by po_no desc)"
+				+ "                        order by po_no desc, join_date desc)"
 				+ "                        union all"
 				+ "            select * from"
-				+ "                        ( select D.*,E.po_no from directapp D"
+				+ "                        ( select D.*, E.po_no, E.join_date from directapp D"
 				+ "                        inner join employees E"
 				+ "                        on D.approval = E.emp_no"
 				+ "                        where D.app_no =? and consesus ='0'"
-				+ "                        order by po_no desc)"
+				+ "                        order by po_no desc, join_date desc)"
 				+ "                         )"
-				+ "                         TMP)";
-		
+				+ "                         TMP)";//직급을 기준으로 순서 정하고 직급이 같으면 입사일 순으로 결재 순서를 정한다.
+												//union 안써도 됐었다....... order by 를 여러번 사용해도 되는 줄 몰랐다.
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setInt(1, appNo);
@@ -114,18 +115,18 @@ public directAppDto sequence(int appNo,String id)throws Exception{//내 결재 �
 	String sql = "select * from ("
 			+ "    select rownum rn,TMP.* from("
 			+ "            select * from("
-			+ "                        select D.*,E.po_no from directapp D"
+			+ "                        select D.*, E.po_no, E.join_date from directapp D"
 			+ "                        inner join employees E"
 			+ "                        on D.approval = E.emp_no"
 			+ "                        where D.app_no =? and consesus ='1'"
-			+ "                        order by po_no desc)"
+			+ "                        order by po_no desc, join_date desc)"
 			+ "                        union all"
 			+ "            select * from"
-			+ "                        ( select D.*,E.po_no from directapp D"
+			+ "                        ( select D.*, E.po_no, E.join_date from directapp D"
 			+ "                        inner join employees E"
 			+ "                        on D.approval = E.emp_no"
 			+ "                        where D.app_no =? and consesus ='0'"
-			+ "                        order by po_no desc)"
+			+ "                        order by po_no desc, join_date desc)"
 			+ "                         )"
 			+ "                         TMP) where approval = ?";
 	
@@ -153,4 +154,23 @@ public directAppDto sequence(int appNo,String id)throws Exception{//내 결재 �
 	return directappdto;
 }
 
+public void directUpdate(directAppDto directappdto)throws Exception{
+	Connection con = jdbcUtils.getConnection();
+	
+	String sql = "update directapp set"
+			+ " type = ? , app_date = sysdate"
+			+ " where app_no =? and approval = ?"
+			+ " and consesus = ?";
+			
+	PreparedStatement ps = con.prepareStatement(sql);
+	
+	ps.setString(1, directappdto.getType());
+	ps.setInt(2, directappdto.getAppNo());
+	ps.setString(3, directappdto.getApproval());
+	ps.setString(4, directappdto.getConsesus());
+	
+	ps.executeUpdate();
+	
+	
+}
 }

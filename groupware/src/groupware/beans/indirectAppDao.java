@@ -31,8 +31,8 @@ public class indirectAppDao {
 		String sql= "select I.*,E.emp_name from indirectapp I"
 				+ " inner join employees E"
 				+ " on I.referrer = E.emp_no"
-				+ " where app_no = ?";
-		
+				+ " where app_no = ?"
+				+ " order by po_no,join_date";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setInt(1, appNo);
