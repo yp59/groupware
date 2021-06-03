@@ -10,7 +10,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-   DecimalFormat df=new DecimalFormat("#.#"); //근무시간 소수점 첫째자리가 0이면 안나오게
+   DecimalFormat df=new DecimalFormat("#"); //근무시간 소수점 첫째자리가 0이면 안나오게
    
    // 페이지네이션
    int pageNo; //현재 페이지 번호
@@ -165,8 +165,8 @@
                </td>
                <td>
                	<!-- 내림하고 소수점자리 자르기 -->
-				<%=df.format(Math.floor(attendanceDto.getAttTotaltime()))%>시간                
-				<%=df.format(attendanceDto.getAttTotaltime()*60 % 60) %>분            
+				<%=df.format(attendanceDto.getAttTotaltime()/60) %>시간  <!-- 분단위라서 60으로 나눠준 몫 -->             
+				<%=df.format(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->           
                </td>
                <td>
 				<%=df.format(attendanceDto.getAttOvertime()) %>시간             

@@ -50,8 +50,8 @@ public class AttendanceDao {
 		Connection con = jdbcUtils.getConnection();
 		
 		//총 근무시간(원래 근무시간 + 추가 근무시간) 계산
-		String sql="update attendance set att_totaltime = round((att_leave-att_attend)*24,1) "
-				+ "where emp_no = ? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
+		String sql="update attendance set att_totaltime = floor((att_leave-att_attend)*24*60) "
+				+ "where emp_no = ? and att_date = to_date(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,empNo);
@@ -68,8 +68,8 @@ public class AttendanceDao {
 
 		//근무 시간 : 8시간으로 설정
 		//추가근무시간 : 총 근무시간 - 8시간
-		String sql = "update attendance set att_overtime = GREATEST(att_totaltime-8, 0)"
-				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
+		String sql = "update attendance set att_overtime = GREATEST((att_totaltime/24/60)-8, 0)"
+				+ "where emp_no=? and att_date = to_date(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
@@ -80,7 +80,7 @@ public class AttendanceDao {
 		return count>0;
 	}
 	
-	// 추가 근무시간 값 가져오기
+	//한달동안의 추가 근무시간 값 가져오기
 	public int getOvertime(String empNo,String year,String month) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
@@ -103,7 +103,7 @@ public class AttendanceDao {
 		return 0;
 	}
 	
-	// 이번달 추가 근무시간 값 가져오기
+	// 이번달 추가 근무시간 값 가져오기 -> 관리자
 	public int getOvertime(String empNo) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
