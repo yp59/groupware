@@ -53,6 +53,10 @@
 					});
 				});
 			</script>			
+			<%
+				overtime = attendanceDao.getOvertime(positionSalary.getEmpNo());
+
+			%>	
 				
 			<script>
 				function overtimeInsert(){
