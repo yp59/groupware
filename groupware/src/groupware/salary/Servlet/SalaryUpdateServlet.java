@@ -31,7 +31,6 @@ public class SalaryUpdateServlet extends HttpServlet{
 			SalaryAuthorityDao salaryauthorityDao =new SalaryAuthorityDao();
 			salaryauthorityDao.edit(salaryDto);
 			
-			//출력
 			resp.sendRedirect("salaryAuthority.jsp");
 			
 			
