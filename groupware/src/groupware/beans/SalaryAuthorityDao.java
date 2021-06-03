@@ -105,6 +105,19 @@ public class SalaryAuthorityDao {
 		return salaryDto;
 	}
 	
+	public boolean delete(String empNo,String salaryDate) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "delete salary where emp_no=? and salary_date=to_date(?,'yyyy-mm-dd')";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setString(2, salaryDate);
+		
+		int count = ps.executeUpdate();
+		
+		return count>0;
+	}
+	
 	//년도 가져오기(화면 select에 추가)
 	public List<String> getYear() throws Exception{
 		Connection con = jdbcUtils.getConnection();
