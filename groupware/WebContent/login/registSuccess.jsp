@@ -9,6 +9,6 @@
 <body>
 
 <h1>사원 등록 완료</h1>
-<a href="<%=request.getContextPath()%>/login/signUp.jsp">사원등록</a>
+<a href="<%=request.getContextPath()%>/address/addressList.jsp?manage=1">사원정보관리</a>
 </body>
 </html>

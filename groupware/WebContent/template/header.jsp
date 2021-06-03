@@ -42,10 +42,10 @@
 			<a href="<%=root%>/login/logOut.gw">로그아웃</a>
 			<div class = "row"><a href="<%=root%>/login/loginInfo.jsp">회원정보</a></div>
 			
-				<!-- 사원등록: 사장님만 가능 -->
+				<!-- 사원관리: 사장님만 가능 -->
 				<%if(isHeader) {%>
 					<div class="row text-right">
-						<a href="<%=root%>/login/signUp.jsp" class="link-btn">사원등록</a>
+						<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a>
 					</div>
 				<%} %>
 		</div>
