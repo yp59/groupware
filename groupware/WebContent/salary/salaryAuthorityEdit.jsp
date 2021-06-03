@@ -22,10 +22,25 @@
 	
 	PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
 	PositionSalaryDto positionSalaryDto = positionSalaryDao.get(empNo);
+	
 
 %>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+$(function(){
+	calcSalary();
+	$("input[name=salaryOvertime]").on("input",function(){
+		calcSalary()
+	});
+});
+</script>
+<script>
+function calcSalary(){
+	var totalSalaryOvertime = $("input[name=salaryOvertime]").val()
+	$(".totalSalaryOvertime").text("총 추가 근무 수당 : " + totalSalaryOvertime * <%=sumOvertime%>);
+}
+</script>
 
 <div class="container-600 center">
 	<div class="row">
@@ -54,8 +69,9 @@
 			
 			<div class="row text-left">
 				<label>추가 근무 수당</label>
-				<div class="row">추가 근무 시간 : <%=sumOvertime %></div>
+				<div class="row text-left sumOvertime">추가 근무 시간 : <%=sumOvertime %></div>
 				<input type="text" name="salaryOvertime" value= "<%=positionSalaryDto.getSalaryOvertime()%>" class="form-input form-input-underline">
+				<div class="totalSalaryOvertime"></div>
 			</div>
 			
 			<div class="row text-left">
