@@ -115,6 +115,7 @@ public class SalaryAuthorityDao {
 		
 		int count = ps.executeUpdate();
 		
+		con.close();
 		return count>0;
 	}
 	

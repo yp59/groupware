@@ -80,20 +80,22 @@
 				</li>
 			</ul>
 			</ul>
+			
 			<ul>
 				<li class = "menu menu-title">
+				<a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근</a>
+				</li>
+				<ul>
+					<li class = "menu menu_detail">
+						<%if(authoritylevel == 1) {%>
+							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근관리</a>
+						<%}%>
+					</li>
+					
+				</ul>
 
-					<a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
 			</ul>
-			</ul>
+			
 			<ul>
 				<li class = "menu menu-title">
 					<%if(authoritylevel == 1) {%>
@@ -104,12 +106,7 @@
 					
 				</li>
 			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
+				
 			</ul>
 			</ul>
 			<ul>
