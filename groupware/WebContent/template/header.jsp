@@ -25,7 +25,7 @@
 	<meta charset="UTF-8">
 	
 	<title>groupware5</title>
-	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -87,7 +87,7 @@
 				</li>
 				<ul>
 					<li class = "menu menu_detail">
-						<%if(authoritylevel == 1) {%>
+						<%if(authoritylevel == 1 || authoritylevel == 2) {%>
 							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근관리</a>
 						<%}%>
 					</li>

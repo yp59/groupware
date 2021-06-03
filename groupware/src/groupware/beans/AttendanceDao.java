@@ -246,6 +246,26 @@ public class AttendanceDao {
 		return attendanceDto;
 	}
 	
+	//출퇴근 수정 -> 관리자
+	public boolean edit(String empNo, String attDate, String attend, String leave) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "update attendance set att_attend=to_date(?,'hh24:mi:ss'), "
+						+ "att_leave=to_date(?,'hh24:mi:ss') "
+						+ "where att_date=to_date(?,'yyyy-mm-dd') and emp_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1,attend);
+		ps.setString(2,leave);
+		ps.setString(3,attDate);
+		ps.setString(4,empNo);
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
+	}
+	
+	//출퇴근 삭제 -> 관리자
 	public boolean delete(String empNo, String attDate) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		String sql = "delete attendance where emp_no=? and att_date=to_date(?,'yyyy-mm-dd')";
@@ -257,8 +277,7 @@ public class AttendanceDao {
 		
 		con.close();
 		return count>0;
-	}
-	
+	}	
 	
 	//페이지블럭 계산을 위한 카운트 기능(목록/검색)
 	public int getCount(String empNo) throws Exception {

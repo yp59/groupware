@@ -172,7 +172,7 @@
 				<%=df.format(attendanceDto.getAttOvertime()) %>시간             
                </td>
                <td width="15%" class="text-center">
-               <a href="attendanceUpdate.jsp" class="link-btn">수정</a>
+               <a href="attendanceEdit.jsp?empNo=<%=attendanceDto.getEmpNo()%>&attDate=<%=attendanceDto.getAttDate() %>" class="link-btn">수정</a>
                <a href="attendanceDelete.gw?empNo=<%=attendanceDto.getEmpNo()%>&attDate=<%=attendanceDto.getAttDate() %>" class="link-btn">삭제</a>
                </td>
             </tr>
