@@ -111,7 +111,12 @@
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
+<style>
+	.seach .insert{
+		display:inline-block;
+		
+	}
+</style>
 
 <script>
 	$(function(){
@@ -192,23 +197,32 @@ function monthSelect(monthList){
 		});
 	});
 </script>
+
 <div class="row">
       <h2>급여</h2>
 </div>
 
+
 	<div class="row">
-		<form action="salaryAuthority.jsp" method="get">
-			<select name="searchYear" class="form-input form-input-inline">
-			<option value="">선택하세요</option>
-			<%for(String year : yearList){ %>
-				<option value="<%=year %>"><%=year%></option>
-			<%} %>
-			</select>
-			<select name="searchMonth" class="form-input form-input-inline">
-			</select>
+		<div class="search">
+			<form action="salaryAuthority.jsp" method="get">
+				<select name="searchYear" class="form-input form-input-inline">
+				<option value="">선택하세요</option>
+				<%for(String year : yearList){ %>
+					<option value="<%=year %>"><%=year%></option>
+				<%} %>
+				</select>
+				<select name="searchMonth" class="form-input form-input-inline">
+				</select>
+				
+				<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
+			</form>
+		</div>
 			
-			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
-		</form>
+		<div class="insert">
+      	<a href="salaryAuthorityInsert.jsp" class="link-btn">급여 입력</a>
+      	</div>
+
 	</div>
 	<div class="row">
 		<table class="table table-striped text-center">

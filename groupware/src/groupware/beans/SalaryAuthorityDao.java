@@ -12,7 +12,7 @@ public class SalaryAuthorityDao {
 	public void insert(SalaryDto salaryDto,String year, String month) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql= "insert into salary values(?,?,?,?,?,?,to_date(?,'yyyy-mm-dd'),?)";
+		String sql= "insert into salary values(?,?,?,?,?,?,to_date(sysdate,'yyyy-mm-dd'),?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1,salaryDto.getEmpNo());
 		ps.setInt(2,salaryDto.getPoNo());
