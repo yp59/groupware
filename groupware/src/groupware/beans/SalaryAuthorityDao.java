@@ -124,9 +124,9 @@ public class SalaryAuthorityDao {
 		Connection con = jdbcUtils.getConnection();
 		
 		String sql = "update salary "
-					+ "set salary_pay=?,salary_overtime=?, salary_meal=?, salary_transportation=?,"
+					+ " set salary_pay=?,salary_overtime=?, salary_meal=?, salary_transportation=?,"
 					+ " salary_total=? "
-					+ "where emp_no=? and salary_date=to_date(?,'yyyy-mm-dd')";
+					+ " where emp_no=? and salary_date=to_date(?,'yyyy-mm-dd')";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		AttendanceDao attendanceDao = new AttendanceDao();
