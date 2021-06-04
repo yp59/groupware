@@ -87,6 +87,28 @@ boolean isManage = authLev==1 && getParameter==1 ;
 		color:gray;
 		text-align:center;
 	}
+	
+	.form-input {
+		width:50%;
+		padding:0.2rem;
+		outline:none;
+	}
+	.form-btn{
+		width:65%;
+		padding:0.2rem;
+		outline:none;
+	}
+	
+	
+	
+	
+	.form-select{
+		width:15%;
+		padding:0.2rem;
+		outline:none;
+	}
+	
+	
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
@@ -222,14 +244,15 @@ $(function(){
 	<div class="row text-center">
 		<form class="search-form" action="addressList.jsp" method="get">
 			<input type="hidden" name="page_no">
+			<%if(isManage) {%>
 			<input type="hidden" name="manage" value="1">
-			
-			<select name="type">
+			<%} %>
+			<select name="type" class="form-select">
 				<option value="emp_name">이름</option>
 				<option value="department">부서</option>
 			</select>
-			<input type="text" name="keyword" placeholder="키워드">
-			<input type="submit" value="조회하기">
+			<input type="text" name="keyword" placeholder="키워드" class="form-input">
+			<input type="submit" value="조회하기" class="form-btn">
 		</form>
 	</div>
 	
