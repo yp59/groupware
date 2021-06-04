@@ -26,7 +26,8 @@
 		}
 		
 		main {
-			width:1200px;
+			width:100%;
+/* 			width:1200px; */
 			margin:auto;
 		}
 		main::after {
@@ -36,18 +37,27 @@
 		}
 		aside {
 			float:left;
-			width:20%;
+			width:10%;
+/* 			width:20%; */
 			min-height:500px;
+			background-color: rgb(224,224,224);
 		}
+		
+		aside a{
+		 color:rgb(52, 152, 219);
+		 text-decoration: none;
+		}
+		
 		section {
 			float:left;
-			width:80%;
+			width:90%;
+/* 			width:80%; */
 			min-height:500px;
 		
 		}
 		
 		header {
-			min-height: 100px;
+			min-height: 0;
 		}
 		article {
 			min-height:500px;
@@ -55,86 +65,143 @@
 		footer {
 			
 		}
+		
+		.company-logo{
+		 padding-top:10px;
+		 padding-bottom:10px;
+		 color:rgb(52, 152, 219);
+		 font-style: sanserif;
+		 font-size: 30px;
+		 font-weight: bold;
+		}
+		
+		
+		.nav{
+			background-color: rgb(52, 152, 219);
+		}
+		
+		.float-container > .left {
+			float:left;
+		}
+		.float-container > .right {
+			float:right;
+		}
+		
+		.float-container{
+			padding:15px;
+		}
+		
+		.float-container a {
+			margin-left:3rem;
+			padding-top:0.2rem;
+			padding-bottom:0.2rem;
+			display:inline-block;
+			text-decoration: none;
+			color:white;
+
+		}
+		
+		.float-container a:hover{
+			color:darkgray;
+		}
+	
 	</style>
 </head>
 <body>
 	
 	<!-- 가장 바깥 영역 -->
 	<main>
-	<header>
-	<div class="text-center"><h1>groupware</h1></div>
-	</header>
-		<!-- 사이드영역 -->
-			<aside>
-		<div class="menu">
-			<ul>
-				<li class = "menu menu-title">
-					<a href="#">제목</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-			</ul>
-			</ul>
-			<ul>
-				<li class = "menu menu-title">
-					<a href="#">제목</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-			</ul>
-			</ul>
-			<ul>
-				<li class = "menu menu-title">
-					<a href="#">제목</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-			</ul>
-			</ul>
-			<ul>
-				<li class = "menu menu-title">
-					<a href="#">제목</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-			</ul>
-			</ul>
-		</div>
-		</aside>
+			<!-- 로고영역 -->
+			<div class="text-center ">
+				<div class="company-logo">
+				groupware
+				</div>
 			
-		
-		<!-- 컨텐츠영역 -->
-		<section>
+			</div>
 			
-		
-			<article>
-		
-			</article>
+			<!-- 네비게이션 영역 -->
+			<div class="float-container nav">
+				<div></div>
+				<div class="right">
+					<a href="#">전자결재</a>
+					<a href="#">일정관리</a>
+					<a href="#">근태관리</a>
+					<a href="#">게시판</a>
+					<a href="#">마이페이지</a>
+				</div>
+			</div>
 			
-		</section>
-		 <footer>
-		<div class="row text-center">&copy;저작권 입니다</div>
-		</footer>
+			<!-- 사이드영역 -->
+				<aside>
+			<div class="menu">
+				<ul>
+					<li class = "menu menu-title">
+						<a href="#">제목</a>
+					</li>
+				<ul>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+				</ul>
+				</ul>
+				<ul>
+					<li class = "menu menu-title">
+						<a href="#">제목</a>
+					</li>
+				<ul>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+				</ul>
+				</ul>
+				<ul>
+					<li class = "menu menu-title">
+						<a href="#">제목</a>
+					</li>
+				<ul>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+				</ul>
+				</ul>
+				<ul>
+					<li class = "menu menu-title">
+						<a href="#">제목</a>
+					</li>
+				<ul>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+					<li class = "menu menu_detail">
+					<a href="#">분류</a>
+					</li>
+				</ul>
+				</ul>
+			</div>
+			</aside>
+				
+			
+			<!-- 컨텐츠영역 -->
+			<section>
+				<header>
+				</header>
+				<article>
+			
+				</article>
+				
+			</section>
+			 <footer>
+			<div class="row text-center">&copy;저작권 입니다</div>
+			</footer>
 	</main>
 </body>
 </html>

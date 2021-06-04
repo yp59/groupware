@@ -256,7 +256,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 
 
 
-<div class="container-600">
+<div class="container-1100">
 	<div class="row">
 		<h2>일정관리</h2>
 	</div>
@@ -264,6 +264,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<a href="scheduleInsert.jsp" class="link-btn">새일정</a>
 	</div>
 	<!-- 진행중 일정 영역 -->
+	<div style="width:50%; float:left;">
 	<div class="row">
 		<h4>진행중인 일정</h4>
 	</div>
@@ -271,9 +272,9 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<table class="table table-border">
 			<thead>
 				<tr>
-					<th>진행상황</th>
+					<th>상황</th>
 					<th>번호</th>
-					<th>담당부서</th>
+					<th>부서</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -342,21 +343,22 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		</form>
 	</div>
 	
+	</div>
 	
 	
-	
-	<hr>
+<!-- 	<hr> -->
 <!-- ---------------------------------------------------------------------------- -->	
 	<!-- 완료 일정 영역 -->
+	<div style="width:50%; float:right;">
 	<div class="row">
 		<h4>완료된 일정</h4></div>
 	<div class="row">
 		<table class="table table-border">
 			<thead>
 				<tr>
-					<th>진행상황</th>
+					<th>상황</th>
 					<th>번호</th>
-					<th>담당부서</th>
+					<th>부서</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -419,7 +421,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 			<input type="submit" value="조회하기">
 		</form>
 	</div>
-	
+	</div>
 	
 
 

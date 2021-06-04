@@ -169,7 +169,7 @@
 }
 
 .table.table-border {
-	border: 1px solid black;
+	border: 1px solid lightgray;
 	border-collapse: collapse; 
 }
 .table.table-border > thead > tr > th, 
@@ -178,13 +178,24 @@
 .table.table-border > tbody > tr > td,
 .table.table-border > tfoot > tr > th,
 .table.table-border > tfoot > tr > td {
-	border: 1px solid black;
+	border: 1px solid lightgray;
 }
 
-.table.table-striped > thead > tr,
-.table.table-striped > tbody > tr:nth-child(2n) {
-	background-color:rgb(231, 241, 253);
+.table.table-border > thead > tr > th, 
+.table.table-border > tbody > tr > th,
+.table.table-border > tfoot > tr > th{
+	background-color:lightgray;
+	color:white;
+	
 }
+
+
+
+
+/* .table.table-striped > thead > tr, */
+/* .table.table-striped > tbody > tr:nth-child(2n) { */
+/* 	background-color:rgb(231, 241, 253); */
+/* } */
 
 .table.table-hover > thead > tr,		
 .table.table-hover > tbody > tr:hover {
@@ -236,15 +247,17 @@ textarea.form-input {
 }
 
 .form-btn {
+/* 	background-color: rgb(52, 152, 219); */
+/* 	color:white; */
 	border:none;
 }
 .form-btn.form-btn-normal {
-	background-color: white;
-	color:gray;
+	background-color: gray;
+	color:white;
 	border:1px solid gray;	
 }
 .form-btn.form-btn-positive {
-	background-color: rgb(46, 163, 79);
+	background-color: rgb(52, 152, 219);
 	color:white;
 }
 .form-btn.form-btn-negative {
@@ -311,18 +324,35 @@ textarea.form-input {
 	2. display를 block으로 설정해서 한 줄을 차지하도록 설정
 	3. 영역이 한 줄에 걸쳐서 생성되었으므로, 해당 영역에 clear 설정
 */
+.multi-container{
+/* 			border:1px dotted black; */
+			float:right;
+			width:50%
+		}
+.multi-container{
+/* 			border:1px dotted black; */
+			float:right;
+			width:50%;	
+/* 			background-color:green;	 */
+		}
+
 .float-container::after {
 	content:"";
 	display:block;
 	clear:both;
+	
 }
 
 .float-container > .left {
 	float:left;
+	
 }
 .float-container > .right {
 	float:right;
 }
+
+
+
 
 /*
 	링크 태그를 버튼처럼 보이게 변경

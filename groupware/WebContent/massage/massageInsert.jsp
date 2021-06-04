@@ -103,7 +103,7 @@ if(isAadressSend) {
 			
 			<div class="row">
 				<label for="content">내용</label>
-				<textarea class="form-btn" id="content" name="m_content"></textarea>
+				<textarea  id="content" name="m_content"></textarea>
 			</div>
 			
 			<!-- 첨부파일 -->
