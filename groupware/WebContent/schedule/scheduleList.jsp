@@ -263,168 +263,175 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	<div class="row text-right">
 		<a href="scheduleInsert.jsp" class="link-btn">새일정</a>
 	</div>
-	<!-- 진행중 일정 영역 -->
-	<div style="width:50%; float:left;">
-	<div class="row">
-		<h4>진행중인 일정</h4>
-	</div>
-	<div class="row">
-		<table class="table table-border">
-			<thead>
-				<tr>
-					<th>상황</th>
-					<th>번호</th>
-					<th>부서</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>마감일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%for(ScheduleIngDto scheduleIngDto:list_ing) {%>
-				<tr>
-					<td><%=scheduleIngDto.getSc_state() %></td>
-					<td><%=scheduleIngDto.getSc_no() %></td>
-					<td><%=scheduleIngDto.getDep_name() %>
-					<td>
-						<a href="scheduleDetail.jsp?sc_no=<%=scheduleIngDto.getSc_no()%>">
-						<%=scheduleIngDto.getSc_name() %>
-						</a>
-					</td>
-					<td><%=scheduleIngDto.getEmpName() %></td>
-					<td><%=scheduleIngDto.getSc_made().substring(0,10) %></td>
-					<td><%=scheduleIngDto.getSc_deadline().substring(0,10) %></td>
-				</tr>
-				<%} %>
-			</tbody>
-		</table>
-	</div>
 	
-
-	<!-- 페이지네이션 블록 자리 1 : ing -->
-	<div class="row text-center">
-		<div class="pagination1">
-			<%if(startBlock1>1){ %> <!-- startBlock이 1보다 클때만 이전버튼이 보이게 설정 -->
-		<a class="move-link1">이전</a> <!--이전구간으로: 누르면 10페이지로 가야한다. -->
-		<%} %>
+	<div class="float-container">
 		
-		
-		<%for(int i=startBlock1;i<=endBlock1;i++){ %>
-			<%if(i==page_no1) {%>
-			<a class="on"><%=i%></a> 
-			<%} else{ %>
-			<a><%=i%></a> 
-			<%} %>
-			
-			
-		<%} %>
-		
-		<%if(endBlock1<lastBlock1) {%><!-- endBlock이 lastBlock보다 작을때만 이전버튼이 보이게 설정 -->
-		<a class="move-link1">다음</a> <!--이후구간으로: 누르면 21페이지로 가야한다. -->
-		<%} %>
+		<!-- 완료 일정 영역 -->
+		<div class="multi-container">
+		<div class="row">
+			<h4>완료된 일정</h4></div>
+		<div class="row">
+			<table class="table table-border">
+				<thead>
+					<tr>
+						<th>상황</th>
+						<th>번호</th>
+						<th>부서</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>마감일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%for(ScheduleEndDto scheduleEndDto:list_end) {%>
+					<tr>
+						<td><%=scheduleEndDto.getSc_state() %></td>
+						<td><%=scheduleEndDto.getSc_no() %></td>
+						<td><%=scheduleEndDto.getDep_name() %>
+						<td>
+							<a href="scheduleDetail.jsp?sc_no=<%=scheduleEndDto.getSc_no()%>">
+							<%=scheduleEndDto.getSc_name() %>
+							</a>
+						</td>
+						<td><%=scheduleEndDto.getEmpName() %></td>
+						<td><%=scheduleEndDto.getSc_made().substring(0,10) %></td>
+						<td><%=scheduleEndDto.getSc_deadline().substring(0,10) %></td>
+					</tr>
+					<%} %>
+				</tbody>
+			</table>
 		</div>
-	
-	
-	</div>
-	
-	<!-- 검색화면 1 : ing -->
-	<div class="row text-center">
-		<form class="search-form1" action="scheduleList.jsp" method="get">
-			<input type="hidden" name="page_no1">
+		
+		<!-- 페이지네이션 블록 자리 2 : end -->
+		<div class="row text-center">
+			<div class="pagination2">
+				<% if(startBlock2>1) {%>
+				<a class="move-link2">이전</a>
+				<%} %>
 			
-			<select name="type1">
-				<option value="dep_name">부서</option>
-				<option value="sc_name">제목</option>
-				<option value="emp_name">이름</option>
-			</select>
-			<input type="text" name="keyword1" placeholder="키워드">
-			<input type="submit" value="조회하기">
-		</form>
-	</div>
-	
-	</div>
-	
-	
-<!-- 	<hr> -->
+				<%for(int i=startBlock2; i<=endBlock2;i++) {%>
+					<%if(i==page_no2) {%>	
+						<a class="on"><%=i %></a>
+					<%} else {%>
+						<a><%=i %></a>
+					<%} %>
+				<%} %>
+				
+				<%if(endBlock1<lastBlock2) {%>
+					<a class="move-link2">다음</a>
+				<%} %>
+			</div>
+		
+		 
+		</div>
+		
+		<!-- 검색화면 2 : end -->
+		<div class="row text-center">	
+			<form class="search-form2" action="scheduleList.jsp" method="get">
+				<input type="hidden" name="page_no2">
+				<select name="type2">
+					<option value="dep_name">부서</option>
+					<option value="sc_name">제목</option>
+					<option value="emp_name">이름</option>
+				</select>
+				<input type="text" name="keyword2" placeholder="키워드">
+				<input type="submit" value="조회하기">
+			</form>
+		</div>
+		</div>
+		<!-- 일정2 끝 -->
+		
+		
 <!-- ---------------------------------------------------------------------------- -->	
-	<!-- 완료 일정 영역 -->
-	<div style="width:50%; float:right;">
-	<div class="row">
-		<h4>완료된 일정</h4></div>
-	<div class="row">
-		<table class="table table-border">
-			<thead>
-				<tr>
-					<th>상황</th>
-					<th>번호</th>
-					<th>부서</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>마감일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%for(ScheduleEndDto scheduleEndDto:list_end) {%>
-				<tr>
-					<td><%=scheduleEndDto.getSc_state() %></td>
-					<td><%=scheduleEndDto.getSc_no() %></td>
-					<td><%=scheduleEndDto.getDep_name() %>
-					<td>
-						<a href="scheduleDetail.jsp?sc_no=<%=scheduleEndDto.getSc_no()%>">
-						<%=scheduleEndDto.getSc_name() %>
-						</a>
-					</td>
-					<td><%=scheduleEndDto.getEmpName() %></td>
-					<td><%=scheduleEndDto.getSc_made().substring(0,10) %></td>
-					<td><%=scheduleEndDto.getSc_deadline().substring(0,10) %></td>
-				</tr>
-				<%} %>
-			</tbody>
-		</table>
-	</div>
-	
-	<!-- 페이지네이션 블록 자리 2 : end -->
-	<div class="row text-center">
-		<div class="pagination2">
-			<% if(startBlock2>1) {%>
-			<a class="move-link2">이전</a>
-			<%} %>
+		<!-- 진행중 일정 영역 -->
+		<div class="multi-container">
+		<div class="row">
+			<h4>진행중인 일정</h4>
+		</div>
+		<div class="row">
+			<table class="table table-border">
+				<thead>
+					<tr>
+						<th>상황</th>
+						<th>번호</th>
+						<th>부서</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>마감일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%for(ScheduleIngDto scheduleIngDto:list_ing) {%>
+					<tr>
+						<td><%=scheduleIngDto.getSc_state() %></td>
+						<td><%=scheduleIngDto.getSc_no() %></td>
+						<td><%=scheduleIngDto.getDep_name() %>
+						<td>
+							<a href="scheduleDetail.jsp?sc_no=<%=scheduleIngDto.getSc_no()%>">
+							<%=scheduleIngDto.getSc_name() %>
+							</a>
+						</td>
+						<td><%=scheduleIngDto.getEmpName() %></td>
+						<td><%=scheduleIngDto.getSc_made().substring(0,10) %></td>
+						<td><%=scheduleIngDto.getSc_deadline().substring(0,10) %></td>
+					</tr>
+					<%} %>
+				</tbody>
+			</table>
+		</div>
 		
-			<%for(int i=startBlock2; i<=endBlock2;i++) {%>
-				<%if(i==page_no2) {%>	
-					<a class="on"><%=i %></a>
-				<%} else {%>
-					<a><%=i %></a>
-				<%} %>
+	
+		<!-- 페이지네이션 블록 자리 1 : ing -->
+		<div class="row text-center">
+			<div class="pagination1">
+				<%if(startBlock1>1){ %> <!-- startBlock이 1보다 클때만 이전버튼이 보이게 설정 -->
+			<a class="move-link1">이전</a> <!--이전구간으로: 누르면 10페이지로 가야한다. -->
 			<%} %>
 			
-			<%if(endBlock1<lastBlock2) {%>
-				<a class="move-link2">다음</a>
+			
+			<%for(int i=startBlock1;i<=endBlock1;i++){ %>
+				<%if(i==page_no1) {%>
+				<a class="on"><%=i%></a> 
+				<%} else{ %>
+				<a><%=i%></a> 
+				<%} %>
+				
+				
 			<%} %>
+			
+			<%if(endBlock1<lastBlock1) {%><!-- endBlock이 lastBlock보다 작을때만 이전버튼이 보이게 설정 -->
+			<a class="move-link1">다음</a> <!--이후구간으로: 누르면 21페이지로 가야한다. -->
+			<%} %>
+			</div>
+		
+		
 		</div>
+		
+		<!-- 검색화면 1 : ing -->
+		<div class="row text-center">
+			<form class="search-form1" action="scheduleList.jsp" method="get">
+				<input type="hidden" name="page_no1">
+				
+				<select name="type1">
+					<option value="dep_name">부서</option>
+					<option value="sc_name">제목</option>
+					<option value="emp_name">이름</option>
+				</select>
+				<input type="text" name="keyword1" placeholder="키워드">
+				<input type="submit" value="조회하기">
+			</form>
+		</div>
+		
+		</div>
+		<!-- 일정 1 끝 -->
+		
 	
-	 
+	
+		
 	</div>
 	
-	<!-- 검색화면 2 : end -->
-	<div class="row text-center">	
-		<form class="search-form2" action="scheduleList.jsp" method="get">
-			<input type="hidden" name="page_no2">
-			<select name="type2">
-				<option value="dep_name">부서</option>
-				<option value="sc_name">제목</option>
-				<option value="emp_name">이름</option>
-			</select>
-			<input type="text" name="keyword2" placeholder="키워드">
-			<input type="submit" value="조회하기">
-		</form>
-	</div>
-	</div>
-	
-
-
 
 
 
