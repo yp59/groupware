@@ -150,6 +150,7 @@ List<boardDto> list = boarddao.topNotice();
 						<td><%=boarddto.getBoDate().substring(0, 10)%></td> 
  					</tr><%}%> 
 
+
 		</tbody>
 	</table>
 </div>
