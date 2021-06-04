@@ -97,10 +97,10 @@ height: 70px;
 			<div class="float-container nav">
 				<div class="right">
 					<ul>
-					<li><a href="<%=root%>/mail/mailSend.jsp">공지메일</a></li>
+					<li><a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a></li>
 					</ul>
 					<ul>
-					<li><a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a></li>
+					<li><a href="<%=root%>/mail/mailSend.jsp">공지메일</a></li>
 					</ul>
 					<ul>
 					<li><a href="<%=root%>/approval/approvalList.jsp">전자결재</a></li>
