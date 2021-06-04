@@ -105,4 +105,32 @@ public class ScheduleIngDao {
 		return list;
 
 	}
+	
+	//index 의 schedule_ing
+	public List<ScheduleIngDto> index_schedule()throws Exception {
+		Connection con =jdbcUtils.getConnection();
+		String sql = "select * from(" + "select rownum rn, TMP.* from( "
+				+ "select*from schedule_ing  " + ")TMP" + ") where rn between 1 and 3";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+
+		List<ScheduleIngDto> list = new ArrayList<>();
+
+		while (rs.next()) {
+			ScheduleIngDto scheduleIngDto = new ScheduleIngDto();
+			scheduleIngDto.setSc_no(rs.getInt("sc_no"));
+			scheduleIngDto.setEmpNo(rs.getString("emp_no"));
+			scheduleIngDto.setSc_name(rs.getString("sc_name"));
+//			scheduleIngDto.setSc_content(rs.getString("sc_content"));
+			scheduleIngDto.setSc_made(rs.getString("sc_made"));
+			scheduleIngDto.setSc_deadline(rs.getString("sc_deadline"));
+			scheduleIngDto.setSc_state(rs.getString("sc_state"));
+			scheduleIngDto.setEmpName(rs.getString("emp_name"));
+			scheduleIngDto.setDep_name(rs.getString("dep_name"));
+
+			list.add(scheduleIngDto);
+		}
+		con.close();
+		return list;
+	}
 }
