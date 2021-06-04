@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+ 
 /* 
 	선택자(selector) : 디자인을 적용시킬 대상을 선택하기 위한 문법 
 	
@@ -71,6 +71,7 @@ li {
 .container-1300 { width:1300px; }
 .container-1400 { width:1400px; }
 .container-1500 { width:1500px; }
+
 
 /*
 	바깥 영역의 정렬 규칙
