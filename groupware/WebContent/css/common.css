@@ -393,7 +393,7 @@ textarea.form-input {
     border:1px solid lightgray;
     background-color:#3498DB;
     text-decoration: none;
-    border-radius:5px;
+    border-radius:5px; 
     color:white !important;
  }
  .link-btn:hover{
@@ -413,7 +413,7 @@ textarea.form-input {
 	color:red;
 }
 
-
+ 
 /*
 	테이블 안의 a태그(상세보기로 이동하는 버튼) 의 속성변경
 
