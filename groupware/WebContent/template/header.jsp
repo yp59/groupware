@@ -83,7 +83,7 @@ text-decoration: none;
 	<!-- 로고영역 -->
 			<div class="text-center ">
 				<div class="company-logo">
-				<a href="<%=root%>/index.jsp">Groupware</a>
+				<a href="<%=root%>/index.jsp">GroupWare</a>
 				</div>
 			</div>
 				
