@@ -16,7 +16,7 @@
 		</a>
 	</div>
 	<div>
-		<a href="<%=request.getContextPath()%>/attendanceAuthorityMain.jsp">
+		<a href="<%=request.getContextPath()%>/attendance/attendanceAuthorityMain.jsp">
 			<img alt="근태관리" src="<%=request.getContextPath()%>/login/attendance.png" width="100" height="100">
 		</a>
 	</div>
