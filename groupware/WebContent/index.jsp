@@ -18,7 +18,7 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 
 // 공지사항 리스트
 boardDao boarddao = new boardDao();
-// List<boardDto> list = boarddao.boardSearch(boType,type,keyword,startRow1,endRow1);
+List<boardDto> list = boarddao.topNotice();
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -141,13 +141,15 @@ boardDao boarddao = new boardDao();
 				<th>작성자</th>
 				<th>날짜</th>
 			</tr>
-<%-- 			<%for(boardDto boarddto : list){ %> --%>
-<!-- 					<tr> -->
-<%-- 						<%=boarddto.getBoTitle()%> --%>
-<%-- 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"></a> --%>
-<%-- 						<td><%=boarddto.getEmpName()%></td> --%>
-<%-- 						<td><%=boarddto.getBoDate().substring(0, 10)%></td> --%>
-<%-- 					</tr><%}%> --%>
+		<tbody><%for(boardDto boarddto : list){ %> 
+					<tr>
+						<td> 
+						<a href="<%=request.getContextPath()%>/board/boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"><%=boarddto.getBoTitle()%></a> 
+						</td>
+						<td><%=boarddto.getEmpName()%></td> 
+						<td><%=boarddto.getBoDate().substring(0, 10)%></td> 
+ 					</tr><%}%> 
+
 
 		</tbody>
 	</table>
