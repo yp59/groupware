@@ -25,6 +25,7 @@
 		pageNo = 1;//기본값 1페이지
 	}
 	
+   
 	int pageSize;
 	try{
 		pageSize = Integer.parseInt(request.getParameter("pageSize"));
@@ -133,7 +134,7 @@
 	   		<a href="attend.gw?" class="link-btn attend-btn">출근</a>
 	   		<a href="#" class="link-btn leave-btn">퇴근</a>
 	   	<%} %>
-   		
+ 		
    </div>
    
    <div class="row">

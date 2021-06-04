@@ -84,20 +84,20 @@ margin-left: 10px;
 									<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a>
 								</div>
 							<%} %>
-					</div>
+				</div>
 				<%} else{%>
 					<div class = "row text-right">
 						<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a>
 					</div>
 				<%} %>
 				
-				</div>
+			</div>
 				
 				
-				<%if(isLogin) {%>
-				<div class="loginSub"><%=employeesdto.getEmpName()%>님 환영합니다.
-				<a class="logout" href="<%=root%>/login/logOut.gw">로그아웃</a>
-				<%} %>
+			<%if(isLogin) {%>
+			<div class="loginSub"><%=employeesdto.getEmpName()%>님 환영합니다.
+			<a class="logout" href="<%=root%>/login/logOut.gw">로그아웃</a>
+			<%} %>
 			</div>
 			
 			<!-- 네비게이션 영역 -->
@@ -149,6 +149,15 @@ margin-left: 10px;
 						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
 					<%} %></li>
 						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/attendance/attendanceMain.jsp">근태관리</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/board/boardmain.jsp">게시판</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/login/loginInfo.jsp">마이페이지</a></li>
 					</ul>
 				</li>
 			</ul>
