@@ -60,7 +60,7 @@ if(end_block>last_block){
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-800">
-	<div>
+	<div class="row">
 		<h2>메세지 발신함</h2>
 	</div>
 	<div class="row">
@@ -94,7 +94,7 @@ if(end_block>last_block){
 	</div>
 	
 	<!-- 페이지네이션 블록 -->
-	<div class="row text-center">
+	<div class="row text-center pagination">
 
 			<%for(int i=start_block; i<=end_block; i++) {%>
 				<%if(i==page_no) { %>

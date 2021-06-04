@@ -19,7 +19,31 @@ List<DepartmentDto>list = departmentDao.list();
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<style>
 
+
+	.form-textarea{
+		width:100%;
+		min-height:300px; 
+	
+	
+	}
+	
+	
+	
+	.form-select{
+		width:15%;
+		padding:0.5rem;
+		outline:none;
+	}
+	
+	
+	.row{
+		text-align:left;
+	
+	}
+
+</style>
 
 
 <div class="container-600">
@@ -33,12 +57,12 @@ List<DepartmentDto>list = departmentDao.list();
 			</div>
 			
 			<div class="row">
-				제목<input type="text" value="<%=scheduleDto.getSc_name() %>" name="sc_name">
+				제목<input type="text" value="<%=scheduleDto.getSc_name() %>" name="sc_name" class="form-input">
 			</div>
 			
 			<div>
 				<label>담당부서</label>
-				<select name="dep_name">
+				<select name="dep_name" class="form-select">
 					<option><%=scheduleDto.getDep_name() %></option>			
 					
 					
@@ -51,10 +75,10 @@ List<DepartmentDto>list = departmentDao.list();
 			</div>
 			
 			<div class="row">
-				내용<textarea name="sc_content"><%=scheduleDto.getSc_content() %></textarea>
+				내용<textarea class="form-textarea" name="sc_content"><%=scheduleDto.getSc_content() %></textarea>
 			</div>
 			<div class="row">
-				<input type="submit" value="수정">
+				<input type="submit" value="수정" class="form-btn">
 			</div>
 		
 		

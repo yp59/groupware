@@ -28,10 +28,16 @@
 	display: inline-block;
 	position: relative;
 	list-style: none;
+<<<<<<< HEAD
 	right: -50%;
+=======
+
+	right: -50%; 
+
+>>>>>>> branch 'master' of https://github.com/yp59/groupware.git
 }
 .menu ul {
-	display:none; 
+	display:none;  
 	position:absolute;
 	left:0;
 	top:53px;
