@@ -65,6 +65,8 @@
 					<a href="#">일정관리</a>
 					<a href="#">근태관리</a>
 					<a href="#">게시판</a>
+					<a href="#">공지메일</a>
+					<a href="#">메세지</a>
 					<a href="<%=root%>/login/loginInfo.jsp">마이페이지</a>
 				</div>
 			</div>
