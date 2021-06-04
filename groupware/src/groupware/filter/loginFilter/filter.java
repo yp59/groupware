@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 @WebFilter(urlPatterns = {
-"/login/loginInfo.jsp","/login/logOut.gw",
+"/login/loginInfo.jsp","/login/logOut.gw","/index.jsp",
 
 "/board/boardDetail.jsp","/board/boardEdit.jsp","/board/boardInsert.jsp",
 "/board/boardmain.jsp","/board/boardmainNotice.jsp","/board/boardmainQuestion.jsp",
