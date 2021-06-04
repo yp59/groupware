@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-   String empNo = (String)session.getAttribute("id");
+   String empNo = (String)request.getParameter("empNo");
    String attDate = (String)request.getParameter("attDate");
    
    AttendanceDao attendanceDao = new AttendanceDao();
@@ -54,7 +54,9 @@
    </div>
    
    <div class="row text-right">
-      <a href="attendanceMain.jsp" class="link-btn">목록</a>
+      <a href="attendanceAuthorityMain.jsp" class="link-btn">목록</a>
+      <a href="attendanceEdit.jsp?empNo=<%=empNo%>&attDate=<%=attDate%>" class="link-btn">수정</a>
+      <a href="attendanceDelete.gw?empNo=<%=empNo%>&attDate=<%=attDate %>" class="link-btn">삭제</a>
    </div>
    
 </div>

@@ -25,6 +25,12 @@ public class AttendServlet extends HttpServlet{
 			attendanceDao.attend(attendanceDto);
 			
 			resp.sendRedirect("attendanceMain.jsp");
+//			resp.setCharacterEncoding("UTF-8");
+//			resp.setContentType("text/html");
+//			resp.getWriter().print("<script>");
+//			resp.getWriter().print("window.alert('출근이 완료되었습니다');");
+//			resp.getWriter().print("location.href='attendanceMain.jsp';");
+//			resp.getWriter().print("</script>");
 			
 		}
 		catch(Exception e) {
