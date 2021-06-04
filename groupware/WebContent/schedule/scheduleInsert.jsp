@@ -1,11 +1,15 @@
+<%@page import="groupware.beans.DepartmentDto"%>
+<%@page import="java.util.List"%>
+<%@page import="groupware.beans.DepartmentDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+DepartmentDao departmentDao = new DepartmentDao();
+List<DepartmentDto>list = departmentDao.list();
 
 
 
-
-
-
+%>
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600">
@@ -18,6 +22,14 @@
 				<label for="name">제목</label>
 				<input id="name" name="sc_name" type="text" placeholder="제목을 입력하세요" required>
 			</div>
+			<div>
+				<label>담당부서</label>
+				<select name="dep_name">
+					<%for(DepartmentDto departmentDto:list){%>
+					<option><%=departmentDto.getDep_name() %></option>
+					<%} %>
+				</select>
+			</div>
 			<div class="row">
 				<label for="deadline">마감날짜</label>
 				<input id="deadline" type="date" name="sc_deadline" required>
@@ -28,9 +40,6 @@
 			</div>
 			<input type="submit" value="일정등록" class="form-btn">
 		</form>
-	</div>
-	<div>
-		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
 	</div>
 </div>
 

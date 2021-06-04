@@ -106,10 +106,6 @@ if(end_block>last_block){
 		
 	</div>
 	
-	<div>
-		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
-	</div>
-
 
 </div>
 

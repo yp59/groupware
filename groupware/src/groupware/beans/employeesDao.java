@@ -85,6 +85,7 @@ public class employeesDao {
 			employeesdto.setEmail(rs.getString(7));
 			employeesdto.setAddress(rs.getString(8));
 			employeesdto.setHolidayCount(rs.getInt("holiday_count"));
+			employeesdto.setDepartment(rs.getString("department"));
 			
 		}
 		else {
@@ -282,7 +283,27 @@ public class employeesDao {
 		
 		
 	}
-	
+	//윤준하
+	//관리자의 사원정보 수정기능
+	public boolean edit (employeesDto empDto) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql ="update employees set po_no=?, emp_name=?, emp_phone=?, email=?, address=?, department=? where emp_no=?";
+		
+		PreparedStatement ps =con.prepareStatement(sql);
+		ps.setInt(1, empDto.getPono());
+		ps.setString(2, empDto.getEmpName());
+		ps.setString(3, empDto.getEmail());
+		ps.setString(4, empDto.getAddress());
+		ps.setString(5, empDto.getDepartment());
+		ps.setString(6, empDto.getEmpNo());
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
+		
+	}
 	
 
 }

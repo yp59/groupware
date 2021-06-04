@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import groupware.beans.DepartmentDao;
 import groupware.beans.ScheduleDao;
 import groupware.beans.ScheduleDto;
 
@@ -17,7 +18,14 @@ public class ScheduleInsertSertvlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			req.setCharacterEncoding("UTF-8");
-			//준비: sc_no, sc_name, sc_content, sc_made, sc_deadline
+			//준비: sc_no, sc_name, sc_content, sc_made, sc_deadline,dep_name
+			
+			//dep_name -> dep_no
+			String dep_name =req.getParameter("dep_name");
+			DepartmentDao departmentDao = new DepartmentDao();
+			int dep_no =departmentDao.getDep_no(dep_name);
+			
+			
 			
 			//시퀀스 가져오기
 			ScheduleDao scheduleDao = new ScheduleDao();
@@ -33,7 +41,7 @@ public class ScheduleInsertSertvlet extends HttpServlet {
 			
 			String writer = (String)req.getSession().getAttribute("id");
 			scheduleDto.setEmpNo(writer);
-			
+			scheduleDto.setDep_no(dep_no);
 			
 			scheduleDao.insert(scheduleDto);
 			

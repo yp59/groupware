@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import groupware.beans.DepartmentDao;
 import groupware.beans.ScheduleDao;
 import groupware.beans.ScheduleDto;
 
@@ -24,9 +25,16 @@ public class ScheduleEditServlet extends HttpServlet{
 			// 그 외에 바꿀 것들 : sc_content, sc_name
 			ScheduleDto scheduleDto = new ScheduleDto();
 			scheduleDto.setSc_no(Integer.parseInt(req.getParameter("sc_no")));
-			scheduleDto.setEmpNo(empNo);
+//			scheduleDto.setEmpNo(empNo);
 			scheduleDto.setSc_name(req.getParameter("sc_name"));
 			scheduleDto.setSc_content(req.getParameter("sc_content"));
+			
+			//dep_name -> dep_no
+			String dep_name =req.getParameter("dep_name");
+			DepartmentDao departmentDao = new DepartmentDao();
+			int dep_no =departmentDao.getDep_no(dep_name);
+			
+			scheduleDto.setDep_no(dep_no);
 			
 			
 			ScheduleDao scheduleDao =new ScheduleDao();

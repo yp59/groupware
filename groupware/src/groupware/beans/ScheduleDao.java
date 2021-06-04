@@ -28,7 +28,7 @@ public class ScheduleDao {
 	//스케줄등록
 	public void insert(ScheduleDto scheduleDto) throws Exception {
 		Connection con =jdbcUtils.getConnection();
-		String sql ="insert into schedule values (?,?,?,?,sysdate,?,'진행중')";
+		String sql ="insert into schedule values (?,?,?,?,sysdate,?,'진행중',?)";
 		PreparedStatement ps =con.prepareStatement(sql);
 		
 		ps.setInt(1, scheduleDto.getSc_no());
@@ -36,18 +36,20 @@ public class ScheduleDao {
 		ps.setString(3, scheduleDto.getSc_name());
 		ps.setString(4, scheduleDto.getSc_content());
 		ps.setString(5, scheduleDto.getSc_deadline());
+		ps.setInt(6, scheduleDto.getDep_no());
 		
 		ps.execute();
 		
 		con.close();
 	}
+
 	
 	
-	
-	//스케줄 디테일
+	//스케줄 디테일 : outerjoin으로 dep_name까지 가져옴.
 	public ScheduleDto detail(int sc_no) throws Exception {
 		Connection con=jdbcUtils.getConnection();
-		String sql="select*from schedule where sc_no=?";
+		String sql="select s.sc_no, s.emp_no, s.sc_name, s.sc_content, s.sc_made, s.sc_deadline, s.sc_state, s.dep_no, d.dep_name from schedule S left outer join department D on s.dep_no=d.dep_no\r\n"
+				+ "where sc_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, sc_no); 
 		ResultSet rs= ps.executeQuery();
@@ -63,6 +65,8 @@ public class ScheduleDao {
 			result.setSc_made(rs.getString("sc_made"));
 			result.setSc_deadline(rs.getString("sc_deadline"));
 			result.setSc_state(rs.getString("sc_state"));
+			result.setDep_no(rs.getInt("dep_no"));
+			result.setDep_name(rs.getString("dep_name"));
 			
 		}else {
 			result=null;
@@ -78,10 +82,10 @@ public class ScheduleDao {
 	//삭제 : 필요한 정보 - 스케줄번호, 작성자번호(사원번호)
 	public boolean delete(ScheduleDto scheduleDto) throws Exception {
 		Connection con=jdbcUtils.getConnection();
-		String sql="delete schedule where sc_no=? and EMP_no=?";
+		String sql="delete schedule where sc_no=? ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, scheduleDto.getSc_no());
-		ps.setString(2, scheduleDto.getEmpNo());
+//		ps.setString(2, scheduleDto.getEmpNo());
 		
 		int count=ps.executeUpdate();
 		
@@ -94,12 +98,14 @@ public class ScheduleDao {
 	//			+ sc_content +sc_name
 	public boolean edit(ScheduleDto scheduleDto) throws Exception {
 		Connection con=jdbcUtils.getConnection();
-		String sql="update schedule set sc_name=?, sc_content=? where sc_no=? and EMP_no=?";
+		String sql="update schedule set sc_name=?, sc_content=?, dep_no=? where sc_no=? ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, scheduleDto.getSc_name());
 		ps.setString(2, scheduleDto.getSc_content());
-		ps.setInt(3, scheduleDto.getSc_no());
-		ps.setString(4, scheduleDto.getEmpNo());
+		ps.setInt(3, scheduleDto.getDep_no());
+		ps.setInt(4, scheduleDto.getSc_no());
+//		ps.setString(5, scheduleDto.getEmpNo());
+		
 		
 		int count = ps.executeUpdate();
 		con.close();
@@ -110,12 +116,12 @@ public class ScheduleDao {
 	//state 완료상태 변경 메소드: 필요한 정보 - 스케줄번호, 작성자번호(사원번호) + sc_state
 	public boolean complete(ScheduleDto scheduleDto) throws Exception{
 		Connection con=jdbcUtils.getConnection();
-		String sql="update schedule set sc_state= ? where sc_no=? and EMP_no=?";
+		String sql="update schedule set sc_state= ? where sc_no=? ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		String complete="완료";
 		ps.setString(1,complete);
 		ps.setInt(2, scheduleDto.getSc_no());
-		ps.setString(3, scheduleDto.getEmpNo());
+//		ps.setString(3, scheduleDto.getEmpNo());
 		
 		int count= ps.executeUpdate();
 		
@@ -127,12 +133,12 @@ public class ScheduleDao {
 	//state 진행중상태 변경 메소드: 필요한 정보 - 스케줄번호, 작성자번호(사원번호) + sc_state
 		public boolean cancel(ScheduleDto scheduleDto) throws Exception{
 			Connection con=jdbcUtils.getConnection();
-			String sql="update schedule set sc_state= ? where sc_no=? and EMP_no=?";
+			String sql="update schedule set sc_state= ? where sc_no=? ";
 			String ing ="진행중";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1,ing);
 			ps.setInt(2, scheduleDto.getSc_no());
-			ps.setString(3, scheduleDto.getEmpNo());
+//			ps.setString(3, scheduleDto.getEmpNo());
 			
 			int count= ps.executeUpdate();
 			
@@ -199,6 +205,22 @@ public class ScheduleDao {
 			
 			con.close();
 			return count;
+		}
+		
+		//스케줄 작성자 호출 : filter에서 사용
+		public String maker (String empNo) throws Exception {
+			Connection con =jdbcUtils.getConnection();
+			String sql ="select emp_no from schedule where emp_no=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, empNo);
+			ResultSet rs = ps.executeQuery();
+			rs.next(); //한 줄 읽어라
+			
+			String maker =rs.getString(1);
+			
+			con.close();
+			return maker;
+			
 		}
 		
 }

@@ -1,3 +1,4 @@
+<%@page import="groupware.beans.DepartmentDao"%>
 <%@page import="groupware.beans.employeesDao"%>
 <%@page import="groupware.beans.ScheduleDto"%>
 <%@page import="groupware.beans.ScheduleDao"%>
@@ -18,6 +19,12 @@ boolean amI = request.getSession().getAttribute("id").equals(scheduleDto.getEmpN
 employeesDao empDao = new employeesDao(); 
 
 
+boolean authLev = (int)request.getSession().getAttribute("authorityLevel")==1||
+(int)request.getSession().getAttribute("authorityLevel")==2;
+
+
+
+
 %>
 
 
@@ -34,8 +41,7 @@ employeesDao empDao = new employeesDao();
 	<h4>상태:<%=scheduleDto.getSc_state()%></h4>
 	
 	
-	<div>완료하기 취소하기 기능은 현재 만든사람만 볼 수 있음 -  이 영역은 삭제 예정</div>
-	<%if(amI) {%>
+	<%if(amI||authLev) {%>
 		<!-- 완료기능 form 영역 -->
 		<%if(scheduleDto.getSc_state().equals("진행중")) {%>
 		<div class="row">
@@ -67,6 +73,10 @@ employeesDao empDao = new employeesDao();
 				<td><%=scheduleDto.getSc_name() %></td>
 			</tr>
 			<tr>
+				<th>담당부서</th>
+				<td><%=scheduleDto.getDep_name() %></td>
+			</tr>
+			<tr>
 				<th>작성자</th>
 				<td><%=empDao.getName(scheduleDto.getEmpNo()) %></td>
 			</tr>
@@ -87,14 +97,11 @@ employeesDao empDao = new employeesDao();
 		</table>
 	</div>
 	<div class="row">
-		<%if(amI) {%>
+		<%if(amI||authLev) {%>
 		<a class="link-btn" href="scheduleEdit.jsp?sc_no=<%=sc_no%>">수정</a>
 		<a class="link-btn" href="scheduleDelete.kh?sc_no=<%=sc_no%>">삭제</a>
 		<%} %>
 		<a class="link-btn" href="scheduleList.jsp">목록</a>
-	</div>
-	<div class="row">
-		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
 	</div>
 	
 </div>

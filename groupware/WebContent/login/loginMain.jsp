@@ -35,7 +35,7 @@
 			<input type="submit" value="로그인">
 </form>
 
-<a href = "<%=request.getContextPath()%>/login/signUp.jsp">회원가입(임시)</a>
+<%-- <a href = "<%=request.getContextPath()%>/login/signUp.jsp">회원가입(임시)</a> --%>
 
 <%} %>
 </body>
