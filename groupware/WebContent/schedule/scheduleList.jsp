@@ -8,7 +8,7 @@
 <%@page import="groupware.beans.ScheduleDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+   
 <% 
 request.setCharacterEncoding("UTF-8");//
 // 1=ing, 2=end를 의미한다.
