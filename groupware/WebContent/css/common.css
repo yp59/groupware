@@ -295,22 +295,23 @@ textarea.form-input {
 }
 
 /*
-	Pagination 스타일
+	Pagination 스타일 (파란색 동그라미)
 */
 .pagination > a {
 	color:grey;
 	text-decoration: none;
 	display:inline-block; 
-	min-width:35px;
-	
+	min-width:40px;
 	border:1px solid transparent;
 	padding:0.5rem;
 	text-align: center;
 }
 .pagination > a:hover,
 .pagination > a.on {
-	border:1px solid lightgray;
-	color:rgb(255,85,146);
+	border:1px solid white;
+	background-color:#3498DB;
+	color:white;
+	border-radius:50%;
 }
 
 .pagination-list {
