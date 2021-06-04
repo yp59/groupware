@@ -1,3 +1,5 @@
+<%@page import="groupware.beans.boardDao"%>
+<%@page import="groupware.beans.boardDto"%>
 <%@page import="groupware.beans.ScheduleIngDto"%>
 <%@page import="groupware.beans.ScheduleIngDao"%>
 <%@page import="groupware.beans.ScheduleDao"%>
@@ -14,7 +16,9 @@ ScheduleIngDao scheduleIngDao = new ScheduleIngDao();
 List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 
 
-
+// 공지사항 리스트
+boardDao boarddao = new boardDao();
+// List<boardDto> list = boarddao.boardSearch(boType,type,keyword,startRow1,endRow1);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -26,7 +30,7 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-<jsp:include page="/template/section.jsp"></jsp:include>
+<%-- <jsp:include page="/template/section.jsp"></jsp:include> --%>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 
@@ -39,18 +43,51 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 
 
 
-<!-- 사진 영역 -->
-<div>
-사진 영역
-<img alt="사진영역" src="https://via.placeholder.com/30x30?text=G" width="800" height="100">
-
+<!-- 상단영역 -->
+	<div class="float-container">
+		<!-- 출석영역 -->
+		<div class="multi-container">
+			<table class="table table-border">
+				<tr>
+					<th width="100">출근(버튼)</th>
+					<td></td>
+					<th width="100">출근시간</th>
+					<td></td>
+				</tr>
+			</table>
+			
+			<table class="table table-border">
+				<tr>
+					<th width="100">퇴근(버튼)</th>
+					<td></td>
+					<th width="100">퇴근시간</th>
+					<td></td>
+				</tr>
+			</table>
+		
+		
+		</div>
+		<!-- 출석영역 끝 -->
+		
+		<!-- 사진과 정보 영역 -->
+		<div class="multi-container">
+			<div class="text-center">
+				<img alt="사진영역" src="<%=request.getContextPath()%>/imageFile/picture.png" width="200" height="200" >
+			</div>
+			<br>
+			<div class="text-center">이름</div>
+			<div class="text-center">이메일</div>
+			
+		
+		
+		</div>
+		<!-- 사진과 정보 영역 끝 -->
+	
 </div>
+<!-- 상단영역 끝 -->
 
 
-<!-- 게시글 영역 -->
-<div class="float-container">
-	
-	
+
 
 
 	<!-- 진행영역 -->
@@ -95,8 +132,26 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 	<div class="multi-container">
 	<!-- 멀테컨테이너 시작 -->
 		
-		공지글 영역
-		<img alt="공지글영역" src="https://via.placeholder.com/30x30?text=G" width="300" height="100">
+<!-- 		공지글 영역 -->
+		<div class="float-container">
+	<table class="table table-border table-hover" >
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+			</tr>
+<%-- 			<%for(boardDto boarddto : list){ %> --%>
+<!-- 					<tr> -->
+<%-- 						<%=boarddto.getBoTitle()%> --%>
+<%-- 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"></a> --%>
+<%-- 						<td><%=boarddto.getEmpName()%></td> --%>
+<%-- 						<td><%=boarddto.getBoDate().substring(0, 10)%></td> --%>
+<%-- 					</tr><%}%> --%>
+
+		</tbody>
+	</table>
+</div>
 	
 	
 	<!-- 멀티컨테이너 끝 -->
@@ -106,14 +161,6 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 	
 
 <!--  -->
-</div>	
-
-
-
-
-
-
-
 
 
 

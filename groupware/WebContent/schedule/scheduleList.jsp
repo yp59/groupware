@@ -256,7 +256,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 
 
 
-<div class="container-1100">
+<div class="container-1200">
 	<div class="row">
 		<h2>일정관리</h2>
 	</div>

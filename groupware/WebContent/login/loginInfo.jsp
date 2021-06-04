@@ -37,16 +37,27 @@
 	.my-board-list > li > a:hover{
 		color:red;
 	}
+	
+	.table>tbody>tr>td{
+		text-align: center;
+	}
+	
 </style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
-<div class="container-900">
+<div class="container-700">
+<div>
+	<h2>마이페이지</h2>
+
+</div>
+
+
 <table class="table table-border table-striped">
 	<tbody>
 		<tr>
-			<th>사원번호</th>
+			<th width="100">사원번호</th>
 			<td> <%=employeesdto.getEmpNo()%></td>
 		</tr>	
 		<tr>
