@@ -34,9 +34,16 @@ boolean authLev = (int)request.getSession().getAttribute("authorityLevel")==1||
 <script>
 
 </script>
+<style>
+	h2{
+		color:gray;
+		text-align:center;
+	}
+</style>
 
-<div class="container-600">
-	<h2>스케줄정보</h2>
+
+<div class="container-800">
+	<h2>세부일정</h2>
 	<h4>번호:<%=scheduleDto.getSc_no()%></h4>
 	<h4>상태:<%=scheduleDto.getSc_state()%></h4>
 	

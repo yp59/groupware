@@ -33,7 +33,7 @@ javaScript로 구현 -->
 .input-tel{
 	width:165px !important;
 }
-
+ 
 </style>
 <script>
 function confirmId(){//아이디 확인 함수
@@ -210,6 +210,7 @@ window.onload = function() {
 </script>
 
 
+
 <div class="row">
 	<h2>사원등록</h2>
 </div>
@@ -301,7 +302,6 @@ window.onload = function() {
 		</div>
 	</form>
 </div>
-
 
 
 

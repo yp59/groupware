@@ -109,7 +109,7 @@ if(end_block>last_block){
 	</div>
 	
 	<!-- 페이지네이션 블록 -->
-	<div class="row text-center">
+	<div class="row text-center pagination">
 	
 	
 			<%for(int i=start_block; i<=end_block; i++) {%>

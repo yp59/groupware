@@ -10,7 +10,7 @@
 	
 	String empNo=(String)session.getAttribute("id");
 	//String에 담는게 편함
-	boolean isLogin=empNo!=null;
+	boolean isLogin=empNo!=null;  
 	
 	employeesDao employeesdao = new employeesDao();
 	employeesDto employeesdto = employeesdao.loginInfo(empNo);
@@ -78,20 +78,22 @@ text-decoration: none;
 }
 
 	</style>
-</head>
+</head>  
 <body>
 	<!-- 로고영역 -->
 			<div class="text-center ">
 				<div class="company-logo">
-				<a href="<%=root%>/index.jsp">Groupware</a>
+				<a href="<%=root%>/index.jsp">GroupWare</a>
 				</div>
-			</div>
+
+			</div> 
+
 				
 				
-			<%if(isLogin) {%>
-			<div class="loginSub"><%=employeesdto.getEmpName()%>님 환영합니다.
-			<a class="logout" href="<%=root%>/login/logOut.gw">로그아웃</a>
-			<%} %>
+				<%if(isLogin) {%>
+				<div class="loginSub"><%=employeesdto.getEmpName()%>님 환영합니다.
+				<a class="logout" href="<%=root%>/login/logOut.gw">로그아웃</a>
+				<%} %>
 			</div>
 			
 			<!-- 네비게이션 영역 -->
@@ -117,15 +119,29 @@ text-decoration: none;
 				<li>
 					<a href="<%=root%>/approval/approvalList.jsp">전자 결재</a>
 					<ul>
+
+
+
 						<li><a href="<%=root%>/approval/approvalInsertMain.jsp">기안서 작성</a></li>
 						<li><a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a></li>
+
 					</ul>
 				</li>
 				<li>
 					<a href="<%=root%>/attendance/attendanceMain.jsp">근태 관리</a>
 					<ul>
+
 						<li><a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근 목록</a></li>
 						<li><a href="<%=root%>/holiday/holidayList.jsp">휴가 목록</a></li>
+
+						<%if(isHeader || authLev == 2) {%>
+						<li>
+							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근 관리</a>
+					</li>
+
+						<%}%>
+
+
 					</ul>
 				</li>
 				<li>

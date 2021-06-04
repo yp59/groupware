@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+ 
 /* 
 	선택자(selector) : 디자인을 적용시킬 대상을 선택하기 위한 문법 
 	
@@ -71,6 +71,7 @@
 .container-1300 { width:1300px; }
 .container-1400 { width:1400px; }
 .container-1500 { width:1500px; }
+
 
 /*
 	바깥 영역의 정렬 규칙
@@ -393,7 +394,7 @@ textarea.form-input {
     border:1px solid lightgray;
     background-color:#3498DB;
     text-decoration: none;
-    border-radius:5px;
+    border-radius:5px; 
     color:white !important;
  }
  .link-btn:hover{
@@ -422,7 +423,7 @@ textarea.form-input {
 	color:red;
 }
 
-
+ 
 /*
 	테이블 안의 a태그(상세보기로 이동하는 버튼) 의 속성변경
 

@@ -49,35 +49,62 @@ if(isAadressSend) {
 		});
 	});
 </script>
+<style>
+
+
+	.form-textarea{
+		width:100%;
+		min-height:300px; 
+	
+	
+	}
+	
+	
+	
+	.form-select{
+		width:15%;
+		padding:0.5rem;
+		outline:none;
+	}
+	
+	
+	.row{
+		text-align:left;
+	
+	}
+	
+
+
+</style>
 
 
 
 
 
 
-<div class="container-800">
+<div class="container-700">
 	<%if(isSender) {%>
-	<div class="row text-center">
+	<div class=" text-center">
 		<h2>답장하기</h2>
 	</div>	
 	<%} else{%>
-	<div class="row text-center">
+	<div class=" text-center">
 		<h2>메세지 작성</h2>
 	</div>
 	<%} %>
 	
-	<div class="row">
+	<div>
 		<form action ="massageInsert.kh" method ="post" enctype="multipart/form-data">
 			<!-- 제목 : 1. 답장일 때 2. 새로운 massage일때 -->
 			<%if(isSender) {%>
 			<div class="row">
 				<label for="name">제목</label>
-				<input class="form-btn" id="name" type ="text" name="m_name" value="re:<%=answer_title %>"required>		
+				<input class="form-btn" id="name" type ="text" name="m_name" value="re:<%=answer_title %>"required class="form-input">		
 			</div>
 			<%} else{%>
 			<div class="row">
 				<label for="name">제목</label>
-				<input id="name" type ="text" name="m_name" required>		
+				<input id="name" type ="text" name="m_name" required class="form-input">		
 			</div>
 			<%} %>
 			
@@ -87,29 +114,30 @@ if(isAadressSend) {
 			<!-- 수신자 명단 : 1. 답장일 때 || address타고 들어왔을 때  2. 새로운 massage일때 -->
 				<%if(isSender||isAadressSend) {%>
 					<label>수신자</label>
-					<select name="e2_name">
+					<select name="e2_name" class="form-select">
 <!-- 						 수신자 이름 보냄 -->
 							<option><%=answer_name%></option>
 					</select>
 				<%} else{ %>
 					<label>수신자</label>
-					<input type="text" name="e2_name">
+					<input type="text" name="e2_name" required>
 				<%} %>
 				
 				<%if(!isSender&&!isAadressSend){ %>
-				<span><a class="link-btn search-btn" href="massageInsertList.jsp" onclick="">검색</a></span>
+				<span> <a class="link-btn search-btn" href="massageInsertList.jsp" onclick="">검색</a></span>
 				<%} %>
+				
 			</div>
 			
 			<div class="row">
 				<label for="content">내용</label>
-				<textarea  id="content" name="m_content"></textarea>
+				<textarea  id="content" name="m_content" class="form-textarea"></textarea>
 			</div>
 			
 			<!-- 첨부파일 -->
 			<div class="row">
 				첨부파일:
-				<input type="file" name="massage_file">
+				<input type="file" name="massage_file" class="form-input">
 			</div>
 			
 			<div class="row">

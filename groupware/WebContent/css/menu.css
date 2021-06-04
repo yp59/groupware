@@ -28,10 +28,12 @@
 	display: inline-block;
 	position: relative;
 	list-style: none;
-	right: -1300px;
+
+	right: -50%; 
+
 }
 .menu ul {
-	display:none; 
+	display:none;  
 	position:absolute;
 	left:0;
 	top:53px;
