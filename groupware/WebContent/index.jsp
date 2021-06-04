@@ -26,15 +26,25 @@ List<boardDto> list = boarddao.topNotice();
 
 ////////////////////////////////////////////////////////////////////////
 
+
+//출퇴근 등록 
 String empNo = (String)session.getAttribute("id");
 AttendanceDao attendanceDao = new AttendanceDao();
 
+String pattern = "yyyy-MM-dd";
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+String date = simpleDateFormat.format(new Date());
 
+
+AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 %>
 
-
-
-
+<style>
+	.link-btn{
+		text-align:center;
+		width:100px !important;
+	}
+</style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
@@ -42,13 +52,7 @@ AttendanceDao attendanceDao = new AttendanceDao();
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 
-
-	
-	
-
 <!-- </script> -->
-
-
 
 
 <!-- 상단영역 -->
@@ -57,17 +61,40 @@ AttendanceDao attendanceDao = new AttendanceDao();
 		<div class="multi-container">
 			<table class="table table-border">
 				<tr>
-					<th width="100">
-					<a href="attend.gw?" class="link-btn attend-btn">출근</a>
-					</th>
-					<td></td>
-				</tr>
+					<td width="100px">
+					<!-- 출/퇴근 버튼 null일때만 서블릿으로 이동하도록 구현 -->
+	                  <%if(attendanceDto !=null) {%>
+	                      <a href="#" class="link-btn">출근</a>       
+	                  <%} else{ %>
+	                     <a href="<%=request.getContextPath()%>/attendance/attendIndex.gw" class="link-btn">출근</a>
+	                  <%} %>
+	                </td>
+	                
+	                <td><%if(attendanceDto !=null) { %>
+					<%=attendanceDto.getAttAttend()%> 
+					<%}%>
+					</td>
+                </tr>
 				<tr>
-					<th width="100">
-						<a href="leave.gw?" class="link-btn leave-btn">퇴근</a>
-					</th>
-					<td></td>
+					<td>
+						<%if(attendanceDto !=null) {%>
+							<%if(attendanceDto.getAttLeave() == null){ %>
+		                      <a href="<%=request.getContextPath()%>/attendance/leaveIndex.gw?" class="link-btn">퇴근</a>        
+		                     <%}else{ %>
+		                        <a href="#" class="link-btn">퇴근</a>      
+		                     <%}
+						} else{%>
+								<a href="#" class="link-btn">퇴근</a> 
+	                    <%}%>
+					</td>
+					<td ><%if(attendanceDto != null){%>
+							<%if(attendanceDto.getAttLeave() != null){%>
+						<%=attendanceDto.getAttLeave()%>
+						<%}
+						}%> 
+					</td>
 				</tr>
+
 			</table>
 		</div>
 		<!-- 출석영역 끝 -->
