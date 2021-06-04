@@ -1,7 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="groupware.beans.SalaryDto"%>
-<%@page import="groupware.beans.SalaryDao"%>
+<%@page import="groupware.beans.SalaryAuthorityDao"%>
 <%@page import="java.util.List"%>
 <%@page import="groupware.beans.AttendanceDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,15 +10,17 @@
     
 <%
 	String empNo = (String)session.getAttribute("id");
-	SalaryDao salaryDao = new SalaryDao();
+	SalaryAuthorityDao salaryAuthorityDao = new SalaryAuthorityDao();
 	
-	List<String> yearList = salaryDao.getYear(empNo);
-	List<String> yearMonthList = salaryDao.getMonth(empNo); //yyyy-mm 형태
+	List<String> yearList = salaryAuthorityDao.getYear();
+	List<String> yearMonthList = salaryAuthorityDao.getMonth(); //yyyy-mm 형태
 	  
 	String searchYear = request.getParameter("searchYear");
 	String searchMonth = request.getParameter("searchMonth");
 	//searchMonth = searchMonth.replace("월","");
-		
+	
+	int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue(); //관리자번호 
+	
 	int pageNo;//현재 페이지 번호
 	try{
 		pageNo = Integer.parseInt(request.getParameter("pageNo"));
@@ -58,20 +60,20 @@
 	if(isSearch){
 
 		if(isSearchYear){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow); //연도만 검색
+			salaryList = salaryAuthorityDao.searchList(searchYear, searchMonth, startRow, endRow); //연도만 검색
 		}
 		else if(isSearchMonth){
-			salaryList = salaryDao.searchList(empNo,searchYear, searchMonth, startRow, endRow); //월만 검색
+			salaryList = salaryAuthorityDao.searchList(searchYear, searchMonth, startRow, endRow); //월만 검색
 		}
 		else if(isSearchBoth){ //둘다 선택하세요 일 때
-			salaryList = salaryDao.list(empNo, startRow, endRow);
+			salaryList = salaryAuthorityDao.list(startRow, endRow);
 		}
 		else{
-			salaryDto = salaryDao.search(empNo,searchYear, searchMonth); //둘다 값설정해서 검색했을때
+			salaryDto = salaryAuthorityDao.search(searchYear, searchMonth); //둘다 값설정해서 검색했을때
 		}
 	}
 	else{
-		salaryList = salaryDao.list(empNo, startRow, endRow);
+		salaryList = salaryAuthorityDao.list(startRow, endRow);
 	}
 	
 	/////////////////////////////////////////////////////////////////////
@@ -81,17 +83,17 @@
 	int count;
 	if(isSearch){
 		if(isSearchYear || isSearchMonth ){
-			count = salaryDao.getCount2(empNo,searchYear, searchMonth); // or
+			count = salaryAuthorityDao.getCount2(searchYear, searchMonth); // or
 		}
 		else if(isSearchBoth){
-			count = salaryDao.getCount(empNo); //둘다 선택하세요일때
+			count = salaryAuthorityDao.getCount(); //둘다 선택하세요일때
 		}
 		else{
-			count = salaryDao.getCount1(empNo,searchYear, searchMonth); //and
+			count = salaryAuthorityDao.getCount1(searchYear, searchMonth); //and
 		}
 	}
 	else{
-		count = salaryDao.getCount(empNo);
+		count = salaryAuthorityDao.getCount();
 	}
 	int blockSize = 10;
 	int lastBlock = (count + pageSize - 1) / pageSize;
@@ -109,7 +111,12 @@
 
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
+<style>
+	.search .insert{
+		display:inline-block;
+		
+	}
+</style>
 
 <script>
 	$(function(){
@@ -142,6 +149,7 @@
 		$.each(month, function(i, value){
 		        if(result.indexOf(value) === -1) result.push(value);
 		});
+		
 		console.log(result);
 		monthSelect(result);
 	}
@@ -149,7 +157,6 @@
 
 <script>
 function monthSelect(monthList){
-	monthList.sort();
 	var option = $("<option value='' selected>선택하세요</option>");
 	$("select[name=searchMonth]").append(option);
 	for (var count = 0; count < monthList.length; count++) {
@@ -190,29 +197,40 @@ function monthSelect(monthList){
 		});
 	});
 </script>
+
 <div class="row">
       <h2>급여</h2>
 </div>
 
+
 	<div class="row">
-		<form action="salaryMain.jsp" method="get">
-			<select name="searchYear" class="form-input form-input-inline">
-			<option value="">선택하세요</option>
-			<%for(String year : yearList){ %>
-				<option value="<%=year %>"><%=year%></option>
-			<%} %>
-			</select>
-			<select name="searchMonth" class="form-input form-input-inline">
-			</select>
+		<div class="search">
+			<form action="salaryAuthority.jsp" method="get">
+				<select name="searchYear" class="form-input form-input-inline">
+				<option value="">선택하세요</option>
+				<%for(String year : yearList){ %>
+					<option value="<%=year %>"><%=year%></option>
+				<%} %>
+				</select>
+				<select name="searchMonth" class="form-input form-input-inline">
+				</select>
+				
+				<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
+			</form>
+		</div>
 			
-			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
-		</form>
+		<div class="insert">
+      	<a href="salaryAuthorityInsert.jsp" class="link-btn">급여 입력</a>
+      	</div>
+
 	</div>
 	<div class="row">
 		<table class="table table-striped text-center">
 			<thead>
 				<tr>
 					<th width=20%>지급일</th>
+					<th>사원번호</th>
+					<th>사원명</th>
 					<th>제목</th>
 					<th>지급액</th>
 					
@@ -222,8 +240,10 @@ function monthSelect(monthList){
 				<tbody>
 					<tr>
 						<td><%=salaryDto.getSalaryDate().substring(0,10)%></td>
+						<td><%=salaryDto.getEmpNo() %></td>
+						<td><%=salaryDto.getEmpName() %></td>
 						<td>
-						<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>">
+						<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>&empNo=<%=salaryDto.getEmpNo()%>">
 						<%=salaryDto.getSalaryDate().substring(5, 7)%>월 급여 명세서
 						</a>
 						</td>
@@ -237,8 +257,10 @@ function monthSelect(monthList){
 					for(SalaryDto salary : salaryList){ %>
 				<tr>
 					<td><%=salary.getSalaryDate().substring(0,10)%></td>
+					<td><%=salary.getEmpNo() %></td>
+					<td><%=salary.getEmpName() %></td>
 					<td>
-					<a href="salaryDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>">
+					<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>&empNo=<%=salary.getEmpNo()%>">
 					<%=salary.getSalaryDate().substring(5, 7)%>월 급여 명세서
 					</a>
 					</td>
@@ -250,7 +272,7 @@ function monthSelect(monthList){
 		</table>
 	</div>
 			   	
-	<form class="search-form" action="salaryMain.jsp" method="get">
+	<form class="search-form" action="salaryAuthority.jsp" method="get">
 		<input type="hidden" name="pageNo">
 	</form>
    

@@ -1,3 +1,5 @@
+<%@page import="groupware.beans.employeesDto"%>
+<%@page import="groupware.beans.employeesDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -8,10 +10,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-   DecimalFormat df=new DecimalFormat("#.#"); //근무시간 소수점 첫째자리가 0이면 안나오게
-   String empNo = (String)session.getAttribute("id");
-   AttendanceDao attendanceDao = new AttendanceDao();
-   
+   DecimalFormat df=new DecimalFormat("#"); //근무시간 소수점 첫째자리가 0이면 안나오게
    
    // 페이지네이션
    int pageNo; //현재 페이지 번호
@@ -35,60 +34,58 @@
 	catch(Exception e){
 		pageSize = 5; //기본값 5개
 	}
+	
+	request.setCharacterEncoding("UTF-8");
+	String empNo = request.getParameter("employeesChoice");
+	
+	boolean isSearch = empNo != null;
+	boolean notSearch = empNo == "";
    
 	int startRow = pageNo * pageSize - (pageSize-1);
 	int endRow = pageNo * pageSize;
 	
-	List<AttendanceDto> attendanceList = attendanceDao.list(empNo,startRow,endRow);
+	List<AttendanceDto> attendanceList;
+	
+	AttendanceDao attendanceDao = new AttendanceDao();
+	int count;
+	
+	if(isSearch){
+		
+		if(notSearch){
+			count = attendanceDao.getCount();
+			attendanceList = attendanceDao.list(startRow,endRow);
+		}
+		else{
+			count = attendanceDao.getCount(empNo);
+			attendanceList = attendanceDao.list(empNo,startRow,endRow);
+		}
+	}
+	else{
+		count = attendanceDao.getCount();
+		attendanceList = attendanceDao.list(startRow,endRow);
+		
+	}
 	
 	// 페이지 네비게이션 영역 계산
-	int count = attendanceDao.getCount(empNo);
 
 	int blockSize = 10;
-	int lastBlock = (count + pageSize - 1) / pageSize; //(8+5-1)/5=2.4 = 2
-	int startBlock = (pageNo - 1) / blockSize * blockSize + 1; //(5-1)/10*10 + 1 = 1
-	int endBlock = startBlock + blockSize - 1; // 10
+	int lastBlock = (count + pageSize - 1) / pageSize; 
+	int startBlock = (pageNo - 1) / blockSize * blockSize + 1; 
+	int endBlock = startBlock + blockSize - 1; 
 	
-	if(endBlock > lastBlock){ // 10>2
+	if(endBlock > lastBlock){ 
 		endBlock = lastBlock;
 	}   
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <%
-	String pattern = "yyyy-MM-dd";
+	String pattern = "yyyy-MM-dd"; 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 	String date = simpleDateFormat.format(new Date());
 	
-	
-	AttendanceDto attendance = attendanceDao.get(empNo, date);
 %>
-<!-- <script>
-//	$(function(){
 
-// 		$(".attend-btn").click(function(){
-// // 			var date = new Date();
-// // 			window.alert(date.getHours()+"시"+date.getMinutes()+"분"+date.getSeconds()+"초"+"\n"+"출근했습니다.");
-// 			//location.href="attend.gw";
-<%-- 			var attend = "<%=attendance.getAttAttend()%>" == "null" ? null : "<%=attendance.getAttAttend()%>"; --%>
-// 			if(attend){
-// 				this.disabled = true;
-// 				//$(this).prop("disabled", true);
-// 				//return false;	
-// 			}
-// 			else{
-// 				//$(this).disabled = false;
-// 				$(this).prop("disabled", false);
-// 			}
-			
-// 		});
-		
-//		$(".leave-btn").click(function(){			
-//			return false;
-//		});
-//	});
-</script>
--->
 
 <script>
 	$(function(){
@@ -115,26 +112,26 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
  <div class="row">
-      <h2>출퇴근 현황</h2>
+      <h2>출퇴근 관리</h2>
    </div>
    
-   <div class="row text-right">
-   		<!-- 출/퇴근 버튼 null일때만 서블릿으로 이동하도록 구현 -->
-   		<%if(attendance !=null) {%>
-	   		<%if(attendance.getAttAttend() != null){%> 
-			    <a href="#" class="link-btn attend-btn">출근</a> 		
-	   		<%} %>	   		  		
-	   		<%if(attendance.getAttLeave() == null){ %>
-			    <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>  		
-	   		<%}else{ %>
-	   			<a href="#" class="link-btn leave-btn">퇴근</a>   	
-	   		<%} %>
-	   	<%} else{ %>
-	   		<a href="attend.gw?" class="link-btn attend-btn">출근</a>
-	   		<a href="#" class="link-btn leave-btn">퇴근</a>
-	   	<%} %>
-   		
-   </div>
+   <%
+		employeesDao employeesDao = new employeesDao();
+   		List<employeesDto> employeesList = employeesDao.list();
+   %>
+   <div class="row text-center">
+	   <form action="attendanceAuthorityMain.jsp" method="get"> 
+			<label>사원 선택</label>
+			<select name="employeesChoice" class="form-input form-input-inline">
+				<option value="">선택하세요</option>
+				<%for(employeesDto employee : employeesList){%>
+					<option value="<%=employee.getEmpNo()%>"><%=employee.getEmpName()%></option>
+				<% } %>
+			</select>
+			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
+		</form>
+	</div>
+   
    
    <div class="row">
       <table class="table table-striped">
@@ -169,13 +166,14 @@
                <td>
                	<!-- 내림하고 소수점자리 자르기 -->
 				<%=df.format(attendanceDto.getAttTotaltime()/60) %>시간  <!-- 분단위라서 60으로 나눠준 몫 -->             
-				<%=df.format(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->     
+				<%=df.format(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->           
                </td>
                <td>
 				<%=df.format(attendanceDto.getAttOvertime()) %>시간             
                </td>
-               <td width="15%">
-               <a href="#" class="link-btn">수정 요청</a>
+               <td width="15%" class="text-center">
+               <a href="attendanceEdit.jsp?empNo=<%=attendanceDto.getEmpNo()%>&attDate=<%=attendanceDto.getAttDate() %>" class="link-btn">수정</a>
+               <a href="attendanceDelete.gw?empNo=<%=attendanceDto.getEmpNo()%>&attDate=<%=attendanceDto.getAttDate() %>" class="link-btn">삭제</a>
                </td>
             </tr>
             <%} %>
@@ -183,7 +181,7 @@
       </table>
    </div>
    
-  	<form class="search-form" action="attendanceMain.jsp" method="get">
+  	<form class="search-form" action="attendanceAuthorityMain.jsp" method="get">
 		<input type="hidden" name="pageNo">
 	</form>
    

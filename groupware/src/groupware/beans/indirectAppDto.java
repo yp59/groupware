@@ -6,6 +6,7 @@ public class indirectAppDto {
 	private int appNo;
 	private String referrer;
 	private String type;
+	private String empName;
 	
 	public indirectAppDto() {
 		super();
@@ -41,6 +42,14 @@ public class indirectAppDto {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
 	
