@@ -258,6 +258,8 @@
 .form-btn.form-btn-inline {
 	width:auto;
 }
+
+
 textarea.form-input {
 	resize: vertical;
 	min-height:150px;/*수치는 자유롭게 설정*/
@@ -266,9 +268,10 @@ textarea.form-input {
 }
 
 .form-btn {
-/* 	background-color: rgb(52, 152, 219); */
-/* 	color:white; */
-	border:none;
+	border-radius:10px;
+	border : 1px solid #3498DB;
+	background-color: #3498DB;
+	color:white;
 }
 .form-btn.form-btn-normal {
 	background-color: gray;
@@ -282,6 +285,13 @@ textarea.form-input {
 .form-btn.form-btn-negative {
 	background-color: rgb(202, 36, 49);
 	color:white;
+}
+
+.form-btn.form-btn-inline:hover,
+.form-btn.form-btn-positive:hover {
+	background-color: white;
+	border-color:#3498DB;
+	color:#3498DB;
 }
 
 /*
@@ -376,17 +386,20 @@ textarea.form-input {
 /*
 	링크 태그를 버튼처럼 보이게 변경
 */
-.link-btn {
-	display: inline-block;
-	padding:0.5rem;
-	border:1px solid lightgray;
-	text-decoration: none;
-	color:gray;	
-}
-.link-btn:hover{
-	border-color:black;
-	color:black;	
-}
+.link-btn{
+    display: inline-block;
+    padding:0.5rem;
+    border:1px solid lightgray;
+    background-color:#3498DB;
+    text-decoration: none;
+    border-radius:5px;
+    color:white !important;
+ }
+ .link-btn:hover{
+    border-color:#3498DB;
+    background-color:white;
+    color:#3498DB !important;   
+ }
 .input{
 	width:100%;
 	padding:0.5rem;

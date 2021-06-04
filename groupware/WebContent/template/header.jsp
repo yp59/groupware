@@ -85,13 +85,13 @@ text-decoration: none;
 				<div class="company-logo">
 				<a href="<%=root%>/index.jsp">Groupware</a>
 				</div>
-				</div>
+			</div>
 				
 				
-				<%if(isLogin) {%>
-				<div class="loginSub"><%=employeesdto.getEmpName()%>님 환영합니다.
-				<a class="logout" href="<%=root%>/login/logOut.gw">로그아웃</a>
-				<%} %>
+			<%if(isLogin) {%>
+			<div class="loginSub"><%=employeesdto.getEmpName()%>님 환영합니다.
+			<a class="logout" href="<%=root%>/login/logOut.gw">로그아웃</a>
+			<%} %>
 			</div>
 			
 			<!-- 네비게이션 영역 -->
@@ -158,6 +158,15 @@ text-decoration: none;
 				<%} else{%>
 						<li><a href="<%=root%>/login/loginMain.jsp">로그인</a></li>
 				<%} %>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/attendance/attendanceMain.jsp">근태관리</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/board/boardmain.jsp">게시판</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/login/loginInfo.jsp">마이페이지</a></li>
 					</ul>
 				</li>
 			  </ul>
