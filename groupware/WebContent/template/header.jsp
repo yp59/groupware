@@ -37,108 +37,11 @@
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
-	<style>
-	main, aside, section, article, header, footer{
-			border:1px dotted black;
-		}
-		
-		/* 리셋 스타일 */
-		html, body{
-			margin:0;
-			padding:0;
-		}
-		
-		main {
-			width:1300px;
-/* 			width:1200px; */
-			margin:auto;
-		}
-		main::after {
-			content:"";
-			display:block;
-			clear: both;
-		}
-		aside {
-			float:left;
-			width:10%;
-/* 			width:20%; */
-			min-height:500px;
-			background-color: rgb(224,224,224);
-		}
-		
-		aside a{
-		 color:black;
-		 text-decoration: none;
-		}
-		
-		section {
-			float:left;
-			width:90%;
-/* 			width:80%; */
-			min-height:500px;
-		
-		}
-		
-		header {
-			min-height: 0;
-		}
-		article {
-			min-height:490px;
-		}
-		footer {
-			min-height:10px;
-		}
-		
-		.company-logo{
-		 padding-top:10px;
-		 padding-bottom:10px;
-		 color:rgb(52, 152, 219);
-		 font-style: sanserif;
-		 font-size: 30px;
-		 font-weight: bold;
-		}
-		
-		
-		.nav{
-			background-color: rgb(52, 152, 219);
-		}
-		
-		.float-container > .left {
-			float:left;
-		}
-		.float-container > .right {
-			float:right;
-		}
-		
-		.float-container{
-			padding:15px;
-		}
-		
-		.float-container a {
-			margin-left:3rem;
-			padding-top:0.2rem;
-			padding-bottom:0.2rem;
-			display:inline-block;
-			text-decoration: none;
-			color:white;
-			font-weight: bold;
-
-		}
-		
-		.float-container a:hover{
-			color:darkgray;
-		}
 	
-	
-	</style>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
-	
-	<!-- 가장 바깥 영역 -->
-	<main>
-	
 	<!-- 로고영역 -->
 			<div class="text-center ">
 				<div class="company-logo">
@@ -154,10 +57,12 @@
 			<div class="float-container nav">
 				<div></div>
 				<div class="right">
-					<a href="#">전자결재</a>
-					<a href="#">일정관리</a>
+					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
+					<a href="<%=root%>/schedule/scheduleList.jsp">일정관리</a>
 					<a href="#">근태관리</a>
-					<a href="#">게시판</a>
+					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
+					<a href="<%=root%>/mail/mailSend.jsp">공지메일</a>
+					<a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a>
 					<a href="<%=root%>/login/loginInfo.jsp">마이페이지</a>
 				</div>
 			</div>
@@ -178,6 +83,11 @@
 			<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a>
 		</div>
 	<%} %>
+	
+	
+	<!-- 가장 바깥 영역 -->
+	<main>
+	
 
 	
 		<!-- 사이드영역 -->

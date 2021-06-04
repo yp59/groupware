@@ -43,7 +43,9 @@
 /* 		} */
 
 
-/*수업듣고 header section footer 다 나눠줘야 한다.*/
+
+
+/*레이아웃 재구성*/
 	/*레이아웃 구분선 완성 후 지우기*/
 		main, aside, section, article, header, footer{
 			border:1px dotted black;
@@ -57,8 +59,12 @@
 		
 		main {
 
+			width:1300px;
+/* 			width:1200px; */
+
 			margin:auto;
 		}
+		
 		main::after {
 			content:"";
 			display:block;
@@ -73,7 +79,7 @@
 		}
 		
 		aside a{
-		 color:rgb(52, 152, 219);
+		 color:black;
 		 text-decoration: none;
 		}
 		
@@ -89,10 +95,10 @@
 			min-height: 0;
 		}
 		article {
-			min-height:500px;
+			min-height:490px;
 		}
 		footer {
-			
+			min-height:10px;
 		}
 		
 		.company-logo{
@@ -120,7 +126,7 @@
 			padding:15px;
 		}
 		
-		.float-container a {
+		.nav a {
 			margin-left:3rem;
 			padding-top:0.2rem;
 			padding-bottom:0.2rem;
