@@ -28,7 +28,7 @@
 	display: inline-block;
 	position: relative;
 	list-style: none;
-	right: -1300px;
+	right:-1300px;
 }
 .menu ul {
 	display:none;  
