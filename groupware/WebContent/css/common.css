@@ -386,17 +386,20 @@ textarea.form-input {
 /*
 	링크 태그를 버튼처럼 보이게 변경
 */
-.link-btn {
-	display: inline-block;
-	padding:0.5rem;
-	border:1px solid lightgray;
-	text-decoration: none;
-	color:gray;	
-}
-.link-btn:hover{
-	border-color:black;
-	color:black;	
-}
+.link-btn{
+    display: inline-block;
+    padding:0.5rem;
+    border:1px solid lightgray;
+    background-color:#3498DB;
+    text-decoration: none;
+    border-radius:5px;
+    color:white !important;
+ }
+ .link-btn:hover{
+    border-color:#3498DB;
+    background-color:white;
+    color:#3498DB !important;   
+ }
 .input{
 	width:100%;
 	padding:0.5rem;
