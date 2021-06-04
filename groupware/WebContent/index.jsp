@@ -1,3 +1,7 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="groupware.beans.AttendanceDto"%>
+<%@page import="groupware.beans.AttendanceDao"%>
 <%@page import="groupware.beans.boardDao"%>
 <%@page import="groupware.beans.boardDto"%>
 <%@page import="groupware.beans.ScheduleIngDto"%>
@@ -22,14 +26,8 @@ boardDao boarddao = new boardDao();
 
 ////////////////////////////////////////////////////////////////////////
 
-// 출,퇴근 
 String empNo = (String)session.getAttribute("id");
-String pattern = "yyyy-MM-dd";
-SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-String date = simpleDateFormat.format(new Date());
-
 AttendanceDao attendanceDao = new AttendanceDao();
-AttendanceDto attendance = attendanceDao.get(empNo, date);
 
 
 %>
@@ -57,40 +55,20 @@ AttendanceDto attendance = attendanceDao.get(empNo, date);
 	<div class="float-container">
 		<!-- 출석영역 -->
 		<div class="multi-container">
-			<%if(attendance !=null) {%>
-	   		<%if(attendance.getAttAttend() != null){%> 
-			    <a href="#" class="link-btn attend-btn">출근</a> 
-			    <%=attendanceDto.getAttattend()
-	   		<%} %>	   		  		
-	   		<%if(attendance.getAttLeave() == null){ %>
-			    <th width="100">
-			    <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>
-			    </th>
-			    <td><%=attendanceDto.getAttattend()</td>
-                                          </tr>  		
-	   		<%}else{ %>
-				<th width="100">
-	   			<a href="#" class="link-btn leave-btn">퇴근</a>
-				</th>
-				<td><%=attendanceDto.getAttattend()</td>
-			</tr>   	
-	   		<%} %>
-	   	<%} else{ %>
-			<th width="100">
-	   		<a href="attend.gw?" class="link-btn attend-btn">출근</a>
-			</th>
-			<td><%=attendanceDto.getAttattend()</td>
-		</tr>
-		<tr>
-			<th width="100">	
-	   		<a href="#" class="link-btn leave-btn">퇴근</a>
-			</th>
-			<td><%=attendanceDto.getAttLeave()</td>
-		</tr>
-	   	<%} %>
+			<table class="table table-border">
+				<tr>
+					<th width="100">
+					<a href="attend.gw?" class="link-btn attend-btn">출근</a>
+					</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th width="100">
+						<a href="leave.gw?" class="link-btn leave-btn">퇴근</a>
+					</th>
+					<td></td>
+				</tr>
 			</table>
-		
-		
 		</div>
 		<!-- 출석영역 끝 -->
 		
