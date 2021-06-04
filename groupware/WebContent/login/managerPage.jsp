@@ -11,7 +11,12 @@
 		</a>
 	</div>
 	<div>
-		<a href="#">
+		<a href="<%=request.getContextPath()%>/salary/salaryAuthority.jsp">
+			<img alt="급여관리" src="<%=request.getContextPath()%>/login/salary.png" width="100" height="100">
+		</a>
+	</div>
+	<div>
+		<a href="<%=request.getContextPath()%>/attendanceAuthorityMain.jsp">
 			<img alt="근태관리" src="<%=request.getContextPath()%>/login/attendance.png" width="100" height="100">
 		</a>
 	</div>
