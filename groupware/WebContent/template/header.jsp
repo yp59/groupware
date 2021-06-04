@@ -33,26 +33,36 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>groupware5</title>
+	<title>Groupware</title>
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="<%=root%>/css/menu.css">
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<style>
-li {
-	list-style: none;
-	float: left;
+.li-nav {
+list-style: none;
+float: right;
+clear: left;
 }
 .right {
-width: 830px;
+width: 900px;
 margin-right:0px;
-margin-bottom: 15px;
+margin-bottom: 30px;
 }
 .float-container,nav {
-margin-bottom: 10px;
-height: 70px;
+margin-top: 10px;
+margin-bottom: 20px;
+height: 60px;
+}
+.loginSub{
+margin-right: 37px;
+text-align: right;
+}
+.logout {
+margin-left: 10px;
 }
 
 	</style>
@@ -65,7 +75,7 @@ height: 70px;
 				</div>
 			
 				<!-- 관리자기능 --> 
-				<div style = float:left; >
+				<div class ="" style = float:left; >
 				
 				
 				<%if(isLogin){ %>
@@ -82,43 +92,67 @@ height: 70px;
 				<%} %>
 				
 				</div>
-				<!--  -->
-				
 				
 				
 				<%if(isLogin) {%>
-				<div class="text-right"><%=employeesdto.getEmpName()%>님 환영합니다.
-				<div><a href="<%=root%>/login/logOut.gw">로그아웃</a></div>
+				<div class="loginSub"><%=employeesdto.getEmpName()%>님 환영합니다.
+				<a class="logout" href="<%=root%>/login/logOut.gw">로그아웃</a>
 				<%} %>
-			</div>
 			</div>
 			
 			<!-- 네비게이션 영역 -->
-			<div class="float-container nav">
-				<div class="right">
+			<nav>
+			<!-- 메뉴 -->
+			<ul class="menu">
+				<li>
+					<a href="<%=root%>/mail/mailSend.jsp">공지메일</a>
+				</li>
+				<li>
+					<a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a>
+				</li>
+				<li>
+					<a href="<%=root%>/address/addressList.jsp">주소록</a>
+				</li>
+				<li>
+					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
 					<ul>
-					<li><a href="<%=root%>/mail/mailSend.jsp">공지메일</a></li>
+						<li><a href="<%=root%>/approval/approvalInsertMain.jsp">기안서 작성</a></li>
+						<li><a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a></li>
 					</ul>
+				</li>
+				<li>
+					<a href="#">근태 관리</a>
 					<ul>
-					<li><a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a></li>
+						<li><a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근 목록</a></li>
+						<li><a href="<%=root%>/holiday/holidayList.jsp">휴가 목록</a></li>
+						<li>
+						<%if(isHeader || authLev == 2) {%> <!-- 권한1 또는 권한 2라면 -->
+							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근 관리</a>
+						<%}%>
+					</li>
 					</ul>
+				</li>
+				<li>
+					<a href="#">게시판</a>
 					<ul>
-					<li><a href="<%=root%>/approval/approvalList.jsp">전자결재</a></li>
+						<li><a href="<%=root%>/board/boardmainNotice.jsp">공지사항</a></li>
+						<li><a href="<%=root%>/board/boardmainFree.jsp">자유게시판</a></li>
+						<li><a href="<%=root%>/board/boardmainQuestion.jsp">질문게시판</a></li>
 					</ul>
+				</li>
+				<li>
+					<a href="#">마이페이지</a> 
 					<ul>
-					<li><a href="<%=root%>/schedule/scheduleList.jsp">일정관리</a></li>
+						<li><%if(isHeader) {%>
+						<a href="<%=root%>/salary/salaryAuthority.jsp">급여</a>
+					<%}else{ %>
+						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
+					<%} %></li>
+						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
 					</ul>
-					<ul>
-					<li><a href="#">근태관리</a></li>
-					</ul>
-					<ul>
-					<li><a href="<%=root%>/board/boardmain.jsp">게시판</a></li>
-					</ul>
-					<ul>
-					<li><a href="<%=root%>/login/loginInfo.jsp">마이페이지</a></li>
-					</ul>
-				</div>
-			</div>
+				</li>
+			</ul>
+		</nav>
 	
 	
 	
