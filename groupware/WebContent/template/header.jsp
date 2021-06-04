@@ -42,10 +42,6 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
-	
-	<!-- 가장 바깥 영역 -->
-	<main>
-	
 	<!-- 로고영역 -->
 			<div class="text-center ">
 				<div class="company-logo">
@@ -61,12 +57,12 @@
 			<div class="float-container nav">
 				<div></div>
 				<div class="right">
-					<a href="#">전자결재</a>
-					<a href="#">일정관리</a>
+					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
+					<a href="<%=root%>/schedule/scheduleList.jsp">일정관리</a>
 					<a href="#">근태관리</a>
-					<a href="#">게시판</a>
-					<a href="#">공지메일</a>
-					<a href="#">메세지</a>
+					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
+					<a href="<%=root%>/mail/mailSend.jsp">공지메일</a>
+					<a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a>
 					<a href="<%=root%>/login/loginInfo.jsp">마이페이지</a>
 				</div>
 			</div>
@@ -87,6 +83,11 @@
 			<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a>
 		</div>
 	<%} %>
+	
+	
+	<!-- 가장 바깥 영역 -->
+	<main>
+	
 
 	
 		<!-- 사이드영역 -->

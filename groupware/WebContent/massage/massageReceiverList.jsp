@@ -68,6 +68,15 @@ if(end_block>last_block){
 	<div class="row">
 		<h2>메세지 수신함</h2>
 	</div>
+	<div>
+		<a href="<%=request.getContextPath()%>/massage/massageSenderList.jsp" class="link-btn">
+			발신함	
+		</a>
+		<a href="<%=request.getContextPath()%>/massage/massageInsert.jsp" class="link-btn">
+			메세지 작성
+		</a>
+	</div>
+	
 	
 	<div class="row">
 		<table class="table table-border">
@@ -113,6 +122,6 @@ if(end_block>last_block){
 		
 	</div>
 	
-
+	
 
 </div>
