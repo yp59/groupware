@@ -50,34 +50,6 @@ boardDao boarddao = new boardDao();
 
 </div>
 
-
-<!-- 게시글 영역 -->
-<div class="float-container">
-
-	<!--  -->	
-	<table class="table table-border table-hover" >
-		<thead>
-			<tr>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>날짜</th>
-			</tr>
-<%-- 			<%for(boardDto boarddto : list){ %> --%>
-<!-- 					<tr> -->
-<%-- 						<%=boarddto.getBoTitle()%> --%>
-<%-- 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"></a> --%>
-<%-- 						<td><%=boarddto.getEmpName()%></td> --%>
-<%-- 						<td><%=boarddto.getBoDate().substring(0, 10)%></td> --%>
-<%-- 					</tr><%}%> --%>
-
-		</tbody>
-	</table>
-</div>
-
-	
-	
-
-
 	<!-- 진행영역 -->
 	<div class="multi-container"><div class="row">
 		<table class="table table-border">
@@ -120,8 +92,26 @@ boardDao boarddao = new boardDao();
 	<div class="multi-container">
 	<!-- 멀테컨테이너 시작 -->
 		
-		공지글 영역
-		<img alt="공지글영역" src="https://via.placeholder.com/30x30?text=G" width="300" height="100">
+<!-- 		공지글 영역 -->
+		<div class="float-container">
+	<table class="table table-border table-hover" >
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+			</tr>
+<%-- 			<%for(boardDto boarddto : list){ %> --%>
+<!-- 					<tr> -->
+<%-- 						<%=boarddto.getBoTitle()%> --%>
+<%-- 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"></a> --%>
+<%-- 						<td><%=boarddto.getEmpName()%></td> --%>
+<%-- 						<td><%=boarddto.getBoDate().substring(0, 10)%></td> --%>
+<%-- 					</tr><%}%> --%>
+
+		</tbody>
+	</table>
+</div>
 	
 	
 	<!-- 멀티컨테이너 끝 -->
