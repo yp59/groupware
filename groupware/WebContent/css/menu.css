@@ -28,12 +28,13 @@
 	display: inline-block;
 	position: relative;
 	list-style: none;
+	right: -1300px;
 }
 .menu ul {
 	display:none; 
 	position:absolute;
 	left:0;
-	top:53px; 
+	top:53px;
 }
 .menu li:hover > ul {
 	display:block;
@@ -43,7 +44,7 @@
 	width:150px;
 }
 .menu li:hover {
-	background-color:rgb(52, 152, 219);
+	background-color:rgb(102, 177, 227);
 }
 .menu li > a {
 	color:white;

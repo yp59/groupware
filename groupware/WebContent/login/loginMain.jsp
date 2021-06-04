@@ -19,12 +19,13 @@
 		.loginForm {
 		  position:absolute;
 		  width:300px;
-		  height:400px;
+		  height:430px;
 		  padding: 30px, 20px;
 		  text-align:center;
 		  top:50%;
 		  left:50%;
 		  transform: translate(-50%,-50%);
+		  border:1px solid black !important;
 		  border-radius: 15px;
 		}
 		
@@ -63,24 +64,23 @@
 		  background: none;
 		}
 		
-		.btn {
-		  position:relative;
-		  left:40%;
-		  transform: translateX(-50%);
-		  margin-bottom: 40px;
-		  width:80%;
-		  height:40px;
-		  background:rgb(52,152,219);
-		  background-position: left;
-		  background-size: 200%;
-		  color:white;
-		  font-weight: bold;
-		  border:none;
-		  display:inline;
+		.form-btn {
+		  width:70% !important;
 		}
-		.bottomText {
-		  text-align: center;
+		
+		.signUp{
+			padding:0.3em;
+			color:black;
+			text-decoration:none;
+			border-radius: 5px;
+			border:1px solid lightgray;
+			color:rgb(52,152,219);
 		}
+		.signUp:hover{
+			background-color:rgb(52,152,219);
+			color:white;
+		}
+		
 	</style>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 </head>
@@ -96,15 +96,19 @@
 	비밀번호  <input type="password" class="pw" name="empPw" placeholder="PW" required><br>
 	</div>
 	
-	<input type="submit" class="btn" value="로그인">
-	
+	<input type="submit" class="form-btn form-btn-positive" value="로그인">
 </form>
-<%if(request.getParameter("error")!=null){
-%>
 
-<div class = "error">아이디 혹은 비밀번호가 일치하지 않습니다.</div>
+<div class = "row error" style="height:20px;">
+<%if(request.getParameter("error")!=null){%>
+아이디 혹은 비밀번호가 일치하지 않습니다.
 <%} %>
-<a href = "<%=request.getContextPath()%>/login/signUp.jsp">회원가입</a>
+</div>
+
+<div class="row text-right">
+<a href = "<%=request.getContextPath()%>/login/signUp.jsp" class="signUp" style="margin-right:20px; margin-bottom:20px;">회원가입</a>
+</div>
+
 </div>
 
 </body>
