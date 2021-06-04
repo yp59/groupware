@@ -270,7 +270,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		outline:none;
 	}
 	.form-btn{
-		width:80%;
+		width:65%;
 		padding:0.2rem;
 		outline:none;
 	}
