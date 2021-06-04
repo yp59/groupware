@@ -184,13 +184,19 @@
 .table.table-border > thead > tr > th, 
 .table.table-border > tbody > tr > th,
 .table.table-border > tfoot > tr > th{
-	background-color:lightgray;
+	background-color: rgb(52, 152, 219);
+/* 	background-color:lightgray; */
 	color:white;
 	
 }
-
-
-
+.table.table-border > thead > tr > td,
+.table.table-border > tbody > tr > td,
+.table.table-border > tfoot > tr > td{
+/* 	background-color: rgb(224, 224, 224); */
+	background-color: white;
+	color:black;
+	
+}
 
 /* .table.table-striped > thead > tr, */
 /* .table.table-striped > tbody > tr:nth-child(2n) { */
@@ -379,3 +385,26 @@ textarea.form-input {
 	
 	color:red;
 }
+
+
+/*
+	테이블 안의 a태그(상세보기로 이동하는 버튼) 의 속성변경
+
+*/
+.table.table-border > thead > tr > td a,
+.table.table-border > tbody > tr > td a,
+.table.table-border > tfooter > tr > td a{
+	
+	text-decoration:none;
+	color:black;
+	
+}
+
+.table.table-border > thead > tr > td a:hover,
+.table.table-border > tbody > tr > td a:hover,
+.table.table-border > tfooter > tr > td a:hover{
+	
+	text-decoration:underline;
+	
+}
+

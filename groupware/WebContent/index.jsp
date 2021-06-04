@@ -26,7 +26,7 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-<jsp:include page="/template/section.jsp"></jsp:include>
+<%-- <jsp:include page="/template/section.jsp"></jsp:include> --%>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 
@@ -39,12 +39,52 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 
 
 
-<!-- 사진 영역 -->
-<div>
-사진 영역
-<img alt="사진영역" src="https://via.placeholder.com/30x30?text=G" width="800" height="100">
-
+<!-- 상단영역 -->
+	<div class="float-container">
+		<!-- 출석영역 -->
+		<div class="multi-container">
+			<table class="table table-border">
+				<tr>
+					<th width="100">출근(버튼)</th>
+					<td></td>
+					<th width="100">출근시간</th>
+					<td></td>
+				</tr>
+			</table>
+			
+			<table class="table table-border">
+				<tr>
+					<th width="100">퇴근(버튼)</th>
+					<td></td>
+					<th width="100">퇴근시간</th>
+					<td></td>
+				</tr>
+			</table>
+		
+		
+		</div>
+		<!-- 출석영역 끝 -->
+		
+		<!-- 사진과 정보 영역 -->
+		<div class="multi-container">
+			<div class="text-center">
+				<img alt="사진영역" src="<%=request.getContextPath()%>/imageFile/picture.png" width="200" height="200" >
+			</div>
+			<br>
+			<div class="text-center">이름</div>
+			<div class="text-center">이메일</div>
+			
+		
+		
+		</div>
+		<!-- 사진과 정보 영역 끝 -->
+	
 </div>
+<!-- 상단영역 끝 -->
+
+
+
+
 
 
 <!-- 게시글 영역 -->
