@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 @WebFilter(urlPatterns = {
-"/login/loginInfo.jsp","/login/logOut.gw",
+"/login/loginInfo.jsp","/login/logOut.gw","/index.jsp",
 
 "/board/boardDetail.jsp","/board/boardEdit.jsp","/board/boardInsert.jsp",
 "/board/boardmain.jsp","/board/boardmainNotice.jsp","/board/boardmainQuestion.jsp",
@@ -35,7 +35,11 @@ import javax.servlet.http.HttpSession;
 "/massage/massageInsert.kh",
 
 
-"/mail/mailSend.gw", "/mail/mailList.jsp", "/mail/mailSend.jsp" // 메일 필터 적용
+"/mail/mailSend.gw", "/mail/mailList.jsp", "/mail/mailSend.jsp", // 메일 필터 적용
+
+"/approval/approvalDetail.jsp","/approval/approvalDetailIndir.jsp","/approval/approvalInsert.jsp",
+"/approval/approvalInsertMain.jsp","/approval/approvalList.jsp","/approval/InsertDepartmentPopUp.jsp",
+"/approval/approvalInsert.gw","/approval/directAppInsert.gw"//결재 필터 적용
 
 })
 

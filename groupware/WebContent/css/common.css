@@ -37,19 +37,19 @@
 	box-sizing: border-box;
 }
 
-a {
-	text-decoration: none;
-}
-a:link {
-  color :rgb(52,152,219);
-}
-a:visited {
-  color :rgb(52,152,219);
-}
-li {
-	list-style: none;
-	float: right;
-}
+/* a { */
+/* 	text-decoration: none; */
+/* } */
+/* a:link { */
+/*   color :rgb(52,152,219); */
+/* } */
+/* a:visited { */
+/*   color :rgb(52,152,219); */
+/* } */
+/* li { */
+/* 	list-style: none; */
+/* 	float: right; */
+/* } */
 /*
 	바깥 영역 생성 규칙
 	- 영역은 100px부터 1500px까지 100px 간격으로 설정할 수 있다.

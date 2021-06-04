@@ -173,4 +173,62 @@ public void directUpdate(directAppDto directappdto)throws Exception{
 	
 	
 }
+public List<directAppDto> appState(int appNo)throws Exception{
+	Connection con = jdbcUtils.getConnection();
+	
+	String sql = "select type,app_date from ("
+			+ "    select rownum rn,TMP.* from("
+			+ "            select * from("
+			+ "                        select A.*,D.approval,D.type,D.consesus,D.app_date,E.po_no from directapp D"
+			+ "                        inner join approval A"
+			+ "                        on A.app_no = D.app_no"
+			+ "                        inner join employees E"
+			+ "                        on D.approval = E.emp_no"
+			+ "                        where A.app_no =? and consesus ='1'"
+			+ "                        order by po_no desc)"
+			+ "                        union all"
+			+ "            select * from"
+			+ "                        ( select A.*,D.approval,D.type,D.consesus,D.app_date,E.po_no from directapp D"
+			+ "                        inner join  approval A"
+			+ "                        on A.app_no = D.app_no"
+			+ "                        inner join employees E"
+			+ "                        on D.approval = E.emp_no"
+			+ "                        where A.app_no =? and consesus ='0'"
+			+ "                        order by po_no desc)"
+			+ "                         )"
+			+ "                         TMP)";
+	
+		PreparedStatement ps = con.prepareStatement(sql);
+	
+		ps.setInt(1, appNo);
+		ps.setInt(2, appNo);
+		ResultSet rs = ps.executeQuery();
+		
+		List<directAppDto> list = new ArrayList<>();
+		while(rs.next()) {
+			
+		directAppDto directappdto = new directAppDto();
+			
+			directappdto.setType(rs.getString("type"));
+			directappdto.setAppDate(rs.getString("app_date"));
+			
+			list.add(directappdto);
+		}
+		
+		return list;//서블릿에서 해결하자
+}
+public void stateUpdate(String state,int appNo)throws Exception{
+	Connection con = jdbcUtils.getConnection();
+	
+	String sql = "update approval set app_state = ? where app_no = ?";
+	
+	PreparedStatement ps = con.prepareStatement(sql);
+	
+	ps.setString(1, state);
+	ps.setInt(2, appNo);
+	
+	ps.executeUpdate();
+	
+}
+
 }
