@@ -124,8 +124,12 @@
                </a>
                </td>
                <td><%=holidayDto.getEmpNo()%></td>
-               <td><%=holidayDto.getHolType()%></td>
-               <td><%=holidayDto.getHolStart().substring(0,10)%></td>
+               <td><%if(holidayDto.getHolType() == null){%>
+               		기타
+               		<%} else{%>               		
+				<%=holidayDto.getHolType()%>
+				<%} %></td>
+               <td><%=holidayDto.getHolStart().substring(0, 10) %></td>
                <td><%=holidayDto.getHolEnd().substring(0,10)%></td>
                <td><%=holidayDto.getHolWriteDate()%></td>
                <td><%=holidayDao.count(empNo,holidayDto.getHolNo())%></td>
