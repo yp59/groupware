@@ -117,7 +117,7 @@ margin-left: 10px;
 					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
 					<ul>
 
-					<li><a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a></li>
+
 
 						<li><a href="<%=root%>/approval/approvalInsertMain.jsp">기안서 작성</a></li>
 						<li><a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a></li>

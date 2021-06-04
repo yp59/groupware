@@ -82,6 +82,13 @@ boolean isManage = authLev==1 && getParameter==1 ;
 
 
 <jsp:include page="/template/header.jsp"></jsp:include>
+<style>
+	h2{
+		color:gray;
+		text-align:center;
+	}
+</style>
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 
 <%if(isSearch) {%>

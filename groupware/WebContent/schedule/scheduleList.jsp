@@ -159,6 +159,8 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 
+
+
 <% if(isSearch1) {%>
 	<script>
 	// 1. ing가 검색일 경우에만 
@@ -258,6 +260,31 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	font-size:0.8rem;
 	}
 
+	
+	
+	
+	
+	.form-input {
+		width:50%;
+		padding:0.2rem;
+		outline:none;
+	}
+	.form-btn{
+		width:80%;
+		padding:0.2rem;
+		outline:none;
+	}
+	
+	
+	
+	
+	.form-select{
+		width:15%;
+		padding:0.2rem;
+		outline:none;
+	}
+	
+	
 </style>
 
 
@@ -335,14 +362,14 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<!-- 검색화면 2 : end -->
 		<div class="row text-center">	
 			<form class="search-form2" action="scheduleList.jsp" method="get">
-				<input type="hidden" name="page_no2">
-				<select name="type2">
+				<input type="hidden" name="page_no2" >
+				<select name="type2" class="form-select">
 					<option value="dep_name">부서</option>
 					<option value="sc_name">제목</option>
 					<option value="emp_name">이름</option>
 				</select>
-				<input type="text" name="keyword2" placeholder="키워드">
-				<input type="submit" value="조회하기">
+				<input type="text" name="keyword2" placeholder="키워드" class="form-input">
+				<input type="submit" value="조회하기" class="form-btn">
 			</form>
 		</div>
 		</div>
@@ -420,13 +447,13 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 			<form class="search-form1" action="scheduleList.jsp" method="get">
 				<input type="hidden" name="page_no1">
 				
-				<select name="type1">
+				<select name="type1" class="form-select">
 					<option value="dep_name">부서</option>
 					<option value="sc_name">제목</option>
 					<option value="emp_name">이름</option>
 				</select>
-				<input type="text" name="keyword1" placeholder="키워드">
-				<input type="submit" value="조회하기">
+				<input type="text" name="keyword1" placeholder="키워드" class="form-input">
+				<input type="submit" value="조회하기" class="form-btn">
 			</form>
 		</div>
 		

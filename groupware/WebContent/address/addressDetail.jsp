@@ -20,14 +20,23 @@ boolean isManage = authLev==1;
 
 
 <jsp:include page="/template/header.jsp"></jsp:include>
-<div class="catainer-800">
+
+<style>
+	h2{
+		color:gray;
+		text-align:center;
+	}
+</style>
+
+
+<div class="container-800">
 	<div class="row"> 
 		<h2>사원 정보</h2>
 	</div>
 	<div class="row">
 		<table class="table table-border">
 			<tr>
-				<th>사원번호</th>
+				<th width="100px">사원번호</th>
 				<td><%=addressDetailDto.getEmp_no() %></td>
 			</tr>
 			<tr>
@@ -71,7 +80,7 @@ boolean isManage = authLev==1;
 	
 		<!-- 관리자일 경우에만 사원정보 수정가능 -->
 		<%if(isManage) {%>
-		<a href="<%=request.getContextPath()%>/login/signUpEdit.jsp?empNo=<%=emp_no%>">정보수정</a>
+		<a href="<%=request.getContextPath()%>/login/signUpEdit.jsp?empNo=<%=emp_no%>"  class="link-btn ">정보수정</a>
 		<%} %>
 	
 	</div>
