@@ -15,7 +15,6 @@
 	employeesDao employeesdao = new employeesDao();
 	employeesDto employeesdto = employeesdao.loginInfo(empNo);
 	
-	
 	int authLev;
 	try{
 	
@@ -35,7 +34,7 @@
 	<meta charset="UTF-8">
 	
 	<title>groupware5</title>
-	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=root%>/css/layout.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -98,32 +97,33 @@
 				</li>
 			</ul>
 			</ul>
+			
 			<ul>
 				<li class = "menu menu-title">
+				<a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근</a>
+				</li>
+				<ul>
+					<li class = "menu menu_detail">
+						<%if(isHeader || authLev == 2) {%> <!-- 권한1 또는 권한 2라면 -->
+							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근관리</a>
+						<%}%>
+					</li>
+					
+				</ul>
 
-					<a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
 			</ul>
-			</ul>
+			
 			<ul>
 				<li class = "menu menu-title">
-
-					<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
+					<%if(isHeader) {%>
+						<a href="<%=root%>/salary/salaryAuthority.jsp">급여</a>
+					<%}else{ %>
+						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
+					<%} %>
+					
 				</li>
 			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
+				
 			</ul>
 			</ul>
 			<ul>
