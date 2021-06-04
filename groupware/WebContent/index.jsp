@@ -148,18 +148,15 @@ if(endBlock1>lastBlock1){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 <!-- 사진 영역 -->
 <div>
 사진 영역
+<img alt="사진영역" src="https://via.placeholder.com/30x30?text=G" width="800" height="100">
 
 </div>
 
 
 <!-- 게시글 영역 -->
 <div class="float-container">
-	<!--  -->	
-	게시글 영역
-	<!--  -->
-</div>
 	
-
+	
 
 
 	<!-- 진행영역 -->
@@ -236,8 +233,24 @@ if(endBlock1>lastBlock1){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 			<input type="text" name="keyword1" placeholder="키워드">
 			<input type="submit" value="조회하기">
 		</form>
-	</div></div>
+	</div>
+	<!-- 멀티컨테이너 끝 -->
+	</div>
+	
+	
+	
+	<div class="multi-container">
+	<!-- 멀테컨테이너 시작 -->
+		
+		공지글 영역
+		<img alt="공지글영역" src="https://via.placeholder.com/30x30?text=G" width="300" height="100">
+	
+	
+	<!-- 멀티컨테이너 끝 -->
+	</div>
 
+	
+	
 
 <!--  -->
 </div>	
