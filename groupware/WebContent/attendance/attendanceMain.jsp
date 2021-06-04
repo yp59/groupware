@@ -25,6 +25,7 @@
 		pageNo = 1;//기본값 1페이지
 	}
 	
+   
 	int pageSize;
 	try{
 		pageSize = Integer.parseInt(request.getParameter("pageSize"));
