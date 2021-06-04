@@ -1,3 +1,5 @@
+<%@page import="groupware.beans.boardDao"%>
+<%@page import="groupware.beans.boardDto"%>
 <%@page import="groupware.beans.ScheduleIngDto"%>
 <%@page import="groupware.beans.ScheduleIngDao"%>
 <%@page import="groupware.beans.ScheduleDao"%>
@@ -14,7 +16,9 @@ ScheduleIngDao scheduleIngDao = new ScheduleIngDao();
 List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 
 
-
+// 공지사항 리스트
+boardDao boarddao = new boardDao();
+// List<boardDto> list = boarddao.boardSearch(boType,type,keyword,startRow1,endRow1);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -45,13 +49,6 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 <img alt="사진영역" src="https://via.placeholder.com/30x30?text=G" width="800" height="100">
 
 </div>
-
-
-<!-- 게시글 영역 -->
-<div class="float-container">
-	
-	
-
 
 	<!-- 진행영역 -->
 	<div class="multi-container"><div class="row">
@@ -95,8 +92,26 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 	<div class="multi-container">
 	<!-- 멀테컨테이너 시작 -->
 		
-		공지글 영역
-		<img alt="공지글영역" src="https://via.placeholder.com/30x30?text=G" width="300" height="100">
+<!-- 		공지글 영역 -->
+		<div class="float-container">
+	<table class="table table-border table-hover" >
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+			</tr>
+<%-- 			<%for(boardDto boarddto : list){ %> --%>
+<!-- 					<tr> -->
+<%-- 						<%=boarddto.getBoTitle()%> --%>
+<%-- 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"></a> --%>
+<%-- 						<td><%=boarddto.getEmpName()%></td> --%>
+<%-- 						<td><%=boarddto.getBoDate().substring(0, 10)%></td> --%>
+<%-- 					</tr><%}%> --%>
+
+		</tbody>
+	</table>
+</div>
 	
 	
 	<!-- 멀티컨테이너 끝 -->
@@ -106,14 +121,6 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 	
 
 <!--  -->
-</div>	
-
-
-
-
-
-
-
 
 
 

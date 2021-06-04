@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Layout 구현하기(1)</title>
 	<link rel="stylesheet" type="text/css" href="/study/design/common.css">
+	
 	<style>
 		main, aside, section, article, header, footer{
 			border:1px dotted black;
