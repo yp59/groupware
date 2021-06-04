@@ -126,11 +126,6 @@ text-decoration: none;
 					<ul>
 						<li><a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근 목록</a></li>
 						<li><a href="<%=root%>/holiday/holidayList.jsp">휴가 목록</a></li>
-						<%if(isHeader || authLev == 2) {%>
-						<li>
-							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근 관리</a>
-					</li>
-						<%}%>
 					</ul>
 				</li>
 				<li>
@@ -146,11 +141,9 @@ text-decoration: none;
 					<a href="#">마이 페이지</a> 
 					<ul>
 						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
-						<li><%if(isHeader) {%>
-						<a href="<%=root%>/salary/salaryAuthority.jsp">급여</a>
-					<%}else{ %>
+						<li>
 						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
-					<%} %></li>
+						</li>
 						<%if(isLogin){ %>
 							<%if(isHeader) {%>
 									<li><a href="<%=root%>/login/managerPage.jsp">관리자 페이지</a></li>
@@ -159,6 +152,8 @@ text-decoration: none;
 						<li><a href="<%=root%>/login/loginMain.jsp">로그인</a></li>
 				<%} %>
 					</ul>
+				</li>
+			  </ul>
 		</nav>
 	
 	

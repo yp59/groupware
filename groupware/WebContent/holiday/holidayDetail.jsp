@@ -30,7 +30,12 @@
 			</tr>
 			<tr>	
 				<th>휴가 종류</th>
-				<td><%=holidayDto.getHolType()%></td>
+				<td><%if(holidayDto.getHolType()==null) {%>
+					기타
+				<%} else{ %>
+				<%=holidayDto.getHolType()%>
+				<%} %>
+				</td>
 			</tr>
 			<tr>
 				<th>휴가 내용</th>
