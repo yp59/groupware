@@ -578,4 +578,34 @@ public class boardDao {
 			
 			return list;
 		}
+		
+	//index 에 최근 공지 띄움	
+	public List<boardDto> topNotice()throws Exception{
+	Connection con = jdbcUtils.getConnection();
+	
+	String sql = "select * from("
+			+ " select rownum rn , TMP.* from("
+			+ " select B.bo_title,E.emp_name,B.bo_date,B.board_no"
+			+ " from board B"
+			+ " inner join employees E on"
+			+ " B.emp_no = E.emp_no"
+			+ " where bo_type = '공지'"
+			+ " order by board_no desc)TMP"
+			+ " )where rn between 1 and 3";
+		
+	PreparedStatement ps = con.prepareStatement(sql);
+	
+	ResultSet rs = ps.executeQuery();
+	List<boardDto> list = new ArrayList<>();
+	while(rs.next()) {
+		boardDto boarddto = new boardDto();
+		boarddto.setBoTitle(rs.getString(2));
+		boarddto.setEmpName(rs.getString(3));
+		boarddto.setBoDate(rs.getString(4));
+		boarddto.setBoardNo(rs.getInt(5));
+		list.add(boarddto);
+	}
+	return list;
+	
+	}
 }

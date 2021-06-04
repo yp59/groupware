@@ -132,22 +132,43 @@ public class approvalDao {
 	public List<approvalDto> approvalMainList(String id, int startRow, int endRow)throws Exception{//session id값으로 기안 목록 조회
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql= "select * from("
-				+ "	select rownum rn,TMP.* from ("
-				+ "	select A.*,D.type,E.emp_name from approval A"
-				+ " inner join directapp D"
-				+ " on D.app_no = A.app_no"
-				+ " inner join employees E"
-				+ " on A.drafter = E.emp_no"
-				+ " where D.approval = ?"
-				+ "	)TMP"
-				+ "	)where rn between ? and ?";
+		String sql= "select * from ("
+				+ "    select rownum rn ,X.* from("
+				+ "        select  * from("
+				+ "                     select * from("
+				+ "                                select * from("
+				+ "                                        select TMP.* from ("
+				+ "                                            select A.*,D.type,E.emp_name from approval A"
+				+ "                                             inner join directapp D"
+				+ "                                         on D.app_no = A.app_no"
+				+ "                                        inner join employees E"
+				+ "                                            on A.drafter = E.emp_no"
+				+ "                                             where D.approval = ?"
+				+ "                                        )TMP"
+				+ "                                )"
+				+ "                    ) union all"
+				+ "                        select * from("
+				+ "                            select * from("
+				+ "                            select TMP.* from ("
+				+ "                            select A.*,I.type,E.emp_name from approval A"
+				+ "                            inner join indirectapp I"
+				+ "                             on I.app_no = A.app_no"
+				+ "                        inner join employees E"
+				+ "                            on A.drafter = E.emp_no"
+				+ "                             where i.referrer = ?"
+				+ "                        )TMP"
+				+ "                    )"
+				+ "                )"
+				+ "        )order by app_date_start desc "
+				+ "        )X"
+				+ ") where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, id);
-		ps.setInt(2, startRow);
-		ps.setInt(3, endRow);
+		ps.setString(2, id);
+		ps.setInt(3, startRow);
+		ps.setInt(4, endRow);
 		
 		ResultSet rs = ps.executeQuery();
 		
@@ -216,22 +237,45 @@ public class approvalDao {
 	public List<approvalDto> approvalMainSearch(String id , String keyword, int startRow, int endRow)throws Exception{
 		Connection con = jdbcUtils.getConnection();
 
-		String sql= "select * from("
-				+ "	select rownum rn,TMP.* from ("
-				+ "	select A.*,D.type,E.emp_name from approval A"
-				+ " inner join directapp D"
-				+ " on D.app_no = A.app_no"
-				+ " inner join employees E"
-				+ " on A.drafter = E.emp_no"
-				+ " where D.approval = ? and instr(A.app_title,?)>0"
-				+ "	)TMP"
-				+ "	)where rn between ? and ?";
+		String sql= "select * from ("
+				+ "    select rownum rn,X.* from("
+				+ "    select * from("
+				+ "        select * from("
+				+ "                select * from("
+				+ "                            select TMP.* from ("
+				+ "                            select A.*,D.type,E.emp_name from approval A"
+				+ "                            inner join directapp D"
+				+ "                            on D.app_no = A.app_no"
+				+ "                             inner join employees E"
+				+ "                            on A.drafter = E.emp_no"
+				+ "                            where D.approval = ? and instr(A.app_title,?)>0"
+				+ "                            )TMP"
+				+ "                     )"
+				+ "                )union all"
+				+ "                          "
+				+ "            select * from("
+				+ "                select * from("
+				+ "                            select TMP.* from ("
+				+ "                            select A.*,I.type,E.emp_name from approval A"
+				+ "                            inner join indirectapp I"
+				+ "                            on I.app_no = A.app_no"
+				+ "                             inner join employees E"
+				+ "                            on A.drafter = E.emp_no"
+				+ "                            where I.referrer = ? and instr(A.app_title,?)>0"
+				+ "                            )TMP"
+				+ "                         )"
+				+ "                    )"
+				+ "                    )order by app_date_start desc"
+				+ "                )X"
+				+ ")where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, id);
 		ps.setString(2, keyword);
-		ps.setInt(3, startRow);
-		ps.setInt(4, endRow);
+		ps.setString(3, id);
+		ps.setString(4, keyword);
+		ps.setInt(5, startRow);
+		ps.setInt(6, endRow);
 		
 		ResultSet rs = ps.executeQuery();
 		
@@ -310,12 +354,18 @@ public class approvalDao {
 			
 			Connection con = jdbcUtils.getConnection();
 			
-			String sql = "select count(*) from directapp where approval = ?";
+			String sql = "select count(*) from ("
+					+ " select * from("
+					+ " select type from directapp where approval = ?"
+					+ " )union all"
+					+ " select type from("
+					+ " select * from indirectapp where referrer = ?)"
+					+ ")";
 		
 			PreparedStatement ps = con.prepareStatement(sql);
 			
 			ps.setString(1, id);
-			
+			ps.setString(2, id);
 			ResultSet rs = ps.executeQuery();
 			
 			int count;
@@ -333,15 +383,25 @@ public class approvalDao {
 			
 			Connection con = jdbcUtils.getConnection();
 			
-			String sql = "select count(*) from approval A"
-					+ " inner join directapp D"
-					+ " on A.app_no = D.app_no"
-					+ " where instr(A.app_title,?)>0 and D.approval = ?";
+			String sql = "select count(*) from("
+					+ " select * from("
+					+ " select D.app_no from approval A"
+					+ "				 inner join directapp D"
+					+ "				on A.app_no = D.app_no"
+					+ "			where instr(A.app_title,?)>0 and D.approval = ?)"
+					+ "            union all"
+					+ "            select * from("
+					+ " select i.app_no from approval A"
+					+ "				 inner join indirectapp I"
+					+ "				on A.app_no = I.app_no"
+					+ "			where instr(A.app_title,?)>0 and I.referrer = ?))";
 		
 			PreparedStatement ps = con.prepareStatement(sql);
 			
 			ps.setString(1, keyword);
 			ps.setString(2, id);
+			ps.setString(3, keyword);
+			ps.setString(4, id);
 			ResultSet rs = ps.executeQuery();
 			
 			int count;

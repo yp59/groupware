@@ -13,6 +13,7 @@
 
 int appNo = Integer.parseInt(request.getParameter("appNo"));//결재 리스트에서 어떤 페이지를 눌렀는지 appNo를 가져온다.
 String dirType = request.getParameter("DirType");//type을 가져와서 이미 결재를 한 상태이면 버튼을 없앤다.
+boolean appState = request.getParameter("appState").equals("중지");
 boolean isApproval = !dirType.equals("미결");//미결이 아니면 ture값을 설정해 버튼을 없앤다.
 
 ///////////////////////////////////////////////////////////기안서 내용을 출력할 저장 객체 선언
@@ -37,9 +38,13 @@ int appSize = allSequence.size();//전체 결재 수
 int appsizetest = appSize;
 
 String appEndDate ="";
-boolean isConsesus;
+boolean isConsesus =true;
  String state = "기결";
-
+ 
+if(mysequence.getConsesus()==null){
+	
+}
+else{
 if(mysequence.getConsesus().equals("0")){//내 결재 유형이 합의자인지 결재자인지에 따라 결재 순서를 잰다.
 	
 	isConsesus = false;
@@ -128,6 +133,7 @@ else{
 	
 	isConsesus = true;//getConsesus의 값이 "1"(합의자)이므로 해당 기안서를 열어보는 '나'는 합의자이다.
 }
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -142,10 +148,12 @@ window.name ='appDetail';
 
 $(function(){
 	
+	
 	if(<%=isApproval%>){//결재 후 되돌리기 불가 (버튼 지움)
 		$('.isConsesus').css('display','none');
 		$('.isApproval').css('display','none');
 	}
+	
 	
 	else{
 	
@@ -158,6 +166,12 @@ $(function(){
 		$('.isConsesus').css('display','none');
 		$('.isApproval').css('display','block');
 		}
+	}
+	
+	if(<%=appState%>){//상태가 중지면 결재 불가(버튼 지움)
+		
+		$('.isConsesus').css('display','none');
+		$('.isApproval').css('display','none');
 	}
 /////////////////////	//버튼을 없앨까 경고창으로 막을까 고민중 --> 버튼을 없애자/////////////////////////////////////	
 	if(<%=state.equals("기결")%>){
