@@ -1,3 +1,5 @@
+<%@page import="groupware.beans.boardDao"%>
+<%@page import="groupware.beans.boardDto"%>
 <%@page import="groupware.beans.ScheduleIngDto"%>
 <%@page import="groupware.beans.ScheduleIngDao"%>
 <%@page import="groupware.beans.ScheduleDao"%>
@@ -15,6 +17,7 @@ request.setCharacterEncoding("UTF-8");//
 //ing 검색
 String type1 = request.getParameter("type1");
 String keyword1 = request.getParameter("keyword1");
+String boType = request.getParameter("boType");
 
 boolean isSearch1 = type1 != null && keyword1 != null && !keyword1.trim().equals("");
 int page_no1; //현재 페이지 번호
@@ -76,7 +79,9 @@ if(endBlock1>lastBlock1){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	endBlock1=lastBlock1;
 }
 
-
+// 공지사항 리스트
+boardDao boarddao = new boardDao();
+// List<boardDto> list = boarddao.boardSearch(boType,type,keyword,startRow1,endRow1);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -155,7 +160,23 @@ if(endBlock1>lastBlock1){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 <!-- 게시글 영역 -->
 <div class="float-container">
 	<!--  -->	
-	게시글 영역
+	<table class="table table-border table-hover" >
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+			</tr>
+<%-- 			<%for(boardDto boarddto : list){ %> --%>
+<!-- 					<tr> -->
+<%-- 						<%=boarddto.getBoTitle()%> --%>
+<%-- 						<td><a href="boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"></a> --%>
+<%-- 						<td><%=boarddto.getEmpName()%></td> --%>
+<%-- 						<td><%=boarddto.getBoDate().substring(0, 10)%></td> --%>
+<%-- 					</tr><%}%> --%>
+
+		</tbody>
+	</table>
 	<!--  -->
 </div>
 	
@@ -240,14 +261,6 @@ if(endBlock1>lastBlock1){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 
 
 <!--  -->
-</div>	
-
-
-
-
-
-
-
 
 
 
