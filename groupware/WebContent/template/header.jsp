@@ -40,164 +40,83 @@
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<style>
+li {
+	list-style: none;
+	float: left;
+}
+.right {
+width: 830px;
+margin-right:0px;
+margin-bottom: 15px;
+}
+.float-container,nav {
+margin-bottom: 10px;
+}
+
+	</style>
 </head>
 <body>
 	<!-- 로고영역 -->
 			<div class="text-center ">
 				<div class="company-logo">
-				groupware
+				<a href="<%=root%>/index.jsp">Groupware</a>
 				</div>
 				<%if(isLogin) {%>
 				<div class="text-right"><%=employeesdto.getEmpName()%>님 환영합니다.
 				<div><a href="<%=root%>/login/logOut.gw">로그아웃</a></div>
 				<%} %>
 			</div>
+			</div>
 			
 			<!-- 네비게이션 영역 -->
 			<div class="float-container nav">
-				<div></div>
 				<div class="right">
-					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
-					<a href="<%=root%>/schedule/scheduleList.jsp">일정관리</a>
-					<a href="#">근태관리</a>
-					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
-					<a href="<%=root%>/mail/mailSend.jsp">공지메일</a>
-					<a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a>
-					<a href="<%=root%>/login/loginInfo.jsp">마이페이지</a>
+					<ul>
+					<li><a href="<%=root%>/approval/approvalList.jsp">전자결재</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/schedule/scheduleList.jsp">일정관리</a></li>
+					</ul>
+					<ul>
+					<li><a href="#">근태관리</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/board/boardmain.jsp">게시판</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/mail/mailSend.jsp">공지메일</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/login/loginInfo.jsp">마이페이지</a></li>
+					</ul>
 				</div>
 			</div>
 	
 	
 	
-	<%if(isLogin){ %>
+<%-- 	<%if(isLogin){ %> --%>
 			
-				<!-- 사원관리: 사장님만 가능 -->
-				<%if(isHeader) {%>
-					<div class="row text-right">
-						<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a>
-					</div>
-				<%} %>
-		</div>
-	<%} else{%>
-		<div class = "row text-right">
-			<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a>
-		</div>
-	<%} %>
+<!-- 				사원관리: 사장님만 가능 -->
+<%-- 				<%if(isHeader) {%> --%>
+<!-- 					<div class="row text-right"> -->
+<%-- 						<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a> --%>
+<!-- 					</div> -->
+<%-- 				<%} %> --%>
+<!-- 		</div> -->
+<%-- 	<%} else{%> --%>
+<!-- 		<div class = "row text-right"> -->
+<%-- 			<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a> --%>
+<!-- 		</div> -->
+<%-- 	<%} %> --%>
 	
 	
 	<!-- 가장 바깥 영역 -->
 	<main>
 	
-
-	
-		<!-- 사이드영역 -->
-		<aside>
-		<div class="menu">
-			<ul>
-				<li class = "menu menu-title">
-					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/approval/approvalInsertMain.jsp">기안서 작성</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a>
-				</li>
-			</ul>
-			</ul>
-			<ul>
-				<li class = "menu menu-title">
-					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/board/boardmainNotice.jsp">공지사항</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/board/boardmainFree.jsp">자유게시판</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/board/boardmainQuestion.jsp">질문게시판</a>
-				</li>
-			</ul>
-			</ul>
-			
-			<ul>
-				<li class = "menu menu-title">
-				<a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근</a>
-				</li>
-				<ul>
-					<li class = "menu menu_detail">
-						<%if(isHeader || authLev == 2) {%> <!-- 권한1 또는 권한 2라면 -->
-							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근관리</a>
-						<%}%>
-					</li>
-					
-				</ul>
-
-			</ul>
-			
-			<ul>
-				<li class = "menu menu-title">
-					<%if(isHeader) {%>
-						<a href="<%=root%>/salary/salaryAuthority.jsp">급여</a>
-					<%}else{ %>
-						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
-					<%} %>
-					
-				</li>
-			<ul>
-				
-			</ul>
-			</ul>
-			<ul>
-				<li class = "menu menu-title">
-					<a href="<%=root%>/holiday/holidayList.jsp">휴가</a>
-					<a href="<%=root%>/schedule/scheduleList.jsp">일정 목록</a>
-
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="#">분류</a>
-				</li>
-			</ul>
-			</ul>
-			<ul>
-				<li class = "menu menu-title">
-					<a href="<%=root%>/massage/massageInsert.jsp">쪽지 쓰기</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/massage/massageSenderList.jsp">발신함</a>
-				</li>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/massage/massageReceiverList.jsp">수신함</a>
-				</li>
-			</ul>
-			</ul>
-		</div>
-		
-		<ul>
-				<li class = "menu menu-title">
-					<a href="<%=root%>/address/addressList.jsp">주소록</a>
-				
-			</ul>
-			
-			<ul>
-				<li class = "menu menu-title">
-					<a href="<%=root%>/mail/mailList.jsp">공지메일</a>
-				</li>
-			<ul>
-				<li class = "menu menu_detail">
-				<a href="<%=root%>/mail/mailSend.jsp">공지메일발송</a>
-				</li>
-			</ul>
-			</ul>
-		</aside>
 		
 		<!-- 컨텐츠영역 -->
 		<section>

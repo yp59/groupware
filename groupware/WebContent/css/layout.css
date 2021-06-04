@@ -59,9 +59,8 @@
 		
 		main {
 
-			width:1300px;
+			width:1200px;
 /* 			width:1200px; */
-
 			margin:auto;
 		}
 		
@@ -85,9 +84,9 @@
 		
 		section {
 			float:left;
-			width:90%;
+			width:100%;
 /* 			width:80%; */
-			min-height:500px;
+			min-height:750px;
 		
 		}
 		
@@ -95,7 +94,7 @@
 			min-height: 0;
 		}
 		article {
-			min-height:490px;
+			min-height:740px;
 		}
 		footer {
 			min-height:10px;
