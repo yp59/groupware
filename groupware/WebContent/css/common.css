@@ -301,18 +301,17 @@ textarea.form-input {
 	color:grey;
 	text-decoration: none;
 	display:inline-block; 
-	min-width:35px;
-	
+	min-width:40px;
 	border:1px solid transparent;
-	border-radius:50%;
 	padding:0.5rem;
 	text-align: center;
 }
 .pagination > a:hover,
 .pagination > a.on {
-	border:1px solid lightgray;
+	border:1px solid white;
 	background-color:#3498DB;
 	color:white;
+	border-radius:50%;
 }
 
 .pagination-list {
