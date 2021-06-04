@@ -78,7 +78,7 @@ text-decoration: none;
 }
 
 	</style>
-</head>
+</head>  
 <body>
 	<!-- 로고영역 -->
 			<div class="text-center ">
@@ -86,7 +86,7 @@ text-decoration: none;
 				<a href="<%=root%>/index.jsp">Groupware</a>
 				</div>
 
-			</div>
+			</div> 
 
 				
 				
@@ -137,11 +137,9 @@ text-decoration: none;
 						<li>
 							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근 관리</a>
 					</li>
-<<<<<<< HEAD
 
-=======
 						<%}%>
->>>>>>> branch 'master' of https://github.com/yp59/groupware.git
+
 					</ul>
 				</li>
 				<li>
