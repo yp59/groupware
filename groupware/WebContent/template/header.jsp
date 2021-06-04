@@ -10,7 +10,7 @@
 	
 	String empNo=(String)session.getAttribute("id");
 	//String에 담는게 편함
-	boolean isLogin=empNo!=null;
+	boolean isLogin=empNo!=null;  
 	
 	employeesDao employeesdao = new employeesDao();
 	employeesDto employeesdto = employeesdao.loginInfo(empNo);
@@ -137,11 +137,11 @@ text-decoration: none;
 						<li>
 							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근 관리</a>
 					</li>
+<<<<<<< HEAD
 
-
-
+=======
 						<%}%>
-
+>>>>>>> branch 'master' of https://github.com/yp59/groupware.git
 					</ul>
 				</li>
 				<li>
