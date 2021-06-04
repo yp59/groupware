@@ -29,8 +29,8 @@ public class AttendanceFilter implements Filter{
 		
 			int authorityLevel = (int)req.getSession().getAttribute("authorityLevel");
 					
-			boolean pass = authorityLevel==1||authorityLevel==2;
-			if(pass) { // 관리자( 1,2)
+			boolean pass = authorityLevel==1;
+			if(pass) { // 관리자
 				chain.doFilter(request, response);
 				
 			}
