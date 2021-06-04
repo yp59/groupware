@@ -19,7 +19,7 @@
 		.loginForm {
 		  position:absolute;
 		  width:300px;
-		  height:430px;
+		  height:400px;
 		  padding: 30px, 20px;
 		  text-align:center;
 		  top:50%;
@@ -68,19 +68,6 @@
 		  width:70% !important;
 		}
 		
-		.signUp{
-			padding:0.3em;
-			color:black;
-			text-decoration:none;
-			border-radius: 5px;
-			border:1px solid lightgray;
-			color:rgb(52,152,219);
-		}
-		.signUp:hover{
-			background-color:rgb(52,152,219);
-			color:white;
-		}
-		
 	</style>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 </head>
@@ -105,9 +92,6 @@
 <%} %>
 </div>
 
-<div class="row text-right">
-<a href = "<%=request.getContextPath()%>/login/signUp.jsp" class="signUp" style="margin-right:20px; margin-bottom:20px;">회원가입</a>
-</div>
 
 </div>
 
