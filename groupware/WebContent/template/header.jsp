@@ -109,7 +109,7 @@ height: 70px;
 					<li><a href="<%=root%>/schedule/scheduleList.jsp">일정관리</a></li>
 					</ul>
 					<ul>
-					<li><a href="#">근태관리</a></li>
+					<li><a href="<%=root%>/attendance/attendanceMain.jsp">근태관리</a></li>
 					</ul>
 					<ul>
 					<li><a href="<%=root%>/board/boardmain.jsp">게시판</a></li>
