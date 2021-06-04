@@ -82,7 +82,6 @@
 
 <%if(isSearch){ %>
 <script>
-window.name ='appList';
 	//검색어 저장값
 	$(function(){
 		$("input[name=keyword]").val("<%=keyword%>");
@@ -179,7 +178,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					<td >
 					<a href="<%=request.getContextPath()%>
 					/approval/approvalDetail.jsp?appNo=<%=approvaldto.getAppNo()%>&DirType=<%=approvaldto.getDirType()%>" 
-					onclick="window.open(this.href, '_blank', 'width=700, height=700'); return false;">
+					onclick="window.name = 'appList'; window.open(this.href, '_blank', 'width=700, height=700'); return false;">
 					<!-- 기안서에 현재 선택한 appNo을 보내는 구문 -->	
 					<%=approvaldto.getAppTitle()%>
 					</a>	
@@ -222,7 +221,5 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 		</div>	
 	</div>
 
-
-	 
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

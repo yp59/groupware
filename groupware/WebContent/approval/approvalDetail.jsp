@@ -190,7 +190,7 @@ $(function(){
 
 	$('.appSelec').click(function(){//submit을 누르면 부모창으로 값을 보내고 팝업창 종료
 		window.opener.name = "appList";//부모 창 이름 설정
-		document.appform.target = "approvalList.jsp";//어느 창으로 갈건지 target지정
+		document.appform.target = "appList";//어느 창으로 갈건지 target지정
 		document.appForm.action = "directAppInsert.gw";//실제 데이터가 넘어가는 페이지
 		document.appForm.submit();
 		self.close();//현재 창을 닫는다.
