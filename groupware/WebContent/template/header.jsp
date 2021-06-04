@@ -64,6 +64,18 @@ text-align: right;
 .logout {
 margin-left: 10px;
 }
+.company-logo > a:link, a:visited {
+  color : rgb(52, 152, 219);
+text-decoration: none;
+}
+.company-logo {
+font-size: 40px;
+}
+
+.loginSub > a:link, a:visited {
+ color : rgb(52, 152, 219);
+text-decoration: none;
+}
 
 	</style>
 </head>
@@ -73,24 +85,6 @@ margin-left: 10px;
 				<div class="company-logo">
 				<a href="<%=root%>/index.jsp">Groupware</a>
 				</div>
-			
-				<!-- 관리자기능 --> 
-				<div class ="" style = float:left; >
-				
-				
-				<%if(isLogin){ %>
-							<%if(isHeader) {%>
-								<div class="row text-right">
-									<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a>
-								</div>
-							<%} %>
-					</div>
-				<%} else{%>
-					<div class = "row text-right">
-						<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a>
-					</div>
-				<%} %>
-				
 				</div>
 				
 				
@@ -104,54 +98,69 @@ margin-left: 10px;
 			<nav>
 			<!-- 메뉴 -->
 			<ul class="menu">
-				<li>
-					<a href="<%=root%>/mail/mailSend.jsp">공지메일</a>
+			  <li>
+					<a href="<%=root%>/mail/mailSend.jsp">공지 메일</a>
 				</li>
 				<li>
-					<a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a>
+					<a href="<%=root%>/schedule/scheduleList.jsp">일정 목록</a>
 				</li>
 				<li>
 					<a href="<%=root%>/address/addressList.jsp">주소록</a>
 				</li>
 				<li>
-					<a href="<%=root%>/approval/approvalList.jsp">전자결재</a>
+					<a href="<%=root%>/massage/massageInsert.jsp">메시지</a>
+					<ul>
+						<li><a href="<%=root%>/massage/massageReceiverList.jsp">수신함</a></li>
+						<li><a href="<%=root%>/massage/massageSenderList.jsp">발신함</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="<%=root%>/approval/approvalList.jsp">전자 결재</a>
 					<ul>
 						<li><a href="<%=root%>/approval/approvalInsertMain.jsp">기안서 작성</a></li>
 						<li><a href="<%=root%>/approval/approvalList.jsp">내 결재 관리</a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="#">근태 관리</a>
+					<a href="<%=root%>/attendance/attendanceMain.jsp">근태 관리</a>
 					<ul>
 						<li><a href="<%=root%>/attendance/attendanceMain.jsp">출퇴근 목록</a></li>
 						<li><a href="<%=root%>/holiday/holidayList.jsp">휴가 목록</a></li>
+						<%if(isHeader || authLev == 2) {%>
 						<li>
-						<%if(isHeader || authLev == 2) {%> <!-- 권한1 또는 권한 2라면 -->
 							<a href="<%=root%>/attendance/attendanceAuthorityMain.jsp">출퇴근 관리</a>
-						<%}%>
 					</li>
+						<%}%>
 					</ul>
 				</li>
 				<li>
-					<a href="#">게시판</a>
+					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
 					<ul>
 						<li><a href="<%=root%>/board/boardmainNotice.jsp">공지사항</a></li>
 						<li><a href="<%=root%>/board/boardmainFree.jsp">자유게시판</a></li>
 						<li><a href="<%=root%>/board/boardmainQuestion.jsp">질문게시판</a></li>
+						<li><a href="<%=root%>/board/myBoardList.jsp">내 게시글</a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="#">마이페이지</a> 
+					<a href="#">마이 페이지</a> 
 					<ul>
+						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
 						<li><%if(isHeader) {%>
 						<a href="<%=root%>/salary/salaryAuthority.jsp">급여</a>
 					<%}else{ %>
 						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
 					<%} %></li>
-						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
+						<%if(isLogin){ %>
+							<%if(isHeader) {%>
+									<li><a href="<%=root%>/login/managerPage.jsp">관리자 페이지</a></li>
+							<%} %>
+				<%} else{%>
+						<li><a href="<%=root%>/login/loginMain.jsp">로그인</a></li>
+				<%} %>
 					</ul>
 				</li>
-			</ul>
+			  </ul>
 		</nav>
 	
 	
