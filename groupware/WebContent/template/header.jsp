@@ -83,7 +83,7 @@ text-decoration: none;
 	<!-- 로고영역 -->
 			<div class="text-center ">
 				<div class="company-logo">
-				<a href="<%=root%>/index.jsp">Groupware</a>
+				<a href="<%=root%>/index.jsp">GroupWare</a>
 				</div>
 			</div>
 				
@@ -159,17 +159,6 @@ text-decoration: none;
 						<li><a href="<%=root%>/login/loginMain.jsp">로그인</a></li>
 				<%} %>
 					</ul>
-					<ul>
-					<li><a href="<%=root%>/attendance/attendanceMain.jsp">근태관리</a></li>
-					</ul>
-					<ul>
-					<li><a href="<%=root%>/board/boardmain.jsp">게시판</a></li>
-					</ul>
-					<ul>
-					<li><a href="<%=root%>/login/loginInfo.jsp">마이페이지</a></li>
-					</ul>
-				</li>
-			  </ul>
 		</nav>
 	
 	
