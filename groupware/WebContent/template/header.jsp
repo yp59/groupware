@@ -63,6 +63,29 @@ height: 70px;
 				<div class="company-logo">
 				<a href="<%=root%>/index.jsp">Groupware</a>
 				</div>
+			
+				<!-- 관리자기능 --> 
+				<div style = float:left; >
+				
+				
+				<%if(isLogin){ %>
+							<%if(isHeader) {%>
+								<div class="row text-right">
+									<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a>
+								</div>
+							<%} %>
+					</div>
+				<%} else{%>
+					<div class = "row text-right">
+						<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a>
+					</div>
+				<%} %>
+				
+				</div>
+				<!--  -->
+				
+				
+				
 				<%if(isLogin) {%>
 				<div class="text-right"><%=employeesdto.getEmpName()%>님 환영합니다.
 				<div><a href="<%=root%>/login/logOut.gw">로그아웃</a></div>
@@ -99,25 +122,14 @@ height: 70px;
 	
 	
 	
-<%-- 	<%if(isLogin){ %> --%>
-			
-<!-- 				사원관리: 사장님만 가능 -->
-<%-- 				<%if(isHeader) {%> --%>
-<!-- 					<div class="row text-right"> -->
-<%-- 						<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a> --%>
-<!-- 					</div> -->
-<%-- 				<%} %> --%>
-<!-- 		</div> -->
-<%-- 	<%} else{%> --%>
-<!-- 		<div class = "row text-right"> -->
-<%-- 			<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a> --%>
-<!-- 		</div> -->
-<%-- 	<%} %> --%>
-	
 	
 	<!-- 가장 바깥 영역 -->
 	<main>
 	
+
+
+	
+
 		
 		<!-- 컨텐츠영역 -->
 		<section>

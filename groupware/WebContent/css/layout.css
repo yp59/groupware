@@ -59,9 +59,14 @@
 		
 		main {
 
+
+/* 			width:1300px; */
 			width:1200px;
-/* 			width:1200px; */
+
+
+			
 			margin:auto;
+			
 		}
 		
 		main::after {
@@ -71,7 +76,7 @@
 		}
 		aside {
 			float:left;
-			width:10%;
+			width:0%;
 /* 			width:20%; */
 			min-height:500px;
 			background-color: rgb(224,224,224);
