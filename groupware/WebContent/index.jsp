@@ -22,6 +22,16 @@ boardDao boarddao = new boardDao();
 
 ////////////////////////////////////////////////////////////////////////
 
+// 출,퇴근 
+String empNo = (String)session.getAttribute("id");
+String pattern = "yyyy-MM-dd";
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+String date = simpleDateFormat.format(new Date());
+
+AttendanceDao attendanceDao = new AttendanceDao();
+AttendanceDto attendance = attendanceDao.get(empNo, date);
+
+
 %>
 
 
@@ -47,22 +57,37 @@ boardDao boarddao = new boardDao();
 	<div class="float-container">
 		<!-- 출석영역 -->
 		<div class="multi-container">
-			<table class="table table-border">
-				<tr>
-					<th width="100">출근(버튼)</th>
-					<td></td>
-					<th width="100">출근시간</th>
-					<td></td>
-				</tr>
-			</table>
-			
-			<table class="table table-border">
-				<tr>
-					<th width="100">퇴근(버튼)</th>
-					<td></td>
-					<th width="100">퇴근시간</th>
-					<td></td>
-				</tr>
+			<%if(attendance !=null) {%>
+	   		<%if(attendance.getAttAttend() != null){%> 
+			    <a href="#" class="link-btn attend-btn">출근</a> 
+			    <%=attendanceDto.getAttattend()
+	   		<%} %>	   		  		
+	   		<%if(attendance.getAttLeave() == null){ %>
+			    <th width="100">
+			    <a href="leave.gw?" class="link-btn leave-btn">퇴근</a>
+			    </th>
+			    <td><%=attendanceDto.getAttattend()</td>
+                                          </tr>  		
+	   		<%}else{ %>
+				<th width="100">
+	   			<a href="#" class="link-btn leave-btn">퇴근</a>
+				</th>
+				<td><%=attendanceDto.getAttattend()</td>
+			</tr>   	
+	   		<%} %>
+	   	<%} else{ %>
+			<th width="100">
+	   		<a href="attend.gw?" class="link-btn attend-btn">출근</a>
+			</th>
+			<td><%=attendanceDto.getAttattend()</td>
+		</tr>
+		<tr>
+			<th width="100">	
+	   		<a href="#" class="link-btn leave-btn">퇴근</a>
+			</th>
+			<td><%=attendanceDto.getAttLeave()</td>
+		</tr>
+	   	<%} %>
 			</table>
 		
 		
