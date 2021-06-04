@@ -22,11 +22,12 @@
 	margin:0;
 	padding:0;
 	list-style: none;
-	background-color: #636e72;
+	background-color:rgb(52, 152, 219);
 }
 .menu > li {
 	display: inline-block;
 	position: relative;
+	list-style: none;
 }
 .menu ul {
 	display:none; 
@@ -42,7 +43,7 @@
 	width:150px;
 }
 .menu li:hover {
-	background-color:#2d3436;
+	background-color:rgb(52, 152, 219);
 }
 .menu li > a {
 	color:white;

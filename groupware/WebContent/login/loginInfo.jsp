@@ -47,7 +47,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
-<div class="container-700">
+<div class="container-1100">
 <div>
 	<h2>마이페이지</h2>
 
@@ -88,20 +88,20 @@
 </table>
 </div>
 
-<div class="row text-left">
-		<h4>내가 작성한 게시글</h4>
-	</div>
-	<div class="row text-left">
-		<ul class="my-board-list">
-			<%for(boardDto boarddto : myList){ %>
-			<li>
-				<a href="<%=request.getContextPath()%>/board/boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>">
-					<%=boarddto.getBoTitle()%>
-				</a>
-			</li>
-			<%} %>
-		</ul>
-	</div>
+<!-- <div class="row text-left"> -->
+<!-- 		<h4>내가 작성한 게시글</h4> -->
+<!-- 	</div> -->
+<!-- 	<div class="row text-left"> -->
+<!-- 		<ul class="my-board-list"> -->
+<%-- 			<%for(boardDto boarddto : myList){ %> --%>
+<!-- 			<li> -->
+<%-- 				<a href="<%=request.getContextPath()%>/board/boardDetail.jsp?boardNo=<%=boarddto.getBoardNo()%>"> --%>
+<%-- 					<%=boarddto.getBoTitle()%> --%>
+<!-- 				</a> -->
+<!-- 			</li> -->
+<%-- 			<%} %> --%>
+<!-- 		</ul> -->
+<!-- 	</div> -->
 
 <div class="container-900 text-right">
 <a href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp">회원정보 수정</a><!-- 회원정보 수정 페이지로 이동 -->
