@@ -56,8 +56,7 @@
 		}
 		
 		main {
-			width:100%;
-/* 			width:1200px; */
+
 			margin:auto;
 		}
 		main::after {

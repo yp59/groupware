@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/template/referencePopUp.jsp"></jsp:include>
@@ -21,17 +23,25 @@ if(imp==null){imp="";}
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
+	
+	function getFormatDate(date){//오늘 날짜 받는 함수
+		
+    var year = date.getFullYear();
+    var month = (1 + date.getMonth());
+    month = month >= 10 ? month : '0' + month;
+    var day = date.getDate();
+    day = day >= 10 ? day : '0' + day;
+    return year + '-' + month + '-' + day;
+	
+	}
 
-	var today = new Date();   
 
-		var year = today.getFullYear(); // 년도
-		var month = today.getMonth() + 1;  // 월
-		var date = today.getDate();  // 날짜
-		var cal = year+"-0"+month+"-"+date;//appDateStart에 오늘날짜 넣을 변수
+	var today = getFormatDate(new Date());   
+	
 	
 $(function(){//window.load와 같은의미
-	$('input[name=appDateStart]').val(cal);//    date로 받은 값 cal을 appDateStart에 넣는다.
-	$('input[name=appDateEnd]').val(cal);//    date로 받은 값 cal을 appDateEnd에 넣는다.
+	$('input[name=appDateStart]').val(today);//    date로 받은 값 cal을 appDateStart에 넣는다.
+	$('input[name=appDateEnd]').val(today);//    date로 받은 값 cal을 appDateEnd에 넣는다.
 	
 	$(".appPeople").click(function(){
 		var _width = '750';
