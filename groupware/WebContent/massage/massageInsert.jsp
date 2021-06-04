@@ -93,7 +93,7 @@ if(isAadressSend) {
 					</select>
 				<%} else{ %>
 					<label>수신자</label>
-					<input type="text" name="e2_name">
+					<input type="text" name="e2_name" required>
 				<%} %>
 				
 				<%if(!isSender&&!isAadressSend){ %>
