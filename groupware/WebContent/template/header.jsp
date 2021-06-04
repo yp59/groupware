@@ -52,6 +52,7 @@ margin-bottom: 15px;
 }
 .float-container,nav {
 margin-bottom: 10px;
+height: 70px;
 }
 
 	</style>
@@ -73,6 +74,12 @@ margin-bottom: 10px;
 			<div class="float-container nav">
 				<div class="right">
 					<ul>
+					<li><a href="<%=root%>/mail/mailSend.jsp">공지메일</a></li>
+					</ul>
+					<ul>
+					<li><a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a></li>
+					</ul>
+					<ul>
 					<li><a href="<%=root%>/approval/approvalList.jsp">전자결재</a></li>
 					</ul>
 					<ul>
@@ -83,12 +90,6 @@ margin-bottom: 10px;
 					</ul>
 					<ul>
 					<li><a href="<%=root%>/board/boardmain.jsp">게시판</a></li>
-					</ul>
-					<ul>
-					<li><a href="<%=root%>/mail/mailSend.jsp">공지메일</a></li>
-					</ul>
-					<ul>
-					<li><a href="<%=root%>/massage/massageReceiverList.jsp">메세지</a></li>
 					</ul>
 					<ul>
 					<li><a href="<%=root%>/login/loginInfo.jsp">마이페이지</a></li>
