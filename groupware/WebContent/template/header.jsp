@@ -15,6 +15,18 @@
 	employeesDao employeesdao = new employeesDao();
 	employeesDto employeesdto = employeesdao.loginInfo(empNo);
 	
+	
+	int authLev;
+	try{
+	
+	authLev = (int)request.getSession().getAttribute("authorityLevel");
+	
+	}catch(Exception e){
+		authLev = 0;	
+		
+		
+	}
+	boolean isHeader = authLev ==1; //사장님만
 %>        
     
 <!DOCTYPE html>
@@ -38,13 +50,21 @@
 	<%if(isLogin){ %>
 		<div class="row text-right"><%=employeesdto.getEmpName()%>님 환영합니다.
 			<a href="<%=root%>/login/logOut.gw">로그아웃</a>
-			<div clss = "row"><a href="<%=root%>/login/loginInfo.jsp">회원정보</a></div>
+			<div class = "row"><a href="<%=root%>/login/loginInfo.jsp">회원정보</a></div>
+			
+				<!-- 사원관리: 사장님만 가능 -->
+				<%if(isHeader) {%>
+					<div class="row text-right">
+						<a href="<%=root%>/login/managerPage.jsp" class="link-btn">관리자페이지</a>
+					</div>
+				<%} %>
 		</div>
 	<%} else{%>
 		<div class = "row text-right">
 			<a href="<%=root%>/login/loginMain.jsp"class="link-btn">로그인</a>
 		</div>
 	<%} %>
+
 	</header>
 		<!-- 사이드영역 -->
 		<aside>
@@ -139,11 +159,16 @@
 		<ul>
 				<li class = "menu menu-title">
 					<a href="<%=root%>/address/addressList.jsp">주소록</a>
-					<a href="<%=root%>/mail/mailList.jsp">메일</a>
+				
+			</ul>
+			
+			<ul>
+				<li class = "menu menu-title">
+					<a href="<%=root%>/mail/mailList.jsp">공지메일</a>
 				</li>
 			<ul>
 				<li class = "menu menu_detail">
-				<a href="<%=root%>/mail/mailSend.jsp">메일보내기</a>
+				<a href="<%=root%>/mail/mailSend.jsp">공지메일발송</a>
 				</li>
 			</ul>
 			</ul>

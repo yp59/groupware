@@ -67,6 +67,15 @@ int last_block = (count+page_size-1)/page_size;
 if(end_block>last_block) end_block=last_block;
 
 
+//관리자 기능 추가
+int authLev = (int)request.getSession().getAttribute("authorityLevel");
+int getParameter;
+try{
+	 getParameter = Integer.parseInt(request.getParameter("manage"));
+}catch(Exception e){
+	 getParameter = 0;	
+}
+boolean isManage = authLev==1 && getParameter==1 ;
 %>
 
 
@@ -121,6 +130,20 @@ $(function(){
 
 <div class="container-800">
 	<div class="row">
+		<%if(isManage) {%>
+		<h2>사원관리</h2>
+		<%} else { %>
+		<h2>주소록</h2>
+		<%} %>
+	</div>
+	<!-- 관리자일 경우에만 사원등록 기능 이용가능 -->
+	<%if(isManage) {%>
+	<div class="row">
+		<a class="link-btn" href="<%=request.getContextPath()%>/login/signUp.jsp">사원등록</a>
+	</div>
+	<%} %>
+	
+	<div class="row">
 		<table class="table table-border">
 			<thead>
 				<tr>
@@ -129,7 +152,9 @@ $(function(){
 					<th>이름</th>
 					<th>전화번호</th>
 					<th>이메일</th>
+					<%if(!isManage) {%>
 					<th>메세지 보내기</th>
+					<%} %>
 				</tr>
 			</thead>
 			<tbody>
@@ -147,6 +172,7 @@ $(function(){
 					<td><%=addressListDto.getEmp_phone() %></td>
 					<td><%=addressListDto.getEmail() %></td>
 					
+				<%if(!isManage) {%>
 					<!-- 쪽지기능 넣기 : empNo를 파라미터로 넣어서 보낸다. --> 
 					<%if(empName.equals(addressListDto.getEmp_name())) {//나라면%>
 					<td>-</td>
@@ -155,7 +181,7 @@ $(function(){
 						<a class="link-btn" href="<%=request.getContextPath()%>/massage/massageInsert.jsp?empNo=<%=addressListDto.getEmp_no()%>">쪽지</a>
 					</td>
 					<%} %>
-					
+				<%} %>	
 				</tr>
 				<%} %>
 			</tbody>
@@ -189,6 +215,7 @@ $(function(){
 	<div class="row text-center">
 		<form class="search-form" action="addressList.jsp" method="get">
 			<input type="hidden" name="page_no">
+			<input type="hidden" name="manage" value="1">
 			
 			<select name="type">
 				<option value="emp_name">이름</option>
@@ -198,7 +225,6 @@ $(function(){
 			<input type="submit" value="조회하기">
 		</form>
 	</div>
-	
 	
 	
 

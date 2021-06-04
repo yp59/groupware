@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="groupware.beans.ScheduleEndDao"%>
 <%@page import="groupware.beans.ScheduleEndDto"%>
 <%@page import="groupware.beans.ScheduleIngDto"%>
@@ -147,12 +148,6 @@ int lastBlock2=(count2+pageSize2-1)/pageSize2;
 if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 lastBlock으로 덮어씌운다.
 	endBlock2=lastBlock2;
 }
-
-
-
-
-
-
 
 
 
@@ -426,11 +421,6 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 	</div>
 	
 	
-	
-	
-	<div>
-		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
-	</div>
 
 
 
