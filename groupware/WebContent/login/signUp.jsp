@@ -173,85 +173,85 @@ $(function(){
 </script>
 
 
-
-<div class="row">
-	<h2>사원등록</h2>
-</div>
-
-<div class="row">
-	<form action="signUpInsert" method="post">
-		<div>
-		사원번호 : <input class="form-input" type="text" name="empNo"pattern="[0-9a-z]{4,10}" required onblur="confirmId();">
-				<span class="error"></span><br><br>
-		</div>
-		<div>
-		비밀번호 : <input class="form-input" type="password" name="empPw" pattern="[a-zA-Z0-9]{8,16}" required onblur="confirmPw();">
-				<span class="error"></span><br><br>
-		</div>
-		<div>		
-		비밀번호 확인 : <input class="form-input" type ="password" class="rePw" pattern="[a-zA-Z0-9]{8,16}" required onblur="reconfirmPw();">
+<div class="container-800">
+	<div class="row">
+		<h2>사원등록</h2>
+	</div>
+	
+	<div class=" row">
+		<form action="signUpInsert" method="post">
+			<div>
+			사원번호 : <input class="form-input" type="text" name="empNo"pattern="[0-9a-z]{4,10}" required onblur="confirmId();">
 					<span class="error"></span><br><br>
-		</div>
-		<div>
-		직급 : <select name="poNo">
-				<option value="1">사장</option>
-				<option value="2">부장</option>
-				<option value="3">차장</option>
-				<option value="4">과장</option>
-				<option value="5">대리</option>
-				<option value="6">사원</option>
-			</select><br><br>
-		</div>
-		<div>
-		이름 : <input type="text" class="form-input" name="empName" pattern="[가-힣]{2,7}" required onblur="confirmName();">
-				<span class="error"></span><br><br>
-		</div>
-		<div>
-		입사일 : <input type="date" class="form-input" name="joinDate" class = "joinDate" required>
-				<span class="error"></span><br><br><!-- date type 스크립트로 정규식 어떻게 줄까 아니면 select로 년월일 바꿔서 구현?-->
-		</div>
-		<div>
-		전화번호 : 010-<input type="text" name="empPhonemid" pattern="\d{4}" required onblur="confirmPhone();">-<input type="text" name="empPhonelast" pattern="\d{4}" required onblur="confirmPhone2();">
-				<span class="error"></span><br><br>
-		</div>
-		<div>
-		이메일 : <input type="text" name="emailLocal" required>
-				@
-				<select name="emailDomain">
-				<option value="">선택하세요</option>
-				<option>gmail.com</option>
-				<option>naver.com</option>
-				<option>yahoo.co.kr</option>
-				<option>empal.com</option>
-				<option>nate.com</option>
-				<option>dreamwiz.com</option>
-				<option>orgio.net</option>
-				<option>intizen.com</option>
-				<!-- 직접입력 아직 미구현 -->
-			</select><span class="error"></span><br><br>
-		</div>
-		<div>
-		부서 <select name = "department"><!-- 회원가입 시 부서 선택 가능하도록 구현 -->
-			<option>인사부</option>
-			<option>총무부</option>
-			<option>회계부</option>
-			<option>기획부</option>
-			<option>영업부</option>
-			</select>
-		</div>
-		<div>
-		<input type="text" name="postNumber" placeholder="우편번호"> <!-- 다음 api를 활용한 주소 넣기 -->
-		<input type="button" onclick="postNumSearch();" value="우편번호 찾기"><br>
-		<input type="text" name="addressNum" placeholder="주소">
-		<input type="text" name="addressDetail" placeholder="상세주소">
-		</div>
-		<div>
-		<!-- <input type="text" name="addressExtra" placeholder="참고항목">  --><br>
-		<input type="submit" value="회원가입" class="form-btn">
-		</div>
-	</form>
+			</div>
+			<div>
+			비밀번호 : <input class="form-input" type="password" name="empPw" pattern="[a-zA-Z0-9]{8,16}" required onblur="confirmPw();">
+					<span class="error"></span><br><br>
+			</div>
+			<div>		
+			비밀번호 확인 : <input class="form-input" type ="password" class="rePw" pattern="[a-zA-Z0-9]{8,16}" required onblur="reconfirmPw();">
+						<span class="error"></span><br><br>
+			</div>
+			<div>
+			직급 : <select name="poNo">
+					<option value="1">사장</option>
+					<option value="2">부장</option>
+					<option value="3">차장</option>
+					<option value="4">과장</option>
+					<option value="5">대리</option>
+					<option value="6">사원</option>
+				</select><br><br>
+			</div>
+			<div>
+			이름 : <input type="text" class="form-input" name="empName" pattern="[가-힣]{2,7}" required onblur="confirmName();">
+					<span class="error"></span><br><br>
+			</div>
+			<div>
+			입사일 : <input type="date" class="form-input" name="joinDate" class = "joinDate" required>
+					<span class="error"></span><br><br><!-- date type 스크립트로 정규식 어떻게 줄까 아니면 select로 년월일 바꿔서 구현?-->
+			</div>
+			<div>
+			전화번호 : 010-<input type="text" name="empPhonemid" pattern="\d{4}" required onblur="confirmPhone();">-<input type="text" name="empPhonelast" pattern="\d{4}" required onblur="confirmPhone2();">
+					<span class="error"></span><br><br>
+			</div>
+			<div>
+			이메일 : <input type="text" name="emailLocal" required>
+					@
+					<select name="emailDomain">
+					<option value="">선택하세요</option>
+					<option>gmail.com</option>
+					<option>naver.com</option>
+					<option>yahoo.co.kr</option>
+					<option>empal.com</option>
+					<option>nate.com</option>
+					<option>dreamwiz.com</option>
+					<option>orgio.net</option>
+					<option>intizen.com</option>
+					<!-- 직접입력 아직 미구현 -->
+				</select><span class="error"></span><br><br>
+			</div>
+			<div>
+			부서 <select name = "department"><!-- 회원가입 시 부서 선택 가능하도록 구현 -->
+				<option>인사부</option>
+				<option>총무부</option>
+				<option>회계부</option>
+				<option>기획부</option>
+				<option>영업부</option>
+				</select>
+			</div>
+			<div>
+			<input type="text" name="postNumber" placeholder="우편번호"> <!-- 다음 api를 활용한 주소 넣기 -->
+			<input type="button" onclick="postNumSearch();" value="우편번호 찾기"><br>
+			<input type="text" name="addressNum" placeholder="주소">
+			<input type="text" name="addressDetail" placeholder="상세주소">
+			</div>
+			<div>
+			<!-- <input type="text" name="addressExtra" placeholder="참고항목">  --><br>
+			<input type="submit" value="등록" class="form-btn">
+			</div>
+		</form>
+	</div>
 </div>
-
 
 
 

@@ -253,12 +253,18 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 
 </script>
 
+<style>
+	.table>tbody>tr>td{
+	font-size:0.8rem;
+	}
+
+</style>
 
 
 
 <div class="container-1200">
 	<div class="row">
-		<h2>일정관리</h2>
+		<h3>일정관리</h3>
 	</div>
 	<div class="row text-right">
 		<a href="scheduleInsert.jsp" class="link-btn">새일정</a>
