@@ -35,7 +35,11 @@ import javax.servlet.http.HttpSession;
 "/massage/massageInsert.kh",
 
 
-"/mail/mailSend.gw", "/mail/mailList.jsp", "/mail/mailSend.jsp" // 메일 필터 적용
+"/mail/mailSend.gw", "/mail/mailList.jsp", "/mail/mailSend.jsp", // 메일 필터 적용
+
+"/approval/approvalDetail.jsp","/approval/approvalDetailIndir.jsp","/approval/approvalInsert.jsp",
+"/approval/approvalInsertMain.jsp","/approval/approvalList.jsp","/approval/InsertDepartmentPopUp.jsp",
+"/approval/approvalInsert.gw","/approval/directAppInsert.gw"//결재 필터 적용
 
 })
 
