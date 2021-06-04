@@ -1,3 +1,7 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="groupware.beans.AttendanceDto"%>
+<%@page import="groupware.beans.AttendanceDao"%>
 <%@page import="groupware.beans.boardDao"%>
 <%@page import="groupware.beans.boardDto"%>
 <%@page import="groupware.beans.ScheduleIngDto"%>
@@ -21,6 +25,10 @@ boardDao boarddao = new boardDao();
 List<boardDto> list = boarddao.topNotice();
 
 ////////////////////////////////////////////////////////////////////////
+
+String empNo = (String)session.getAttribute("id");
+AttendanceDao attendanceDao = new AttendanceDao();
+
 
 %>
 
@@ -49,23 +57,18 @@ List<boardDto> list = boarddao.topNotice();
 		<div class="multi-container">
 			<table class="table table-border">
 				<tr>
-					<th width="100">출근(버튼)</th>
-					<td></td>
-					<th width="100">출근시간</th>
+					<th width="100">
+					<a href="attend.gw?" class="link-btn attend-btn">출근</a>
+					</th>
 					<td></td>
 				</tr>
-			</table>
-			
-			<table class="table table-border">
 				<tr>
-					<th width="100">퇴근(버튼)</th>
-					<td></td>
-					<th width="100">퇴근시간</th>
+					<th width="100">
+						<a href="leave.gw?" class="link-btn leave-btn">퇴근</a>
+					</th>
 					<td></td>
 				</tr>
 			</table>
-		
-		
 		</div>
 		<!-- 출석영역 끝 -->
 		
