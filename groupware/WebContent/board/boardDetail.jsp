@@ -144,7 +144,7 @@ text-decoration: none;
 <!-- 댓글 목록창 -->
 
 <div class="row text-left" style="border: none; border-bottom:1px solid rgb(52, 152, 219);" >
-		<h4>댓글 목록</h4>
+		<h3>댓글 목록</h3>
 	</div>
 	<%for(BoardCommentsDto boardCommentsDto : boardCommentsList) { %>
 	<div class="row text-left" style="border:none; border-bottom:1px solid rgb(52, 152, 219); padding-bottom: 5px;">
