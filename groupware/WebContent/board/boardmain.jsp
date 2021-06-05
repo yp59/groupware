@@ -82,11 +82,23 @@
 	if(endBlock > lastBlock){
 		endBlock = lastBlock;
 	}
-	
 %>    
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
+<style>
+section {
+float:left;
+width:100%;
+min-height:20px;
+}
+article {
+min-height:10px;
+}
+footer {
+min-height:10px;
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%if(isSearch){ %>
 <script>

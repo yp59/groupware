@@ -77,7 +77,8 @@
 %>
 
 <style>
-	.container-1100{
+
+	.container-1000{
 		position:relative;
 		top:50px;
 	}
