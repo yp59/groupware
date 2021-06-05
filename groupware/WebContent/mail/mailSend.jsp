@@ -25,46 +25,31 @@
 </script>
 <style>
 	.row-mail{
-/* 	border:0.1px hidden gray; */
 	width:100%;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: left;
 	
 	}
-/* .row-mail-file{ */
-/*       display: inline-block; */
-/*       padding:0.5rem; */
-/*       border:1px solid lightgray; */
-/*       background-color:#3498DB; */
-/*       text-decoration: none; */
-/*       border-radius:5px; */
-/*       color:white !important; */
-/*    } */
-/*    .row-mail-file:hover{ */
-/*       border-color:#3498DB; */
-/*       background-color:white; */
-/*       color:#3498DB !important;    */
-/*    } */
 </style>
 </head>
 <body>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <jsp:include page="/template/section.jsp"></jsp:include>
 <div class="container-1198">
-	<div class="text-center" style="border: none;">
+	<div class="text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
 		<h2>공지 메일 발송</h2>
 	</div>
 	<form action="mailSend.gw" method ="post" onsubmit="return formCheck()" enctype="multipart/form-data">
-		<div class="row-mail" style="border-top: 10px solid rgb(52, 152, 219);">
+		<div class="row-mail">
 		<label>받는사람</label>
-		<input type ="text" name="mailRecipient" required placeholder="이메일 주소 입력" oninput="emailCheck()" style="margin-top: 10px;">
+		<input type ="text" name="mailRecipient" required placeholder="이메일 주소 입력" oninput="emailCheck()" style="margin-top: 10px; width: 500px;">
 		<span style="cursor.hand;color:red;"></span>
 		</div>
 		
 		<div class="row-mail" style="border:none;">
-		<label>제목</label>
-		<input type ="text" name="mailTitle" required>
+		<label>제목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input type ="text" name="mailTitle" required style="width: 500px;">
 		</div>
 	
 	<div class="row-mail">
@@ -76,7 +61,7 @@
 		<input type ="file" name="mailFile" id="file">
 		</div>
 				
-	<div class = "row text-right" style="border: none;">
+	<div class = "row text-right" style="border: none; border-bottom: 2px solid rgb(52, 152, 219);">
 	<input type="submit" value="보내기" class="link-btn" style="width: 100%;">
 	</div>	
 	</form>

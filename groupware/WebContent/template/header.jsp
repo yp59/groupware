@@ -76,7 +76,6 @@ font-size: 40px;
  color : rgb(52, 152, 219);
 text-decoration: none;
 }
-
 	</style>
 </head>  
 <body>

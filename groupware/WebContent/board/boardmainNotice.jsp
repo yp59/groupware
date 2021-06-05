@@ -137,7 +137,8 @@
 	});
 </script>
 
-<div class= "container-900 text-center">
+<div class= "container-1200 text-center">
+<h2>공지 게시판</h2>
 	<table class="table table-border table-hover" >
 		<thead>
 			<tr>
@@ -188,7 +189,7 @@
 	</div>
 </div>
 
-	<div class ="container-900 text-center">
+	<div class ="container-1200 text-center">
 	
 	<form class="search-form" action="boardmainNotice.jsp" method="get"><!-- 검색창 form 태그 -->
 	<input type="hidden" name="pageNo">
@@ -210,7 +211,7 @@
 	</form>
 	
 	</div>
-<div class ="container-900 text-right">
+<div class ="container-1200 text-right">
 	<a href="boardInsert.jsp" class=link-btn>게시글 작성</a>
 </div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
