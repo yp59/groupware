@@ -14,6 +14,19 @@
 	List<PositionSalaryDto> positionSalaryList = positionSalaryDao.list();
 	
 %>
+
+<style>
+	.container-400{
+		position:relative;
+		top:50px;
+	}
+	.sumOvertime{
+		border-radius:5px;
+		padding:0.3em;
+		border:1px solid #3498DB !important;
+	}
+</style>
+
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -29,7 +42,7 @@
 			if(<%=positionSalary.getEmpNo()%> == employee){
 				$("input[name=payBasic]").val("<%=positionSalary.getSalaryPay()%>");
 				$("input[name=payOvertime]").val("<%=positionSalary.getSalaryOvertime()%>");
-				$(".overtime").text("추가 근무 시간 : <%=overtime%>시간");
+				$(".sumOvertime").text("추가 근무 시간 : <%=overtime%>시간");
 				$(".totalPayOvertime").text("<%=positionSalary.getSalaryOvertime()%>*<%=overtime%>원");
 				$("input[name=payMeal]").val("<%=positionSalary.getSalaryMeal()%>");
 				$("input[name=payTransportation]").val("<%=positionSalary.getSalaryTransportation()%>");
@@ -41,8 +54,12 @@
 	
 </script>
 <%} %>
-
-<div class="container-600 center">
+<script>
+	function goBack(){
+		window.history.back();
+	}
+</script>
+<div class="container-400 center">
 	<div class="row">
 		<h2>급여 명세서 작성</h2>
 	</div>
@@ -71,8 +88,9 @@
 		<div class="row text-left">
 			<label>추가 근무 시간당 수당</label>
 			<input type="text" name="payOvertime" class="form-input form-input-underline">
-			<label>추가 근무 시간</label>
-			<span class="overtime"></span>
+			<div class="sumOvertime">
+			<label>추가 근무 시간 : </label>
+			</div>
 		</div>
 		
 		<div class="row text-left">
@@ -91,7 +109,8 @@
 		</div>
 		
 		<div class="row">
-			<input type="submit" value="작성 완료" class="form-btn form-btn-positive">
+			<input type="submit" value="완료" class="form-btn form-btn-inline">
+			<input type="button" value="취소" class="form-btn btn-cancle" onclick="goBack();" >
 		</div>
 	
 	</form>

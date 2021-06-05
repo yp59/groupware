@@ -26,9 +26,6 @@
 
 %>
 <style>
-	.goBack{
-		background-color:gray !important;
-	}
 	.container-400{
 		position:relative;
 		top:50px;
@@ -104,7 +101,7 @@ function calcSalary(){
 					
 			<div class="row">
 				<input type="submit" value="확인" class="form-btn form-btn-inline" >
-				<input type="button" value="취소" class="form-btn form-btn-inline goBack" onclick="goBack();" >
+				<input type="button" value="취소" class="form-btn btn-cancle" onclick="goBack();" >
 			</div>
 		
 	</form>
