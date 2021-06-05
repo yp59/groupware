@@ -91,7 +91,7 @@
 			float:left;
 			width:100%;
 /* 			width:80%; */
-			min-height:750px;
+			min-height:20px;
 		
 		}
 		
@@ -99,7 +99,7 @@
 			min-height: 0;
 		}
 		article {
-			min-height:740px;
+			min-height:10px;
 		}
 		footer {
 			min-height:10px;

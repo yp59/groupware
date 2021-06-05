@@ -146,9 +146,9 @@ text-decoration: none;
 				<li>
 					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
 					<ul>
-						<li><a href="<%=root%>/board/boardmainNotice.jsp">공지사항</a></li>
-						<li><a href="<%=root%>/board/boardmainFree.jsp">자유게시판</a></li>
-						<li><a href="<%=root%>/board/boardmainQuestion.jsp">질문게시판</a></li>
+						<li><a href="<%=root%>/board/boardmainNotice.jsp">공지 게시판</a></li>
+						<li><a href="<%=root%>/board/boardmainQuestion.jsp">질문 게시판</a></li>
+						<li><a href="<%=root%>/board/boardmainFree.jsp">자유 게시판</a></li>
 						<li><a href="<%=root%>/board/myBoardList.jsp">내 게시글</a></li>
 					</ul>
 				</li>
