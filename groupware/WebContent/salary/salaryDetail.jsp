@@ -31,12 +31,12 @@
    <div class="row">
       <table class="table table-border text-center">       
          <tr>
-            <th width="30%">사원번호</th>
+            <th width="40%">사원번호</th>
             <td><%=salaryDto.getEmpNo()%></td>
          </tr>
          <tr>
-            <th>직급 번호</th>
-            <td><%=salaryDto.getPoNo()%></td>
+            <th>직급</th> 
+            <td><%=salaryDto.getPosi()%></td>
          </tr>
          <tr>
             <th>기본급</th>

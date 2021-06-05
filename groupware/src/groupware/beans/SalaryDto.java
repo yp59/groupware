@@ -1,6 +1,5 @@
 package groupware.beans;
 
-import java.sql.Date;
 
 public class SalaryDto {
 	private String empNo;
@@ -11,9 +10,20 @@ public class SalaryDto {
 	private int salaryTransportation;
 	private String salaryDate;
 	private int salaryTotal;
+	
+	//직급명 추가
+	private String posi;
+	
 	// 사원명 추가
 	private String empName;
 	
+
+	public String getPosi() {
+		return posi;
+	}
+	public void setPosi(String posi) {
+		this.posi = posi;
+	}
 	public String getEmpName() {
 		return empName;
 	}
