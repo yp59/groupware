@@ -25,6 +25,20 @@
 	
 
 %>
+<style>
+	.goBack{
+		background-color:gray !important;
+	}
+	.container-400{
+		position:relative;
+		top:50px;
+	}
+	.name, .date, .sumOvertime{
+		border-radius:5px;
+		padding:0.3em;
+		border:1px solid #3498DB !important;
+	}
+</style>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
@@ -41,8 +55,12 @@ function calcSalary(){
 	$(".totalSalaryOvertime").text("총 추가 근무 수당 : " + totalSalaryOvertime * <%=sumOvertime%>);
 }
 </script>
-
-<div class="container-600 center">
+<script>
+	function goBack(){
+		window.history.back();
+	}
+</script>
+<div class="container-400">
 	<div class="row">
 		<h2>급여 명세서 수정</h2>
 	</div>
@@ -52,14 +70,14 @@ function calcSalary(){
 			<input type="hidden" name="empNo" value="<%=empNo %>">
 			<input type="hidden" name="salaryDate" value="<%=salaryDate %>">
 
-			<div class="row text-left">
+			<div class="row text-left name">
 				<label>사원 이름 : </label>
 				<%=salaryDto.getEmpName()%> 
 			</div>		
 			
-			<div class="row text-left">
+			<div class="row text-left date">
 				<label>지급일 : </label>
-				<%=salaryDto.getSalaryDate()%>
+				<%=salaryDto.getSalaryDate().substring(0,10)%>
 			</div>	
 			
 			<div class="row text-left">
@@ -68,10 +86,10 @@ function calcSalary(){
 			</div>
 			
 			<div class="row text-left">
+				<div class="row text-left sumOvertime"">추가 근무 시간 : <%=sumOvertime %></div>
 				<label>추가 근무 수당</label>
-				<div class="row text-left sumOvertime">추가 근무 시간 : <%=sumOvertime %></div>
 				<input type="text" name="salaryOvertime" value= "<%=positionSalaryDto.getSalaryOvertime()%>" class="form-input form-input-underline">
-				<div class="totalSalaryOvertime"></div>
+				<div class="row totalSalaryOvertime"></div>
 			</div>
 			
 			<div class="row text-left">
@@ -85,7 +103,8 @@ function calcSalary(){
 			</div>	
 					
 			<div class="row">
-				<input type="submit" value="수정 완료" class="form-btn form-btn-positive" >
+				<input type="submit" value="확인" class="form-btn form-btn-inline" >
+				<input type="button" value="취소" class="form-btn form-btn-inline goBack" onclick="goBack();" >
 			</div>
 		
 	</form>

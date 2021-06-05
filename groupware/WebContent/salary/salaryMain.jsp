@@ -106,7 +106,18 @@
 	//지급액에 , 찍어주기
 	DecimalFormat df = new DecimalFormat("###,###");
 %>
-
+<style>
+.container-700{
+	position:relative;
+	top:50px;
+}
+.link-btn2 {
+	width:60%;
+}
+.selectSearch{
+	width:100px;
+}
+</style>
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -150,7 +161,7 @@
 <script>
 function monthSelect(monthList){
 	monthList.sort();
-	var option = $("<option value='' selected>선택하세요</option>");
+	var option = $("<option value='' selected>월 선택</option>");
 	$("select[name=searchMonth]").append(option);
 	for (var count = 0; count < monthList.length; count++) {
 		var option = $("<option>" + monthList[count] + "</option>");
@@ -190,19 +201,21 @@ function monthSelect(monthList){
 		});
 	});
 </script>
-<div class="row">
-      <h2>급여</h2>
-</div>
+
+<div class="container-700">
+	<div class="row">
+	      <h2>급여</h2>
+	</div>
 
 	<div class="row">
 		<form action="salaryMain.jsp" method="get">
-			<select name="searchYear" class="form-input form-input-inline">
-			<option value="">선택하세요</option>
+			<select name="searchYear" class="form-input form-input-inline selectSearch">
+			<option value="">년도 선택</option>
 			<%for(String year : yearList){ %>
 				<option value="<%=year %>"><%=year%></option>
 			<%} %>
 			</select>
-			<select name="searchMonth" class="form-input form-input-inline">
+			<select name="searchMonth" class="form-input form-input-inline selectSearch">
 			</select>
 			
 			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
@@ -223,7 +236,7 @@ function monthSelect(monthList){
 					<tr>
 						<td><%=salaryDto.getSalaryDate().substring(0,10)%></td>
 						<td>
-						<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>">
+						<a href="salaryDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>" class="link-btn2">
 						<%=salaryDto.getSalaryDate().substring(5, 7)%>월 급여 명세서
 						</a>
 						</td>
@@ -238,7 +251,7 @@ function monthSelect(monthList){
 				<tr>
 					<td><%=salary.getSalaryDate().substring(0,10)%></td>
 					<td>
-					<a href="salaryDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>">
+					<a href="salaryDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>" class="link-btn2">
 					<%=salary.getSalaryDate().substring(5, 7)%>월 급여 명세서
 					</a>
 					</td>
@@ -276,5 +289,5 @@ function monthSelect(monthList){
 			
 		</div>	
 	</div>
-	
+</div>	
 <jsp:include page="/template/footer.jsp"></jsp:include>

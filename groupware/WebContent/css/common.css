@@ -402,6 +402,15 @@ textarea.form-input {
     background-color:white;
     color:#3498DB !important;   
  }
+.link-btn2{
+	display: inline-block;
+    padding:0.5rem;
+    border:1px solid #3498DB;;
+    background-color:white;
+    text-decoration: none;
+    border-radius:5px;
+    color:#3498DB !important; 
+}
 .input{
 	width:100%;
 	padding:0.5rem;

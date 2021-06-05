@@ -52,7 +52,8 @@ public class SalaryDao {
 	public SalaryDto get(String empNo, String salaryDate) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql = "select * from salary where emp_no=? and salary_date = to_date(?,'yyyy-mm-dd')";
+		String sql = "select S.*, p.posi from salary S inner join position P on s.po_no = P.po_no "
+				+ "and S.emp_no=? and salary_date = to_date(?,'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
@@ -65,6 +66,7 @@ public class SalaryDao {
 			salaryDto.setEmpNo(rs.getString("emp_no"));
 			salaryDto.setPoNo(rs.getInt("po_no"));
 			salaryDto.setSalaryPay(rs.getInt("salary_pay"));
+			salaryDto.setPosi(rs.getString("posi"));
 			salaryDto.setSalaryOvertime(rs.getInt("salary_overtime"));
 			salaryDto.setSalaryMeal(rs.getInt("salary_meal"));
 			salaryDto.setSalaryTransportation(rs.getInt("salary_transportation"));
