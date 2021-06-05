@@ -25,6 +25,7 @@
 		main {
 			width:700px;
 			margin:auto;
+		
 		}
 		main::after {
 			content:"";
@@ -34,22 +35,25 @@
 		aside {
 			float:left;
 			width:40%;
-			min-height:500px;
+			min-height:750px;
+			
 		}
 		section {
 			float:left;
 			width:60%;
-			min-height:500px;
+			/*min-height:800px;*/
 		}
 		
-		header {
-			min-height: 200px;
-		}
+
 		article {
 			min-height:300px;
 		}
 		.view{
 		display : none;
+		}
+		h4{
+		color:#3498DB;
+ 		font-weight : bold;
 		}	
 		</style><!-- .view로 부서별 display를 none으로 해서 해당 부서를 누르면 표가 나오도록 설정함. -->
 </head>

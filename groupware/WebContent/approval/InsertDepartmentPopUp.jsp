@@ -238,10 +238,10 @@ $(function(){
 		</div>	
 		</aside>
 		
-	
+
 		<section>
-		<h2>부서 리스트</h2>
-			<header >
+		<h4>부서 리스트</h4>
+			
 			<div class = "view" id="view1">
 			<table class="table table-border table-hover">
 		<thead>
@@ -350,13 +350,12 @@ $(function(){
 </table>
 </div>
 
-</header>
 		<article>
 	<div><!-- 결재 파트 사원 클릭하고 버튼 누르면 결재자 지정됨 -->
-				<button id = "approval">결재자</button><div id = "approvals"></div><br><br>
-				<button id = "consesus">합의자</button><div id = "consesuses"></div><br><br>
-				<button id = "reffer">참조자</button><div id = "reffers"></div><br><br>
-				<button id = "implementer">시행자</button><div id = "implementers"></div><br><br>
+				<button id = "approval" class = "link-btn">결재자</button><div id = "approvals"></div><br>
+				<button id = "consesus" class = "link-btn">합의자</button><div id = "consesuses"></div><br>
+				<button id = "reffer" class = "link-btn">참조자</button><div id = "reffers"></div><br>
+				<button id = "implementer" class = "link-btn">시행자</button><div id = "implementers"></div><br>
 	</div>
 	
 	<div>
@@ -366,7 +365,7 @@ $(function(){
 	<input type ="hidden" name = "consesus">
 	<input type ="hidden" name = "reffer">
 	<input type ="hidden" name = "implementer">
-	<input type = "submit" value ="전송√" name ="subb">
+	<input type = "submit" class = "link-btn" value ="전송√" name ="subb">
 	</form>
 	</div>
 	
