@@ -123,8 +123,8 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <%
 	employeesDao employeesDao = new employeesDao();
-  		List<employeesDto> employeesList = employeesDao.list();
-  %>
+	List<employeesDto> employeesList = employeesDao.list();
+%>
 <div class="container-1000">
  <div class="row">
       <h2>출퇴근 관리</h2>
@@ -163,7 +163,7 @@
             <%for(AttendanceDto attendanceDto : attendanceList){ %>
             <tr>
                <td>
-               <a href="attendanceDetail.jsp?attDate=<%=attendanceDto.getAttDate() %>" class="link-btn2">
+               <a href="attendanceAuthorityDetail.jsp?empNo=<%=attendanceDto.getEmpNo()%>&attDate=<%=attendanceDto.getAttDate() %>" class="link-btn2">
                <%=attendanceDto.getAttDate()%>
                </a>
                </td>

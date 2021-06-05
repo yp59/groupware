@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="groupware.beans.AttendanceDto"%>
 <%@page import="groupware.beans.AttendanceDao"%>
 <%@page import="java.sql.Date"%>
@@ -5,11 +6,13 @@
     pageEncoding="UTF-8"%>
     
 <%
-   String empNo = (String)session.getAttribute("id");
-   String attDate = (String)request.getParameter("attDate");
-   
-   AttendanceDao attendanceDao = new AttendanceDao();
-   AttendanceDto attendanceDto = attendanceDao.get(empNo, attDate);
+	DecimalFormat df=new DecimalFormat("#"); //근무시간 소수점 첫째자리가 0이면 안나오게
+	
+	String empNo = (String)session.getAttribute("id");
+	String attDate = (String)request.getParameter("attDate");
+	
+	AttendanceDao attendanceDao = new AttendanceDao();
+	AttendanceDto attendanceDto = attendanceDao.get(empNo, attDate);
 %>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -40,15 +43,23 @@
          </tr>
          <tr>
             <th>퇴근 시간</th>
-            <td><%=attendanceDto.getAttLeave()%></td>
+            <td><%if(attendanceDto.getAttLeave()!= null) { %>
+            <%=attendanceDto.getAttLeave()%>
+            <%} %></td>
          </tr>
          <tr>
             <th>총 근무 시간</th>
-            <td><%=attendanceDto.getAttTotaltime()%></td>
+            <td>
+            <!-- 내림하고 소수점자리 자르기 -->
+				<%=df.format(attendanceDto.getAttTotaltime()/60) %>시간  <!-- 분단위라서 60으로 나눠준 몫 -->             
+				<%=df.format(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->
+            </td>
          </tr>
          <tr>
             <th>추가 근무시간</th>
-            <td><%=attendanceDto.getAttOvertime()%></td>
+            <td>
+				<%=df.format(attendanceDto.getAttOvertime()) %>시간             
+            </td>
          </tr>
       </table>
    </div>
