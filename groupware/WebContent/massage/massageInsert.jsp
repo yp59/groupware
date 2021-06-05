@@ -89,7 +89,7 @@ if(isAadressSend) {
 	</div>	
 	<%} else{%>
 	<div class=" text-center">
-		<h2>메세지 작성</h2>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">메세지 작성</h2>
 	</div>
 	<%} %>
 	

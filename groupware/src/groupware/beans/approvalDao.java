@@ -96,7 +96,8 @@ public class approvalDao {
 				+ " from approval A"
 				+ " inner join employees E on"
 				+ " A.drafter = E.emp_no"
-				+ " where A.drafter = ?)"
+				+ " where A.drafter = ?"
+				+ " order by app_no desc)"
 				+ " where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);

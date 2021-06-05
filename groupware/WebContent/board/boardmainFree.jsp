@@ -146,9 +146,9 @@ min-height:10px;
 	});
 </script>
 
-<div class= "container-1200 text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
-<h2>자유 게시판</h2>
-	<table class="table table-border table-hover" >
+<div class= "container-1200 text-center" style="border: none;">
+<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">자유 게시판</h2>
+	<table class="table table-border table-hover">
 		<thead>
 			<tr>
 				<th>제목</th>
@@ -174,6 +174,7 @@ min-height:10px;
 				
 		</tbody>
 	</table>
+	</div>
 	<div class="row" style="border: none; border-top: 1px solid rgb(52, 152, 219); border-bottom: 1px solid rgb(52, 152, 219);">
 		<!-- 페이지 네비게이션 자리 -->
 		<div class="pagination">
@@ -196,7 +197,6 @@ min-height:10px;
 			
 		</div>	
 	</div>
-</div>
 
 	<div class ="container-1200 text-center" style="border: none;">
 	

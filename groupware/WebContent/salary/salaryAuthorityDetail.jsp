@@ -17,18 +17,18 @@
 <style>
 .container-600{
 	position:relative;
-	top:50px;
+	top:30px;
 }
 </style>  
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600">
 
-   <div class="row">
+   <div class="row"  style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2><%=salaryDto.getEmpName() %>님의 급여</h2>
    </div>
    
-   <div class="row">
+   <div class="row" style="margin-top:5%;">
       <table class="table table-border text-center">       
          <tr>
             <th width="40%">사원번호</th>

@@ -84,7 +84,7 @@ boolean isManage = authLev==1 && getParameter==1 ;
 <jsp:include page="/template/header.jsp"></jsp:include>
 <style>
 	h2{
-		color:gray;
+/* 		color:gray; */
 		text-align:center;
 	}
 	
@@ -162,7 +162,7 @@ $(function(){
 		<%if(isManage) {%>
 		<h2>사원관리</h2>
 		<%} else { %>
-		<h2>주소록</h2>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">주소록</h2>
 		<%} %>
 	</div>
 	<!-- 관리자일 경우에만 사원등록 기능 이용가능 -->

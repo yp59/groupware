@@ -9,7 +9,12 @@
 	HolidayDao holidayDao = new HolidayDao();
 	HolidayDto holidayDto = holidayDao.get(empNo, holNo);
 %>
-    
+<style>
+	.container-600{
+		position:relative;
+		top:30px;
+	}
+</style>   
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600">

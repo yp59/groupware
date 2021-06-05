@@ -8,7 +8,6 @@
     pageEncoding="UTF-8"%>
     
 <%
-   DecimalFormat df=new DecimalFormat("#.#"); //근무시간 소수점 첫째자리가 0이면 안나오게
    String empNo = (String)session.getAttribute("id");
    AttendanceDao attendanceDao = new AttendanceDao();
    
@@ -56,9 +55,9 @@
 %>
 
 <style>
-	.container-1200{
+	.container-1100{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.link-btn2 {
 		width:65%;
@@ -127,11 +126,11 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-1200">
- <div class="row">
+ <div class="text-center" style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>출퇴근 현황</h2>
    </div>
    
-   <div class="row text-right">
+   <div class="text-right" style="margin-top:1%;">
    		<!-- 출/퇴근 버튼 null일때만 서블릿으로 이동하도록 구현 -->
    		<%if(attendance !=null) {%>
 	   		<%if(attendance.getAttAttend() != null){%> 
@@ -150,7 +149,7 @@
    </div>
    
    <div class="row">
-      <table class="table table-striped text-center">
+      <table class="table table-border text-center">
          <thead>
             <tr>
                <th>날짜</th>
@@ -180,11 +179,11 @@
                </td>
                <td>
                	<!-- 내림하고 소수점자리 자르기 -->
-				<%=df.format(attendanceDto.getAttTotaltime()/60) %>시간  <!-- 분단위라서 60으로 나눠준 몫 -->             
-				<%=df.format(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->     
+				<%=(int)(attendanceDto.getAttTotaltime()/60) %>시간  <!-- 분단위라서 60으로 나눠준 몫 -->             
+				<%=(int)(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->     
                </td>
                <td>
-				<%=df.format(attendanceDto.getAttOvertime()) %>시간             
+				<%=(int)(attendanceDto.getAttOvertime()) %>시간             
                </td>
           
             </tr>
