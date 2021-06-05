@@ -39,7 +39,7 @@
 		}
 	}
 	catch(Exception e){
-		pageSize = 5;//페이지당 게시글 수 설정
+		pageSize = 10;//페이지당 게시글 수 설정
 	}
 	
 	//(2) rownum의 시작번호(startRow)와 종료번호(endRow)를 계산
