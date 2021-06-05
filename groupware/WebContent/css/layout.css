@@ -90,8 +90,7 @@
 		section {
 			float:left;
 			width:100%;
-/* 			width:80%; */
-			min-height:20px;
+			min-height:750px;
 		
 		}
 		
@@ -99,7 +98,7 @@
 			min-height: 0;
 		}
 		article {
-			min-height:10px;
+			min-height:740px;
 		}
 		footer {
 			min-height:10px;

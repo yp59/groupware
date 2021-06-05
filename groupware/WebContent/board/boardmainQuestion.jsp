@@ -101,6 +101,19 @@
 
 <jsp:include page="/template/section.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<style>
+section {
+float:left;
+width:100%;
+min-height:20px;
+}
+article {
+min-height:10px;
+}
+footer {
+min-height:10px;
+}
+</style>
 <%if(isSearch){ %>
 <script>
 	//서버에서 수신한 botype과 type과 keyword에 해당하는 값들을 각각의 입력창에 설정하여 유지되는것처럼 보이도록 구현
