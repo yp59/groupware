@@ -140,10 +140,17 @@ text-decoration: none;
 	<div class="row text-left" style="border:none; border-bottom:1px solid rgb(52, 152, 219); padding-bottom: 5px;">
 		<div class="row" style="border: none; text-align: left;">
 			<div class="left"><%=boardCommentsDto.getEmpName()%></div>
+		<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
+			<div class="row" style="border: none; text-align: right; padding-bottom: 5px; padding-top: 15px;">
+				<a class="com-edit-btn">수정</a> 
+				<a class="com-delete-btn" href="comDelete.gw?comNo=<%=boardCommentsDto.getComNo()%>&boardNo=<%=boardNo%>" style="text-decoration: none;">삭제</a>
+			</div>
+			<%} %>
 		</div>
 <div class="com-display-area">
 			<pre><%=boardCommentsDto.getComContent()%></pre>
 		</div>
+		
 		
 		<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
 		<div class="com-edit-area">
@@ -151,19 +158,13 @@ text-decoration: none;
 				<input type="hidden" name="comNo" value="<%=boardCommentsDto.getComNo()%>">
 				<input type="hidden" name="boardNo" value="<%=boardCommentsDto.getBoardNo()%>">
 				
-				<textarea name="comContent" required><%=boardCommentsDto.getComContent()%></textarea>
+				<textarea name="comContent" style="resize: none; width: 1200px;" required><%=boardCommentsDto.getComContent()%></textarea>
 				<input type="submit" value="댓글 수정">		
 				<input type="button" value="작성 취소" class="com-edit-cancel-btn">		
 			</form>
 		</div> 
 		<%} %>
 		<div><%=boardCommentsDto.getDate().toLocaleString()%></div>
-		<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
-			<div class="row" style="border: none; text-align: right; padding-bottom: 5px; padding-top: 15px; border-top:1px solid rgb(52, 152, 219);">
-				<a class="form-btn">수정</a> 
-				<a class="form-btn btn-cancle" href="comDelete.gw?comNo=<%=boardCommentsDto.getComNo()%>&boardNo=<%=boardNo%>" style="text-decoration: none;">삭제</a>
-			</div>
-			<%} %>
 	</div>
 	<%} %>
 	
