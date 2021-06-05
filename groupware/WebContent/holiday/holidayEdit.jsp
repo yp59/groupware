@@ -16,7 +16,12 @@
 	employeesDto employeesDto = employeesDao.loginInfo(empNo);
 	
 %>
-
+<style>
+	.container-600{
+		position:relative;
+		top:30px;
+	}
+</style> 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>

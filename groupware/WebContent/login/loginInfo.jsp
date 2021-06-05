@@ -18,6 +18,10 @@
     %>
     
 <style>
+	.container-600{
+		position:relative;
+		top:30px;
+	}
 	.my-board-list {
 		margin: 0;
 		padding:0;
@@ -37,45 +41,46 @@
 	.my-board-list > li > a:hover{
 		color:red;
 	}
-	
+	.table > thead > tr > th, 
+	.table > thead > tr > td,
+	.table > tbody > tr > th,
+	.table > tbody > tr > td,
+	.table > tfoot > tr > th,
+	.table > tfoot > tr > td {
+		padding:0.7rem !important;
+	}
 	.table>tbody>tr>td{
 		text-align: center;
 	}
-	
-	
 </style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
 <style>
-	section {
+section {
 			float:left;
 			width:100%;
-			min-height:370px;
+			min-height:500px;
 		}
 		article {
-			min-height:360px;
+			min-height:490px;
 		}
 		footer {
 			min-height:10px;
 		}
-		.pn > a:link, a:visited {
-  		color : rgb(52, 152, 219);
-		text-decoration: none;
-}
 </style>
-<div class="container-1200" style="border: none;">
-<div style="border: none; text-align: center;">
+<div class="container-600">
+<div class="row text-center"  style="border-bottom: 2px solid rgb(52, 152, 219);">
 	<h2>마이페이지</h2>
 
 </div>
 
-<div style="text-align: center; border-top: 2px solid rgb(102, 177, 227);">
-<table class="table table-border table-striped" style="margin-top: 10px;">
+
+<table class="table table-border"  style="margin-top:5%;">
 	<tbody>
 		<tr>
-			<th width="100">사원번호</th>
+			<th width="30%">사원번호</th>
 			<td> <%=employeesdto.getEmpNo()%></td>
 		</tr>	
 		<tr>
@@ -104,7 +109,10 @@
 		</tr>	
 	</tbody>
 </table>
-	</div>
+<!-- 회원정보 수정 페이지로 이동 -->
+<div class="row text-right">
+	<a href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp" class="link-btn2">회원정보 수정</a>
+</div>
 </div>
 
 <!-- <div class="row text-left"> -->
@@ -122,8 +130,5 @@
 <!-- 		</ul> -->
 <!-- 	</div> -->
 
-<div class="container-1200 text-right" style="border: none; border-bottom: 2px solid rgb(102, 177, 227); margin-bottom: 10px;">
-<a class="pn" href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp" style="text-decoration: none;">회원정보 수정</a>
-</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

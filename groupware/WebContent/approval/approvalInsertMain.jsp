@@ -120,13 +120,14 @@ $(function(){
 
 	////////////////////////////////////////////////////////////////////////
 	var _width = '750';
-    var _height = '500';
+    var _height = '700';
  
     // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
     var _left = Math.ceil(( window.screen.width - _width )/2);
     var _top = Math.ceil(( window.screen.height - _height )/2);
     
-var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top ;
+var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top +
+			', scrollbars = no';
 	$(".appinsert").click(function(){
 		 window.open("approvalInsert.jsp","draftPopUp",option);
 		 
@@ -144,7 +145,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 
 <div class = "text-right">
 <input type="text" name="keyword" placeholder="기안서 검색"><!-- 검색 keyword 입력창-->
-<input type ="submit" value = "검색">
+<input class = "link-btn"type ="submit" value = "검색">
 </div>
 
 </form>
@@ -165,13 +166,14 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					<td><%=approvaldto.getAppNo()%></td>
 					<td><%=approvaldto.getAppTitle()%></td>
 					<td><%=approvaldto.getEmpName()%></td>
-					<td><%=approvaldto.getAppDateStart()%></td>
-					<td><%=approvaldto.getAppDateEnd()%></td>
+					<td><%=approvaldto.getAppDateStart().substring(0, 10)%></td>
+					<td><%=approvaldto.getAppDateEnd().substring(0, 10)%></td>
 					<td><%=approvaldto.getAppState()%></td>
 				</tr>
 		<%}%>
 		</tbody>
 </table>
+<input type="button" class = "appinsert link-btn" value="기안서 작성">
 </div>
 	<div class="row">
 		<!-- 페이지 네비게이션 자리 -->
@@ -196,7 +198,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 		</div>	
 	</div>
 
-<input type="button" class = "appinsert" value="기안서 작성">
+
 
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

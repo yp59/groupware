@@ -109,7 +109,7 @@
 <style>
 .container-700{
 	position:relative;
-	top:50px;
+	top:30px;
 }
 .link-btn2 {
 	width:60%;
@@ -203,7 +203,7 @@ function monthSelect(monthList){
 </script>
 
 <div class="container-700">
-	<div class="row">
+	<div class="row"  style="border-bottom: 2px solid rgb(52, 152, 219);">
 	      <h2>급여</h2>
 	</div>
 
@@ -222,7 +222,7 @@ function monthSelect(monthList){
 		</form>
 	</div>
 	<div class="row">
-		<table class="table table-striped text-center">
+		<table class="table table-border text-center">
 			<thead>
 				<tr>
 					<th width=20%>지급일</th>

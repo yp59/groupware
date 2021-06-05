@@ -24,6 +24,7 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 boardDao boarddao = new boardDao();
 List<boardDto> list = boarddao.topNotice();
 
+
 ////////////////////////////////////////////////////////////////////////
 
 

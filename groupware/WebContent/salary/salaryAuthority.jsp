@@ -114,7 +114,7 @@
 <style>
 .container-800{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.link-btn2 {
 		width:65%;
@@ -202,7 +202,7 @@ function monthSelect(monthList){
 </script>
 
 <div class="container-800">
-<div class="row">
+<div class="row"  style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>급여</h2>
 </div>
 	<div class="row text-right">
@@ -211,21 +211,21 @@ function monthSelect(monthList){
 	
 	<div class="row">
 		<form action="salaryAuthority.jsp" method="get">
-			<select name="searchYear" class="form-input form-input-inline">
+			<select name="searchYear" class="form-input form-input-inline" style="width:15%">
 			<option value="">년도 선택</option>
 			<%for(String year : yearList){ %>
 				<option value="<%=year %>"><%=year%></option>
 			<%} %>
 			</select>
-			<select name="searchMonth" class="form-input form-input-inline">
+			<select name="searchMonth" class="form-input form-input-inline" style="width:15%">
 			</select>
 			
 			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
 		</form>
 		
 	</div>
-	<div class="row">
-		<table class="table table-striped text-center">
+   <div class="row">
+      <table class="table table-border text-center">
 			<thead>
 				<tr>
 					<th width=20%>지급일</th>

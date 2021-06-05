@@ -10,8 +10,6 @@
     pageEncoding="UTF-8"%>
     
 <%
-   DecimalFormat df=new DecimalFormat("#"); //근무시간 소수점 첫째자리가 0이면 안나오게
-   
    // 페이지네이션
    int pageNo; //현재 페이지 번호
 	try{
@@ -79,9 +77,10 @@
 %>
 
 <style>
-	.container-1000{
+
+	.container-1100{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.link-btn2 {
 		width:65%;
@@ -125,16 +124,15 @@
 	employeesDao employeesDao = new employeesDao();
 	List<employeesDto> employeesList = employeesDao.list();
 %>
-<div class="container-1000">
- <div class="row">
+<div class="container-1100">
+ <div class="text-center"  style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>출퇴근 관리</h2>
    </div>
 
    <div class="row text-center">
 	   <form action="attendanceAuthorityMain.jsp" method="get"> 
-			<label>사원 선택</label>
-			<select name="employeesChoice" class="form-input form-input-inline">
-				<option value="">선택하세요</option>
+			<select name="employeesChoice" class="form-input form-input-inline" style="width:20% !important">
+				<option value="">사원 선택</option>
 				<%for(employeesDto employee : employeesList){%>
 					<option value="<%=employee.getEmpNo()%>"><%=employee.getEmpName()%></option>
 				<% } %>
@@ -145,7 +143,7 @@
    
    
    <div class="row">
-      <table class="table table-striped text-center">
+      <table class="table table-border text-center">
          <thead>
             <tr>
                <th width="20%">날짜</th>
@@ -176,11 +174,11 @@
                </td>
                <td>
                	<!-- 내림하고 소수점자리 자르기 -->
-				<%=df.format(attendanceDto.getAttTotaltime()/60) %>시간  <!-- 분단위라서 60으로 나눠준 몫 -->             
-				<%=df.format(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->           
+				<%=(int)(attendanceDto.getAttTotaltime()/60) %>시간  <!-- 분단위라서 60으로 나눠준 몫 -->             
+				<%=(int)(attendanceDto.getAttTotaltime()%60) %>분   <!-- 60으로 나눠준 나머지 -->     
                </td>
                <td>
-				<%=df.format(attendanceDto.getAttOvertime()) %>시간             
+				<%=(int)(attendanceDto.getAttOvertime()) %>시간             
                </td>
                <td width="15%" class="text-center">
                <a href="attendanceEdit.jsp?empNo=<%=attendanceDto.getEmpNo()%>&attDate=<%=attendanceDto.getAttDate() %>" class="link-btn">수정</a>
