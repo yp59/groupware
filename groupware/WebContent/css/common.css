@@ -422,6 +422,9 @@ textarea.form-input {
     border-radius:5px;
     color:#3498DB !important; 
 }
+.link-btn2:hover{
+	box-shadow:0 0 5px 0 #3498DB;
+}
 .input{
 	width:100%;
 	padding:0.5rem;
