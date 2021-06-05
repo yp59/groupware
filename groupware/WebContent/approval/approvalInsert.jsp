@@ -3,7 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/template/referencePopUp.jsp"></jsp:include>
-    
+ <style>
+ 
+ </style>   
 <%String id = (String) session.getAttribute("id");
 
 String app = request.getParameter("approval");//부서리스트에서 얻은 데이터값을 파라미터로 저장한다.
@@ -45,7 +47,7 @@ $(function(){//window.load와 같은의미
 	
 	$(".appPeople").click(function(){
 		var _width = '750';
-	    var _height = '550';
+	    var _height = '700';
 	 
 	    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 	    var _left = Math.ceil(( window.screen.width - _width )/2);
@@ -72,38 +74,39 @@ $(function(){//window.load와 같은의미
 <main>
 		
 		<!-- 사이드영역 -->
-	<aside></aside>
-		
+
 		<!-- 컨텐츠영역 -->
 	<section>
-		<form name = "appForm" method ="post">
+		<form name = "appForm" method ="post" class = "fon-color">
 			<div>
 				<input type="hidden" name ="drafter" value="<%=id%>"><!-- 기안자 hidden으로 전송 -->
-					기안일 : <input type = "date" name = "appDateStart" ><br>
+					기안일  <input type = "date" name = "appDateStart" ><br><br>
 			</div>
 			
 			<div>
-					결재자 :<input type = "text" class="appPeople" name = "approvalNo" value="<%=app%>"><br>
-					합의자 :<input type = "text" class="appPeople" name = "consesusNo" value="<%=con%>"><br> 
-					참조자 :<input type = "text" class="appPeople" name = "refferNo" value="<%=ref%>"><br>
-					시행자 :<input type = "text" class="appPeople" name = "implemneterNo" value="<%=imp%>"><br>  
+					결재자 <input type = "text" class="appPeople design" name = "approvalNo" value="<%=app%>"><br>
+					합의자 <input type = "text" class="appPeople design" name = "consesusNo" value="<%=con%>"><br> 
+					참조자 <input type = "text" class="appPeople design" name = "refferNo" value="<%=ref%>"><br>
+					시행자 <input type = "text" class="appPeople design" name = "implemneterNo" value="<%=imp%>"><br><br>
 				<!-- 숫자는 servlet에서 처리-->
 			</div>
 			
 			<div>
-					제목 : <input type = "text" name = "appTitle"><br> 
+					제목  <input type = "text" class="design" name = "appTitle"><br> 
 			</div>
 			
 			<div>
-				내용 : <textarea rows="16" class="input" name="appContent"></textarea>
+				내용  <textarea rows="16" class="input design" name="appContent"></textarea><br><br>
 			</div>
 			
 			<div>
-				마감일 :<input type = "date" name = "appDateEnd"> 
+				마감일 <input type = "date" name = "appDateEnd"> 
 			</div>
 			
 			<!-- 첨부 아직 미구현 -->
+			<div class = "text-right">
 					<input class="link-btn" type ="submit" value = "기안" name ="subb">
+			</div>		
 		</form>
 	</section>	
 </main>
