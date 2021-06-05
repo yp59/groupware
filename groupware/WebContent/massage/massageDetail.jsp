@@ -28,7 +28,7 @@ boolean isReceiver = massageFileDto.getE2_no().equals(request.getSession().getAt
 <jsp:include page ="/template/header.jsp"></jsp:include>
 <div class="container-800">
 	<div class="row">
-		<h2>메세지 확인</h2>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">메세지 확인</h2>
 	</div>
 <!-- 	<div>  -->
 <%-- 		<%=massageFileDto.getE2_no() %> --%>

@@ -14,31 +14,23 @@
 		margin:3%;
 		
 	}
-	
-	
+	.row{
+	border: none;
+	}
 </style>
 <jsp:include page="/template/header.jsp"></jsp:include>
-
 <div class="container-500">
-	<div class="row">
+	<div class="row" style="border: none;">
 		<h2>관리자페이지</h2>	
 	</div>
 	
-	<div class="row">
+	<div class="row" style="border: none;">
 		<a href="<%=request.getContextPath()%>/address/addressList.jsp?manage=1" class="link-btn2">인사 관리</a>
 	</div>
-	<div class="row">
+	<div class="row" style="border: none;">
 		<a href="<%=request.getContextPath()%>/salary/salaryAuthority.jsp" class="link-btn2">급여 관리</a>
 	</div>
-	<div class="row">
+	<div class="row" style="border: none;">
 		<a href="<%=request.getContextPath()%>/attendance/attendanceAuthorityMain.jsp" class="link-btn2">근태 관리</a>
 	</div>
 </div>
-
-
-
-
-
-
-
-<jsp:include page="/template/footer.jsp"></jsp:include>

@@ -57,7 +57,19 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
-
+<style>
+section {
+			float:left;
+			width:100%;
+			min-height:500px;
+		}
+		article {
+			min-height:490px;
+		}
+		footer {
+			min-height:10px;
+		}
+</style>
 <div class="container-600">
 <div class="row text-center"  style="border-bottom: 2px solid rgb(52, 152, 219);">
 	<h2>마이페이지</h2>
