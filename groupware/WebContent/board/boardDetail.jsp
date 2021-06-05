@@ -51,11 +51,21 @@ int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValu
   color : rgb(52, 152, 219);
 text-decoration: none;
 }
+.form-btn.btn-cancle-js {
+	width:auto;
+	background-color:gray !important;
+	border-color:gray !important;
+}
+.form-btn.btn-cancle-js:hover {
+	background-color:lightgray !important;
+	color:gray !important;
+	border-color:white;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
-		$(".com-delete-btn").click(function(e){
+		$(".form-btn.btn-cancle-js").click(function(e){
 			var choice = window.confirm("삭제하시겠습니까?");
 			if(!choice){
 				e.preventDefault();
@@ -67,12 +77,12 @@ text-decoration: none;
 		
 		$(".com-edit-area").hide();
 		
-		$(".com-edit-btn").click(function(){
+		$(".form-btn.form-btn-positive").click(function(){
 			$(this).parent().parent().next().hide();
 			$(this).parent().parent().next().next().show();
 		});
 		
-		$(".com-edit-cancel-btn").click(function(){
+		$(".form-btn.btn-cancle").click(function(){
 			$(this).parent().parent().prev().show();
 			$(this).parent().parent().hide();
 		});
@@ -90,7 +100,7 @@ text-decoration: none;
 조회수 : <%=boarddto.getBoCount() %><br>
 작성일시 : <%=boarddto.getBoDate() %><br>
 </div>
-<div class ="row text-left" style="border: none; border-top: 1px solid rgb(52, 152, 219); border-bottom:1px solid rgb(52, 152, 219); min-height: 200px; padding-top: 20px;">
+<div class ="row text-left" style="border: none; border-top: 1px solid rgb(52, 152, 219); border-bottom:1px solid rgb(52, 152, 219); min-height: 150px; padding-top: 20px;">
 <%=boarddto.getBoContent() %>
 </div>
 <!-- 게시글 작성창 -->
@@ -141,9 +151,9 @@ text-decoration: none;
 		<div class="row" style="border: none; text-align: left;">
 			<div class="left"><%=boardCommentsDto.getEmpName()%></div>
 		<%if(loginId.equals(boardCommentsDto.getEmpNo())){ %>
-			<div class="row" style="border: none; text-align: right; padding-bottom: 5px; padding-top: 15px;">
-				<a class="com-edit-btn">수정</a> 
-				<a class="com-delete-btn" href="comDelete.gw?comNo=<%=boardCommentsDto.getComNo()%>&boardNo=<%=boardNo%>" style="text-decoration: none;">삭제</a>
+			<div class="row" style="border: none; border-bottom:1px dotted rgb(52, 152, 219); text-align: right; padding-bottom: 15px;">
+				<a class="form-btn form-btn-positive">수정</a> 
+				<a class="form-btn btn-cancle-js" href="comDelete.gw?comNo=<%=boardCommentsDto.getComNo()%>&boardNo=<%=boardNo%>" style="text-decoration: none;">삭제</a>
 			</div>
 			<%} %>
 		</div>
@@ -159,8 +169,8 @@ text-decoration: none;
 				<input type="hidden" name="boardNo" value="<%=boardCommentsDto.getBoardNo()%>">
 				
 				<textarea name="comContent" style="resize: none; width: 1200px;" required><%=boardCommentsDto.getComContent()%></textarea>
-				<input type="submit" value="댓글 수정">		
-				<input type="button" value="작성 취소" class="com-edit-cancel-btn">		
+				<input class="form-btn form-btn-positive" type="submit" value="댓글 수정" style="width: 80px;">		
+				<input class="form-btn btn-cancle" type="button" value="작성 취소">		
 			</form>
 		</div> 
 		<%} %>
