@@ -221,17 +221,72 @@ $(function(){
 });
 
 </script>
+<style>
+
+.apptag{
+color:#3498DB;
+font-weight : bold;
+}
+.ti{
+margin-left:auto;
+margin-right:auto;
+ border : 2px solid #8080803b;
+ width : 450px;
+ height :25px;
+
+}
+.ti-po{
+position: relative;
+right: 85px;
+} 
+
+.co{
+	margin-left:auto;
+	margin-right:auto;
+ border : 2px solid #8080803b;
+ width : 450px;
+ height :200px;　
+}
+.co-po{
+position: relative;
+right: 85px;
+}
+.ap{
+margin-left:auto;
+margin-right:auto;
+width : 450px;
+font-weight : bold;
+
+}
+.ap-po{
+position: relative;
+right: 85px;
+}
+.st{
+float:left;
+width:33%;
+}
+.md{
+float:left;
+width:33%;
+}
+.ed{
+float:left;
+width:33%;
+} 
+</style>
 </head>
 <body>
 <div class ="container-700">
+
 <h2 class = " text-center">기안서</h2>
 <div class = "text-right">
 <!-- 서블릿으로 결재분류,결재일 값 주고 팝업창 닫아야함 -->
 
 <div class = "isConsesus">
 	<form name = "conform" action="directAppInsert.gw" method = "get">
-		<input class ="conSelec" id="hapyee" type = "submit" value = "합의" ><!-- submit에 name을 넣으면 form에서 넘어갈까?? -->
-		<input class ="conSelec" id="gobu" type = "submit" value = "거부"><!-- 합의자 버튼 -->
+		<input class ="conSelec link-btn" id="hapyee" type = "submit" value = "합의" ><!-- submit에 name을 넣으면 form에서 넘어갈까?? -->
+		<input class ="conSelec link-btn" id="gobu" type = "submit" value = "거부"><!-- 합의자 버튼 -->
 		
 		<input type = "hidden" name = "approval" value = "<%=id%>"><!-- 실제 서블릿으로 보내지는 데이터 -->
 		<input type = "hidden" name = "appNo"  value = "<%=appNo%>">
@@ -242,10 +297,10 @@ $(function(){
 
 <div class = "isApproval">
 	<form name="appform" action="directAppInsert.gw" method = "get">
-		<input class = "appSelec"  id ="already" type = "submit" value = "예결">
-		<input class = "appSelec" id ="late" type = "submit" value = "후결">
-		<input class = "appSelec" id ="fit" type = "submit" value = "기결">
-		<input class = "appSelec" id ="back" type = "submit" value = "반려">
+		<input class = "appSelec link-btn"  id ="already" type = "submit" value = "예결">
+		<input class = "appSelec link-btn" id ="late" type = "submit" value = "후결">
+		<input class = "appSelec link-btn" id ="fit" type = "submit" value = "기결">
+		<input class = "appSelec link-btn" id ="back" type = "submit" value = "반려">
 		
 		<input type = "hidden" name = "type" value ="<%=state%>"><!-- 실제 서블릿으로 보내지는 데이터 -->
 		<input type = "hidden" name = "approval" value = "<%=id%>">
@@ -255,70 +310,84 @@ $(function(){
 </div>
 
 </div>
-<%=appsizetest %>
-<div>
-제목 : <%=draftapp.getAppTitle() %>
-<br>
-</div>
-<div>
-내용 : <%=draftapp.getAppContent()%> 
-<br>
-</div>
-<div>
-상신일 : <%=draftapp.getAppDateStart()%>
-<br>
-</div>
-<div>
-결재일 : <%=appEndDate%>
-<br>
-</div>
-<div>
-마감일 : <%=draftapp.getAppDateEnd() %>
-<br>
-</div>
-<div>
-기안자 : <%=draftapp.getEmpName() %>
-<br>
-</div>
+<label class = "apptag">제 목</label><br>
+	<div class = "ti ti-po">
+	  <%=draftapp.getAppTitle() %>
+	</div>
+	
+<label class = "apptag">내 용</label><br>
+	<div class = "co co-po">
+	  <%=draftapp.getAppContent()%> 
+	</div>
+						<div class="date">
+							<div class = "st text-center">
+								<label class = "apptag">상신일</label><br>  
+									<div >
+									<%=draftapp.getAppDateStart().substring(0, 10)%>
+									</div>
+								</div>	
+							<div class = "md text-center">
+								<label class = "apptag">결제일</label><br>
+									<div>
+									<%=appEndDate%>
+									</div>
+							</div>
+							<div class ="ed text-center">		
+								<label class = "apptag">마감일</label><br>
+									<div>
+									   <%=draftapp.getAppDateEnd().substring(0, 10) %>
+									</div>
+							</div>	
+						</div><br>	
+<label class = "apptag">기안자</label><br>
+	<div class = "ap ap-po">
+	<%=draftapp.getEmpName() %>
+	</div>
+	
+<label class = "apptag">결재자</label><br>	
 <%for(directAppDto directappdto : draftdir) {%>
 
 	<%if(directappdto.getConsesus().equals("0")){ %>
-		<div>
-		결재자 :<%=directappdto.getEmpName()%>[<%=directappdto.getApproval()%>] 
-		<br>
+		<div class = "ap ap-po">
+		  <%=directappdto.getEmpName()%>[<%=directappdto.getApproval()%>] 
+		
 		</div>
 <%} %>
 <%} %>
 <br>
+<label class = "apptag">합의자</label><br>
 <%for(directAppDto directappdto : draftdir) {%>	
 	
 	<%if(directappdto.getConsesus().equals("1")){ %>
-		<div>
-		합의자 :<%=directappdto.getEmpName()%>[<%=directappdto.getApproval() %>] 
-		<br>
+		<div class = "ap ap-po">
+		  <%=directappdto.getEmpName()%>[<%=directappdto.getApproval() %>] 
+		
 		</div>
 <%} %>
 <%} %>
 <br>
+<label class = "apptag">참조자</label><br>
 <%for(indirectAppDto indirectappdto : draftindir) {%>	
 	
 	<%if(indirectappdto.getType().equals("참조")){ %>
-		<div>
-		참조자 :<%=indirectappdto.getEmpName()%>[<%=indirectappdto.getReferrer()%>]
-		<br>
+		<div class = "ap ap-po">
+		  <%=indirectappdto.getEmpName()%>[<%=indirectappdto.getReferrer()%>]
+		
 		</div>
 <%} %>
 <%} %>
 <br>
+<label class = "apptag">시행자</label><br> 
 <%for(indirectAppDto indirectappdto : draftindir) {%>	
 	
 	<%if(indirectappdto.getType().equals("시행")){ %>
-		<div>
-		시행자 :<%=indirectappdto.getEmpName()%>[<%=indirectappdto.getReferrer()%>]
-		<br>
+		<div class = "ap ap-po">
+		 <%=indirectappdto.getEmpName()%>[<%=indirectappdto.getReferrer()%>]
+		
 		</div>
 <%} %>
 <%} %>
+
 </div>
 </body>
 
