@@ -158,7 +158,7 @@ text-decoration: none;
 					<ul>
 						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
 						<li>
-						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
+						<a href="<%=root%>/salary/salaryMain.jsp">나의 급여</a>
 						</li>
 						<%if(isLogin){ %>
 							<%if(isHeader) {%>
