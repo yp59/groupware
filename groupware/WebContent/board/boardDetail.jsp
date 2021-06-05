@@ -187,7 +187,7 @@ text-decoration: none;
 		<textarea rows="3" class="form-input" required name="comContent" placeholder="댓글 입력" style="resize: none;"></textarea>
 	</div>
 	<div class="row">
-		<input type="submit" value="댓글 작성" class="form-btn">
+		<input type="submit" value="댓글 작성" class="form-btn form-btn-positive">
 	</div>
 </form>
 
