@@ -76,9 +76,9 @@
 		salaryList = salaryAuthorityDao.list(startRow, endRow);
 	}
 	
-	/////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
 	// 페이지 네비게이션 영역 계산
-	/////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////
 	
 	int count;
 	if(isSearch){
@@ -112,9 +112,12 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
-	.search .insert{
-		display:inline-block;
-		
+.container-800{
+		position:relative;
+		top:50px;
+	}
+	.link-btn2 {
+		width:65%;
 	}
 </style>
 
@@ -157,7 +160,7 @@
 
 <script>
 function monthSelect(monthList){
-	var option = $("<option value='' selected>선택하세요</option>");
+	var option = $("<option value='' selected> 월 선택</option>");
 	$("select[name=searchMonth]").append(option);
 	for (var count = 0; count < monthList.length; count++) {
 		var option = $("<option>" + monthList[count] + "</option>");
@@ -198,31 +201,28 @@ function monthSelect(monthList){
 	});
 </script>
 
+<div class="container-800">
 <div class="row">
       <h2>급여</h2>
 </div>
-
-
+	<div class="row text-right">
+		<a href="salaryAuthorityInsert.jsp" class="link-btn">급여 입력</a>
+	</div>
+	
 	<div class="row">
-		<div class="search">
-			<form action="salaryAuthority.jsp" method="get">
-				<select name="searchYear" class="form-input form-input-inline">
-				<option value="">선택하세요</option>
-				<%for(String year : yearList){ %>
-					<option value="<%=year %>"><%=year%></option>
-				<%} %>
-				</select>
-				<select name="searchMonth" class="form-input form-input-inline">
-				</select>
-				
-				<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
-			</form>
-		</div>
+		<form action="salaryAuthority.jsp" method="get">
+			<select name="searchYear" class="form-input form-input-inline">
+			<option value="">년도 선택</option>
+			<%for(String year : yearList){ %>
+				<option value="<%=year %>"><%=year%></option>
+			<%} %>
+			</select>
+			<select name="searchMonth" class="form-input form-input-inline">
+			</select>
 			
-		<div class="insert">
-      	<a href="salaryAuthorityInsert.jsp" class="link-btn">급여 입력</a>
-      	</div>
-
+			<input type="submit" value="검색" class="form-btn form-btn-inline form-btn-positive">
+		</form>
+		
 	</div>
 	<div class="row">
 		<table class="table table-striped text-center">
@@ -243,7 +243,7 @@ function monthSelect(monthList){
 						<td><%=salaryDto.getEmpNo() %></td>
 						<td><%=salaryDto.getEmpName() %></td>
 						<td>
-						<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>&empNo=<%=salaryDto.getEmpNo()%>">
+						<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salaryDto.getSalaryDate().substring(0,10)%>&empNo=<%=salaryDto.getEmpNo()%>" class="link-btn2">
 						<%=salaryDto.getSalaryDate().substring(5, 7)%>월 급여 명세서
 						</a>
 						</td>
@@ -260,7 +260,7 @@ function monthSelect(monthList){
 					<td><%=salary.getEmpNo() %></td>
 					<td><%=salary.getEmpName() %></td>
 					<td>
-					<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>&empNo=<%=salary.getEmpNo()%>">
+					<a href="salaryAuthorityDetail.jsp?salaryDate=<%=salary.getSalaryDate().substring(0,10)%>&empNo=<%=salary.getEmpNo()%>" class="link-btn2">
 					<%=salary.getSalaryDate().substring(5, 7)%>월 급여 명세서
 					</a>
 					</td>
@@ -299,4 +299,5 @@ function monthSelect(monthList){
 		</div>	
 	</div>
 	
+</div>	
 <jsp:include page="/template/footer.jsp"></jsp:include>

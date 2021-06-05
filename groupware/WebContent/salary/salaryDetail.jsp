@@ -14,7 +14,12 @@
    
    DecimalFormat df = new DecimalFormat("###,###");
 %>
-    
+<style>
+.container-600{
+	position:relative;
+	top:50px;
+}
+</style>    
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600">
@@ -24,14 +29,14 @@
    </div>
    
    <div class="row">
-      <table class="table table-border">       
+      <table class="table table-border text-center">       
          <tr>
-            <th>사원번호</th>
+            <th width="40%">사원번호</th>
             <td><%=salaryDto.getEmpNo()%></td>
          </tr>
          <tr>
-            <th>직급 번호</th>
-            <td><%=salaryDto.getPoNo()%></td>
+            <th>직급</th> 
+            <td><%=salaryDto.getPosi()%></td>
          </tr>
          <tr>
             <th>기본급</th>

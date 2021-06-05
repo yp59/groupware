@@ -86,13 +86,11 @@
 	<input type="submit" class="form-btn form-btn-positive" value="로그인">
 </form>
 
-<div class = "row error" style="height:20px;">
+<div class = "row error" style="height:20px; border:none;">
 <%if(request.getParameter("error")!=null){%>
 아이디 혹은 비밀번호가 일치하지 않습니다.
 <%} %>
 </div>
-
-
 </div>
 
 </body>

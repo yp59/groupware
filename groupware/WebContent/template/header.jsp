@@ -76,7 +76,6 @@ font-size: 40px;
  color : rgb(52, 152, 219);
 text-decoration: none;
 }
-
 	</style>
 </head>  
 <body>
@@ -147,9 +146,9 @@ text-decoration: none;
 				<li>
 					<a href="<%=root%>/board/boardmain.jsp">게시판</a>
 					<ul>
-						<li><a href="<%=root%>/board/boardmainNotice.jsp">공지사항</a></li>
-						<li><a href="<%=root%>/board/boardmainFree.jsp">자유게시판</a></li>
-						<li><a href="<%=root%>/board/boardmainQuestion.jsp">질문게시판</a></li>
+						<li><a href="<%=root%>/board/boardmainNotice.jsp">공지 게시판</a></li>
+						<li><a href="<%=root%>/board/boardmainQuestion.jsp">질문 게시판</a></li>
+						<li><a href="<%=root%>/board/boardmainFree.jsp">자유 게시판</a></li>
 						<li><a href="<%=root%>/board/myBoardList.jsp">내 게시글</a></li>
 					</ul>
 				</li>
@@ -158,7 +157,7 @@ text-decoration: none;
 					<ul>
 						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
 						<li>
-						<a href="<%=root%>/salary/salaryMain.jsp">급여</a>
+						<a href="<%=root%>/salary/salaryMain.jsp">나의 급여</a>
 						</li>
 						<%if(isLogin){ %>
 							<%if(isHeader) {%>

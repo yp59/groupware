@@ -77,6 +77,17 @@
 		endBlock = lastBlock;
 	}   
 %>
+
+<style>
+	.container-1000{
+		position:relative;
+		top:50px;
+	}
+	.link-btn2 {
+		width:65%;
+	}
+</style>
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <%
@@ -110,15 +121,15 @@
 </script>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
-
+<%
+	employeesDao employeesDao = new employeesDao();
+	List<employeesDto> employeesList = employeesDao.list();
+%>
+<div class="container-1000">
  <div class="row">
       <h2>출퇴근 관리</h2>
    </div>
-   
-   <%
-		employeesDao employeesDao = new employeesDao();
-   		List<employeesDto> employeesList = employeesDao.list();
-   %>
+
    <div class="row text-center">
 	   <form action="attendanceAuthorityMain.jsp" method="get"> 
 			<label>사원 선택</label>
@@ -134,10 +145,10 @@
    
    
    <div class="row">
-      <table class="table table-striped">
+      <table class="table table-striped text-center">
          <thead>
             <tr>
-               <th>날짜</th>
+               <th width="20%">날짜</th>
                <th>사원 번호</th>
                <th>사원 이름</th>
                <th>출근 시간</th>
@@ -152,7 +163,7 @@
             <%for(AttendanceDto attendanceDto : attendanceList){ %>
             <tr>
                <td>
-               <a href="attendanceDetail.jsp?attDate=<%=attendanceDto.getAttDate() %>">
+               <a href="attendanceAuthorityDetail.jsp?empNo=<%=attendanceDto.getEmpNo()%>&attDate=<%=attendanceDto.getAttDate() %>" class="link-btn2">
                <%=attendanceDto.getAttDate()%>
                </a>
                </td>
@@ -207,4 +218,5 @@
 			
 		</div>	
 	</div>
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>

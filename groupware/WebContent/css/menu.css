@@ -23,13 +23,14 @@
 	padding:0;
 	list-style: none;
 	background-color:rgb(52, 152, 219);
+	text-align: right;
 }
 .menu > li {
 	display: inline-block;
 	position: relative;
 	list-style: none;
 
-	right: -30%; 
+	text-align: center;
 
 }
 .menu ul {
@@ -53,6 +54,7 @@
 	text-decoration: none;
 	display: block;
 	width:100%;
+	text-align: center;
 }
 .menu > li > ul > li ul{
 	top:0;
