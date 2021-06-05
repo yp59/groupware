@@ -133,7 +133,8 @@
 	});
 </script>
 
-<div class= "container-900 text-center">
+<div class= "container-1200 text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
+<h2>자유 게시판</h2>
 	<table class="table table-border table-hover" >
 		<thead>
 			<tr>
@@ -160,7 +161,7 @@
 				
 		</tbody>
 	</table>
-	<div class="row">
+	<div class="row" style="border: none; border-top: 1px solid rgb(52, 152, 219); border-bottom: 1px solid rgb(52, 152, 219);">
 		<!-- 페이지 네비게이션 자리 -->
 		<div class="pagination">
 		
@@ -184,7 +185,7 @@
 	</div>
 </div>
 
-	<div class ="container-900 text-center">
+	<div class ="container-1200 text-center" style="border: none;">
 	
 	<form class="search-form" action="boardmainFree.jsp" method="get"><!-- 검색창 form 태그 -->
 	<input type="hidden" name="pageNo">
@@ -206,7 +207,7 @@
 	</form>
 	
 	</div>
-<div class ="container-900 text-right">
+<div class ="container-1200 text-right" style= "border: none; border-bottom: 2px solid rgb(52, 152, 219);">
 	<a href="boardInsert.jsp" class=link-btn>게시글 작성</a>
 </div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
