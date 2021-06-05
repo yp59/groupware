@@ -146,7 +146,10 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 	
 });
 </script>
-<div class = "container-900">
+<div class = "container-1200">
+<div style="text-align: center; border-bottom: 2px solid rgb(102, 177, 227); margin-bottom: 10px;">
+<h2>나의 결재 목록</h2>
+</div>
 
 <form class = "search-form" action="approvalList.jsp">
 <input type="hidden" name="pageNo">

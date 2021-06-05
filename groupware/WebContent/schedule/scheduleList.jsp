@@ -291,7 +291,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 
 <div class="container-1200">
 	<div class="row">
-		<h3>일정관리</h3>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">일정관리</h2>
 	</div>
 	<div class="row text-right">
 		<a href="scheduleInsert.jsp" class="link-btn">새일정</a>
@@ -302,7 +302,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<!-- 완료 일정 영역 -->
 		<div class="multi-container">
 		<div class="row">
-			<h4>완료된 일정</h4></div>
+			<h4 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px; border-top: 2px solid rgb(52, 152, 219); padding-top: 20px;">완료된 일정</h4></div>
 		<div class="row">
 			<table class="table table-border">
 				<thead>
@@ -369,7 +369,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 					<option value="emp_name">이름</option>
 				</select>
 				<input type="text" name="keyword2" placeholder="키워드" class="form-input">
-				<input type="submit" value="조회하기" class="form-btn">
+				<input type="submit" value="조회하기" class="form-btn" style="margin-top: 10px;">
 			</form>
 		</div>
 		</div>
@@ -380,7 +380,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<!-- 진행중 일정 영역 -->
 		<div class="multi-container">
 		<div class="row">
-			<h4>진행중인 일정</h4>
+			<h4 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px; border-top: 2px solid rgb(52, 152, 219); padding-top: 20px;">진행중인 일정</h4>
 		</div>
 		<div class="row">
 			<table class="table table-border">
@@ -453,7 +453,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 					<option value="emp_name">이름</option>
 				</select>
 				<input type="text" name="keyword1" placeholder="키워드" class="form-input">
-				<input type="submit" value="조회하기" class="form-btn">
+				<input type="submit" value="조회하기" class="form-btn" style="margin-top: 10px;">
 			</form>
 		</div>
 		
