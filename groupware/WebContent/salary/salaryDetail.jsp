@@ -28,7 +28,7 @@
       <h2>급여 상세</h2>
    </div>
    
-   <div class="row">
+   <div class="row" style="margin-top:5%;">
       <table class="table table-border text-center">       
          <tr>
             <th width="40%">사원번호</th>

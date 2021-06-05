@@ -65,7 +65,7 @@
 </div>
 
 
-<table class="table table-border">
+<table class="table table-border"  style="margin-top:5%;">
 	<tbody>
 		<tr>
 			<th width="30%">사원번호</th>

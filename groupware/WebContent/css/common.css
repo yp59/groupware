@@ -425,6 +425,7 @@ textarea.form-input {
 }
 .link-btn2:hover{
 	box-shadow:0 0 5px 0 #3498DB;
+	text-decoration: none;
 }
 .input{
 	width:100%;

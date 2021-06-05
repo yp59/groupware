@@ -58,7 +58,7 @@ function calcSalary(){
 	}
 </script>
 <div class="container-400">
-	<div class="row">
+	<div class="text-center" style="border-bottom: 2px solid rgb(52, 152, 219);">
 		<h2>급여 명세서 수정</h2>
 	</div>
 

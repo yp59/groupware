@@ -125,7 +125,7 @@
 	List<employeesDto> employeesList = employeesDao.list();
 %>
 <div class="container-1100">
- <div class="row">
+ <div class="text-center"  style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>출퇴근 관리</h2>
    </div>
 
@@ -142,8 +142,8 @@
 	</div>
    
    
-   <div class="row" style="border-top: 2px solid rgb(52, 152, 219);">
-      <table class="table table-border text-center" style="margin-top:5%;">
+   <div class="row">
+      <table class="table table-border text-center">
          <thead>
             <tr>
                <th width="20%">날짜</th>

@@ -126,11 +126,11 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-1100">
- <div class="row">
+ <div class="text-center" style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>출퇴근 현황</h2>
    </div>
    
-   <div class="row text-right">
+   <div class="text-right" style="margin-top:1%;">
    		<!-- 출/퇴근 버튼 null일때만 서블릿으로 이동하도록 구현 -->
    		<%if(attendance !=null) {%>
 	   		<%if(attendance.getAttAttend() != null){%> 
@@ -148,8 +148,8 @@
  		
    </div>
    
-   <div class="row" style="border-top: 2px solid rgb(52, 152, 219);">
-      <table class="table table-border text-center" style="margin-top:5%;">
+   <div class="row">
+      <table class="table table-border text-center">
          <thead>
             <tr>
                <th>날짜</th>
