@@ -13,7 +13,7 @@
 <style>
 	.container-400{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.attend, .leave{
 		margin-top:10% !important;

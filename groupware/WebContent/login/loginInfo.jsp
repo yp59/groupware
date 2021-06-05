@@ -18,6 +18,10 @@
     %>
     
 <style>
+	.container-600{
+		position:relative;
+		top:30px;
+	}
 	.my-board-list {
 		margin: 0;
 		padding:0;
@@ -37,27 +41,34 @@
 	.my-board-list > li > a:hover{
 		color:red;
 	}
-	
+	.table > thead > tr > th, 
+	.table > thead > tr > td,
+	.table > tbody > tr > th,
+	.table > tbody > tr > td,
+	.table > tfoot > tr > th,
+	.table > tfoot > tr > td {
+		padding:0.7rem !important;
+	}
 	.table>tbody>tr>td{
 		text-align: center;
 	}
-	
 </style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
-<div class="container-1100">
-<div>
+
+<div class="container-600">
+<div class="row text-center"  style="border-bottom: 2px solid rgb(52, 152, 219);">
 	<h2>마이페이지</h2>
 
 </div>
 
 
-<table class="table table-border table-striped">
+<table class="table table-border"  style="margin-top:5%;">
 	<tbody>
 		<tr>
-			<th width="100">사원번호</th>
+			<th width="30%">사원번호</th>
 			<td> <%=employeesdto.getEmpNo()%></td>
 		</tr>	
 		<tr>
@@ -86,6 +97,10 @@
 		</tr>	
 	</tbody>
 </table>
+<!-- 회원정보 수정 페이지로 이동 -->
+<div class="row text-right">
+	<a href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp" class="link-btn2">회원정보 수정</a>
+</div>
 </div>
 
 <!-- <div class="row text-left"> -->
@@ -103,8 +118,5 @@
 <!-- 		</ul> -->
 <!-- 	</div> -->
 
-<div class="container-900 text-right">
-<a href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp">회원정보 수정</a><!-- 회원정보 수정 페이지로 이동 -->
-</div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>

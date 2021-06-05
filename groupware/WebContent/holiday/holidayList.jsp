@@ -54,7 +54,12 @@
 		endBlock = lastBlock;
 	}
 %>
-
+<style>
+	.container-600{
+		position:relative;
+		top:30px;
+	}
+</style> 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <script>
@@ -90,6 +95,7 @@
 	});
 </script>
 
+<div class="container-600">
    <div class="row">
       <h2>휴가 신청 내역</h2>
    </div>
@@ -165,5 +171,5 @@
 			
 		</div>	
 	</div>
-
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
