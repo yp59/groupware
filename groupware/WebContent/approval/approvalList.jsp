@@ -153,7 +153,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 
 <div class = "text-right">
 <input type="text" name="keyword" placeholder="기안서 검색"><!-- 검색 keyword 입력창-->
-<input type ="submit" value = "검색">
+<input class = "link-btn" type ="submit" value = "검색">
 </div>
 
 </form>

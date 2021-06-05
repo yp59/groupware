@@ -103,7 +103,7 @@ $(function(){//window.load와 같은의미
 			</div>
 			
 			<!-- 첨부 아직 미구현 -->
-					<input type ="submit" value = "기안" name ="subb">
+					<input class="link-btn" type ="submit" value = "기안" name ="subb">
 		</form>
 	</section>	
 </main>

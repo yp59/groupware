@@ -352,7 +352,7 @@ $(function(){
 
 </header>
 		<article>
-	<div class="row"><!-- 결재 파트 사원 클릭하고 버튼 누르면 결재자 지정됨 -->
+	<div><!-- 결재 파트 사원 클릭하고 버튼 누르면 결재자 지정됨 -->
 				<button id = "approval">결재자</button><div id = "approvals"></div><br><br>
 				<button id = "consesus">합의자</button><div id = "consesuses"></div><br><br>
 				<button id = "reffer">참조자</button><div id = "reffers"></div><br><br>

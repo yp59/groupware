@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
 	<title>Layout 구현하기(1)</title>
 	<link rel="stylesheet" type="text/css" href="/study/design/common.css">
 	<style>

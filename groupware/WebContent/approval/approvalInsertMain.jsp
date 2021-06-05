@@ -144,7 +144,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 
 <div class = "text-right">
 <input type="text" name="keyword" placeholder="기안서 검색"><!-- 검색 keyword 입력창-->
-<input type ="submit" value = "검색">
+<input class = "link-btn"type ="submit" value = "검색">
 </div>
 
 </form>
@@ -172,6 +172,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 		<%}%>
 		</tbody>
 </table>
+<input type="button" class = "appinsert link-btn" value="기안서 작성">
 </div>
 	<div class="row">
 		<!-- 페이지 네비게이션 자리 -->
@@ -196,7 +197,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 		</div>	
 	</div>
 
-<input type="button" class = "appinsert" value="기안서 작성">
+
 
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
