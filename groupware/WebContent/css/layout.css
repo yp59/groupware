@@ -47,9 +47,10 @@
 
 /*레이아웃 재구성*/
 	/*레이아웃 구분선 완성 후 지우기*/
-		main, aside, section, article, header, footer{
-			border:1px dotted black;
-		}
+		/*main, aside, section, article, header, footer{
+			/*border:1px dotted black;
+		}*/
+
 		
 		/* 리셋 스타일 */
 		html, body{
@@ -90,7 +91,6 @@
 		section {
 			float:left;
 			width:100%;
-/* 			width:80%; */
 			min-height:750px;
 		
 		}

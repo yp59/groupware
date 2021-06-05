@@ -101,6 +101,19 @@
 
 <jsp:include page="/template/section.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<style>
+section {
+float:left;
+width:100%;
+min-height:20px;
+}
+article {
+min-height:10px;
+}
+footer {
+min-height:10px;
+}
+</style>
 <%if(isSearch){ %>
 <script>
 	//서버에서 수신한 botype과 type과 keyword에 해당하는 값들을 각각의 입력창에 설정하여 유지되는것처럼 보이도록 구현
@@ -137,7 +150,8 @@
 	});
 </script>
 
-<div class= "container-900 text-center">
+<div class= "container-1200 text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
+<h2>질문 게시판</h2>
 	<table class="table table-border table-hover" >
 		<thead>
 			<tr>
@@ -164,7 +178,7 @@
 				
 		</tbody>
 	</table>
-	<div class="row">
+	<div class="row" style="border: none; border-top: 1px solid rgb(52, 152, 219); border-bottom: 1px solid rgb(52, 152, 219);">
 		<!-- 페이지 네비게이션 자리 -->
 		<div class="pagination">
 		
@@ -188,7 +202,7 @@
 	</div>
 </div>
 
-	<div class ="container-900 text-center">
+	<div class ="container-1200 text-center" style="border: none;">
 	
 	<form class="search-form" action="boardmainQuestion.jsp" method="get"><!-- 검색창 form 태그 -->
 	<input type="hidden" name="pageNo">
@@ -210,7 +224,7 @@
 	</form>
 	
 	</div>
-<div class ="container-900 text-right">
+<div class ="container-1200 text-right" style= "border: none; border-bottom: 2px solid rgb(52, 152, 219);">
 	<a href="boardInsert.jsp" class=link-btn>게시글 작성</a> 
 </div>
 <jsp:include page="/template/footer.jsp"></jsp:include>

@@ -297,6 +297,17 @@ textarea.form-input {
 	color:#3498DB;
 }
 
+.form-btn.btn-cancle{
+	width:auto;
+	background-color:gray !important;
+	border-color:gray !important;
+}
+.form-btn.btn-cancle:hover {
+	background-color:lightgray !important;
+	color:gray !important;
+	border-color:white;
+}
+
 /*
 	Pagination 스타일 (파란색 동그라미)
 */
@@ -412,6 +423,9 @@ textarea.form-input {
     text-decoration: none;
     border-radius:5px;
     color:#3498DB !important; 
+}
+.link-btn2:hover{
+	box-shadow:0 0 5px 0 #3498DB;
 }
 .input{
 	width:100%;
