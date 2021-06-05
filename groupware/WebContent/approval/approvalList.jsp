@@ -179,7 +179,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					<a href="<%=request.getContextPath()%>
 					/approval/approvalDetail.jsp?appNo=
 					<%=approvaldto.getAppNo()%>&DirType=<%=approvaldto.getDirType()%>&appState=<%=approvaldto.getAppState()%>" 
-					onclick="window.name = 'appList'; window.open(this.href, '_blank', 'width=700, height=700'); return false;">
+					onclick="window.name = 'appList'; window.open(this.href, '_blank', 'width=750, height=750'); return false;">
 					<!-- 기안서에 현재 선택한 appNo을 보내는 구문 -->	
 					<%=approvaldto.getAppTitle()%>
 					</a>	
@@ -187,8 +187,8 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					</td>
 					<td><%=approvaldto.getEmpName()%>
 					</td>
-					<td><%=approvaldto.getAppDateStart()%></td>
-					<td><%=approvaldto.getAppDateEnd()%></td>
+					<td><%=approvaldto.getAppDateStart().substring(0, 10)%></td>
+					<td><%=approvaldto.getAppDateEnd().substring(0, 10)%></td>
 					<td><%=approvaldto.getAppState()%></td>
 			
 				</tr>

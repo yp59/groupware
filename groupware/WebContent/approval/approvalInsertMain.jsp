@@ -166,8 +166,8 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					<td><%=approvaldto.getAppNo()%></td>
 					<td><%=approvaldto.getAppTitle()%></td>
 					<td><%=approvaldto.getEmpName()%></td>
-					<td><%=approvaldto.getAppDateStart()%></td>
-					<td><%=approvaldto.getAppDateEnd()%></td>
+					<td><%=approvaldto.getAppDateStart().substring(0, 10)%></td>
+					<td><%=approvaldto.getAppDateEnd().substring(0, 10)%></td>
 					<td><%=approvaldto.getAppState()%></td>
 				</tr>
 		<%}%>

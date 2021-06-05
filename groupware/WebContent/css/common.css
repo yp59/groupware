@@ -62,6 +62,7 @@
 .container-400 { width:400px; }
 .container-500 { width:500px; }
 .container-600 { width:600px; }
+.container-650 { width:650px; }
 .container-700 { width:700px; }
 .container-800 { width:800px; }
 .container-900 { width:900px; }
@@ -80,7 +81,8 @@
 */
 .container-100, .container-200, .container-300, .container-400, .container-500,
 .container-600, .container-700, .container-800, .container-900, .container-1000,
-.container-1100, .container-1200, .container-1300, .container-1400, .container-1500 {
+.container-1100, .container-1200, .container-1300, .container-1400, .container-1500,
+.container-650 {
 	margin-left:auto;
 	margin-right:auto;
 	border:1px dotted gray;
