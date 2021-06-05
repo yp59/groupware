@@ -57,7 +57,7 @@
 <style>
 	.container-1100{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.link-btn2 {
 		width:65%;
@@ -148,8 +148,8 @@
  		
    </div>
    
-   <div class="row">
-      <table class="table table-striped text-center">
+   <div class="row" style="border-top: 2px solid rgb(52, 152, 219);">
+      <table class="table table-border text-center" style="margin-top:5%;">
          <thead>
             <tr>
                <th>날짜</th>

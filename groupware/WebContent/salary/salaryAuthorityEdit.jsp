@@ -28,7 +28,7 @@
 <style>
 	.container-400{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.name, .date, .sumOvertime{
 		border-radius:5px;

@@ -20,7 +20,7 @@
 <style>
 	.container-600{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.my-board-list {
 		margin: 0;
@@ -59,7 +59,7 @@
 <jsp:include page="/template/section.jsp"></jsp:include>
 
 <div class="container-600">
-<div class="row text-center">
+<div class="row text-center"  style="border-bottom: 2px solid rgb(52, 152, 219);">
 	<h2>마이페이지</h2>
 
 </div>

@@ -17,14 +17,14 @@
 <style>
 .container-600{
 	position:relative;
-	top:50px;
+	top:30px;
 }
 </style>    
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600">
 
-   <div class="row">
+   <div class="row" style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>급여 상세</h2>
    </div>
    

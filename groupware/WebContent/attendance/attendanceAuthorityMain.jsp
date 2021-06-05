@@ -78,9 +78,9 @@
 
 <style>
 
-	.container-1000{
+	.container-1100{
 		position:relative;
-		top:50px;
+		top:30px;
 	}
 	.link-btn2 {
 		width:65%;
@@ -131,9 +131,8 @@
 
    <div class="row text-center">
 	   <form action="attendanceAuthorityMain.jsp" method="get"> 
-			<label>사원 선택</label>
-			<select name="employeesChoice" class="form-input form-input-inline">
-				<option value="">선택하세요</option>
+			<select name="employeesChoice" class="form-input form-input-inline" style="width:20% !important">
+				<option value="">사원 선택</option>
 				<%for(employeesDto employee : employeesList){%>
 					<option value="<%=employee.getEmpNo()%>"><%=employee.getEmpName()%></option>
 				<% } %>
@@ -143,8 +142,8 @@
 	</div>
    
    
-   <div class="row">
-      <table class="table table-striped text-center">
+   <div class="row" style="border-top: 2px solid rgb(52, 152, 219);">
+      <table class="table table-border text-center" style="margin-top:5%;">
          <thead>
             <tr>
                <th width="20%">날짜</th>
