@@ -95,12 +95,14 @@ public class AttendanceDao {
 		ps.setString(1,empNo);
 		
 		ResultSet rs = ps.executeQuery();
+		int sumovertime = 0;
+		
 		if(rs.next()) {
-			return rs.getInt("sumovertime");
+			sumovertime= rs.getInt("sumovertime");
 		}
 		
 		con.close();
-		return 0;
+		return sumovertime;
 	}
 	
 	// 이번달 추가 근무시간 값 가져오기 -> 관리자
