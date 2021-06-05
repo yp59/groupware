@@ -1,3 +1,5 @@
+<%@page import="groupware.beans.employeesDto"%>
+<%@page import="groupware.beans.employeesDao"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="groupware.beans.AttendanceDto"%>
@@ -38,6 +40,15 @@ String date = simpleDateFormat.format(new Date());
 
 
 AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
+
+
+//회원정보
+
+	
+employeesDao empDao = new employeesDao();
+employeesDto empDto = empDao.loginInfo(empNo);
+
+
 %>
 
 <style>
@@ -45,6 +56,22 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 		text-align:center;
 		width:100px !important;
 	}
+	
+	h3{
+		
+		margin-right:1px;
+		margin-left:1px;
+		margin-bottom: 0;
+		background-color: rgb(52, 152, 219);
+		text-align: center;
+		color:white;
+		height: 40px;
+   		padding-top: 10px;
+	}
+	
+	
+	
+	
 </style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -102,14 +129,18 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 		
 		<!-- 사진과 정보 영역 -->
 		<div class="multi-container">
+			
+			
 			<div class="text-center">
 				<img alt="사진영역" src="<%=request.getContextPath()%>/imageFile/picture.png" width="200" height="200" >
+				
+				<div>
+				<%=empDto.getDepartment() %> <br>
+				<%=empDto.getEmpName()%><br>
+				<%=empDto.getEmail() %><br>
+				</div>
 			</div>
-			<br>
-			<div class="text-center">이름</div>
-			<div class="text-center">이메일</div>
 			
-		
 		
 		</div>
 		<!-- 사진과 정보 영역 끝 -->
@@ -121,8 +152,11 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 
 
 
+<div class="float-container">
+<!-- 하단영역 -->
 	<!-- 진행영역 -->
-	<div class="multi-container"><div class="row">
+	<div class="multi-container">
+		<h3>진행중인 일정</h3>
 		<table class="table table-border">
 			<thead>
 				<tr>
@@ -153,7 +187,7 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 				<%} %>
 			</tbody>
 		</table>
-	</div>
+	
 
 	<!-- 멀티컨테이너 끝 -->
 	</div>
@@ -164,7 +198,7 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 	<!-- 멀테컨테이너 시작 -->
 		
 <!-- 		공지글 영역 -->
-		<div class="float-container">
+	<h3>공지사항</h3>
 	<table class="table table-border table-hover" >
 		<thead>
 			<tr>
@@ -184,7 +218,7 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 
 		</tbody>
 	</table>
-</div>
+
 	
 	
 	<!-- 멀티컨테이너 끝 -->
@@ -194,7 +228,7 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 	
 
 <!--  -->
-
+</div>
 
 
 

@@ -270,7 +270,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		outline:none;
 	}
 	.form-btn{
-		width:80%;
+		width:65%;
 		padding:0.2rem;
 		outline:none;
 	}
@@ -284,6 +284,16 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		outline:none;
 	}
 	
+	h4{
+		margin-left:auto;
+		margin-right:auto;
+		width:30%;
+		background-color: rgb(52, 152, 219);
+		color:white;
+		border-radius:7px;
+	}
+	
+	
 	
 </style>
 
@@ -291,7 +301,9 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 
 <div class="container-1200">
 	<div class="row">
+
 		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">일정관리</h2>
+
 	</div>
 	<div class="row text-right">
 		<a href="scheduleInsert.jsp" class="link-btn">새일정</a>
@@ -301,8 +313,10 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		
 		<!-- 완료 일정 영역 -->
 		<div class="multi-container">
+
 		<div class="row">
 			<h4 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px; border-top: 2px solid rgb(52, 152, 219); padding-top: 20px;">완료된 일정</h4></div>
+
 		<div class="row">
 			<table class="table table-border">
 				<thead>
@@ -351,7 +365,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 					<%} %>
 				<%} %>
 				
-				<%if(endBlock1<lastBlock2) {%>
+				<%if(endBlock2<lastBlock2) {%>
 					<a class="move-link2">다음</a>
 				<%} %>
 			</div>
@@ -379,10 +393,10 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 <!-- ---------------------------------------------------------------------------- -->	
 		<!-- 진행중 일정 영역 -->
 		<div class="multi-container">
+
 		<div class="row">
-			<h4 style="border-bottom: 2px solid rgb(52, 152, 219); 
-			padding-bottom: 20px; border-top: 2px solid rgb(52, 152, 219); padding-top: 20px; border-right: 2px dotted rgb(52, 152, 219)">
-			진행중인 일정</h4>
+			<h4 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px; border-top: 2px solid rgb(52, 152, 219); padding-top: 20px;">진행중인 일정</h4>
+
 		</div>
 		<div class="row">
 			<table class="table table-border">
