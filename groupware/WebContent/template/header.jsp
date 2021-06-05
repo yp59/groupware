@@ -153,7 +153,7 @@ text-decoration: none;
 					</ul>
 				</li>
 				<li>
-					<a href="#">마이 페이지</a> 
+					<a href="<%=root%>/login/loginInfo.jsp">마이 페이지</a> 
 					<ul>
 						<li><a href="<%=root%>/login/loginInfo.jsp">나의 정보</a></li>
 						<li>

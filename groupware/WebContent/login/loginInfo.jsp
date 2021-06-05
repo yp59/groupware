@@ -42,19 +42,37 @@
 		text-align: center;
 	}
 	
+	
 </style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
-<div class="container-1100">
-<div>
+<style>
+	section {
+			float:left;
+			width:100%;
+			min-height:370px;
+		}
+		article {
+			min-height:360px;
+		}
+		footer {
+			min-height:10px;
+		}
+		.pn > a:link, a:visited {
+  		color : rgb(52, 152, 219);
+		text-decoration: none;
+}
+</style>
+<div class="container-1200" style="border: none;">
+<div style="border: none; text-align: center;">
 	<h2>마이페이지</h2>
 
 </div>
 
-
-<table class="table table-border table-striped">
+<div style="text-align: center; border-top: 2px solid rgb(102, 177, 227);">
+<table class="table table-border table-striped" style="margin-top: 10px;">
 	<tbody>
 		<tr>
 			<th width="100">사원번호</th>
@@ -86,6 +104,7 @@
 		</tr>	
 	</tbody>
 </table>
+	</div>
 </div>
 
 <!-- <div class="row text-left"> -->
@@ -103,8 +122,8 @@
 <!-- 		</ul> -->
 <!-- 	</div> -->
 
-<div class="container-900 text-right">
-<a href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp">회원정보 수정</a><!-- 회원정보 수정 페이지로 이동 -->
+<div class="container-1200 text-right" style="border: none; border-bottom: 2px solid rgb(102, 177, 227); margin-bottom: 10px;">
+<a class="pn" href = "<%=request.getContextPath()%>/login/loginInfoEdit.jsp" style="text-decoration: none;">회원정보 수정</a>
 </div>
 
 <jsp:include page="/template/footer.jsp"></jsp:include>
