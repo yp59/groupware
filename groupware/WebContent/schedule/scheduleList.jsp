@@ -380,7 +380,9 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		<!-- 진행중 일정 영역 -->
 		<div class="multi-container">
 		<div class="row">
-			<h4 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px; border-top: 2px solid rgb(52, 152, 219); padding-top: 20px;">진행중인 일정</h4>
+			<h4 style="border-bottom: 2px solid rgb(52, 152, 219); 
+			padding-bottom: 20px; border-top: 2px solid rgb(52, 152, 219); padding-top: 20px; border-right: 2px dotted rgb(52, 152, 219)">
+			진행중인 일정</h4>
 		</div>
 		<div class="row">
 			<table class="table table-border">
