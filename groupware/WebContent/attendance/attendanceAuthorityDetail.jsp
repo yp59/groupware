@@ -13,7 +13,12 @@
 	AttendanceDao attendanceDao = new AttendanceDao();
 	AttendanceDto attendanceDto = attendanceDao.get(empNo, attDate);
 %>
-    
+<style>
+	.container-600{
+		position:relative;
+		top:50px;
+	}
+</style> 
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <div class="container-600">
@@ -23,7 +28,7 @@
    </div>
    
    <div class="row">
-      <table class="table table-border">
+      <table class="table table-border text-center">
          <tr>
             <th>날짜</th>
             <td><%=attendanceDto.getAttDate()%></td>
