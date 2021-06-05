@@ -284,6 +284,16 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		outline:none;
 	}
 	
+	h4{
+		margin-left:auto;
+		margin-right:auto;
+		width:30%;
+		background-color: rgb(52, 152, 219);
+		color:white;
+		border-radius:7px;
+	}
+	
+	
 	
 </style>
 
@@ -301,7 +311,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 		
 		<!-- 완료 일정 영역 -->
 		<div class="multi-container">
-		<div class="row">
+		<div class="text-center">
 			<h4>완료된 일정</h4></div>
 		<div class="row">
 			<table class="table table-border">
@@ -379,7 +389,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 <!-- ---------------------------------------------------------------------------- -->	
 		<!-- 진행중 일정 영역 -->
 		<div class="multi-container">
-		<div class="row">
+		<div class="text-center">
 			<h4>진행중인 일정</h4>
 		</div>
 		<div class="row">
