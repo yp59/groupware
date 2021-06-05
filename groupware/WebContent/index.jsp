@@ -162,11 +162,11 @@ employeesDto empDto = empDao.loginInfo(empNo);
 				<tr>
 <!-- 					<th>상황</th> -->
 <!-- 					<th>번호</th> -->
-					<th>담당부서</th>
-					<th>제목</th>
+					<th style="background-color: lightgray; border: 2px solid white;">담당부서</th>
+					<th style="background-color: lightgray; border: 2px solid white;">제목</th>
 <!-- 					<th>작성자</th> -->
 <!-- 					<th>작성일</th> -->
-					<th>마감일</th>
+					<th style="background-color: lightgray; border: 2px solid white;">마감일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -202,9 +202,9 @@ employeesDto empDto = empDao.loginInfo(empNo);
 	<table class="table table-border table-hover" >
 		<thead>
 			<tr>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>날짜</th>
+				<th style="background-color: lightgray; border: 2px solid white;">제목</th>
+				<th style="background-color: lightgray; border: 2px solid white;">작성자</th>
+				<th style="background-color: lightgray; border: 2px solid white;">날짜</th>
 			</tr>
 		<tbody><%for(boardDto boarddto : list){ %> 
 					<tr>
