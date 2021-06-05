@@ -69,10 +69,10 @@ public class MailSendServlet extends HttpServlet{
             MimeMultipart mmp = new MimeMultipart();
             MimeBodyPart mbp = new MimeBodyPart();
             mbp.setContent(mr.getParameter("mailContent") +
-            		"\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
+            		"<br><br> [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
             mmp.addBodyPart(mbp);
             
-			msg.setContent(mmp);
+			msg.setContent(mmp, "text/html; charset=UTF-8");
             }
             
             // 첨부 파일이 있으면
@@ -80,7 +80,7 @@ public class MailSendServlet extends HttpServlet{
             MimeMultipart mmp = new MimeMultipart();
             MimeBodyPart mbp = new MimeBodyPart();
             mbp.setContent(mr.getParameter("mailContent") +
-                		"\n [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
+                		"<br><br> [본 메일은 그룹웨어 관리자가 발송한 메일이며 발신전용 메일입니다.]", "text/html; charset=UTF-8");
             mmp.addBodyPart(mbp);
                 
             //파일 첨부
@@ -90,14 +90,14 @@ public class MailSendServlet extends HttpServlet{
             mbp.setFileName(MimeUtility.encodeText(mr.getOriginalFileName("mailFile"), "UTF-8", "B"));
             mmp.addBodyPart(mbp);
     			
-            msg.setContent(mmp);	
+            msg.setContent(mmp, "text/html; charset=UTF-8");	
             }
 			
             //메일 전송
             Transport.send(msg);
 			
             // 메일 리스트로 리다이렉트
-			resp.sendRedirect("http://localhost:8080/groupware/mail/mailList.jsp");
+			resp.sendRedirect("http://localhost:8080/groupware/index.jsp");
 			}catch(Exception e) {
 			
 			e.printStackTrace();
