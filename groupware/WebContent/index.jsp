@@ -67,6 +67,7 @@ employeesDto empDto = empDao.loginInfo(empNo);
 		color:white;
 		height: 40px;
    		padding-top: 10px;
+   		border-radius:7px;
 	}
 	
 	
@@ -162,11 +163,11 @@ employeesDto empDto = empDao.loginInfo(empNo);
 				<tr>
 <!-- 					<th>상황</th> -->
 <!-- 					<th>번호</th> -->
-					<th style="background-color: lightgray; border: 2px solid white;">담당부서</th>
-					<th style="background-color: lightgray; border: 2px solid white;">제목</th>
+					<th style="background-color: lightgray; border: 1px solid white;">제목</th>
+					<th style="background-color: lightgray; border: 1px solid white;">담당부서</th>
 <!-- 					<th>작성자</th> -->
 <!-- 					<th>작성일</th> -->
-					<th style="background-color: lightgray; border: 2px solid white;">마감일</th>
+					<th style="background-color: lightgray; border: 1px solid white;">마감일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -174,12 +175,12 @@ employeesDto empDto = empDao.loginInfo(empNo);
 				<tr>
 <%-- 					<td><%=scheduleIngDto.getSc_state() %></td> --%>
 <%-- 					<td><%=scheduleIngDto.getSc_no() %></td> --%>
-					<td><%=scheduleIngDto.getDep_name() %>
 					<td>
 						<a href="<%=request.getContextPath()%>/schedule/scheduleDetail.jsp?sc_no=<%=scheduleIngDto.getSc_no()%>">
 						<%=scheduleIngDto.getSc_name() %>
 						</a>
 					</td>
+					<td><%=scheduleIngDto.getDep_name() %>
 <%-- 					<td><%=scheduleIngDto.getEmpName() %></td> --%>
 <%-- 					<td><%=scheduleIngDto.getSc_made().substring(0,10) %></td> --%>
 					<td><%=scheduleIngDto.getSc_deadline().substring(0,10) %></td>
@@ -201,10 +202,10 @@ employeesDto empDto = empDao.loginInfo(empNo);
 	<h3>공지사항</h3>
 	<table class="table table-border table-hover" >
 		<thead>
-			<tr>
-				<th style="background-color: lightgray; border: 2px solid white;">제목</th>
-				<th style="background-color: lightgray; border: 2px solid white;">작성자</th>
-				<th style="background-color: lightgray; border: 2px solid white;">날짜</th>
+			<tr> 
+				<th style="background-color: lightgray; border: 1px solid white;">제목</th>
+				<th style="background-color: lightgray; border: 1px solid white;">작성자</th>
+				<th style="background-color: lightgray; border: 1px solid white;">날짜</th>
 			</tr>
 		<tbody><%for(boardDto boarddto : list){ %> 
 					<tr>
