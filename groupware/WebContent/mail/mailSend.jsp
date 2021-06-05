@@ -61,7 +61,7 @@
 		<input type ="file" name="mailFile" id="file">
 		</div>
 				
-	<div class = "row text-right" style="border: none; border-bottom: 2px solid rgb(52, 152, 219);">
+	<div class = "row text-right" style="border: none;">
 	<input type="submit" value="보내기" class="link-btn" style="width: 100%;">
 	</div>	
 	</form>

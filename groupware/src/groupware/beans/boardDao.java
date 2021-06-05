@@ -169,7 +169,7 @@ public class boardDao {
 			boarddto.setBoContent(rs.getString(5));
 			boarddto.setBoCount(rs.getInt(6));
 			boarddto.setBoDate(rs.getString(7));
-			boarddto.setEmpName(rs.getString(8));
+			boarddto.setEmpName(rs.getString("emp_name"));
 			boarddto.setComComments(rs.getInt("bo_comments"));
 			
 		}

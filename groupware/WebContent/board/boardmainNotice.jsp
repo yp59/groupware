@@ -100,6 +100,19 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 
 <jsp:include page="/template/section.jsp"></jsp:include>
+<style>
+section {
+float:left;
+width:100%;
+min-height:20px;
+}
+article {
+min-height:10px;
+}
+footer {
+min-height:10px;
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%if(isSearch){ %>
 <script>
@@ -137,9 +150,9 @@
 	});
 </script>
 
-<div class= "container-1200 text-center">
+<div class= "container-1200 text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
 <h2>공지 게시판</h2>
-	<table class="table table-border table-hover" >
+	<table class="table table-border table-hover">
 		<thead>
 			<tr>
 				<th>제목</th>
@@ -165,7 +178,7 @@
 				
 		</tbody>
 	</table>
-	<div class="row">
+	<div class="row" style="border: none; border-top: 1px solid rgb(52, 152, 219); border-bottom: 1px solid rgb(52, 152, 219);">
 		<!-- 페이지 네비게이션 자리 -->
 		<div class="pagination">
 		
@@ -189,7 +202,7 @@
 	</div>
 </div>
 
-	<div class ="container-1200 text-center">
+	<div class ="container-1200 text-center" style="border: none;">
 	
 	<form class="search-form" action="boardmainNotice.jsp" method="get"><!-- 검색창 form 태그 -->
 	<input type="hidden" name="pageNo">
@@ -211,7 +224,7 @@
 	</form>
 	
 	</div>
-<div class ="container-1200 text-right">
+<div class ="container-1200 text-right" style= "border: none; border-bottom: 2px solid rgb(52, 152, 219);">
 	<a href="boardInsert.jsp" class=link-btn>게시글 작성</a>
 </div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
