@@ -252,7 +252,7 @@ $(function(){
 				<option value="department">부서</option>
 			</select>
 			<input type="text" name="keyword" placeholder="키워드" class="form-input">
-			<input type="submit" value="조회하기" class="form-btn">
+			<input type="submit" value="조회하기" class="form-btn" style="margin-top: 10px;">
 		</form>
 	</div>
 	
