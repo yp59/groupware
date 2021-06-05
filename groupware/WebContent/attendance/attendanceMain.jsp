@@ -54,6 +54,17 @@
 		endBlock = lastBlock;
 	}   
 %>
+
+<style>
+	.container-1200{
+		position:relative;
+		top:50px;
+	}
+	.link-btn2 {
+		width:65%;
+	}
+</style>
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <%
@@ -115,6 +126,7 @@
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
+<div class="container-1200">
  <div class="row">
       <h2>출퇴근 현황</h2>
    </div>
@@ -155,7 +167,7 @@
             <%for(AttendanceDto attendanceDto : attendanceList){ %>
             <tr>
                <td>
-               <a href="attendanceDetail.jsp?attDate=<%=attendanceDto.getAttDate() %>">
+               <a href="attendanceDetail.jsp?attDate=<%=attendanceDto.getAttDate() %>" class="link-btn2">
                <%=attendanceDto.getAttDate()%>
                </a>
                </td>
@@ -207,4 +219,5 @@
 			
 		</div>	
 	</div>
+</div>
 <jsp:include page="/template/footer.jsp"></jsp:include>
