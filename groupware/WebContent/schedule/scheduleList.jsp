@@ -291,7 +291,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 
 <div class="container-1200">
 	<div class="row">
-		<h3>일정관리</h3>
+		<h2>일정관리</h2>
 	</div>
 	<div class="row text-right">
 		<a href="scheduleInsert.jsp" class="link-btn">새일정</a>
@@ -351,7 +351,7 @@ if(endBlock2>lastBlock2){ //endBlock이 lastBlock보다 크다면 endBlock을 la
 					<%} %>
 				<%} %>
 				
-				<%if(endBlock1<lastBlock2) {%>
+				<%if(endBlock2<lastBlock2) {%>
 					<a class="move-link2">다음</a>
 				<%} %>
 			</div>
