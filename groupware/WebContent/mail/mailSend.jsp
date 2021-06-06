@@ -37,8 +37,8 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <jsp:include page="/template/section.jsp"></jsp:include>
 <div class="container-1198">
-	<div class="text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
-		<h2>공지 메일 발송</h2>
+	<div class="text-center" style="border: none;">
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">공지 메일 발송</h2>
 	</div>
 	<form action="mailSend.gw" method ="post" onsubmit="return formCheck()" enctype="multipart/form-data">
 		<div class="row-mail">

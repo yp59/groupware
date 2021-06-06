@@ -1,3 +1,5 @@
+<%@page import="groupware.beans.employeesDto"%>
+<%@page import="groupware.beans.employeesDao"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="groupware.beans.AttendanceDto"%>
@@ -24,6 +26,7 @@ List<ScheduleIngDto> list_ing =scheduleIngDao.index_schedule();
 boardDao boarddao = new boardDao();
 List<boardDto> list = boarddao.topNotice();
 
+
 ////////////////////////////////////////////////////////////////////////
 
 
@@ -37,6 +40,15 @@ String date = simpleDateFormat.format(new Date());
 
 
 AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
+
+
+//회원정보
+
+	
+employeesDao empDao = new employeesDao();
+employeesDto empDto = empDao.loginInfo(empNo);
+
+
 %>
 
 <style>
@@ -44,6 +56,23 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 		text-align:center;
 		width:100px !important;
 	}
+	
+	h3{
+		
+		margin-right:1px;
+		margin-left:1px;
+		margin-bottom: 0;
+		background-color: rgb(52, 152, 219);
+		text-align: center;
+		color:white;
+		height: 40px;
+   		padding-top: 10px;
+   		border-radius:7px;
+	}
+	
+	
+	
+	
 </style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -101,14 +130,18 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 		
 		<!-- 사진과 정보 영역 -->
 		<div class="multi-container">
+			
+			
 			<div class="text-center">
 				<img alt="사진영역" src="<%=request.getContextPath()%>/imageFile/picture.png" width="200" height="200" >
+				
+				<div>
+				<%=empDto.getDepartment() %> <br>
+				<%=empDto.getEmpName()%><br>
+				<%=empDto.getEmail() %><br>
+				</div>
 			</div>
-			<br>
-			<div class="text-center">이름</div>
-			<div class="text-center">이메일</div>
 			
-		
 		
 		</div>
 		<!-- 사진과 정보 영역 끝 -->
@@ -120,18 +153,21 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 
 
 
+<div class="float-container">
+<!-- 하단영역 -->
 	<!-- 진행영역 -->
-	<div class="multi-container"><div class="row">
+	<div class="multi-container">
+		<h3>진행중인 일정</h3>
 		<table class="table table-border">
 			<thead>
 				<tr>
 <!-- 					<th>상황</th> -->
 <!-- 					<th>번호</th> -->
-					<th>담당부서</th>
-					<th>제목</th>
+					<th style="background-color: lightgray; border: 1px solid white;">제목</th>
+					<th style="background-color: lightgray; border: 1px solid white;">담당부서</th>
 <!-- 					<th>작성자</th> -->
 <!-- 					<th>작성일</th> -->
-					<th>마감일</th>
+					<th style="background-color: lightgray; border: 1px solid white;">마감일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -139,12 +175,12 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 				<tr>
 <%-- 					<td><%=scheduleIngDto.getSc_state() %></td> --%>
 <%-- 					<td><%=scheduleIngDto.getSc_no() %></td> --%>
-					<td><%=scheduleIngDto.getDep_name() %>
 					<td>
 						<a href="<%=request.getContextPath()%>/schedule/scheduleDetail.jsp?sc_no=<%=scheduleIngDto.getSc_no()%>">
 						<%=scheduleIngDto.getSc_name() %>
 						</a>
 					</td>
+					<td><%=scheduleIngDto.getDep_name() %>
 <%-- 					<td><%=scheduleIngDto.getEmpName() %></td> --%>
 <%-- 					<td><%=scheduleIngDto.getSc_made().substring(0,10) %></td> --%>
 					<td><%=scheduleIngDto.getSc_deadline().substring(0,10) %></td>
@@ -152,7 +188,7 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 				<%} %>
 			</tbody>
 		</table>
-	</div>
+	
 
 	<!-- 멀티컨테이너 끝 -->
 	</div>
@@ -163,13 +199,13 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 	<!-- 멀테컨테이너 시작 -->
 		
 <!-- 		공지글 영역 -->
-		<div class="float-container">
+	<h3>공지사항</h3>
 	<table class="table table-border table-hover" >
 		<thead>
-			<tr>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>날짜</th>
+			<tr> 
+				<th style="background-color: lightgray; border: 1px solid white;">제목</th>
+				<th style="background-color: lightgray; border: 1px solid white;">작성자</th>
+				<th style="background-color: lightgray; border: 1px solid white;">날짜</th>
 			</tr>
 		<tbody><%for(boardDto boarddto : list){ %> 
 					<tr>
@@ -183,7 +219,7 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 
 		</tbody>
 	</table>
-</div>
+
 	
 	
 	<!-- 멀티컨테이너 끝 -->
@@ -193,7 +229,7 @@ AttendanceDto attendanceDto = attendanceDao.get(empNo, date);
 	
 
 <!--  -->
-
+</div>
 
 
 

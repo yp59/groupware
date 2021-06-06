@@ -6,8 +6,8 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
 	<title>Layout 구현하기(1)</title>
-	<link rel="stylesheet" type="text/css" href="/study/design/common.css">
 	<style>
 		main, aside, section, article, header, footer{
 			border:1px dotted black;
@@ -20,6 +20,7 @@
 		}
 		
 		main {
+		
 			width:700px;
 			margin:auto;
 		}
@@ -28,18 +29,26 @@
 			display:block;
 			clear: both;
 		}
-		aside {
+		/*aside {
 			float:left;
 			width:20%;
 			min-height:500px;
-		}
+		}*/
 		section {
 			float:left;
-			width:80%;
+			width:100%;
 			min-height:500px;
 		}
+		.design{
 		
-	
+		width : 100%;
+		background-color :#f9f9f9;
+		}
+ 		.fon-color{
+ 		color:#3498DB;
+ 		font-size :15px;
+ 		font-weight : bold;
+ 		}
 		</style>
 </head>
 

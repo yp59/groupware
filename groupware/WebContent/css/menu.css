@@ -29,7 +29,9 @@
 	display: inline-block;
 	position: relative;
 	list-style: none;
+
 	text-align: center;
+
 }
 .menu ul {
 	display:none;  
