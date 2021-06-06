@@ -26,12 +26,15 @@ employeesDto empDto = empDao.loginInfo(empNo);
 	border: 1px solid #999;
 	border-radius: 0px;
 	margin-top:10px;
+	border-color: rgb(52, 152, 219);
+	margin-bottom:15px;
 }
 .form-input.form-input-underline {
 	width:400px;
 	border:none;
 	border-bottom: 2px solid lightgray;
 	margin-top:10px;
+	
 }
 .input-postNumber{
 	width:200px !important;
@@ -68,6 +71,33 @@ $(function(){
 
 
 <form action="signUpEdit.kh" method="post">
+		
+<div>
+부서</div>
+<div><select name ="department" class="select-form">
+		<option>인사부</option>
+		<option>총무부</option>
+		<option>회계부</option>
+		<option>기획부</option>
+		<option>영업부</option>
+	</select>
+</div>
+<div>		
+직급</div>
+<div>	
+	<select name="poNo" class="select-form">
+		<option value="1">사장</option>
+		<option value="2">부장</option>
+		<option value="3">차장</option>
+		<option value="4">과장</option>
+		<option value="5">대리</option>
+		<option value="6">사원</option>
+	</select>
+</div>		
+		
+		
+		
+		
 		<div>사번</div>
 		
 		<div><input style="margin-top: 10px;" type = "text" name="empNo" value="<%=empNo%>" required disabled="disabled" class="form-input form-input-underline">
@@ -89,29 +119,11 @@ $(function(){
 <div>
 <input type="text" name="address" value="<%=empDto.getAddress()%>" disabled="disabled" class="form-input form-input-underline">
 </div>
-<div>
-부서</div>
-<div><select name ="department" class="select-form">
-		<option>인사부</option>
-		<option>총무부</option>
-		<option>회계부</option>
-		<option>기획부</option>
-		<option>영업부</option>
-	</select>
-</div>
+
+
+
+
 <%-- <input type="text" value=<%=empDto.getDepartment()%> name="department" required="required"> --%>
-<div>		
-직급</div>
-<div>	
-	<select name="poNo" class="select-form">
-		<option value="1">사장</option>
-		<option value="2">부장</option>
-		<option value="3">차장</option>
-		<option value="4">과장</option>
-		<option value="5">대리</option>
-		<option value="6">사원</option>
-	</select>
-</div>
 <%-- <input type="text" value=<%=empDto.getPono() %> name="po_no" value="<%=empDto.getPono() %>" required="required"> --%>
 
 <div>
