@@ -19,13 +19,13 @@ public class SignUpEditServlet extends HttpServlet {
 			req.getParameter("UTF-8");
 			employeesDto empDto = new employeesDto();
 			
+			empDto.setDepartment(req.getParameter("department"));
+			empDto.setPono(Integer.parseInt(req.getParameter("poNo")));
 			empDto.setEmpNo(req.getParameter("empNo"));
 			empDto.setEmpName(req.getParameter("empName"));
 			empDto.setEmpPhone(req.getParameter("empPhone"));
 			empDto.setEmail(req.getParameter("email"));
 			empDto.setAddress(req.getParameter("address"));
-			empDto.setDepartment(req.getParameter("department"));
-			empDto.setPono(Integer.parseInt(req.getParameter("po_no")));
 			
 
 
