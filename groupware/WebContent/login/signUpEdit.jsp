@@ -34,6 +34,7 @@ employeesDto empDto = empDao.loginInfo(empNo);
 	border:none;
 	border-bottom: 2px solid lightgray;
 	margin-top:10px;
+	margin-bottom:15px;
 	
 }
 .input-postNumber{
