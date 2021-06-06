@@ -71,7 +71,7 @@ $(function(){
 <div class="text-right">
 <a href = "<%=request.getContextPath()%>/address/addressList.jsp?manage=1" class="link-btn" style="margin-top:15px; ">취소</a></div>
 
-<form action="signUpEdit.kh" method="post">
+<form action="signUpEdit.kh" method="get">
 		
 <div>
 부서</div>
