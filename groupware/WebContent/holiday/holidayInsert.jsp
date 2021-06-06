@@ -51,6 +51,10 @@
 </script>
 
 <div class="container-600 center">
+
+	<div class="row">
+		<h2>휴가 신청</h2>
+	</div>
 	<form action="holidayInsert.gw" method="post">
 	
 		<div class="row text-left">
