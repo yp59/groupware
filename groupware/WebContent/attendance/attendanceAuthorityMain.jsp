@@ -25,12 +25,12 @@
 	int pageSize;
 	try{
 		pageSize = Integer.parseInt(request.getParameter("pageSize"));
-		if(pageSize < 5){
+		if(pageSize < 7){
 			throw new Exception();
 		}
 	}
 	catch(Exception e){
-		pageSize = 5; //기본값 5개
+		pageSize = 7; //기본값 7개
 	}
 	
 	request.setCharacterEncoding("UTF-8");
@@ -47,9 +47,9 @@
 	AttendanceDao attendanceDao = new AttendanceDao();
 	int count;
 	
-	if(isSearch){
+	if(isSearch){ //검색했을때
 		
-		if(notSearch){
+		if(notSearch){ //검색 value가 ""일때
 			count = attendanceDao.getCount();
 			attendanceList = attendanceDao.list(startRow,endRow);
 		}
@@ -89,13 +89,20 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
+<%if(isSearch){ %>
+<script>
+	$(function(){
+		$("select[name=employeesChoice]").val("<%=empNo%>");
+	});
+</script>
+<%} %>
+
 <%
 	String pattern = "yyyy-MM-dd"; 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 	String date = simpleDateFormat.format(new Date());
 	
 %>
-
 
 <script>
 	$(function(){
@@ -129,8 +136,9 @@
       <h2>출퇴근 관리</h2>
    </div>
 
-   <div class="row text-center">
-	   <form action="attendanceAuthorityMain.jsp" method="get"> 
+   <div class="row text-center container-1100">
+	   <form action="attendanceAuthorityMain.jsp" method="get" class="search-form">
+			<input type="hidden" name="pageNo">
 			<select name="employeesChoice" class="form-input form-input-inline" style="width:20% !important">
 				<option value="">사원 선택</option>
 				<%for(employeesDto employee : employeesList){%>
@@ -142,7 +150,7 @@
 	</div>
    
    
-   <div class="row">
+   <div class="row container-1100">
       <table class="table table-border text-center">
          <thead>
             <tr>
@@ -190,11 +198,8 @@
       </table>
    </div>
    
-  	<form class="search-form" action="attendanceAuthorityMain.jsp" method="get">
-		<input type="hidden" name="pageNo">
-	</form>
    
-   <div class="row">
+   <div class="row container-1100" >
 		<!-- 페이지 네비게이션 자리 -->
 		<div class="pagination">
 		

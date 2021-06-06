@@ -86,7 +86,7 @@ public class AttendanceDao {
 		
 		String sql ="select sum(att_overtime) sumovertime "
 				+ "from attendance where emp_no= ? and "
-				+ "att_date between to_date('#1-#2-01') and to_date('#1-#2-31')";
+				+ "instr(att_date,'#1-#2')>0";
 		
 		sql = sql.replaceAll("#1", year);
 		sql = sql.replaceAll("#2", month);
