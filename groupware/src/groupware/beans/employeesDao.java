@@ -293,10 +293,11 @@ public class employeesDao {
 		PreparedStatement ps =con.prepareStatement(sql);
 		ps.setInt(1, empDto.getPono());
 		ps.setString(2, empDto.getEmpName());
-		ps.setString(3, empDto.getEmail());
-		ps.setString(4, empDto.getAddress());
-		ps.setString(5, empDto.getDepartment());
-		ps.setString(6, empDto.getEmpNo());
+		ps.setString(3, empDto.getEmpPhone());
+		ps.setString(4, empDto.getEmail());
+		ps.setString(5, empDto.getAddress());
+		ps.setString(6, empDto.getDepartment());
+		ps.setString(7, empDto.getEmpNo());
 		
 		int count = ps.executeUpdate();
 		

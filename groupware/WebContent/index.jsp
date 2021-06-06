@@ -69,10 +69,11 @@ employeesDto empDto = empDao.loginInfo(empNo);
    		padding-top: 10px;
    		border-radius:7px;
 	}
-	
-	
-	
-	
+.multi-container-pop{
+		float:right;
+		width:50%;
+		margin-top: 15%;
+		}
 </style>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -133,12 +134,12 @@ employeesDto empDto = empDao.loginInfo(empNo);
 			
 			
 			<div class="text-center">
-				<img alt="사진영역" src="<%=request.getContextPath()%>/imageFile/picture.png" width="200" height="200" >
+				<img alt="사진영역" src="<%=request.getContextPath()%>/imageFile/picture.png" width="200" height="200" ><br><br>
 				
 				<div>
-				<%=empDto.getDepartment() %> <br>
-				<%=empDto.getEmpName()%><br>
-				<%=empDto.getEmail() %><br>
+				<%=empDto.getDepartment() %> <br><br>
+				<%=empDto.getEmpName()%><br><br>
+				<%=empDto.getEmail() %><br><br>
 				</div>
 			</div>
 			
@@ -156,7 +157,7 @@ employeesDto empDto = empDao.loginInfo(empNo);
 <div class="float-container">
 <!-- 하단영역 -->
 	<!-- 진행영역 -->
-	<div class="multi-container">
+	<div class="multi-container-pop" style="border-bottom: 2px solid rgb(52, 152, 219); margin-bottom: 10px; padding-bottom: 10px;">
 		<h3>진행중인 일정</h3>
 		<table class="table table-border">
 			<thead>
@@ -195,7 +196,7 @@ employeesDto empDto = empDao.loginInfo(empNo);
 	
 	
 	
-	<div class="multi-container">
+	<div class="multi-container-pop" style="border-bottom: 2px solid rgb(52, 152, 219); margin-bottom: 10px; padding-bottom: 10px;">
 	<!-- 멀테컨테이너 시작 -->
 		
 <!-- 		공지글 영역 -->
@@ -225,11 +226,5 @@ employeesDto empDto = empDao.loginInfo(empNo);
 	<!-- 멀티컨테이너 끝 -->
 	</div>
 
-
-
-<!--  -->
 </div>
-
-
-
 <jsp:include page="/template/footer.jsp"></jsp:include>     
