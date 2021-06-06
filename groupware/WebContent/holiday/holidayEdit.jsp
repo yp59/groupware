@@ -65,7 +65,7 @@
 <div class="container-600">
 	
 	<div class="row">
-		<h2>아이템 정보 수정</h2>
+		<h2>휴가 수정</h2>
 	</div>
 	
 	<form action="holidayEdit.gw" method="post">
