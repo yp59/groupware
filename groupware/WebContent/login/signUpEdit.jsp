@@ -6,8 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+request.setCharacterEncoding("UTF-8");
 // addressDetail에서 파라미터 받아옴.
-String empNo = (String)request.getParameter("empNo");
+String empNo =request.getParameter("empNo");
 
 
 employeesDao empDao = new employeesDao();
