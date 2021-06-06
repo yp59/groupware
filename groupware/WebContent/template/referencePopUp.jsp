@@ -10,7 +10,7 @@
 	<title>Layout 구현하기(1)</title>
 	<style>
 		main, aside, section, article, header, footer{
-			border:1px dotted black;
+			
 		}
 		
 		/* 리셋 스타일 */
