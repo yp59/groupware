@@ -55,9 +55,12 @@
 	}
 %>
 <style>
-	.container-600{
+	.container-1100{
 		position:relative;
 		top:30px;
+	}
+	.link-btn2 {
+		width:65%;
 	}
 </style> 
 <jsp:include page="/template/header.jsp"></jsp:include>
@@ -95,20 +98,18 @@
 	});
 </script>
 
-<div class="container-600">
-   <div class="row">
+<div class="container-1100">
+   <div class="text-center" style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>휴가 신청 내역</h2>
    </div>
    
-   <div class= "row float-container">
-   		<div class="left" style="margin-top:5px;margin-left:5px"> 남은 휴가 일수 : <%=employeesDto.getHolidayCount()%> </div>
-   		<div class="right">	  
-      		<a href="holidayInsert.jsp" class="link-btn holiday-btn">휴가 신청</a>
-   		</div>  
+   <div class="text-left" style="margin-top:1%;">
+   		 <span>남은 휴가 일수 : <%=employeesDto.getHolidayCount()%></span>
+      	 <a href="holidayInsert.jsp" class="link-btn holiday-btn"  style="margin-left:1%">휴가 신청</a>  
    </div>
    
    <div class="row">
-      <table class="table table-striped">
+      <table class="table table-border text-center">
          <thead>
             <tr>
                <th>휴가 번호</th>
@@ -125,7 +126,7 @@
             <%for(HolidayDto holidayDto : holidayList){ %>
             <tr>
                <td>
-               <a href="holidayDetail.jsp?holNo=<%=holidayDto.getHolNo()%>">
+               <a href="holidayDetail.jsp?holNo=<%=holidayDto.getHolNo()%>" class="link-btn2">
                <%=holidayDto.getHolNo()%>
                </a>
                </td>
