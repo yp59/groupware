@@ -160,14 +160,14 @@ $(function(){
 <div class="container-800">
 	<div class="row">
 		<%if(isManage) {%>
-		<h2>사원관리</h2>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">사원관리</h2>
 		<%} else { %>
 		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">주소록</h2>
 		<%} %>
 	</div>
 	<!-- 관리자일 경우에만 사원등록 기능 이용가능 -->
 	<%if(isManage) {%>
-	<div class="row">
+	<div class= "text-right" style="margin-right: 15px; margin-bottom:20px;">
 		<a class="link-btn" href="<%=request.getContextPath()%>/login/signUp.jsp">사원등록</a>
 	</div>
 	<%} %>

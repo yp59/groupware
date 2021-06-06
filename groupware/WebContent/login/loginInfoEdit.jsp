@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="groupware.beans.employeesDto"%>
 <%@page import="groupware.beans.employeesDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,10 +6,35 @@
 <%
 String empNo = (String)session.getAttribute("id");
 
+employeesDao employeesDao = new employeesDao();
+List<employeesDto> employeesList = employeesDao.list();
 %>
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 <jsp:include page="/template/section.jsp"></jsp:include>
+<style>
+.select-form{
+	width: 400px;
+	padding: .8em .5em;
+	border: 1px solid #999;
+	border-radius: 0px;
+	margin-top:10px;
+}
+.form-input.form-input-underline {
+	width:400px;
+	border:none;
+	border-bottom: 2px solid lightgray;
+	margin-top:10px;
+}
+.input-postNumber{
+	width:200px !important;
+}
+.input-tel{
+	width:165px !important;
+}
+ 
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
@@ -129,26 +155,52 @@ function postNumSearch() {//참고항목을 제외한 다음 주소 api 함수
     }).open();
 }
 </script>
+<script>
+<% for(employeesDto employee : employeesList){%>
+	$(function(){
+		$("input[name=empNo]").on("input", function(){
+			if($(this).val() == <%=employee.getEmpNo()%>){
+				$(this).val("");
+				$(this).next("p").text("이미 존재하는 사원번호 입니다.");
+			}
+		});
+	});
+<%}
+%>
+</script>
 
+
+<div>
+<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">회원정보 수정</h2>
+</div>
+<div class="text-right">
+<a href = "<%=request.getContextPath()%>/login/loginInfo.jsp" class="link-btn" style="margin-bottom: 20px;">취소</a></div>
 <form action="loginInfoEdit.gw" method="post"><!-- 회원정보 수정 입력란 -->
 		<input type = "hidden" name="empNo" value="<%=empNo%>">
-비밀번호 : <input type="password" name="empPw" pattern="[a-zA-Z0-9]{8,16}" required onblur="confirmPw();">
+
+<div>
+비밀번호 : <input type="password" name="empPw" pattern="[a-zA-Z0-9]{8,16}" required onblur="confirmPw();" class="form-input form-input-underline">
 		<span class="error"></span><br><br>
-비밀번호 확인 : <input type ="password" class="rePw" pattern="[a-zA-Z0-9]{8,16}" required onblur="reconfirmPw();">
+</div>
+<div>
+비밀번호 확인 : <input type ="password" class="rePw form-input form-input-underline" pattern="[a-zA-Z0-9]{8,16}" required onblur="reconfirmPw();">
 			<span class="error"></span><br><br>
-
+</div>
+<div>
 이름 : <input type="text" name="empName" pattern="[가-힣]{2,7}"
-		 required onblur="confirmName();">
+		 required onblur="confirmName();" class="form-input form-input-underline">
 		<span class="error"></span><br><br>
-
+</div>
+<div>
 전화번호 : 010-<input type="text" name="empPhonemid" pattern="\d{4}"
-		 required onblur="confirmPhone();">
-		 -<input type="text" name="empPhonelast" pattern="\d{4}" required onblur="confirmPhone2();">
+		 required onblur="confirmPhone();" class="form-input form-input-underline">
+		 -<input type="text" name="empPhonelast" pattern="\d{4}" required onblur="confirmPhone2();" class="form-input form-input-underline">
 		<span class="error"></span><br><br>
-
-이메일 : <input type="text" name="emailLocal" required>
+</div>
+<div>
+이메일 : <input type="text" name="emailLocal" required class="select-form">
 		@
-		<select name="emailDomain">
+		<select name="emailDomain" class="select-form">
 		<option value="">선택하세요</option>
 		<option>gmail.com</option>
 		<option>naver.com</option>
@@ -160,14 +212,20 @@ function postNumSearch() {//참고항목을 제외한 다음 주소 api 함수
 		<option>intizen.com</option>
 		<!-- 직접입력 아직 미구현 -->
 	</select><span class="error"></span><br><br>
+</div>
+
+<div>
+<input type="text" name="postNumber" placeholder="우편번호" class="form-input form-input-underline"> <!-- 다음 api를 활용한 주소 넣기 -->
+<input type="button" onclick="postNumSearch();" value="우편번호 찾기" class="form-btn form-btn-inline"><br>
+<input type="text" name="addressNum" placeholder="주소" class="form-input form-input-underline">
+<input type="text" name="addressDetail" placeholder="상세주소" class="form-input form-input-underline"><br><br>
+<!-- <input type="text" name="addressExtra" placeholder="참고항목">  -->
+</div>
 
 
-<input type="text" name="postNumber" placeholder="우편번호"> <!-- 다음 api를 활용한 주소 넣기 -->
-<input type="button" onclick="postNumSearch();" value="우편번호 찾기"><br>
-<input type="text" name="addressNum" placeholder="주소">
-<input type="text" name="addressDetail" placeholder="상세주소">
-<!-- <input type="text" name="addressExtra" placeholder="참고항목">  --><br>
-<input type="submit" value="회원정보 수정">
+
+<div>
+<input type="submit" value="회원정보 수정" class="form-btn form-btn-positive"></div>
 </form>
-<a href = "<%=request.getContextPath()%>/login/loginInfo.jsp">취소</a>
+
 <jsp:include page="/template/footer.jsp"></jsp:include>

@@ -86,9 +86,9 @@ List<DepartmentDto>list = departmentDao.list();
 	
 	
 	</div>
-	<div>
-		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4>
-	</div>
+<!-- 	<div> -->
+<%-- 		<h4>로그인상태: <%=request.getSession().getAttribute("id") %></h4> --%>
+<!-- 	</div> -->
 
 </div>
 
