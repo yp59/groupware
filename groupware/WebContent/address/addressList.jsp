@@ -167,7 +167,7 @@ $(function(){
 	</div>
 	<!-- 관리자일 경우에만 사원등록 기능 이용가능 -->
 	<%if(isManage) {%>
-	<div class="row">
+	<div class= "text-right" style="margin-right: 15px; margin-bottom:20px;">
 		<a class="link-btn" href="<%=request.getContextPath()%>/login/signUp.jsp">사원등록</a>
 	</div>
 	<%} %>

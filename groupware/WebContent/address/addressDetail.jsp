@@ -23,7 +23,6 @@ boolean isManage = authLev==1;
 
 <style>
 	h2{
-		color:gray;
 		text-align:center;
 	}
 </style>
@@ -80,7 +79,7 @@ boolean isManage = authLev==1;
 	
 		<!-- 관리자일 경우에만 사원정보 수정가능 -->
 		<%if(isManage) {%>
-		<a href="<%=request.getContextPath()%>/login/signUpEdit.jsp?empNo=<%=emp_no%>"  class="link-btn ">정보수정</a>
+		<a href="<%=request.getContextPath()%>/login/signUpEdit.jsp?empNo=<%=emp_no%>"  class="link-btn ">인사관리</a>
 		<%} %>
 	
 	</div>

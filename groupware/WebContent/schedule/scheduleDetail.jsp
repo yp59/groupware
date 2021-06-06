@@ -11,7 +11,7 @@ int sc_no= Integer.parseInt(request.getParameter("sc_no"));
 ScheduleDao scheduleDao = new ScheduleDao();
 ScheduleDto scheduleDto = scheduleDao.detail(sc_no);
 
-
+            
 boolean amI = request.getSession().getAttribute("id").equals(scheduleDto.getEmpNo());
 
 

@@ -223,4 +223,24 @@ public class ScheduleDao {
 			
 		}
 		
+//		//스케줄 리스트 달력
+//		public List<ScheduleDto> list() throws Exception {
+//			Connection con=jdbcUtils.getConnection();
+//			String sql ="select*from schedule";
+//			PreparedStatement ps = con.prepareStatement(sql);
+//			ResultSet rs = ps.executeQuery();
+//			
+//			List<ScheduleDto> list = new ArrayList<>();
+//			while(rs.next()) {
+//				ScheduleDto scheduleDto = new ScheduleDto();
+//				scheduleDto.setSc_name(rs.getString("sc_name"));
+//				scheduleDto.setSc_deadline(rs.getString("sc_deadline"));
+//				list.add(scheduleDto);
+//			}
+//			
+//			return list;
+//		}
+		
+		
+		
 }
