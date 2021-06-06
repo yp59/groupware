@@ -1,4 +1,6 @@
 
+<%@page import="groupware.beans.DepartmentDto"%>
+<%@page import="groupware.beans.DepartmentDao"%>
 <%@page import="java.util.List"%>
 
 <%@page import="groupware.beans.employeesDto"%>
@@ -13,7 +15,6 @@ String empNo =request.getParameter("empNo");
 
 employeesDao empDao = new employeesDao();
 employeesDto empDto = empDao.loginInfo(empNo); 
-
 
 
 
@@ -110,7 +111,7 @@ $(function(){
 </div>
 <div>전화번호</div> 
 <div>
-<input type="text" value="<%=empDto.getEmpPhone()%>" readonly class="form-input form-input-underline">
+<input type="text" name ="empPhone" value="<%=empDto.getEmpPhone()%>" readonly class="form-input form-input-underline">
 </div>
 <div>이메일</div>
 <div><input type="text" name="email" value="<%=empDto.getEmail()%>" readonly class="form-input form-input-underline">
