@@ -208,7 +208,8 @@ function monthSelect(monthList){
 	</div>
 
 	<div class="row">
-		<form action="salaryMain.jsp" method="get">
+		<form action="salaryMain.jsp" method="get" class="search-form">
+			<input type="hidden" name="pageNo">
 			<select name="searchYear" class="form-input form-input-inline selectSearch">
 			<option value="">년도 선택</option>
 			<%for(String year : yearList){ %>
@@ -262,11 +263,7 @@ function monthSelect(monthList){
 			</tbody>
 		</table>
 	</div>
-			   	
-	<form class="search-form" action="salaryMain.jsp" method="get">
-		<input type="hidden" name="pageNo">
-	</form>
-   
+	
    <div class="row">
 		<!-- 페이지 네비게이션 자리 -->
 		<div class="pagination">
