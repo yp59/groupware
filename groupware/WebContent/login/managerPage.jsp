@@ -21,7 +21,7 @@
 <jsp:include page="/template/header.jsp"></jsp:include>
 <div class="container-500">
 	<div class="row" style="border: none;">
-		<h2>관리자페이지</h2>	
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">관리자페이지</h2>	
 	</div>
 	
 	<div class="row" style="border: none;">

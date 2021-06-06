@@ -129,11 +129,15 @@ function postNumSearch() {//참고항목을 제외한 다음 주소 api 함수
     }).open();
 }
 </script>
-
+<div>
+<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">회원정보 수정</h2>
+</div>
+<div>
 <form action="loginInfoEdit.gw" method="post"><!-- 회원정보 수정 입력란 -->
 		<input type = "hidden" name="empNo" value="<%=empNo%>">
 비밀번호 : <input type="password" name="empPw" pattern="[a-zA-Z0-9]{8,16}" required onblur="confirmPw();">
 		<span class="error"></span><br><br>
+</div>
 비밀번호 확인 : <input type ="password" class="rePw" pattern="[a-zA-Z0-9]{8,16}" required onblur="reconfirmPw();">
 			<span class="error"></span><br><br>
 
