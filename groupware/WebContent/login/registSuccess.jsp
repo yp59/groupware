@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html> 
-<html>
-<head>
-<meta charset="UTF-8">
-<title>사원 등록 완료</title>
-</head>
-<body>
+<jsp:include page ="/template/header.jsp"></jsp:include>
+<style>
+	h2{
+		color: rgb(52, 152, 219);
+		text-align:center;
+	}
 
-<h1>사원 등록 완료</h1>
-<a href="<%=request.getContextPath()%>/address/addressList.jsp?manage=1">사원정보관리</a>
-</body>
-</html>
+
+</style>
+	
+	<div class="row">
+		<h2>
+			# 사원 등록이 완료되었습니다.
+		</h2>
+	</div>
+	<div class="row">
+		<a href="<%=request.getContextPath()%>/address/addressList.jsp?manage=1" class="link-btn">사원정보관리</a>
+	</div>
+<jsp:include page ="/template/footer.jsp"></jsp:include>
