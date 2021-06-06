@@ -160,7 +160,7 @@ $(function(){
 <div class="container-800">
 	<div class="row">
 		<%if(isManage) {%>
-		<h2>사원관리</h2>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">사원관리</h2>
 		<%} else { %>
 		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">주소록</h2>
 		<%} %>
