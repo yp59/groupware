@@ -19,8 +19,7 @@ boolean amI = request.getSession().getAttribute("id").equals(scheduleDto.getEmpN
 employeesDao empDao = new employeesDao(); 
 
 
-boolean authLev = (int)request.getSession().getAttribute("authorityLevel")==1;
-// (int)request.getSession().getAttribute("authorityLevel")==2;
+boolean authLev = (int)request.getSession().getAttribute("authorityLevel")==1|| (int)request.getSession().getAttribute("authorityLevel")==2;
 
 
 
