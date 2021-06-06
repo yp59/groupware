@@ -288,15 +288,15 @@ public class employeesDao {
 	public boolean edit (employeesDto empDto) throws Exception {
 		Connection con = jdbcUtils.getConnection();
 		
-		String sql ="update employees set po_no=?, emp_name=?, emp_phone=?, email=?, address=?, department=? where emp_no=?";
+		String sql ="update employees set  department=?, po_no=?, emp_name=?, emp_phone=?, email=?, address=? where emp_no=?";
 		
 		PreparedStatement ps =con.prepareStatement(sql);
-		ps.setInt(1, empDto.getPono());
-		ps.setString(2, empDto.getEmpName());
-		ps.setString(3, empDto.getEmpPhone());
-		ps.setString(4, empDto.getEmail());
-		ps.setString(5, empDto.getAddress());
-		ps.setString(6, empDto.getDepartment());
+		ps.setString(1, empDto.getDepartment());
+		ps.setInt(2, empDto.getPono());
+		ps.setString(3, empDto.getEmpName());
+		ps.setString(4, empDto.getEmpPhone());
+		ps.setString(5, empDto.getEmail());
+		ps.setString(6, empDto.getAddress());
 		ps.setString(7, empDto.getEmpNo());
 		
 		int count = ps.executeUpdate();
