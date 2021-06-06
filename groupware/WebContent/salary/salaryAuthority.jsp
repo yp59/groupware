@@ -19,7 +19,7 @@
 	String searchMonth = request.getParameter("searchMonth");
 	//searchMonth = searchMonth.replace("월","");
 	
-	int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue(); //관리자번호 
+	int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue(); //관리자번호 세션
 	
 	int pageNo;//현재 페이지 번호
 	try{
@@ -35,12 +35,12 @@
 	int pageSize;
 	try{
 		pageSize = Integer.parseInt(request.getParameter("pageSize"));
-		if(pageSize < 5){
+		if(pageSize < 7){
 			throw new Exception();
 		}
 	}
 	catch(Exception e){
-		pageSize = 5;//기본값 5개
+		pageSize = 7;//기본값 7개
 	}
 	
 	//(2) rownum의 시작번호(startRow)와 종료번호(endRow)를 계산
@@ -210,7 +210,8 @@ function monthSelect(monthList){
 	</div>
 	
 	<div class="row">
-		<form action="salaryAuthority.jsp" method="get">
+		<form action="salaryAuthority.jsp" method="get" class="search-form">
+			<input type="hidden" name="pageNo">
 			<select name="searchYear" class="form-input form-input-inline" style="width:15%">
 			<option value="">년도 선택</option>
 			<%for(String year : yearList){ %>
@@ -272,9 +273,6 @@ function monthSelect(monthList){
 		</table>
 	</div>
 			   	
-	<form class="search-form" action="salaryAuthority.jsp" method="get">
-		<input type="hidden" name="pageNo">
-	</form>
    
    <div class="row">
 		<!-- 페이지 네비게이션 자리 -->

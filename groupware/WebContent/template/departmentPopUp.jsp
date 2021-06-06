@@ -13,7 +13,7 @@
 	
 	<style>
 		main, aside, section, article, header, footer{
-			border:1px dotted black;
+		
 		}
 		
 		/* 리셋 스타일 */
