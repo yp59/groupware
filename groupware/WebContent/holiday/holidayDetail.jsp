@@ -50,11 +50,11 @@
 			</tr>
 			<tr>
 				<th>시작일</th>
-				<td><%=holidayDto.getHolStart()%></td>
+				<td><%=holidayDto.getHolStart().substring(0,10)%></td>
 			</tr>
 			<tr>
 				<th>종료일</th>
-				<td><%=holidayDto.getHolEnd()%></td>
+				<td><%=holidayDto.getHolEnd().substring(0,10)%></td>
 			</tr>
 			<tr>
 				<th>작성일</th>

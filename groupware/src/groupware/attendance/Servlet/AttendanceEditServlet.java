@@ -25,7 +25,10 @@ public class AttendanceEditServlet extends HttpServlet{
 			AttendanceDao attendanceDao = new AttendanceDao();
 			
 			if(attendanceDao.edit(empNo,attDate,attend,leave)) {
-				resp.sendRedirect("attendanceAuthorityDetail.jsp?attDate="+attDate+"&empNo="+empNo);
+				if(attendanceDao.totaltime(empNo) && attendanceDao.overtime(empNo)) { //total:분단위, overtime:시간단위
+					resp.sendRedirect("attendanceAuthorityDetail.jsp?attDate="+attDate+"&empNo="+empNo);
+				}
+				
 			}
 			else {
 				throw new Exception();
