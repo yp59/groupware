@@ -19,7 +19,7 @@
 	String searchMonth = request.getParameter("searchMonth");
 	//searchMonth = searchMonth.replace("월","");
 	
-	int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue(); //관리자번호 
+	int authoritylevel = ((Integer)(session.getAttribute("authorityLevel"))).intValue(); //관리자번호 세션
 	
 	int pageNo;//현재 페이지 번호
 	try{
