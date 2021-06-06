@@ -14,7 +14,7 @@ import groupware.beans.employeesDto;
 @WebServlet(urlPatterns = "/login/signUpEdit.kh")
 public class SignUpEditServlet extends HttpServlet {
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			req.getParameter("UTF-8");
 			employeesDto empDto = new employeesDto();
@@ -37,7 +37,7 @@ public class SignUpEditServlet extends HttpServlet {
 			
 			
 			
-			resp.sendRedirect("signUpEdit.jsp");
+			resp.sendRedirect(req.getContextPath()+"/address/addressDetail.jsp?empNo="+empDto.getEmpNo());
 		
 			
 		}catch(Exception e) {
