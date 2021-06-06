@@ -39,7 +39,7 @@
 		}
 	}
 	catch(Exception e){
-		pageSize = 5;//페이지당 게시글 수 설정
+		pageSize = 10;//페이지당 게시글 수 설정
 	}
 	
 	//(2) rownum의 시작번호(startRow)와 종료번호(endRow)를 계산
@@ -150,8 +150,8 @@ min-height:10px;
 	});
 </script>
 
-<div class= "container-1200 text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
-<h2>공지 게시판</h2>
+<div class= "container-1200 text-center" style="border: none;">
+<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">공지 게시판</h2>
 	<table class="table table-border table-hover">
 		<thead>
 			<tr>

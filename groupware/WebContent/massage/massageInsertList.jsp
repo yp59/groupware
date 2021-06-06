@@ -82,7 +82,7 @@ List<AddressListDto> list = addressListDao.list();
 
 	<div class="main">	
 		<div class="header row">
-			<h2>사원 검색</h2>
+			<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">사원 검색</h2>
 		</div>
 		<div class="section">
 			<div class="row">

@@ -211,13 +211,13 @@ window.onload = function() {
 
 
 
-<div class="row">
+<div class="row" style="border: none;">
 	<h2>사원등록</h2>
 </div>
 
-<div class="container-400">
+<div class="container-1200" style="border: none; border-top: 2px solid rgb(102, 177, 227); margin-bottom: 10px;">
 	<form action="signUpInsert" method="post">
-		<div>사원번호</div>
+		<div style="margin-top: 10px;">사원번호</div>
 		<div>
 			<input class="form-input form-input-underline" type="text" name="empNo" pattern="[0-9a-z]{4,10}" required onblur="confirmId();">
 			<p class="error"></p><br>

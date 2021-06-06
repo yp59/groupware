@@ -146,14 +146,17 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 	
 });
 </script>
-<div class = "container-900">
+<div class = "container-1200">
+<div style="text-align: center; border-bottom: 2px solid rgb(102, 177, 227); margin-bottom: 10px;">
+<h2>나의 결재 목록</h2>
+</div>
 
 <form class = "search-form" action="approvalList.jsp">
 <input type="hidden" name="pageNo">
 
 <div class = "text-right">
 <input type="text" name="keyword" placeholder="기안서 검색"><!-- 검색 keyword 입력창-->
-<input type ="submit" value = "검색">
+<input class = "link-btn" type ="submit" value = "검색">
 </div>
 
 </form>
@@ -179,7 +182,7 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					<a href="<%=request.getContextPath()%>
 					/approval/approvalDetail.jsp?appNo=
 					<%=approvaldto.getAppNo()%>&DirType=<%=approvaldto.getDirType()%>&appState=<%=approvaldto.getAppState()%>" 
-					onclick="window.name = 'appList'; window.open(this.href, '_blank', 'width=700, height=700'); return false;">
+					onclick="window.name = 'appList'; window.open(this.href, '_blank', 'width=750, height=750'); return false;">
 					<!-- 기안서에 현재 선택한 appNo을 보내는 구문 -->	
 					<%=approvaldto.getAppTitle()%>
 					</a>	
@@ -187,8 +190,8 @@ var option ='width='+ _width +', height='+ _height +', left=' + _left + ', top='
 					</td>
 					<td><%=approvaldto.getEmpName()%>
 					</td>
-					<td><%=approvaldto.getAppDateStart()%></td>
-					<td><%=approvaldto.getAppDateEnd()%></td>
+					<td><%=approvaldto.getAppDateStart().substring(0, 10)%></td>
+					<td><%=approvaldto.getAppDateEnd().substring(0, 10)%></td>
 					<td><%=approvaldto.getAppState()%></td>
 			
 				</tr>

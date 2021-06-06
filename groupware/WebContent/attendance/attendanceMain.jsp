@@ -125,7 +125,7 @@
     
 <jsp:include page="/template/header.jsp"></jsp:include>
 
-<div class="container-1100">
+<div class="container-1200">
  <div class="text-center" style="border-bottom: 2px solid rgb(52, 152, 219);">
       <h2>출퇴근 현황</h2>
    </div>

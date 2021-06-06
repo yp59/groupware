@@ -105,6 +105,7 @@ public List<directAppDto> sequence(int appNo)throws Exception{//전체 결재자
 			list.add(directappdto);
 			
 		}
+		con.close();
 		return list;
 	}
 
@@ -151,6 +152,7 @@ public directAppDto sequence(int appNo,String id)throws Exception{//내 결재 �
 		directappdto.setPoNo(rs.getInt(8));
 	
 	}
+	con.close();
 	return directappdto;
 }
 
@@ -214,7 +216,7 @@ public List<directAppDto> appState(int appNo)throws Exception{
 			
 			list.add(directappdto);
 		}
-		
+		con.close();
 		return list;//서블릿에서 해결하자
 }
 public void stateUpdate(String state,int appNo)throws Exception{
@@ -228,7 +230,7 @@ public void stateUpdate(String state,int appNo)throws Exception{
 	ps.setInt(2, appNo);
 	
 	ps.executeUpdate();
-	
+	con.close();
 }
 
 }

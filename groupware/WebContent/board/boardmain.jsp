@@ -131,8 +131,8 @@ min-height:10px;
 		});
 	});
 </script>
-<div class= "container-1200 text-center" style="border: none; border-top: 2px solid rgb(52, 152, 219);">
-	<h2>전체 게시판</h2>
+<div class= "container-1200 text-center" style="border: none;">
+	<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">전체 게시판</h2>
 	<table class="table table-border table-hover" >
 		<thead>
 			<tr>

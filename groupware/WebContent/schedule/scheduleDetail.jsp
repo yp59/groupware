@@ -36,14 +36,14 @@ boolean authLev = (int)request.getSession().getAttribute("authorityLevel")==1||
 </script>
 <style>
 	h2{
-		color:gray;
+/* 		color:gray; */
 		text-align:center;
 	}
 </style>
 
 
 <div class="container-800">
-	<h2>세부일정</h2>
+	<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">세부일정</h2>
 	<h4>번호:<%=scheduleDto.getSc_no()%></h4>
 	<h4>상태:<%=scheduleDto.getSc_state()%></h4>
 	

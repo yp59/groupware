@@ -61,7 +61,7 @@ if(end_block>last_block){
 
 <div class="container-800">
 	<div class="row">
-		<h2>메세지 발신함</h2>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">메세지 발신함</h2>
 	</div>
 	<div class="row">
 		<table class="table table-border">
