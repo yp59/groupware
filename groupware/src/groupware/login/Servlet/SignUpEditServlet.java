@@ -37,7 +37,7 @@ public class SignUpEditServlet extends HttpServlet {
 			
 			
 			
-			resp.sendRedirect("signUpEdit.jsp?empNo="+empDto.getEmpNo());
+			resp.sendRedirect(req.getContextPath()+"/address/addressDetail.jsp?empNo="+empDto.getEmpNo());
 		
 			
 		}catch(Exception e) {
