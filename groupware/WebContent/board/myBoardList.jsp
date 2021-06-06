@@ -52,11 +52,11 @@
 	section {
 	float:left;
 	width:100%;
-	min-height:400px;
+	min-height:420px;
 	}
 	article {
 	height:10px;
-	min-height: 390px;
+	min-height: 410px;
 	}
 	footer {
 	min-height:10px;

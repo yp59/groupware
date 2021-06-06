@@ -53,7 +53,7 @@
 <div class="container-600 center">
 
 	<div class="row">
-		<h2>휴가 신청</h2>
+		<h2 style="border-bottom: 2px solid rgb(52, 152, 219); padding-bottom: 20px;">휴가 신청</h2>
 	</div>
 	<form action="holidayInsert.gw" method="post">
 	
