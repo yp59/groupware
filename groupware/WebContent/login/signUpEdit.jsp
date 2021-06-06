@@ -46,7 +46,6 @@ employeesDto empDto = empDao.loginInfo(empNo);
 }
  
 </style>
-
 <script>
 $(function(){
 	$("select[name=department]").val("<%=empDto.getDepartment()%>");
@@ -61,6 +60,7 @@ $(function(){
 
 
 </script>
+
 
 <div class="row" style="border: none;">
 	<h2>인사정보</h2>
@@ -101,24 +101,24 @@ $(function(){
 		
 		<div>사번</div>
 		
-		<div><input style="margin-top: 10px;" type = "text" name="empNo" value="<%=empNo%>" required disabled="disabled" class="form-input form-input-underline">
+		<div><input style="margin-top: 10px;" type = "text" name="empNo" value="<%=empNo%>" required readonly class="form-input form-input-underline">
 </div>
 
 <div>이름</div> 
 <div>
-<input value="<%=empDto.getEmpName() %>" type="text" name="empName"  required disabled="disabled" class="form-input form-input-underline">
+<input value="<%=empDto.getEmpName() %>" type="text" name="empName"  required readonly class="form-input form-input-underline">
 </div>
 <div>전화번호</div> 
 <div>
-<input type="text" value="<%=empDto.getEmpPhone()%>" disabled="disabled" class="form-input form-input-underline">
+<input type="text" value="<%=empDto.getEmpPhone()%>" readonly class="form-input form-input-underline">
 </div>
 <div>이메일</div>
-<div><input type="text" name="email" value="<%=empDto.getEmail()%>"disabled="disabled" class="form-input form-input-underline">
+<div><input type="text" name="email" value="<%=empDto.getEmail()%>" readonly class="form-input form-input-underline">
 </div>	
 
 <div>주소</div> 
 <div>
-<input type="text" name="address" value="<%=empDto.getAddress()%>" disabled="disabled" class="form-input form-input-underline">
+<input type="text" name="address" value="<%=empDto.getAddress()%>" readonly class="form-input form-input-underline">
 </div>
 
 
