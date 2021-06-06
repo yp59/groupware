@@ -73,6 +73,7 @@ if(isAadressSend) {
 	
 	}
 	
+	
 
 
 </style>
@@ -99,12 +100,12 @@ if(isAadressSend) {
 			<%if(isSender) {%>
 			<div class="row">
 				<label for="name">제목</label>
-				<input class="form-btn" id="name" type ="text" name="m_name" value="re:<%=answer_title %>"required class="form-input">		
+				<input class="form-btn" id="name" type ="text" name="m_name" value="re:<%=answer_title %>"required class="form-input" style="background-color: lightgray; border-color: white; color:black">		
 			</div>
 			<%} else{%>
 			<div class="row">
-				<label for="name">제목</label>
-				<input id="name" type ="text" name="m_name" required class="form-input">		
+				<label for="name" style="font-weight: bold;">제목</label>
+				<input id="name" type ="text" name="m_name" required class="form-input form-btn" style="background-color: lightgray; border-color: white; color:black; ">		
 			</div>
 			<%} %>
 			
@@ -113,13 +114,13 @@ if(isAadressSend) {
 				
 			<!-- 수신자 명단 : 1. 답장일 때 || address타고 들어왔을 때  2. 새로운 massage일때 -->
 				<%if(isSender||isAadressSend) {%>
-					<label>수신자</label>
+					<label style="font-weight: bold;">수신자</label>
 					<select name="e2_name" class="form-select">
 <!-- 						 수신자 이름 보냄 -->
 							<option><%=answer_name%></option>
 					</select>
 				<%} else{ %>
-					<label>수신자</label>
+					<label style="font-weight: bold;">수신자</label>
 					<input type="text" name="e2_name" required>
 				<%} %>
 				
@@ -130,13 +131,13 @@ if(isAadressSend) {
 			</div>
 			
 			<div class="row">
-				<label for="content">내용</label>
+				<label for="content" style="font-weight: bold;">내용</label>
 				<textarea  id="content" name="m_content" class="form-textarea"></textarea>
 			</div>
 			
 			<!-- 첨부파일 -->
 			<div class="row">
-				첨부파일:
+				<label style="font-weight: bold;">첨부파일:</label>
 				<input type="file" name="massage_file" class="form-input">
 			</div>
 			
