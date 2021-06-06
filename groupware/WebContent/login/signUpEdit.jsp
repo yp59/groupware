@@ -7,7 +7,7 @@
     pageEncoding="UTF-8"%>
 <%
 // addressDetail에서 파라미터 받아옴.
-String empNo = request.getParameter("empNo");
+String empNo = (String)request.getParameter("empNo");
 
 
 employeesDao empDao = new employeesDao();
@@ -69,7 +69,6 @@ $(function(){
 <div class="container-1200" style="border: none; border-top: 2px solid rgb(102, 177, 227); margin-bottom: 10px;">
 <div class="text-right">
 <a href = "<%=request.getContextPath()%>/address/addressList.jsp?manage=1" class="link-btn" style="margin-top:15px; ">취소</a></div>
-
 
 <form action="signUpEdit.kh" method="post">
 		
