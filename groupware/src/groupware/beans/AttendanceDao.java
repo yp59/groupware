@@ -345,5 +345,21 @@ public class AttendanceDao {
 		
 		return count;
 	}
+	
+	//이번달에 근무한 내역(있는지) -> 일괄급여
+	public int isAttend(String empNo,String attDate) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		
+		String sql = "select count(*) from attendance where emp_no = ? and instr(att_date,?)>0";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setString(2, attDate);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int attendCount = rs.getInt(1);
+		
+		con.close();
+		return attendCount;
+	}
 
 }
