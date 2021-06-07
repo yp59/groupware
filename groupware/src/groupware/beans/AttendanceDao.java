@@ -61,18 +61,54 @@ public class AttendanceDao {
 		con.close();
 		return count>0;
 	}
+	//총 근무시간 계산22
+	public boolean totaltime(String empNo, String attDate) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+		
+		//총 근무시간(원래 근무시간 + 추가 근무시간) 계산
+		String sql="update attendance set att_totaltime = floor((att_leave-att_attend)*24*60) "
+				+ "where emp_no = ? and att_date = to_date(?, 'yyyy-mm-dd')";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1,empNo);
+		ps.setString(2,attDate);
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
+	}
 	
-	//추가 근무 시간 계산 가져오기 + 값 수정
+	//추가 근무 시간 계산 수정
 	public boolean overtime(String empNo) throws Exception{
 		Connection con = jdbcUtils.getConnection();
 
 		//근무 시간 : 8시간으로 설정
 		//추가근무시간 : 총 근무시간 - 8시간
-		String sql = "update attendance set att_overtime = GREATEST((att_totaltime/24/60)-8, 0)"
+		String sql = "update attendance set att_overtime = GREATEST((att_totaltime/60)-8, 0)"
 				+ "where emp_no=? and att_date = to_char(sysdate, 'yyyy-mm-dd')";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, empNo);
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count>0;
+	}
+	
+	//추가 근무 시간 계산 수정 222222
+	public boolean overtime(String empNo, String attDate) throws Exception{
+		Connection con = jdbcUtils.getConnection();
+
+		//근무 시간 : 8시간으로 설정
+		//추가근무시간 : 총 근무시간 - 8시간
+		String sql = "update attendance set att_overtime = GREATEST((att_totaltime/60)-8, 0)"
+				+ "where emp_no=? and att_date = to_date(?, 'yyyy-mm-dd')";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, empNo);
+		ps.setString(2,attDate);
 		
 		int count = ps.executeUpdate();
 		
