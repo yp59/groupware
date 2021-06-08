@@ -117,7 +117,7 @@
 		top:30px;
 	}
 	.link-btn2 {
-		width:65%;
+		width:auto;
 	}
 </style>
 
@@ -206,6 +206,7 @@ function monthSelect(monthList){
       <h2>급여</h2>
 </div>
 	<div class="row text-right">
+		<a href="salaryAuthorityInsertAll.gw" class="link-btn2">일괄 급여 입력</a>
 		<a href="salaryAuthorityInsert.jsp" class="link-btn">급여 입력</a>
 	</div>
 	

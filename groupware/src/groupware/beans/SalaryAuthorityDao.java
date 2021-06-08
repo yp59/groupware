@@ -34,6 +34,40 @@ public class SalaryAuthorityDao {
 		con.close();
 	}
 	
+	//일괄 급여 지급 (입력)
+	public void insertAll(List<employeesDto> employeesList, String attDate) throws Exception {
+		Connection con = jdbcUtils.getConnection();
+		AttendanceDao attendanceDao = new AttendanceDao();	
+		
+		//리스트 요소마다 가져와서 값넣기
+		for(int i=0; i<employeesList.size(); i++) {
+			if(attendanceDao.isAttend(employeesList.get(i).getEmpNo(), attDate)>0) { //이번달에 출근을 했다면 attDate:'yyyy-mm'
+				String sql= "insert into salary values(?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),?)";
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1,employeesList.get(i).getEmpNo()); 
+				ps.setInt(2,employeesList.get(i).getPono());
+				
+				int overtime = attendanceDao.getOvertime(employeesList.get(i).getEmpNo());
+				
+				PositionSalaryDao positionSalaryDao = new PositionSalaryDao();
+				PositionSalaryDto positionSalaryDto = positionSalaryDao.get(employeesList.get(i).getPono());
+				
+				int totalSalary = positionSalaryDto.getSalaryPay()+positionSalaryDto.getSalaryOvertime()*overtime
+				+positionSalaryDto.getSalaryMeal()+positionSalaryDto.getSalaryTransportation();
+				
+				ps.setInt(3, positionSalaryDto.getSalaryPay());
+				ps.setInt(4, positionSalaryDto.getSalaryOvertime() * overtime );
+				ps.setInt(5, positionSalaryDto.getSalaryMeal());
+				ps.setInt(6, positionSalaryDto.getSalaryTransportation());
+				ps.setInt(7,totalSalary);
+				
+				ps.execute();
+			}
+		}
+		
+		con.close();
+	}
+	
 	//관리자에게 보여주는 내역
 	public List<SalaryDto> list(int startRow, int endRow) throws Exception {
 		Connection con = jdbcUtils.getConnection();
