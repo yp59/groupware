@@ -31,7 +31,8 @@ public class MassageFileDownloadServlet extends HttpServlet {
 			resp.setHeader("Content-length", String.valueOf(massageFileDto.getFile_size()));
 			resp.setHeader("Content-Disposition", "attachment; filename=\""+file_name+"\"");
 			
-			File dir = new File("D:/upload");
+//			File dir = new File("D:/upload");
+			File dir = new File("D:/upload/kh75");
 			File target = new File(dir, massageFileDto.getFile_save_name());
 			
 			byte[]buffer = new byte[1024];
