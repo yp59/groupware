@@ -29,7 +29,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import groupware.beans.MailLogin;
 
 @WebServlet(urlPatterns = "/mail/mailSend.gw")
-public class MailSendServlet extends HttpServlet{
+public class MailSendServlet extends HttpServlet{ 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {

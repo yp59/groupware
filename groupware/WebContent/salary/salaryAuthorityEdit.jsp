@@ -57,6 +57,13 @@ function calcSalary(){
 		window.history.back();
 	}
 </script>
+<script>
+	$(function(){
+		$("input[name=payOvertime]").on("input", function(){
+				$(".totalPayOvertime").text("<%=positionSalaryDto.getSalaryOvertime()%>*<%=sumOvertime %>원");
+		});
+	});
+</script>
 <div class="container-400">
 	<div class="text-center" style="border-bottom: 2px solid rgb(52, 152, 219);">
 		<h2>급여 명세서 수정</h2>
@@ -83,7 +90,7 @@ function calcSalary(){
 			</div>
 			
 			<div class="row text-left">
-				<div class="row text-left sumOvertime"">추가 근무 시간 : <%=sumOvertime %></div>
+				<div class="row text-left sumOvertime">추가 근무 시간 : <%=sumOvertime %></div>
 				<label>추가 근무 수당</label>
 				<input type="text" name="salaryOvertime" value= "<%=positionSalaryDto.getSalaryOvertime()%>" class="form-input form-input-underline">
 				<div class="row totalSalaryOvertime"></div>
