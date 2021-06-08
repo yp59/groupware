@@ -173,6 +173,7 @@ public void directUpdate(directAppDto directappdto)throws Exception{
 	
 	ps.executeUpdate();
 	
+	con.close();
 	
 }
 public List<directAppDto> appState(int appNo)throws Exception{

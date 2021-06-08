@@ -35,7 +35,7 @@ public class MailSendServlet extends HttpServlet{
 		try {
 			
 			// 폼에서 전송 받은 데이터 저장 (경로는 자신에 맞게 수정)
-			String path = "D:/upload";
+			String path = "D:/upload/kh75";
 			String encoding = "UTF-8";
 			int maximumSize = 10 * 1024 * 1024;
 			DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
